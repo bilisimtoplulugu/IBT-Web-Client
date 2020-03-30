@@ -1,87 +1,87 @@
 .slide-container {
-  width: 100%;
-  padding-top: 80px;
-  margin: auto;
+    width: 100%;
+    padding-top: 80px;
+    margin: auto;
 }
 
-.react-slideshow-container + div.indicators {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  position: relative;
-  margin-top: -30px;
+.react-slideshow-container+div.indicators {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    margin-top: -30px;
 }
 
-.react-slideshow-container + div.indicators > div {
-  width: 10px;
-  height: 10px;
-  margin-right: 10px;
-  margin-bottom: 10px;
-  border-radius: 50%;
-  background: #ccc;
-  cursor: pointer;
+.react-slideshow-container+div.indicators>div {
+    width: 10px;
+    height: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    background: rgb(39, 37, 37);
+    cursor: pointer;
 }
 
-.react-slideshow-container + div.indicators > div.active {
-  background: #000;
+.react-slideshow-container+div.indicators>div.active {
+    background: rgb(110, 105, 105);
 }
 
 h3 {
-  text-align: center;
+    text-align: center;
 }
 
-.each-slide > div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-size: cover;
-  height: 600px;
+.each-slide>div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    height: 600px;
 }
 
 .each-slide .content {
-  width: 60%;
+    width: 60%;
 }
 
 .each-slide .content span:first-child {
-  width: 100%;
-  padding-bottom: 5px;
-  font-size: 32px;
-  color: white;
-  font-weight: bold;
-  text-align: left;
-  float: left;
+    width: 100%;
+    padding-bottom: 5px;
+    font-size: 32px;
+    color: white;
+    font-weight: bold;
+    text-align: left;
+    float: left;
 }
 
 .each-slide .content span:last-child {
-  width: 350px;
-  color: white;
-  font-size: 20px;
-  text-align: left;
-  float: left;
+    width: 350px;
+    color: white;
+    font-size: 20px;
+    text-align: left;
+    float: left;
 }
 
 .each-slide .content span:last-child b {
-  font-size: 16px;
+    font-size: 16px;
 }
 
 .each-fade {
-  display: flex;
+    display: flex;
 }
 
 .each-fade .image-container {
-  width: 75%;
-  overflow: hidden;
+    width: 75%;
+    overflow: hidden;
 }
 
 .each-fade .image-container img {
-  width: 100%;
+    width: 100%;
 }
 
 .each-fade h2 {
-  width: 25%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
-  background: #adceed;
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    background: #adceed;
 }
