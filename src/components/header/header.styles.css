@@ -1,0 +1,24 @@
+
+header {
+    height: 450px;
+    width: 100%;
+  }
+  header .top{
+    width: 100%;
+    padding: 15px 30px;
+    height: 70px;
+    float: left;
+    margin: 0 auto;
+  }
+  header .top .logo {
+    background-color: transparent;
+    float: left;
+    height: 50px;
+    pointer-events: none;
+  }
+  header .top .menu {
+    float: left;
+    width: auto;
+    height: 50px;
+    margin-left: 15px;
+  }
