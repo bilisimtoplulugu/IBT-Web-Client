@@ -2,12 +2,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
-First of all, install these packages;
-
-### `npm install react-icons`
-### `npm install antd`
-### `npm install react-slideshow-image`
-
 In the project directory, you can run:
 
 ### `yarn start`
