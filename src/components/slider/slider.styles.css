@@ -1,6 +1,5 @@
 .slide-container {
     width: 100%;
-    padding-top: 80px;
     margin: auto;
 }
 
@@ -9,7 +8,7 @@
     flex-wrap: wrap;
     justify-content: center;
     position: relative;
-    margin-top: -30px;
+    margin-top: -20px;
 }
 
 .react-slideshow-container+div.indicators>div {
@@ -84,4 +83,7 @@ h3 {
     align-items: center;
     margin: 0;
     background: #adceed;
+}
+.react-slideshow-container .nav span{
+    color:white;
 }

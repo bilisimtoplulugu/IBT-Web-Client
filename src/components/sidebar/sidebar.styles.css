@@ -1,0 +1,45 @@
+.sidebar {
+  width: 25%;
+  background-color: #efefef;
+  margin: 0 auto;
+  padding: 15px 5px;
+  float: left;
+}
+.sidebar h1 {
+  color:#2699fb;
+  font-weight: bold;
+  font-size: 22px;
+}
+.sidebar article{
+  width: 100%;
+  height: 250px;
+  padding: 1%;
+  background-color: transparent;
+}
+.sidebar article section {
+  background-color: transparent;
+  width: 94%;
+  margin: 0 auto;
+}
+.sidebar article section header {
+  background-color: transparent;
+  color:#2699fb;
+}
+.sidebar article section .img {
+  background-color: #2699fb;
+  height: 175px;
+  width: 100%;
+}
+.sidebar article section footer {
+  background-color: transparent;
+  padding: 0;
+  margin: 5px 0;
+}
+.sidebar article section footer h1 {
+  font-weight: bold;
+  font-size: 16px;
+  color:#2699fb;
+}
+.sidebar article section p {
+  color:black;
+}
