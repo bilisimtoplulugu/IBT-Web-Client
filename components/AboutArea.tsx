@@ -65,7 +65,7 @@ export default function AboutArea() {
                     </div>
                 </Col>
                 <Col className="counts mt-5 mt-md-0" xs={12} md={6}>
-                    <div data-aos="fade-left">
+                    <div data-aos="fade-right">
                         <div className="organizationCount">
                             <span className="count">1.493 <h2>Üye</h2></span>
                         </div>

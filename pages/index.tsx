@@ -40,8 +40,8 @@ color:white;
 text-align: center;
 
 a{
-    background: #e6145b;
-    border-color: #e6145b;
+    background: #ca0a4a;
+    border-color: #ca0a4a;
     opacity: .5;
     transition: all .3s ease;
     color:white;

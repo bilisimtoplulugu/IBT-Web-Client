@@ -50,24 +50,23 @@ export default function HomeEventCard() {
         <CustomCard>
             <CustomCard.Body>
                 <Row>
-                    <Col xs={4}>
+                    <Col xs={12} md={4} >
                         <img src="/assets/images/image1.png" />
                     </Col>
-                    <Col xs={8}>            
+                    <Col xs={12} md={8}>            
                             <Row>
-                                <Col xs={10}>
+                                {/* TODO:768 PX PROBLEM */}
+                                <Col xs={12} sm={9} >
                                 <span className="title">Cem Ekinci - KolayBi </span>
                                 </Col>
-                                <Col xs={2}>
-                                <span className="clock">16:00</span>
+                                <Col xs={12}  sm={3}>
+                                <span className="text-left text-sm-right clock">16:00</span>
                                 </Col>
                             </Row>
                             <span className="cardSubTitle">Career Talks #5 | Girişimcilik</span>
-                            <p>
+                            <p >
                             "Girişimcilik ve Globalleşme", "Covid-19 Girişimciliğe Etkileri ve Geleceği" ve "Girişimcilik ve Yatırım Süreçleri"nden bahsedeceği online etkinliğimize hepinizi bekliyoruz!
                             </p>
-         
-                            <span className="detailText">Detay İçin Karta Tıklayınız.</span>
                        
 
                             
