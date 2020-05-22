@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 
 const CustomAboutArea = styled.div`
-padding:80px 0;
+padding:40px 0;
 
 h1{
     font-weight: 700;

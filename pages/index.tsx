@@ -14,6 +14,7 @@ import AOS from 'aos';
 import EventDateSlider from '../components/EventDateSlider'
 import AboutArea from '../components/AboutArea'
 import HomeEventCard from '../components/HomeEventCard'
+import HomeEventDetailCard from '../components/HomeEventDetailCard'
 
 
 
@@ -82,7 +83,7 @@ display:inline-flex;
 
 
 const EventArea = styled.div`
-padding:80px 0;
+padding:40px 0;
 .topSide{
     margin-bottom: 20px;
 }
@@ -97,18 +98,47 @@ h2{
     font-weight: 500;
     opacity: .5;
 }
+.contentSide{
+    margin-top:20px;
+}
+`;
 
+const EventInfo = styled.div`
 
+h3{
+    padding: 10px;
+    background: #0097e4;
+    color: white;
+    font-weight: 500;
+    font-size: 16pt;
+    display:block;
+    opacity:.8;
+    margin-bottom: 23px;
+    border-radius:5px;
+    width: 70%;
+    transition: all .3s ease;
+}
+h3.active{
+    opacity:1;
+    transform: scale(1.04) translateX(15px);
+    box-shadow: 0 3px 20px rgba(169,169,169,0.75);
+}
+h3:hover{
+    opacity:1;
+    transform: scale(1.04) translateX(15px);
+    transition: all .3s ease;
+    box-shadow: 0 3px 20px rgba(169,169,169,0.75);
+}
 
 `;
 export default function Home() {
 
-   
-    
+
+
     useEffect(() => {
         AOS.init();
 
-       
+
     })
 
     return (
@@ -135,31 +165,65 @@ export default function Home() {
 
                 </Container>
             </InstagramProfile>
-            
+
             <EventArea>
-                  <Container>
-                     <div className="topSide" data-aos="fade-right">
-                        <h2>Etkinliklerimiz</h2>
+                <Container>
+                    <div className="topSide" data-aos="fade-right">
+                        <h2>Yakındaki Etkinliklerimiz</h2>
                         <span className="subTitle">Nelerdir?</span>
                     </div>
-                         <Row>
-                            <Col xs={12}>
-                                <EventDateSlider  />
-                            </Col>
+                    <Row>
+                        <Col xs={12}>
+                            <EventDateSlider />
+                        </Col>
 
-                            <Col xs={12}>
+                        <Col xs={12}>
 
-                           <HomeEventCard />
+                            <HomeEventCard />
 
-                            </Col>
-                         </Row>
-                  </Container>
+                        </Col>
+                    </Row>
+                </Container>
 
             </EventArea>
 
             <AboutArea />
-        
-     
+
+
+            <EventArea>
+               <Container>
+               <div className="topSide" data-aos="fade-right">
+                    <h2>Etkinliklerimiz</h2>
+                    <span className="subTitle">Nelerdir?</span>
+                </div>
+
+                <Row>
+
+                    <Col xs={6}>
+                    <div className="contentSide" >
+                    <EventInfo data-aos="fade-right">
+                        <h3 className="active">Kariyer Sohbetleri</h3>
+                    </EventInfo>
+                    <EventInfo data-aos="fade-right">
+                        <h3>Workshop Çalışmaları</h3>
+                    </EventInfo >
+                    <EventInfo data-aos="fade-right">
+                        <h3>Online Seminerler</h3>
+                    </EventInfo>
+                    <EventInfo data-aos="fade-right">
+                        <h3>Career Talks</h3>
+                    </EventInfo>
+                   
+                    </div>
+                    </Col>
+                    <Col xs={6}>
+                    <HomeEventDetailCard  />
+                    </Col>
+                </Row>
+               </Container>
+            </EventArea>
+
+
         </Layout>
     )
 }
