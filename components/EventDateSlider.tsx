@@ -80,7 +80,6 @@ export default function EventDateSlider() {
 
   return (
     <div data-aos="fade-right">
-      <h1 onClick={() => console.log(selectedEvent)}>test</h1>
       <CustomSlider {...settings}>
         <EventDateCard className={selectedEvent == 1 && 'active'} onClick={() => dispatch(addEvent(1))}>
           11 Mayıs Pazartesi,2020

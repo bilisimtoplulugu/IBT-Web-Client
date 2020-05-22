@@ -115,20 +115,20 @@ h3{
     opacity:.8;
     margin-bottom: 23px;
     border-radius:5px;
-    width: 70%;
     transition: all .3s ease;
+cursor:pointer;
 }
 h3.active{
     opacity:1;
-    transform: scale(1.04) translateX(15px);
-    box-shadow: 0 3px 20px rgba(169,169,169,0.75);
+    transition: all .3s ease;
+    box-shadow: 0 3px 20px rgba(169, 169, 169, 0.5);
 }
 h3:hover{
     opacity:1;
-    transform: scale(1.04) translateX(15px);
     transition: all .3s ease;
-    box-shadow: 0 3px 20px rgba(169,169,169,0.75);
+    box-shadow: 0 3px 20px rgba(169, 169, 169, 0.5);
 }
+
 
 `;
 export default function Home() {
@@ -199,24 +199,34 @@ export default function Home() {
 
                 <Row>
 
-                    <Col xs={6}>
+                    <Col xs={12}>
                     <div className="contentSide" >
-                    <EventInfo data-aos="fade-right">
+                    <Row> 
+                        <Col xs={12} sm={6} md={4}>
+                        <EventInfo data-aos="fade-right">
                         <h3 className="active">Kariyer Sohbetleri</h3>
                     </EventInfo>
+                  
+                        </Col>
+                        <Col xs={12} sm={6} md={4}>
+                      
                     <EventInfo data-aos="fade-right">
                         <h3>Workshop Çalışmaları</h3>
                     </EventInfo >
+                   
+                        </Col>
+                        <Col xs={12} sm={6} md={4}>
+                     
                     <EventInfo data-aos="fade-right">
                         <h3>Online Seminerler</h3>
                     </EventInfo>
-                    <EventInfo data-aos="fade-right">
-                        <h3>Career Talks</h3>
-                    </EventInfo>
+
+                        </Col>
+                    </Row>
                    
                     </div>
                     </Col>
-                    <Col xs={6}>
+                    <Col xs={12}>
                     <HomeEventDetailCard  />
                     </Col>
                 </Row>

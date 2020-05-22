@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
-import {useSelector} from 'react-redux';
-import {Card, Row, Col} from 'react-bootstrap';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { Card, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
 import Link from 'next/link';
 import data from '../data';
@@ -45,39 +45,44 @@ export default function HomeEventCard() {
   const selectedEvent = useSelector((state) => state.eventReducer);
 
   return (
-    <Link href="/about" as="/hakkimizda">
-      <a className="text-decoration-none">
-        <CustomCard>
-          <CustomCard.Body>
-            {data.map((event) => {
-              if (event.id === selectedEvent) {
-                return (
-                  <Row>
-                    <Col xs={12} md={4}>
-                      <img src={event.img} />
-                    </Col>
-                    <Col xs={12} md={8}>
-                      <Row>
-                        {/* TODO:768 PX PROBLEM */}
-                        <Col xs={12} sm={9}>
-                          <span className="title">{event.title} </span>
-                        </Col>
-                        <Col xs={12} sm={3}>
-                          <span className="text-left text-sm-right clock">
-                            {event.time}
-                          </span>
-                        </Col>
-                      </Row>
-                      <span className="cardSubTitle">{event.subtitle}</span>
-                      <p>{event.description}</p>
-                    </Col>
-                  </Row>
-                );
-              }
-            })}
-          </CustomCard.Body>
-        </CustomCard>
-      </a>
-    </Link>
+
+    <div>
+      {data.map((event) => {
+        if (event.id === selectedEvent) {
+          return (
+            <Link href="/about" as="/hakkimizda" >
+              <a className="text-decoration-none">
+                <CustomCard>
+                  <CustomCard.Body>
+
+                    <Row>
+                      <Col xs={12} md={4}>
+                        <img src={event.img} />
+                      </Col>
+                      <Col xs={12} md={8}>
+                        <Row>
+                          {/* TODO:768 PX PROBLEM */}
+                          <Col xs={12} sm={9}>
+                            <span className="title">{event.title} </span>
+                          </Col>
+                          <Col xs={12} sm={3}>
+                            <span className="text-left text-sm-right clock">
+                              {event.time}
+                            </span>
+                          </Col>
+                        </Row>
+                        <span className="cardSubTitle">{event.subtitle}</span>
+                        <p>{event.description}</p>
+                      </Col>
+                    </Row>
+
+                  </CustomCard.Body>
+                </CustomCard>
+              </a>
+            </Link>
+          );
+        }
+      })}
+    </div>
   );
 }
