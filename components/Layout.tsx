@@ -2,14 +2,14 @@ import Header from "./Header";
 import Head from "next/head";
 import Footer from "./Footer";
 
-function Layout({children}){
+function Layout({ children }) {
     return (
 
         <div>
-          
-               <Header />
+
+            <Header />
             <main>
-            {children}
+                {children}
             </main>
             <Footer />
         </div>

@@ -83,7 +83,7 @@ display:inline-flex;
 
 
 const EventArea = styled.div`
-padding:40px 0;
+padding:60px 0;
 .topSide{
     margin-bottom: 20px;
 }

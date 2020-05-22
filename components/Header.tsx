@@ -46,10 +46,6 @@ const CustomButton = styled.a`
 `;
 
 
-const BgHeader = `
-background:Red;
-`;
-
 const CustomHeader = styled.header`
 position:fixed;
 left:0;
@@ -99,14 +95,14 @@ export default function Header() {
             <Container>
                 <CustomNavbar expand="lg" variant="dark">
 
-                    {<Navbar.Brand href="#home"><Logo src="/assets/images/logo.png" alt="" /></Navbar.Brand>}
+                    <Navbar.Brand href="/"><Logo src="/assets/images/logo.png" alt="" /></Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ml-auto">
                             <Link href="/">
                                 <NavLink >Anasayfa</NavLink>
                             </Link>
-                            <Link href="/about">
+                            <Link href="event" >
                                 <NavLink >Etkinlikler</NavLink>
                             </Link>
                             <Link href="/iletisim">
@@ -121,7 +117,7 @@ export default function Header() {
                             
                             
                             <div className="d-flex">
-                                <CustomButton className="btn" id="supportButton">Destek Ol</CustomButton>
+                                <CustomButton className="btn" id="supportButton">Giriş Yap</CustomButton>
                             </div>
                         </Nav>
                     </Navbar.Collapse>

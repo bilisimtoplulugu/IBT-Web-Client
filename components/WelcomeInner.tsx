@@ -6,12 +6,9 @@ import WelcomeSlider from './WelcomeSlider';
 
 const Welcome = styled.div`
 
-position:relative;
-
-}
 padding: 100px 0;
 width: 100%;
-    height: 100vh;
+height: 100vh;
 background-image:url(${"./../assets/images/homeBg.jpg"});
 color: #fff;
     background-position: center;
@@ -84,35 +81,35 @@ const SliderWrapper = styled.div`
 
 export default function WelcomeInner() {
     return (
-            <Welcome>
-                <WelcomeInnerArea>
-                    <Container>
-                        <Row>
-                            <Col xs={12} md={6}>
+        <Welcome>
+            <WelcomeInnerArea>
+                <Container>
+                    <Row>
+                        <Col xs={12} md={6}>
 
-                                <Title><SubTitle>İSTANBUL <br /></SubTitle>
-                                    <SliderWrapper>
-                                        <div className="slider">
-                                            <div className="slider-text1">HOŞGELDİNİZ</div>
-                                            <div className="slider-text2">BİLİŞİM TOPLULUĞU</div>
-                                        </div>
-                                    </SliderWrapper>
+                            <Title><SubTitle>İSTANBUL <br /></SubTitle>
+                                <SliderWrapper>
+                                    <div className="slider">
+                                        <div className="slider-text1">HOŞGELDİNİZ</div>
+                                        <div className="slider-text2">BİLİŞİM TOPLULUĞU</div>
+                                    </div>
+                                </SliderWrapper>
 
-                                </Title>
+                            </Title>
 
-                                <p>
-                                    İstanbul'da bulunan üniversite kulüplerince düzenlenecek olan bilişimle ilgili etkinliklerin paylaşıldığı
-                                    ve bu etkinliklerin organize edildiği platformdur.
+                            <p>
+                                İstanbul'da bulunan üniversite kulüplerince düzenlenecek olan bilişimle ilgili etkinliklerin paylaşıldığı
+                                ve bu etkinliklerin organize edildiği platformdur.
                                         </p>
-                            </Col>
-                            <Col xs={6}>
+                        </Col>
+                        <Col xs={6}>
 
-                            </Col>
-                        </Row>
-                    </Container>
-                </WelcomeInnerArea>
+                        </Col>
+                    </Row>
+                </Container>
+            </WelcomeInnerArea>
 
-                <WelcomeSlider />
+            <WelcomeSlider />
         </Welcome>
     )
 }
