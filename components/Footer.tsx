@@ -7,8 +7,11 @@ import { faInstagram, faFacebook, faTwitter, faGithub, faYoutube, faGit } from '
 
 
 const CustomFooter = styled.div`
-padding:80px 0;
-border-top:1px solid #f5f5f5;
+background:#f5f5f5;
+.container{
+    border-top:1px solid #f1f1f1;
+    padding:80px 0;
+}
 
 .logo{
     width: 200px;
@@ -65,9 +68,9 @@ border-top:1px solid #f5f5f5;
 `
 export default function Footer() {
     return (
-
+        <CustomFooter>
         <Container >
-            <CustomFooter>
+         
                 <Row>
                     <Col xs={12}  md={4} className="text-center text-md-left">
                         <Row>
@@ -126,8 +129,8 @@ export default function Footer() {
                                             <a >Etkinlikler</a>
                                         </Link>
                                         </li>
-                                    <li>  <
-                                        Link href="/">
+                                    <li>  
+                                    <Link href="/">
                                             <a >Blog</a>
                                         </Link>
                                         </li>
@@ -153,8 +156,8 @@ export default function Footer() {
                                             <a >Etkinlikler</a>
                                         </Link>
                                         </li>
-                                    <li>  <
-                                        Link href="/">
+                                    <li>  
+                                    <Link href="/">
                                             <a >Blog</a>
                                         </Link>
                                         </li>
@@ -180,8 +183,8 @@ export default function Footer() {
                                             <a >Etkinlikler</a>
                                         </Link>
                                         </li>
-                                    <li>  <
-                                        Link href="/">
+                                    <li>  
+                                        <Link href="/">
                                             <a >Blog</a>
                                         </Link>
                                         </li>
@@ -207,8 +210,8 @@ export default function Footer() {
                                             <a >Etkinlikler</a>
                                         </Link>
                                         </li>
-                                    <li>  <
-                                        Link href="/">
+                                    <li>  
+                                        <Link href="/">
                                             <a >Blog</a>
                                         </Link>
                                         </li>
@@ -223,8 +226,8 @@ export default function Footer() {
                     </Col>
                     
                 </Row>
-            </CustomFooter>
+        
         </Container>
-
+        </CustomFooter>
     )
 }

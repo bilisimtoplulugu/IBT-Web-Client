@@ -50,7 +50,7 @@ export default function HomeEventCard() {
       {data.map((event) => {
         if (event.id === selectedEvent) {
           return (
-            <Link href="/about" as="/hakkimizda">
+            <Link href="/about" as="/hakkimizda" >
               <a className="text-decoration-none">
                 <CustomCard>
                   <CustomCard.Body>

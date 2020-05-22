@@ -2,50 +2,24 @@ import React, { useEffect } from 'react'
 import Layout from '../../components/Layout'
 import Head from 'next/head'
 import styled from 'styled-components'
-import { Container, Row, Col, Form, Button } from 'react-bootstrap'
+import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap'
 import EventDateSlider from '../../components/EventDateSlider'
 import HomeEventCard from '../../components/HomeEventCard'
 import AOS from 'aos';
 import PageTopSide from '../../components/PageTopSide'
+import EventPageCard from '../../components/EventPageCard'
 
-const EventTop = styled.div`
-background-image:url(${"./../assets/images/homeBg.jpg"});
-height:250px;
-color: #fff;
-background-position: center;
-background-repeat: no-repeat;
-background-size: cover;
-position:relative;
-    &::before{
-        content: "";
-        background: rgba(13, 42, 62, 0.8);
-        backdrop-filter:blur(3px);
-        position: absolute;
-        bottom: 0;
-        top: 0;
-        left: 0;
-        right: 0;
-    }
-`
-const EventTopInner = styled.div`
-position: absolute;
-    top: 50%;
-left:0;
-right:0;
-
-`;
 
 const FilterButton = styled.a`
 
 font-size: 11pt;
 color: #fff !important;
-border-radius: 5px;
 padding-left:  20px;
 padding-right:  20px;
 opacity: .5;
 background:#0097e4;
-border:none;
-margin-left: 5px;
+width: 100%;
+border-radius: 0;
 
 transition: all .3s ease;
 &:hover {
@@ -60,17 +34,23 @@ transition: all .3s ease;
 @media(max-width:991px){
     margin: 10px 0;
 }
-box-shadow: 0 3px 20px rgba(169,169,169,0.5);
+
 
 `;
 
 const Filters = styled.div`
-text-align:right;
-margin-top:30px;
+box-shadow: 0 3px 20px rgba(169,169,169,0.5);
+border-radius:5px;
+overflow:hidden;
 .active-button{
     opacity:1;
 }
 `;
+
+const MainArea = styled.div`
+margin:50px 0;
+`;
+
 export default function Event() {
 
     useEffect(() => {
@@ -84,25 +64,28 @@ export default function Event() {
         <Layout>
            <PageTopSide title="Etkinlikler" desc="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."/>
            
-            <Container>
+           <MainArea>
+           <Container>
                 <Row>
-                    <Col xs={12}>
+                    <Col xs={3}>
 
                         <Filters >
-                            <div>
-                                <FilterButton className="btn ">Geçmiş Etkinlikleri Görüntüle</FilterButton>
-                            </div>
+                
+                                <FilterButton className="btn active-button">Yaklaşan Etkinlikler</FilterButton>
+                                <FilterButton className="btn ">Geçmiş Etkinlikler</FilterButton>   
                         </Filters>
 
-                        <EventDateSlider />
                     </Col>
 
-                    <Col xs={12}>
+                    <Col xs={9}>
 
-                        <HomeEventCard />
+                        <EventPageCard />
+                        <EventPageCard />
+                        <EventPageCard />
                     </Col>
                 </Row>
             </Container>
+           </MainArea>
 
         </Layout>
 
