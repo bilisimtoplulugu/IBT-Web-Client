@@ -67,7 +67,7 @@ export default function Event() {
            <MainArea>
            <Container>
                 <Row>
-                    <Col xs={3}>
+                    <Col xs={12} lg={3}>
 
                         <Filters >
                 
@@ -77,7 +77,7 @@ export default function Event() {
 
                     </Col>
 
-                    <Col xs={9}>
+                    <Col xs={12} lg={9}>
 
                         <EventPageCard />
                         <EventPageCard />

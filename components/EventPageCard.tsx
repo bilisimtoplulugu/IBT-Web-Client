@@ -104,12 +104,12 @@ export default function EventPageCard() {
                         <Col xs={12} >
                            <div className="eventProvider">
                                <Row>
-                                   <Col xs={6}>
+                                   <Col xs={12} sm={6}>
                                    <span className="participant">35 Katılımcı</span>
                               
                                    </Col>
-                                   <Col xs={6}>
-                                   <span className="providerName text-right">İstanbul Bilişim Topluluğu</span>
+                                   <Col xs={12} sm={6}>
+                                   <span className="providerName text-left text-sm-right">İstanbul Bilişim Topluluğu</span>
                                    </Col>
                                </Row>
                            </div>
