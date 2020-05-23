@@ -80,31 +80,42 @@ export default function EventDateSlider() {
 
   return (
     <div data-aos="fade-right">
-      <h1 onClick={() => console.log(selectedEvent)}>test</h1>
       <CustomSlider {...settings}>
-        <EventDateCard className={selectedEvent == 1 && 'active'} onClick={() => dispatch(addEvent(1))}>
+        <EventDateCard
+          className={selectedEvent == 1 && 'active'}
+          onClick={() => dispatch(addEvent(1))}
+        >
           11 Mayıs Pazartesi,2020
         </EventDateCard>
-        <EventDateCard className={selectedEvent == 2 && 'active'} onClick={() => dispatch(addEvent(2))}>
+        <EventDateCard
+          className={selectedEvent == 2 && 'active'}
+          onClick={() => dispatch(addEvent(2))}
+        >
           12 Mayıs Salı,2020
         </EventDateCard>
-        <EventDateCard className={selectedEvent == 3 && 'active'} onClick={() => dispatch(addEvent(3))}>
+        <EventDateCard
+          className={selectedEvent == 3 && 'active'}
+          onClick={() => dispatch(addEvent(3))}
+        >
           13 Mayıs Çarşamba,2020
         </EventDateCard>
-        <EventDateCard className={selectedEvent == 4 && 'active'} onClick={() => dispatch(addEvent(4))}>
+        <EventDateCard
+          className={selectedEvent == 4 && 'active'}
+          onClick={() => dispatch(addEvent(4))}
+        >
           14 Mayıs Perşembe,2020
         </EventDateCard>
-        <EventDateCard className={selectedEvent == 5 && 'active'} onClick={() => dispatch(addEvent(5))}>
+        <EventDateCard
+          className={selectedEvent == 5 && 'active'}
+          onClick={() => dispatch(addEvent(5))}
+        >
           15 Mayıs Cumartesi,2020
         </EventDateCard>
-        <EventDateCard className={selectedEvent == 6 && 'active'} onClick={() => dispatch(addEvent(6))}>
+        <EventDateCard
+          className={selectedEvent == 6 && 'active'}
+          onClick={() => dispatch(addEvent(6))}
+        >
           16 Mayıs Pazar,2020
-        </EventDateCard>
-        <EventDateCard className={selectedEvent == 5 && 'active'} onClick={() => dispatch(addEvent(5))}>
-          17 Mayıs Cumartesi,2020
-        </EventDateCard>
-        <EventDateCard className={selectedEvent == 6 && 'active'} onClick={() => dispatch(addEvent(6))}>
-          18 Mayıs Pazar,2020
         </EventDateCard>
       </CustomSlider>
     </div>

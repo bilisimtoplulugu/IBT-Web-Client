@@ -1,16 +1,23 @@
 import Header from "./Header";
 import Head from "next/head";
+import Footer from "./Footer";
+import styled from "styled-components";
 
-function Layout({children}){
+const Wrapper = styled.div`
+
+background:#f8f8f8;
+`;
+function Layout({ children }) {
     return (
 
-        <div>
-          
-               <Header />
+        <Wrapper>
+
+            <Header />
             <main>
-            {children}
+                {children}
             </main>
-        </div>
+            <Footer />
+        </Wrapper>
     )
 }
 

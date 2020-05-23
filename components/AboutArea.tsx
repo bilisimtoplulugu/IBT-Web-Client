@@ -4,12 +4,11 @@ import styled from 'styled-components';
 
 
 const CustomAboutArea = styled.div`
-padding:80px 0;
+padding:60px 0;
 
 h1{
-    font-weight: 700;
+    font-weight: 500;
     margin-bottom: 0 !important;
-    font-weight: 700;
     color: #253a4a;
     margin-bottom: 15px
 }
