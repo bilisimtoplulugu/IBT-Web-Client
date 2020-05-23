@@ -99,12 +99,6 @@ export default function EventDateSlider() {
         <EventDateCard className={selectedEvent == 6 && 'active'} onClick={() => dispatch(addEvent(6))}>
           16 Mayıs Pazar,2020
         </EventDateCard>
-        <EventDateCard className={selectedEvent == 5 && 'active'} onClick={() => dispatch(addEvent(5))}>
-          17 Mayıs Cumartesi,2020
-        </EventDateCard>
-        <EventDateCard className={selectedEvent == 6 && 'active'} onClick={() => dispatch(addEvent(6))}>
-          18 Mayıs Pazar,2020
-        </EventDateCard>
       </CustomSlider>
     </div>
   );
