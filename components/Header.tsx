@@ -107,10 +107,10 @@ export default function Header() {
               <Link href="/" passHref={true}>
                 <NavLink>Anasayfa</NavLink>
               </Link>
-              <Link href="/event" passHref={true}>
+              <Link href="/event" as="/etkinlikler" passHref={true}>
                 <NavLink>Etkinlikler</NavLink>
               </Link>
-              <Link href="/iletisim" passHref={true}>
+              <Link href="/blog" passHref={true}>
                 <NavLink>Blog</NavLink>
               </Link>
               <Link href="/calismalarimiz" passHref={true}>
@@ -121,9 +121,10 @@ export default function Header() {
               </Link>
 
               <div className="d-flex">
-                <CustomButton className="btn" id="supportButton">
+               <Link href="/login" as="/giris-yap" passHref={true}>
+               <CustomButton className="btn" id="supportButton">
                   Giriş Yap
-                </CustomButton>
+                </CustomButton></Link>
               </div>
             </Nav>
           </Navbar.Collapse>
