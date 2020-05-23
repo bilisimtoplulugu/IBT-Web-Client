@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { Card, Row, Col } from 'react-bootstrap';
+import React, {useState} from 'react';
+import {useSelector} from 'react-redux';
+import {Card, Row, Col} from 'react-bootstrap';
 import styled from 'styled-components';
 import Link from 'next/link';
 import data from '../data';
@@ -45,16 +45,14 @@ export default function HomeEventCard() {
   const selectedEvent = useSelector((state) => state.eventReducer);
 
   return (
-
     <div>
       {data.map((event) => {
         if (event.id === selectedEvent) {
           return (
-            <Link href="/about" as="/hakkimizda" >
+            <Link href="/about" as="/hakkimizda">
               <a className="text-decoration-none">
                 <CustomCard>
                   <CustomCard.Body>
-
                     <Row>
                       <Col xs={12} md={4}>
                         <img src={event.img} />
@@ -75,7 +73,6 @@ export default function HomeEventCard() {
                         <p>{event.description}</p>
                       </Col>
                     </Row>
-
                   </CustomCard.Body>
                 </CustomCard>
               </a>
