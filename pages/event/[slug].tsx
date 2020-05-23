@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { Container, Row, Col, Card } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClock, faVideo, faUsers, faHeadphones } from '@fortawesome/free-solid-svg-icons'
+import Link from 'next/link'
 
 const EventDetailArea = styled.div`
 margin-top:50px;
@@ -67,7 +68,7 @@ transition: all .3s ease;
 const CustomCard = styled(Card)`
 box-shadow: 0 0px 20px rgba(169,169,169,0.2);
     border: none;
-    color: #253a4a;
+    color: rgb(37, 59, 75);
 
     .clock{
         font-size: 12pt;
@@ -109,6 +110,61 @@ padding: 10px 0;
     }
 `;
 
+const ParticipantsArea = styled.div`
+.card{
+    text-align:center;
+    transition: all .3s ease;
+    cursor:pointer;
+    margin-bottom:15px;
+}
+
+.card:hover{
+    transition: all .3s ease;
+    transform: scale(1.04);
+    box-shadow: 0 3px 20px rgba(169, 169, 169, 0.2);
+}
+h2{
+    font-weight: 500;
+    margin-bottom: 0 !important;
+    color: #253a4a;
+    font-size:20pt;
+}
+img{
+    width:72px;
+    border-radius:50%;
+    margin-bottom:15px;
+}
+span{
+    font-weight: 500;
+    display:block;
+    font-size:12pt;
+
+}
+
+@media(max-width:768px){
+    .card:hover{
+        transition: all .3s ease;
+        transform: unset;
+        box-shadow: 0 3px 20px rgba(169, 169, 169, 0.2);
+    }
+    .testimonial-group > .row {
+        overflow-x: auto;
+    
+        flex-wrap: nowrap;
+      }
+}
+.seeAll{
+    opacity: .5;
+    text-decoration: none;
+    color: #253a4a;
+    transition: all .3s ease;
+}
+.seeAll:hover{
+    opacity:1;
+    transition: all .3s ease;
+}
+`;
+
 export default function EventDetail() {
     return (
         <Layout>
@@ -129,11 +185,11 @@ export default function EventDetail() {
                                 </CustomCard.Body>
                             </CustomCard>
                         </Col>
-                        <Col xs={{ order: 1, span: 12 }} md={{ order: 1, span: 4 }} className="mb-3 ">
+                        <Col xs={{ order: 1, span: 12 }} md={{ order: 2, span: 4 }} className="mb-3 ">
                             <CustomCard >
                                 <CustomCard.Body className="rightContent">
                                     <div className="topSide" >
-                                        <span className="subTitle">Düzenleyen</span>
+                                        <h3 className="subTitle">Düzenleyen</h3>
                                         <span className="title">İstanbul Bilişim Topluluğu</span>
                                     </div>
                                     <div className="mb-3">
@@ -161,6 +217,90 @@ export default function EventDetail() {
                                 </CustomCard.Body>
                             </CustomCard>
                         </Col>
+                        <Col  xs={{ order: 3, span:12  }} md={{ order: 3, span:8  }} className="mt-5">
+                            <ParticipantsArea>
+                                <Row>
+                                    <Col >
+                                    <h2>Katılımcılar</h2>
+                                    </Col>
+                                    <Col className="d-flex align-items-center justify-content-end"> 
+                                    <Link href="">
+                                        <a  className="seeAll">Tümünü Gör</a>
+                                    </Link>
+                                    </Col>
+                                </Row>
+                               <div className="testimonial-group">
+                               <Row className="mt-4">
+                                    <Col xs={6} sm={4} lg={3}>
+                                    <CustomCard>
+                                        <CustomCard.Body>
+                                            <img src="/assets/images/berkaydogukan.jpg" /> 
+                                            <span>Berkay Doğukan Urhan</span>
+                                        </CustomCard.Body>
+                                    </CustomCard>
+                                    </Col>
+                                    <Col xs={6} sm={4} lg={3}>
+                                    <CustomCard>
+                                        <CustomCard.Body>
+                                            <img src="/assets/images/berkaydogukan.jpg" /> 
+                                            <span>Berkay Doğukan Urhan</span>
+                                        </CustomCard.Body>
+                                    </CustomCard>
+                                    </Col>
+                                    <Col xs={6} sm={4} lg={3}>
+                                    <CustomCard>
+                                        <CustomCard.Body>
+                                            <img src="/assets/images/berkaydogukan.jpg" /> 
+                                            <span>Berkay Doğukan Urhan</span>
+                                        </CustomCard.Body>
+                                    </CustomCard>
+                                    </Col>
+                                    <Col xs={6} sm={4} lg={3}>
+                                    <CustomCard>
+                                        <CustomCard.Body>
+                                            <img src="/assets/images/berkaydogukan.jpg" /> 
+                                            <span>Berkay Doğukan Urhan</span>
+                                        </CustomCard.Body>
+                                    </CustomCard>
+                                    </Col>
+                                    <Col xs={6} sm={4} lg={3}>
+                                    <CustomCard>
+                                        <CustomCard.Body>
+                                            <img src="/assets/images/berkaydogukan.jpg" /> 
+                                            <span>Berkay Doğukan Urhan</span>
+                                        </CustomCard.Body>
+                                    </CustomCard>
+                                    </Col>
+                                    <Col xs={6} sm={4} lg={3}>
+                                    <CustomCard>
+                                        <CustomCard.Body>
+                                            <img src="/assets/images/berkaydogukan.jpg" /> 
+                                            <span>Berkay Doğukan Urhan</span>
+                                        </CustomCard.Body>
+                                    </CustomCard>
+                                    </Col>
+                                    <Col xs={6} sm={4} lg={3}>
+                                    <CustomCard>
+                                        <CustomCard.Body>
+                                            <img src="/assets/images/berkaydogukan.jpg" /> 
+                                            <span>Berkay Doğukan Urhan</span>
+                                        </CustomCard.Body>
+                                    </CustomCard>
+                                    </Col>
+                                    <Col xs={6} sm={4} lg={3}>
+                                    <CustomCard>
+                                        <CustomCard.Body>
+                                            <img src="/assets/images/berkaydogukan.jpg" /> 
+                                            <span>Berkay Doğukan Urhan</span>
+                                        </CustomCard.Body>
+                                    </CustomCard>
+                                    </Col>
+                                </Row>
+                               </div>
+                            </ParticipantsArea>
+                              
+                        </Col>
+
                     </Row>
                 </Container>
                 <AttendArea>
@@ -173,7 +313,7 @@ export default function EventDetail() {
                             </Col>
                             <Col xs={12} sm={4} className="d-block d-sm-flex align-items-sm-center justify-content-sm-end">
                                 <div >
-                                <FilterButton className="btn d-block">Katıl</FilterButton>
+                                    <FilterButton className="btn d-block">Katıl</FilterButton>
                                 </div>
                             </Col>
                         </Row>

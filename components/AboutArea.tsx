@@ -7,7 +7,7 @@ const CustomAboutArea = styled.div`
 padding:60px 0;
 
 h1{
-    font-weight: 700;
+    font-weight: 500;
     margin-bottom: 0 !important;
     color: #253a4a;
     margin-bottom: 15px

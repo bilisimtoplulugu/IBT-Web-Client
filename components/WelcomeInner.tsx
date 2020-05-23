@@ -28,13 +28,13 @@ color: #fff;
 `;
 const Title = styled.div`
 
-font-weight: 700;
+font-weight: 500;
 color: #fff;
 font-size: 25pt;
 margin-bottom:15px;
 `;
 const SubTitle = styled.span`
-font-weight: 700;
+font-weight: 500;
     color: #17cff9;
     margin-bottom:15px;
 `;

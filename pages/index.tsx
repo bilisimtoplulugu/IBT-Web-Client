@@ -88,7 +88,7 @@ padding:60px 0;
     margin-bottom: 20px;
 }
 h2{
-    font-weight: 700;
+    font-weight: 500;
     margin-bottom: 0 !important;
 
     color: #253a4a;
