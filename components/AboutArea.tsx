@@ -9,7 +9,6 @@ padding:60px 0;
 h1{
     font-weight: 700;
     margin-bottom: 0 !important;
-    font-weight: 700;
     color: #253a4a;
     margin-bottom: 15px
 }

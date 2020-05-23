@@ -45,6 +45,12 @@ overflow:hidden;
 .active-button{
     opacity:1;
 }
+@media(max-width:991px){
+    box-shadow:unset;
+    a{
+        width:unset;
+    }
+}
 `;
 
 const MainArea = styled.div`

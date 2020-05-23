@@ -78,7 +78,7 @@ export default function Header() {
 
     const handleScroll = () => {
 
-        setHeaderBgColor(100 < window.pageYOffset );
+        setHeaderBgColor(50 < window.pageYOffset );
   
     };
 

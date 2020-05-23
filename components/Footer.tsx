@@ -3,14 +3,14 @@ import { Container, Row, Col } from 'react-bootstrap'
 import styled from 'styled-components'
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faInstagram, faFacebook, faTwitter, faGithub, faYoutube, faGit } from '@fortawesome/free-brands-svg-icons'
+import { faInstagram, faFacebook, faTwitter, faGithub, faYoutube } from '@fortawesome/free-brands-svg-icons'
 
 
 const CustomFooter = styled.div`
 background:#f5f5f5;
 .container{
     border-top:1px solid #f1f1f1;
-    padding:80px 0;
+    padding:80px 15px;
 }
 
 .logo{
@@ -58,7 +58,7 @@ background:#f5f5f5;
 }
 .footerLinks a{
     display: block;
-    font-weight: 300;
+    font-weight: 400;
     font-size: 11pt;
     color:#253a4a;
     opacity: .8;
@@ -112,7 +112,7 @@ export default function Footer() {
                             </Col>
                         </Row>
                     </Col>
-                    <Col xs={12} md={8} className="footerLinks">
+                    <Col xs={12} md={8} className="footerLinks d-none d-sm-block">
                         <Row>
                             <Col xs={6} md={3}>
                                 <h6 className="footerTitle mt-5 mt-md-0 ">

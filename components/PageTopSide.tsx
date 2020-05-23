@@ -4,7 +4,10 @@ import styled from 'styled-components';
 
 const EventTop = styled.div`
 background-image:url(${"./../assets/images/homeBg.jpg"});
-height:250px;
+height:300px;
+h1{
+    font-size:25pt;
+}
 color: #fff;
 background-position: center;
 background-repeat: no-repeat;
@@ -20,13 +23,20 @@ position:relative;
         left: 0;
         right: 0;
     }
+    @media(max-width:768px){
+        height:400px;
+
+    }
 `
 const EventTopInner = styled.div`
 position: absolute;
     top: 50%;
 left:0;
 right:0;
+@media(max-width:768px){
+    top: 40%;
 
+}
 `;
 
 export default function PageTopSide(props : {
