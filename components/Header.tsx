@@ -111,7 +111,7 @@ export default function Header() {
                 <NavLink>Etkinlikler</NavLink>
               </Link>
               <Link href="/iletisim" passHref={true}>
-                <NavLink>Yazılarımız</NavLink>
+                <NavLink>Blog</NavLink>
               </Link>
               <Link href="/calismalarimiz" passHref={true}>
                 <NavLink>Aramıza Katıl!</NavLink>
