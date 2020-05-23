@@ -23,7 +23,7 @@ const NavLink = styled(Nav.Link)`
 const CustomButton = styled.a`
     font-size: 11pt;
     color: #fff !important;
-    border-radius: 20px;
+    border-radius: 5px;
     padding-left:  20px;
     padding-right:  20px;
 

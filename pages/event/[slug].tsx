@@ -4,7 +4,7 @@ import PageTopSide from '../../components/PageTopSide'
 import styled from 'styled-components'
 import { Container, Row, Col, Card } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faClock, faVideo } from '@fortawesome/free-solid-svg-icons'
+import { faClock, faVideo, faUsers, faHeadphones } from '@fortawesome/free-solid-svg-icons'
 
 const EventDetailArea = styled.div`
 margin-top:50px;
@@ -79,6 +79,17 @@ box-shadow: 0 0px 20px rgba(169,169,169,0.2);
         font-size: 15pt;
         opacity: .5;
     }
+    .participants{
+
+        display:inline-flex;
+
+        & ul{
+            padding-left:15px;
+            margin:0;
+            list-style:none;
+        }
+    }
+
 `
 
 const AttendArea = styled.div`
@@ -90,8 +101,11 @@ padding: 10px 0;
     bottom: 0;
     span{
         display:block;
-        font-weight: 500;
+        font-weight: 400;
     font-size: 15pt;
+    }
+    .attendClock{
+        opacity:.5;
     }
 `;
 
@@ -127,6 +141,20 @@ export default function EventDetail() {
                                         <span className="clock">11 Mayıs Pazartesi, 13.30</span>
                                     </div>
                                     <div className="mb-3">
+                                        <FontAwesomeIcon icon={faUsers} />
+                                        <div className="participants">
+                                            <ul>
+                                                <li>Deneme Katılımcı</li>
+                                                <li>Deneme Katılımcı</li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div className="mb-3">
+                                        <FontAwesomeIcon icon={faHeadphones} />
+                                        <span className="clock">Fatih </span>
+                                    </div>
+                                    <div className="mb-3">
                                         <FontAwesomeIcon icon={faVideo} />
                                         <span className="clock">Online Etkinlik</span>
                                     </div>
@@ -140,7 +168,7 @@ export default function EventDetail() {
                         <Row>
                             <Col xs={8} sm={8} className="d-none d-sm-block">
 
-                                <span className="clock">11 Mayıs Pazartesi, 13.30</span>
+                                <span className="clock attendClock">11 Mayıs Pazartesi, 13.30</span>
                                 <span className="clock">Career Talks #5 | Girişimcilik</span>
                             </Col>
                             <Col xs={12} sm={4} className="d-block d-sm-flex align-items-sm-center justify-content-sm-end">
