@@ -42,6 +42,75 @@ padding:50px 0;
     border: 1px solid #f1f1f1;
     box-shadow: 0 0px 20px rgba(224,224,224,0.3);
 }
+
+
+.checkContainer {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 14px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Hide the browser's default checkbox */
+  .checkContainer input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+    transition: all 0.3s ease;
+  }
+  
+  /* Create a custom checkbox */
+  .checkmark {
+      border-radius:3px;
+    position: absolute;
+    top: 3px;
+    left: 0;
+    height: 15px;
+    width: 15px;
+    background-color: #eee;
+  }
+  
+
+  
+  /* When the checkbox is checked, add a blue background */
+  .checkContainer input:checked ~ .checkmark {
+    transition: all 0.3s ease;
+    background-color: #0097e4;
+  }
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .checkContainer input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .checkContainer .checkmark:after {
+    left: 5px;
+    top: 1px;
+    width: 5px;
+    height: 11px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
 `;
 
 const CustomButton = styled(Button)`
@@ -87,52 +156,55 @@ export default function Login() {
                                         <Tab eventKey="login" title="Giriş Yap">
                                             <Form className="mt-4">
                                                 <Form.Group controlId="formBasicEmail">
-                                     
+
                                                     <Form.Control type="email" placeholder="E-Posta" />
                                                 </Form.Group>
                                                 <Form.Group controlId="formBasicPassword">
-                                          
+
                                                     <Form.Control type="password" placeholder="Parola" />
                                                 </Form.Group>
-                                                <Form.Group controlId="formBasicCheckbox">
-                                                    <Form.Check type="checkbox" label="Beni Hatırla" />
-                                                </Form.Group>
-                                                <CustomButton type="submit">
-                                                    Giriş Yap
+                               
+                                                    <label className="checkContainer">Beni Hatırla
+                                                            <input type="checkbox"  />
+                                                            <span className="checkmark"></span>
+                                                                    </label>
+                                           
+                                                    <CustomButton type="submit">
+                                                        Giriş Yap
                                                 </CustomButton>
                                             </Form>
                                         </Tab>
-                                        <Tab eventKey="register" title="Kayıt Ol">
-                                            <Form className="mt-4">
+                                            <Tab eventKey="register" title="Kayıt Ol">
+                                                <Form className="mt-4">
 
-                                                <Form.Group controlId="formBasicEmail">                      
-                                                    <Form.Control type="email" placeholder="Ad" />
-                                                </Form.Group>
-                                                <Form.Group controlId="formBasicEmail">
-                                                    <Form.Control type="email" placeholder="Soyad" />
-                                                </Form.Group>
-                                                <Form.Group controlId="formBasicEmail">
-                                                    <Form.Control type="email" placeholder="E-Posta" />
-                                                </Form.Group>
-                                                <Form.Group controlId="formBasicPassword">
-                                                    <Form.Control type="password" placeholder="Parola" />
-                                                </Form.Group>
-                                                <Form.Group controlId="formBasicPassword">
-                                                    <Form.Control type="password" placeholder="Parola(Tekrar)" />
-                                                    <Form.Text className="text-muted">
-                                                    Kullanıcı sözleşmelerimiz hazırlanmaktadır. Hazırlık aşaması bittikten sonra belirttiğiniz E-Posta adresine onay maili ve sözleşmeler iletilecektir.
+                                                    <Form.Group controlId="formBasicEmail">
+                                                        <Form.Control type="email" placeholder="Ad" />
+                                                    </Form.Group>
+                                                    <Form.Group controlId="formBasicEmail">
+                                                        <Form.Control type="email" placeholder="Soyad" />
+                                                    </Form.Group>
+                                                    <Form.Group controlId="formBasicEmail">
+                                                        <Form.Control type="email" placeholder="E-Posta" />
+                                                    </Form.Group>
+                                                    <Form.Group controlId="formBasicPassword">
+                                                        <Form.Control type="password" placeholder="Parola" />
+                                                    </Form.Group>
+                                                    <Form.Group controlId="formBasicPassword">
+                                                        <Form.Control type="password" placeholder="Parola(Tekrar)" />
+                                                        <Form.Text className="text-muted">
+                                                            Kullanıcı sözleşmelerimiz hazırlanmaktadır. Hazırlık aşaması bittikten sonra belirttiğiniz E-Posta adresine onay maili ve sözleşmeler iletilecektir.
                                                 </Form.Text>
-                                                </Form.Group>
-                                                {/* <Form.Group controlId="formBasicCheckbox">
+                                                    </Form.Group>
+                                                    {/* <Form.Group controlId="formBasicCheckbox">
                                                     <Form.Check type="checkbox" label="Kullanım Koşulları'nı okudum ve kabul ediyorum." />
                                                 </Form.Group> */}
 
-                      
-                                                <CustomButton type="submit" className="mt-3">
-                                                    Kayıt Ol
+
+                                                    <CustomButton type="submit" className="mt-3">
+                                                        Kayıt Ol
                                                 </CustomButton>
-                                            </Form>
-                                        </Tab>
+                                                </Form>
+                                            </Tab>
                                     </Tabs>
                                 </Col>
                             </Row>
