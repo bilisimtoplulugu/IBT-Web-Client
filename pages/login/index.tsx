@@ -8,7 +8,9 @@ import { Container, Row, Col, Tabs, Tab, Form, Button } from 'react-bootstrap';
 const LoginArea = styled.div`
 
 padding:50px 0;
-
+.text-muted{
+    padding-left:2px;
+}
 .tabsArea{
     display: flex;
     justify-content: center
@@ -47,7 +49,7 @@ padding:50px 0;
 .checkContainer {
     display: block;
     position: relative;
-    padding-left: 35px;
+    padding-left: 25px;
     margin-bottom: 12px;
     cursor: pointer;
     font-size: 14px;
@@ -72,7 +74,7 @@ padding:50px 0;
       border-radius:3px;
     position: absolute;
     top: 3px;
-    left: 0;
+    left: 2px;
     height: 15px;
     width: 15px;
     background-color: #eee;
@@ -122,8 +124,6 @@ const CustomButton = styled(Button)`
   width:100%;
   background: #0097e4;
   border: none;
-  margin-left: 5px;
-
   transition: all 0.3s ease;
   &:hover {
     background: #019eef;
@@ -142,9 +142,10 @@ const CustomButton = styled(Button)`
 
 
 export default function Login() {
+
     return (
         <Layout>
-            <PageTopSide title="Giriş Yap" desc="Topluluğumuzun avantajlarından faydalanmak için sistemimize giriş yapabilirsiniz." />
+            <PageTopSide defaultHeight="250"  title="Giriş Yap" desc="Topluluğumuzun avantajlarından faydalanmak için sistemimize giriş yapabilirsiniz." />
 
             <LoginArea>
                 <Container>
@@ -206,6 +207,18 @@ export default function Login() {
                                                 </Form>
                                             </Tab>
                                     </Tabs>
+                                </Col>
+                                <Col xs={12}>
+                                    <p>E-Posta Adresinize gelen onay kodunu giriniz.</p>
+                                    <Form className="mt-4">
+                                                <Form.Group controlId="formBasicEmail">
+                                                    <Form.Control type="email" placeholder="E-Posta" />
+                                                </Form.Group>
+                                        
+                                                    <CustomButton type="submit">
+                                                        Onayla
+                                                </CustomButton>
+                                            </Form>
                                 </Col>
                             </Row>
                         </Col>

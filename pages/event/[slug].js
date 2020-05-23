@@ -186,7 +186,7 @@ export default function EventDetail() {
 
   return (
     <Layout>
-      <PageTopSide title={eventData.title} desc={eventData.subtitle} />
+      <PageTopSide defaultHeight="300" title={eventData.title} desc={eventData.subtitle} />
 
       <EventDetailArea>
         <Container>
