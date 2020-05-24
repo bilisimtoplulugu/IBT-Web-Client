@@ -7,6 +7,7 @@ import styled from 'styled-components';
 
 const SponsorArea = styled.div`
 
+min-height: calc(100vh - 517px);
 margin:50px 0;
 img{
     opacity:.5;
@@ -22,7 +23,7 @@ img:hover{
 export default function Sponsor() {
     return (
         <Layout>
-            <PageTopSide bgImage="./../assets/images/homeBg.jpg" defaultHeight="250" title="Sponsorlar" desc="İstanbul Bilişişim Topluluğu'nun gelişmesinde yardımcı olan sponsorlarımızı görebilirsiniz." />
+            <PageTopSide responsiveTop="40" responsiveHeight="300" bgImage="./../assets/images/homeBg.jpg" defaultHeight="250" title="Sponsorlar" desc="İstanbul Bilişişim Topluluğu'nun gelişmesinde yardımcı olan sponsorlarımızı görebilirsiniz." />
 
             <Container>
                 <SponsorArea>

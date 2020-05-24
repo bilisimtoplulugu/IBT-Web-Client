@@ -25,7 +25,7 @@ position:relative;
         right: 0;
     }
     @media(max-width:768px){
-        height:400px;
+        height:${props => props.theme.responsiveHeight}px;
 
     }
 `
@@ -33,25 +33,39 @@ EventTop.defaultProps = {
     theme:{
         defaultHeight:300,
         bgImage:"./../assets/images/homeBg.jpg",
+        responsiveHeight:400,
+        responsiveTop:40
 
     }
 }
+
 const EventTopInner = styled.div`
 position: absolute;
     top: 50%;
 left:0;
 right:0;
 @media(max-width:768px){
-    top: 40%;
+    top: ${props => props.theme.responsiveTop}%;
 
 }
 `;
 
+EventTopInner.defaultProps = {
+    theme:{
+        
+        responsiveTop:40
+
+    }
+}
+
 export default function PageTopSide(props : {
-    title:any,desc:any,defaultHeight:any,bgImage:any;
+    title:any,desc:any,defaultHeight:any,bgImage:any,responsiveHeight:any,responsiveTop:any;
 }) {
 
     EventTop.defaultProps.theme.defaultHeight = props.defaultHeight;
+    EventTopInner.defaultProps.theme.responsiveTop = props.responsiveTop;
+
+    EventTop.defaultProps.theme.responsiveHeight = props.responsiveHeight;
     EventTop.defaultProps.theme.bgImage = props.bgImage;
 
     return (

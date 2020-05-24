@@ -156,7 +156,7 @@ img{
 export default function index() {
     return (
         <Layout>
-            <PageTopSide bgImage="./../assets/images/homeBg.jpg" defaultHeight="250" title="Hesabım" desc="" />
+            <PageTopSide responsiveTop="50" responsiveHeight="200" bgImage="./../assets/images/homeBg.jpg" defaultHeight="250" title="Hesabım" desc="" />
             <MainArea>
                 <Container>
                     <Row>

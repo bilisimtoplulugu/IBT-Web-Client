@@ -82,7 +82,7 @@ const CustomButton = styled(Button)`
 export default function index() {
     return (
         <Layout>
-            <PageTopSide bgImage="./../assets/images/homeBg.jpg" defaultHeight="250" title="Düzenle" desc="" />
+            <PageTopSide responsiveTop="50" responsiveHeight="200" bgImage="./../assets/images/homeBg.jpg" defaultHeight="250" title="Düzenle" desc="" />
 
             <MainArea>
                 <Container>

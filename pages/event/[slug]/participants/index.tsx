@@ -78,7 +78,7 @@ font-weight: 400;
 export default function Participants() {
     return (
         <Layout>
-            <PageTopSide bgImage="./../../assets/images/homeBg.jpg" defaultHeight="250" title="Katılımcılar" desc="Career Talks #5" />
+            <PageTopSide responsiveTop="40" responsiveHeight="250" bgImage="./../../assets/images/homeBg.jpg" defaultHeight="250" title="Katılımcılar" desc="Career Talks #5" />
 
             <MainArea>
                 <Container>

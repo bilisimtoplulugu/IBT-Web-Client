@@ -44,8 +44,11 @@ const Filters = styled.div`
   }
   @media (max-width: 991px) {
     box-shadow: unset;
+
     a {
-      width: unset;
+      margin: 0;
+ 
+
     }
   }
 `;
@@ -71,10 +74,11 @@ export default function Event() {
   return (
     <Layout>
       <PageTopSide
+      responsiveTop="40" responsiveHeight="300"
       bgImage="./../assets/images/homeBg.jpg"
         defaultHeight="300"
         title="Etkinlikler"
-        desc="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+        desc="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
       />
 
       <MainArea>

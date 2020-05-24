@@ -141,7 +141,7 @@ export default function Login() {
 
     return (
         <Layout>
-            <PageTopSide bgImage="./../assets/images/homeBg.jpg" defaultHeight="250"  title="Giriş Yap" desc="Topluluğumuzun avantajlarından faydalanmak için sistemimize giriş yapabilirsiniz." />
+            <PageTopSide responsiveTop="40" responsiveHeight="300" bgImage="./../assets/images/homeBg.jpg" defaultHeight="250"  title="Giriş Yap" desc="Topluluğumuzun avantajlarından faydalanmak için sistemimize giriş yapabilirsiniz." />
 
             <LoginArea>
                 <Container>

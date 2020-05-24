@@ -131,12 +131,12 @@ export default function Footer() {
                                         </li>
                                     <li>  
                                     <Link href="/">
-                                            <a >Blog</a>
+                                            <a >Sponporlar</a>
                                         </Link>
                                         </li>
                                     <li>  
                                         <Link href="/">
-                                            <a >İletişim</a>
+                                            <a >Blog</a>
                                         </Link>
                                         </li>
                                 </ul>
@@ -144,7 +144,7 @@ export default function Footer() {
                             <Col xs={6} md={3}>
                                 <h6 className="footerTitle mt-5 mt-md-0 ">
                                     Hakkımızda
-                                    </h6>
+                                </h6>
                                 <ul>
                                     <li>
                                         <Link href="/">
@@ -170,17 +170,17 @@ export default function Footer() {
                             </Col>
                             <Col xs={6} md={3}>
                                 <h6 className="footerTitle mt-5 mt-md-0 ">
-                                    Hakkımızda
+                                    Destek
                                     </h6>
                                 <ul>
                                     <li>
                                         <Link href="/">
-                                            <a >Hakkımızda</a>
+                                            <a >Sıkça Sorulan Sorular</a>
                                         </Link>
                                         </li>
                                     <li>  
                                         <Link href="/">
-                                            <a >Etkinlikler</a>
+                                            <a >İletişim</a>
                                         </Link>
                                         </li>
                                     <li>  
