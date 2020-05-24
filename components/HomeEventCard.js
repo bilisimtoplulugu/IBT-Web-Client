@@ -55,7 +55,7 @@ export default function HomeEventCard() {
   };
 
   return (
-    <div>
+    <div data-aos="fade-right">
       {selectedEventDetail && (
         <Link href="/about" as="/hakkimizda">
           <a className="text-decoration-none">
