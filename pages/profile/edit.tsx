@@ -1,7 +1,7 @@
 import React from 'react'
 import Layout from '../../components/Layout'
 import PageTopSide from '../../components/PageTopSide'
-import { Container, Row, Col, Card } from 'react-bootstrap'
+import { Container, Row, Col, Card, Form, Tab, Nav, Button } from 'react-bootstrap'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
@@ -15,49 +15,8 @@ margin:50px 0;
 
 `;
 
-const Pages = styled.div`
-box-shadow: 0 3px 20px rgba(169,169,169,0.5);
-border-radius:5px;
-overflow:hidden;
-.active-button{
-    opacity:1;
-}
-@media(max-width:991px){
-    box-shadow:unset;
-    a{
-        width:unset;
-    }
-}
-`;
 
 
-const PagesButton = styled.a`
-
-
-font-size: 11pt;
-color: #fff !important;
-padding-left:  20px;
-padding-right:  20px;
-opacity: .5;
-background:#0097e4;
-width: 100%;
-border-radius: 0;
-
-transition: all .3s ease;
-&:hover {
-    background:#019eef;
-    border-color:#019eef;
-
-    transition: all .3s ease;
-}
-&:hover{
-    opacity:1;
-}
-@media(max-width:991px){
-    margin: 10px 0;
-}
-
-`;
 
 const CustomCard = styled(Card)`
 box-shadow: 0 0px 20px rgba(169, 169, 169, 0.2);
@@ -81,56 +40,44 @@ img{
     
 }
 .userImage{
+    margin:0 auto;
     position:relative;
     overflow: hidden;
     border-radius: 50%;
-}
-.userImageEdit{
-    position:absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    background: #88888852;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 15pt;
-    opacity:0;
-    cursor:pointer;
-    transition: all .3s ease;
-}
-.userImageEdit:hover{
-    opacity:1;
-    transition: all .3s ease;
-}
-.editProfile{
-    text-align: right;
-}
-.editProfile a{
-  
-    opacity: .5;
-    color: #253a4a;
-    font-size:15pt;
-    transition: all .3s ease;
-}
-.editProfile a:hover{
-    opacity:1;
-    transition: all .3s ease;
-}
-.segment{
-    padding-bottom:40px;
-}
-.segment h3{
-    padding-bottom:10px;
-}
-.eventCard img{
-    border-radius: 5px;
-    box-shadow: 0 0px 20px rgba(169, 169, 169, 0.4);
+    height: 120px;
+    width:120px;
 
 }
+
+
+
 `;
+
+const CustomButton = styled(Button)`
+  font-size: 11pt;
+  color: #fff !important;
+  border-radius: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  background: #0097e4;
+  border: none;
+  margin-left: 5px;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+  &:hover {
+    background: #019eef;
+    border-color: #019eef;
+
+    transition: all 0.3s ease;
+  }
+
+  @media (max-width: 991px) {
+    margin: 10px 0;
+  }
+`;
+
 
 export default function index() {
     return (
@@ -140,70 +87,83 @@ export default function index() {
             <MainArea>
                 <Container>
                     <Row>
+
                         <Col xs={12} >
                             <CustomCard>
                                 <CustomCard.Body>
-                                    <Row >
-                                        <Col xs={12} className="segment">
-                                            <Row>
-                                                <Col xs={2} >
-                                                    <div className="userImage">
-                                                        <img src="/assets/images/berkaydogukan.jpg" />
+                                    <Tab.Container id="left-tabs-example" defaultActiveKey="first">
+                                        <Row>
+                                            <Col md={3}>
+                                                <Nav variant="pills" className="flex-column">
+                                                    <Nav.Item>
+                                                        <Nav.Link eventKey="first">Kişisel bilgilerim</Nav.Link>
+                                                    </Nav.Item>
+                                                    <Nav.Item>
+                                                        <Nav.Link eventKey="second">Parola Ayarları</Nav.Link>
+                                                    </Nav.Item>
+                                                </Nav>
+                                            </Col>
+                                            <Col md={9}>
+                                                <Tab.Content>
+                                                    <Tab.Pane eventKey="first">
+                                                    <Form>
+                                                        <Row>
+                                                       
+                                                          
+                                                            <Col xs={12} md={3}  className="mb-5 mt-5 mt-md-0 mb-md-0">
+                                                                <div className="userImage">
+                                                                    <img src="/assets/images/berkaydogukan.jpg" />
+                                                                </div>
+                                                            </Col>
+                                                            <Col xs={12} md={9} >
+                                                               
+                                                             <Row>
+                                                                 <Col xs={12} md={6}>
+                                                                 <Form.Group controlId="formBasicEmail">
+                                                                   <Form.Label>Adınız</Form.Label>
+                                                                   <Form.Control type="text" placeholder="Adınız" />
+                                                               </Form.Group>
 
-                                                    </div>
-                                                </Col>
-                                                <Col xs={9}  className="d-flex align-items-center">
-                                                    <div>
-                                                        <span className="userName">Berkay Doğukan Urhan</span>
-                                                        <span className="userMail">mail@dogukanurhan.com</span>
+                                                              
+                                                                 </Col>
+                                                                 <Col xs={12} md={6}>
+                                                                 <Form.Group controlId="formBasicPassword">
+                                                                   <Form.Label>Soyadınız</Form.Label>
+                                                                   <Form.Control type="text" placeholder="Soyadınız" />
+                                                               </Form.Group>
+                                                               </Col>
+                                                               <Col xs={12} md={6}>
+                                                               <Form.Group controlId="formBasicPassword">
+                                                                   <Form.Label>E-Posta</Form.Label>
+                                                                   <Form.Control type="email" placeholder="E-Posta" />
+                                                               </Form.Group> 
+                                                               </Col>
+                                                             </Row>
 
-                                                    </div>
-
-                                                </Col>
-                                                <Col xs={1} >
-                                                    <div className="editProfile">
-
-                                                        <Link href="">
-                                                            <a><FontAwesomeIcon icon={faEdit}></FontAwesomeIcon></a>
-                                                        </Link>
-                                                    </div>
-                                                </Col>
-                                            </Row>
-                                        </Col>
-                                        <Col xs={12} className="segment">
-                                            <h3>
-                                                Son Etkinlikler
-                                            </h3>
-                                            <Row>
-                                                <Col xs={3}>
-                                                    <div className="eventCard">
-                                                        <img src="/assets/images/image1.png" />
-                                                    </div>
-                                                </Col>
-                                                <Col xs={3}>
-                                                    <div className="eventCard">
-                                                        <img src="/assets/images/image1.png" />
-                                                    </div>
-                                                </Col>
-                                                <Col xs={3}>
-                                                    <div className="eventCard">
-                                                        <img src="/assets/images/image1.png" />
-                                                    </div>
-                                                </Col>
-                                                <Col xs={3}>
-                                                    <div className="eventCard">
-                                                        <img src="/assets/images/image1.png" />
-                                                    </div>
-                                                </Col>
-                                            </Row>
-                                        </Col>
-                                    </Row>
+                                                       
+                                                       </Col>
+                                                            <Col xs={12} className="d-flex justify-content-end">
+                                                            <CustomButton type="submit">
+                                                                Kaydet
+                                                            </CustomButton>
+                                                            </Col>
+                                                         
+                                                        </Row>
+                                                        </Form>
+                                                    </Tab.Pane>
+                                                    <Tab.Pane eventKey="second">
+                                                        asfd
+                                            </Tab.Pane>
+                                                </Tab.Content>
+                                            </Col>
+                                        </Row>
+                                    </Tab.Container>
                                 </CustomCard.Body>
                             </CustomCard>
                         </Col>
                     </Row>
                 </Container>
             </MainArea>
-        </Layout>
+        </Layout >
     )
 }

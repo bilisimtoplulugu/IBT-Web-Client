@@ -1,7 +1,7 @@
 import React from 'react'
 import Layout from '../../components/Layout'
 import PageTopSide from '../../components/PageTopSide'
-import { Container, Row, Col, Card } from 'react-bootstrap'
+import { Container, Row, Col, Card, Button } from 'react-bootstrap'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
@@ -151,6 +151,7 @@ img{
     float: none;
 }
 `;
+
 
 export default function index() {
     return (
