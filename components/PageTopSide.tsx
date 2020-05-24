@@ -1,10 +1,10 @@
 import React, { useState, useContext } from 'react'
 import { Container } from 'react-bootstrap'
-import styled, { ThemeContext } from 'styled-components';
+import styled  from 'styled-components';
 
 
 const EventTop = styled.div`
-background-image:url(${"./../assets/images/homeBg.jpg"});
+background-image:url(${props => props.theme.bgImage});
 height:${props => props.theme.defaultHeight}px;
 h1{
     font-size:25pt;
@@ -32,6 +32,8 @@ position:relative;
 EventTop.defaultProps = {
     theme:{
         defaultHeight:300,
+        bgImage:"./../assets/images/homeBg.jpg",
+
     }
 }
 const EventTopInner = styled.div`
@@ -46,10 +48,12 @@ right:0;
 `;
 
 export default function PageTopSide(props : {
-    title:any,desc:any,defaultHeight:any;
+    title:any,desc:any,defaultHeight:any,bgImage:any;
 }) {
 
     EventTop.defaultProps.theme.defaultHeight = props.defaultHeight;
+    EventTop.defaultProps.theme.bgImage = props.bgImage;
+
     return (
         <EventTop >
 

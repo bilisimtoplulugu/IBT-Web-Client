@@ -191,11 +191,9 @@ export default function EventDetail() {
 
   return (
     <Layout>
-      <PageTopSide
-        defaultHeight="300"
-        title={eventData.title}
-        desc={eventData.subtitle}
-      />
+
+      <PageTopSide bgImage="./../assets/images/homeBg.jpg" defaultHeight="300" title={eventData.title} desc={eventData.subtitle} />
+
 
       <EventDetailArea>
         <Container>

@@ -40,7 +40,6 @@ padding:50px 0;
 }
 
 .form-group input{
-    box-shadow: 0 0px 20px rgba(224, 224, 224, 0.2);
     border: 1px solid #f1f1f1;
     box-shadow: 0 0px 20px rgba(224,224,224,0.3);
 }
@@ -142,7 +141,7 @@ export default function Login() {
 
     return (
         <Layout>
-            <PageTopSide defaultHeight="250"  title="Giriş Yap" desc="Topluluğumuzun avantajlarından faydalanmak için sistemimize giriş yapabilirsiniz." />
+            <PageTopSide bgImage="./../assets/images/homeBg.jpg" defaultHeight="250"  title="Giriş Yap" desc="Topluluğumuzun avantajlarından faydalanmak için sistemimize giriş yapabilirsiniz." />
 
             <LoginArea>
                 <Container>

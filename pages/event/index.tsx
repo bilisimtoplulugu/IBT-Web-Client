@@ -55,6 +55,7 @@ const MainArea = styled.div`
 `;
 
 export default function Event() {
+
   const [nearEvents, setNearEvents] = useState('');
 
   useEffect(() => {
@@ -98,4 +99,5 @@ export default function Event() {
       </MainArea>
     </Layout>
   );
+
 }
