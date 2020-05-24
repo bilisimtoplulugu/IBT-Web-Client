@@ -64,6 +64,11 @@ background:#f5f5f5;
     opacity: .8;
     padding: 5px 0;
     text-decoration: none;
+    transition:all .3s ease;
+}
+.footerLinks a:hover{
+    opacity: 1;
+    transition:all .3s ease;
 }
 `
 export default function Footer() {
@@ -119,11 +124,6 @@ export default function Footer() {
                                     Hakkımızda
                                     </h6>
                                 <ul>
-                                    <li>
-                                        <Link href="/">
-                                            <a >Hakkımızda</a>
-                                        </Link>
-                                        </li>
                                     <li>  
                                         <Link href="/">
                                             <a >Etkinlikler</a>
@@ -131,7 +131,7 @@ export default function Footer() {
                                         </li>
                                     <li>  
                                     <Link href="/">
-                                            <a >Sponporlar</a>
+                                            <a >Sponsorlar</a>
                                         </Link>
                                         </li>
                                     <li>  
@@ -139,33 +139,30 @@ export default function Footer() {
                                             <a >Blog</a>
                                         </Link>
                                         </li>
+                                      
                                 </ul>
                             </Col>
                             <Col xs={6} md={3}>
                                 <h6 className="footerTitle mt-5 mt-md-0 ">
-                                    Hakkımızda
-                                </h6>
+                                    Etkinlikler
+                                    </h6>
                                 <ul>
                                     <li>
                                         <Link href="/">
-                                            <a >Hakkımızda</a>
+                                            <a>Kariyer Sohbetleri</a>
                                         </Link>
                                         </li>
                                     <li>  
                                         <Link href="/">
-                                            <a >Etkinlikler</a>
-                                        </Link>
-                                        </li>
-                                    <li>  
-                                    <Link href="/">
-                                            <a >Blog</a>
+                                            <a >Workshop Çalışmaları</a>
                                         </Link>
                                         </li>
                                     <li>  
                                         <Link href="/">
-                                            <a >İletişim</a>
+                                            <a >Online Seminerler</a>
                                         </Link>
                                         </li>
+                                 
                                 </ul>
                             </Col>
                             <Col xs={6} md={3}>
@@ -175,7 +172,7 @@ export default function Footer() {
                                 <ul>
                                     <li>
                                         <Link href="/">
-                                            <a >Sıkça Sorulan Sorular</a>
+                                            <a >S.S.S.</a>
                                         </Link>
                                         </li>
                                     <li>  
@@ -183,43 +180,7 @@ export default function Footer() {
                                             <a >İletişim</a>
                                         </Link>
                                         </li>
-                                    <li>  
-                                        <Link href="/">
-                                            <a >Blog</a>
-                                        </Link>
-                                        </li>
-                                    <li>  
-                                        <Link href="/">
-                                            <a >İletişim</a>
-                                        </Link>
-                                        </li>
-                                </ul>
-                            </Col>
-                            <Col xs={6} md={3}>
-                                <h6 className="footerTitle mt-5 mt-md-0 ">
-                                    Hakkımızda
-                                    </h6>
-                                <ul>
-                                    <li>
-                                        <Link href="/">
-                                            <a >Hakkımızda</a>
-                                        </Link>
-                                        </li>
-                                    <li>  
-                                        <Link href="/">
-                                            <a >Etkinlikler</a>
-                                        </Link>
-                                        </li>
-                                    <li>  
-                                        <Link href="/">
-                                            <a >Blog</a>
-                                        </Link>
-                                        </li>
-                                    <li>  
-                                        <Link href="/">
-                                            <a >İletişim</a>
-                                        </Link>
-                                        </li>
+                                  
                                 </ul>
                             </Col>
                         </Row>

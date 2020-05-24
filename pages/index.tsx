@@ -69,8 +69,9 @@ const InstagramProfile = styled.div`
 `;
 
 const InstagramInner = styled.div`
-  display: inline-flex;
-
+display: flex;
+justify-content: center;
+align-items: center;
   @media only screen and (max-width: 1024px) {
     display: block;
     text-align: left;
