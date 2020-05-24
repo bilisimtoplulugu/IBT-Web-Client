@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import Slider from 'react-slick';
 import {useDispatch, useSelector} from 'react-redux';
 import {addEvent} from '../redux/actions';
+import axios from 'axios';
 
 const CustomSlider = styled(Slider)`
   margin: 30px 0;
@@ -77,46 +78,30 @@ const EventDateCard = styled.div`
 export default function EventDateSlider() {
   const dispatch = useDispatch();
   const selectedEvent = useSelector((state) => state.eventReducer);
+  const [nearEvents, setNearEvents] = useState('');
+
+  useEffect(() => {
+    getNearEvents();
+  }, []);
+
+  const getNearEvents = async () => {
+    const {data} = await axios.get('http://localhost:2222/event/near');
+    setNearEvents(data);
+  };
 
   return (
     <div data-aos="fade-right">
       <CustomSlider {...settings}>
-        <EventDateCard
-          className={selectedEvent == 1 && 'active'}
-          onClick={() => dispatch(addEvent(1))}
-        >
-          11 Mayıs Pazartesi,2020
-        </EventDateCard>
-        <EventDateCard
-          className={selectedEvent == 2 && 'active'}
-          onClick={() => dispatch(addEvent(2))}
-        >
-          12 Mayıs Salı,2020
-        </EventDateCard>
-        <EventDateCard
-          className={selectedEvent == 3 && 'active'}
-          onClick={() => dispatch(addEvent(3))}
-        >
-          13 Mayıs Çarşamba,2020
-        </EventDateCard>
-        <EventDateCard
-          className={selectedEvent == 4 && 'active'}
-          onClick={() => dispatch(addEvent(4))}
-        >
-          14 Mayıs Perşembe,2020
-        </EventDateCard>
-        <EventDateCard
-          className={selectedEvent == 5 && 'active'}
-          onClick={() => dispatch(addEvent(5))}
-        >
-          15 Mayıs Cumartesi,2020
-        </EventDateCard>
-        <EventDateCard
-          className={selectedEvent == 6 && 'active'}
-          onClick={() => dispatch(addEvent(6))}
-        >
-          16 Mayıs Pazar,2020
-        </EventDateCard>
+        {nearEvents &&
+          nearEvents.map((event, index) => (
+            <EventDateCard
+              key={index}
+              className={selectedEvent == event._id && 'active'}
+              onClick={() => dispatch(addEvent(event._id))}
+            >
+              {event.date}
+            </EventDateCard>
+          ))}
       </CustomSlider>
     </div>
   );

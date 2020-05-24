@@ -89,7 +89,9 @@ export default function Event() {
 
             <Col xs={12} lg={9}>
               {nearEvents &&
-                nearEvents.map((event) => <EventPageCard event={event} />)}
+                nearEvents.map((event, index) => (
+                  <EventPageCard event={event} key={index} />
+                ))}
             </Col>
           </Row>
         </Container>
