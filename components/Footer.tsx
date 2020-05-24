@@ -74,10 +74,10 @@ background:#f5f5f5;
 export default function Footer() {
     return (
         <CustomFooter>
-        <Container >
-         
+            <Container >
+
                 <Row>
-                    <Col xs={12}  md={4} className="text-center text-md-left">
+                    <Col xs={12} md={4} className="text-center text-md-left">
                         <Row>
                             <Col xs={12}>
                                 <Link href="/">
@@ -119,30 +119,30 @@ export default function Footer() {
                     </Col>
                     <Col xs={12} md={8} className="footerLinks d-none d-sm-block">
                         <Row>
-                            <Col xs={6} md={3}>
+                            <Col xs={6} md={4}>
                                 <h6 className="footerTitle mt-5 mt-md-0 ">
                                     Hakkımızda
                                     </h6>
                                 <ul>
-                                    <li>  
-                                        <Link href="/">
+                                    <li>
+                                        <Link href="/event" as="/etkinlikler" passHref={true}>
                                             <a >Etkinlikler</a>
                                         </Link>
-                                        </li>
-                                    <li>  
-                                    <Link href="/">
+                                    </li>
+                                    <li>
+                                        <Link href="/sponsor">
                                             <a >Sponsorlar</a>
                                         </Link>
-                                        </li>
-                                    <li>  
-                                        <Link href="/">
+                                    </li>
+                                    <li>
+                                        <Link href="/blog">
                                             <a >Blog</a>
                                         </Link>
-                                        </li>
-                                      
+                                    </li>
+
                                 </ul>
                             </Col>
-                            <Col xs={6} md={3}>
+                            <Col xs={6} md={4}>
                                 <h6 className="footerTitle mt-5 mt-md-0 ">
                                     Etkinlikler
                                     </h6>
@@ -151,44 +151,44 @@ export default function Footer() {
                                         <Link href="/">
                                             <a>Kariyer Sohbetleri</a>
                                         </Link>
-                                        </li>
-                                    <li>  
+                                    </li>
+                                    <li>
                                         <Link href="/">
                                             <a >Workshop Çalışmaları</a>
                                         </Link>
-                                        </li>
-                                    <li>  
+                                    </li>
+                                    <li>
                                         <Link href="/">
                                             <a >Online Seminerler</a>
                                         </Link>
-                                        </li>
-                                 
+                                    </li>
+
                                 </ul>
                             </Col>
-                            <Col xs={6} md={3}>
+                            <Col xs={6} md={4}>
                                 <h6 className="footerTitle mt-5 mt-md-0 ">
-                                    Destek
+                                    İletişim
                                     </h6>
                                 <ul>
                                     <li>
                                         <Link href="/">
                                             <a >S.S.S.</a>
                                         </Link>
-                                        </li>
-                                    <li>  
-                                        <Link href="/">
-                                            <a >İletişim</a>
-                                        </Link>
-                                        </li>
-                                  
+                                    </li>
+                                    <li>
+                               
+                                            <a href="mailto:info@bilisimtoplulugu.org">E-Posta: info@bilisimtoplulugu.org</a>
+                           
+                                    </li>
+
                                 </ul>
                             </Col>
                         </Row>
                     </Col>
-                    
+
                 </Row>
-        
-        </Container>
+
+            </Container>
         </CustomFooter>
     )
 }
