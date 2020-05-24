@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 import {
   Navbar,
@@ -11,7 +11,7 @@ import {
 
 import Link from 'next/link';
 
-import styled, {css} from 'styled-components';
+import styled, { css } from 'styled-components';
 const Logo = styled.img`
   width: 150px;
 `;
@@ -75,6 +75,20 @@ const CustomNavbar = styled(Navbar)`
   }
 `;
 
+const CustomDropdown = styled(Dropdown)`
+button:focus,button:active{
+  background-color:unset !important;
+}
+button{
+  font-size: 11pt;
+    color: #fff !important;
+    opacity: 0.9;
+    background:none;
+    border:none;
+    padding:8px;
+}
+`;
+
 export default function Header() {
   const [headerBgColor, setHeaderBgColor] = useState(false);
 
@@ -93,7 +107,7 @@ export default function Header() {
   return (
     <CustomHeader
       style={
-        headerBgColor ? {background: '#253b4b', transition: 'all .5s ease'} : {}
+        headerBgColor ? { background: '#253b4b', transition: 'all .5s ease' } : {}
       }
     >
       <Container>
@@ -119,13 +133,25 @@ export default function Header() {
               <Link href="/iletisim" passHref={true}>
                 <NavLink>İletişim</NavLink>
               </Link>
-
               <div className="d-flex">
-               <Link href="/login" as="/giris-yap" passHref={true}>
-               <CustomButton className="btn" id="supportButton">
-                  Giriş Yap
+                <Link href="/login" as="/giris-yap" passHref={true}>
+                  <CustomButton className="btn" id="supportButton">
+                    Giriş Yap
                 </CustomButton></Link>
               </div>
+              <CustomDropdown>
+                <CustomDropdown.Toggle className="shadow-none" id="dropdown-basic">
+                  Berkay Dogukan
+                </CustomDropdown.Toggle>
+
+                <CustomDropdown.Menu>
+                  <Link href="/profile" as="/hesabım" passHref={true}>
+                  <CustomDropdown.Item >Hesabım</CustomDropdown.Item>
+                  </Link>
+                  <CustomDropdown.Item href="#/action-2">Çıkış Yap</CustomDropdown.Item>
+
+                </CustomDropdown.Menu>
+              </CustomDropdown>
             </Nav>
           </Navbar.Collapse>
         </CustomNavbar>

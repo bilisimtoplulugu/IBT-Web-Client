@@ -39,7 +39,7 @@ const CustomSlider = styled(Slider)`
 }
 .slick-prev {
   left: -10px;
-  z-index: 1;
+
 }
 .slick-prev:before {
   text-shadow: 0px 0px 10px rgba(146, 146, 146, 0.4);
