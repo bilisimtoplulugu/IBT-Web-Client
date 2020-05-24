@@ -121,7 +121,7 @@ export default function index() {
                                                                  <Col xs={12} md={6}>
                                                                  <Form.Group controlId="formBasicEmail">
                                                                    <Form.Label>Adınız</Form.Label>
-                                                                   <Form.Control type="text" placeholder="Adınız" />
+                                                                   <Form.Control type="text" className="shadow-none" placeholder="Adınız" />
                                                                </Form.Group>
 
                                                               
@@ -129,14 +129,24 @@ export default function index() {
                                                                  <Col xs={12} md={6}>
                                                                  <Form.Group controlId="formBasicPassword">
                                                                    <Form.Label>Soyadınız</Form.Label>
-                                                                   <Form.Control type="text" placeholder="Soyadınız" />
+                                                                   <Form.Control type="text" className="shadow-none" placeholder="Soyadınız" />
                                                                </Form.Group>
                                                                </Col>
                                                                <Col xs={12} md={6}>
                                                                <Form.Group controlId="formBasicPassword">
                                                                    <Form.Label>E-Posta</Form.Label>
-                                                                   <Form.Control type="email" placeholder="E-Posta" />
+                                                                   <Form.Control type="email" className="shadow-none" placeholder="E-Posta" />
                                                                </Form.Group> 
+                                                               </Col>
+                                                               <Col xs={12} md={6}>
+                                                               <Form.Group>
+                                                               <Form.File 
+                                                                    id="custom-file"
+                                                                    label="Fotoğraf"
+                                                                    data-browse="Seç"
+                                                                   
+                                                                />
+                                                                </Form.Group>
                                                                </Col>
                                                              </Row>
 
@@ -152,7 +162,48 @@ export default function index() {
                                                         </Form>
                                                     </Tab.Pane>
                                                     <Tab.Pane eventKey="second">
-                                                        asfd
+                                                    <Form>
+                                                        <Row>
+                                                       
+                                                          
+                                                            <Col xs={12} md={3}  className="mb-5 mt-5 mt-md-0 mb-md-0">
+                                                              
+                                                            </Col>
+                                                            <Col xs={12} md={6} >
+                                                               
+                                                             <Row>
+                                                                 <Col xs={12} >
+                                                                 <Form.Group controlId="formBasicEmail">
+                                                                   <Form.Label>Eski Parolanız</Form.Label>
+                                                                   <Form.Control type="password" className="shadow-none" placeholder="Adınız" />
+                                                               </Form.Group>
+
+                                                              
+                                                                 </Col>
+                                                                 <Col xs={12} >
+                                                                 <Form.Group controlId="formBasicPassword">
+                                                                   <Form.Label>Yeni Parolanız</Form.Label>
+                                                                   <Form.Control type="password" className="shadow-none" placeholder="Soyadınız" />
+                                                               </Form.Group>
+                                                               </Col>
+                                                               <Col xs={12} >
+                                                               <Form.Group controlId="formBasicPassword">
+                                                                   <Form.Label>Yeni Parolanız(Tekrar)</Form.Label>
+                                                                   <Form.Control type="password" className="shadow-none" placeholder="E-Posta" />
+                                                               </Form.Group> 
+                                                               </Col>
+                                                             </Row>
+
+                                                       
+                                                       </Col>
+                                                            <Col xs={12} md={9} className="d-flex justify-content-end">
+                                                            <CustomButton type="submit">
+                                                                Güncelle
+                                                            </CustomButton>
+                                                            </Col>
+                                                         
+                                                        </Row>
+                                                        </Form>
                                             </Tab.Pane>
                                                 </Tab.Content>
                                             </Col>
