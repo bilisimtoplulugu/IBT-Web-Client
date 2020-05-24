@@ -209,9 +209,14 @@ export default function Login() {
                                     <Form className="mt-4">
                                                 <Form.Group controlId="formBasicEmail">
                                                     <Form.Control type="email" placeholder="E-Posta" />
+                                                    <Form.Text className="text-muted">
+                                                    E-Posta kutunuzun spam kısmına bakmayı unutmayınız.        
+                                                    </Form.Text>
                                                 </Form.Group>
-                                        
-                                                    <CustomButton type="submit">
+                                                <CustomButton type="submit" >
+                                                        Kodu Tekrar Gönder
+                                                </CustomButton>
+                                                    <CustomButton type="submit" className="mt-2">
                                                         Onayla
                                                 </CustomButton>
                                             </Form>
