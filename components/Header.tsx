@@ -107,7 +107,7 @@ export default function Header() {
               <Link href="/" passHref={true}>
                 <NavLink>Anasayfa</NavLink>
               </Link>
-              <Link href="/event" as="/etkinlikler" passHref={true}>
+              <Link href={"/event"} as={"/etkinlikler"} passHref={true}>
                 <NavLink>Etkinlikler</NavLink>
               </Link>
               <Link href="/blog" passHref={true}>
