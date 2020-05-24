@@ -29,22 +29,15 @@ export default function WebinarDetailCard() {
           </div>
 
           <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries,
+          Teknoloji ve bilişim ile ilgili alanlarda çalışan kişilerden sektör hakkında bilgiler ediniyoruz. Yapay zeka, artırılmış gerçeklik, tasarım gibi konular ele alınıyor. Online seminerlerimiz, YouTube kanalımız üzerinde düzenleniyor ve bu sayede soru cevap şeklinde interaktif ilerliyor.
           </p>
 
           <div className="topSide">
             <span className="subTitle">Nasıl Katılabilirsiniz?</span>
           </div>
           <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries,
+          Sitemizdeki etkinlikler kısmında düzenlenecek Online Seminerler’i inceleyebilir ve mevcut etkinliklere katılabilirsiniz. 
+
           </p>
         </CustomCard.Body>
       </CustomCard>

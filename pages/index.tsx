@@ -149,8 +149,8 @@ export default function Home() {
  
       <Head>
         <title>Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri - Anasayfa</title>
-        <link rel="canonical" href="https://bilisimtoplulugu.org/" />
-          
+         <link rel="canonical" href="https://bilisimtoplulugu.org/" />
+         <meta name="description" content="İstanbul Bilişim Topluluğu olarak İstanbul'da bulunan üniversite kulüplerince düzenlenen bilişimle ilgili etkinliklerin paylaşıyor ve çeşitli bilişim etkinlikleri organize ediyoruz." />
           <meta property="og:locale" content="tr_TR" />
           <meta property="og:type" content="article" />
           <meta property="og:image:width" content="1024"/>
@@ -160,13 +160,13 @@ export default function Home() {
           <meta property="og:image" content="/assets/images/socialLogo.png" />
           <meta property="og:image:secure_url" content="/assets/images/socialLogo.png" />
           <meta property="og:title" content="Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri - Anasayfa" />
-          <meta property="og:description" content="Kredi kartı ve nakit ile kolayca ve güvenli bir şekilde Bitcoin, Ethereum, Ripple, Litecoin, Tether ve Stellar satın alabilir, dilerseniz Bitcoin, Ethereum, Rip" />
+          <meta property="og:description" content="İstanbul Bilişim Topluluğu olarak İstanbul'da bulunan üniversite kulüplerince düzenlenen bilişimle ilgili etkinliklerin paylaşıyor ve çeşitli bilişim etkinlikleri organize ediyoruz." />
           <meta property="og:url" content="https://bilisimtoplulugu.org/" />
           <meta property="og:site_name" content="Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri"  />
 
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content="Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri - Anasayfa" />
-          <meta name="twitter:description" content="Kredi kartı ve nakit ile kolayca ve güvenli bir şekilde Bitcoin, Ethereum, Ripple, Litecoin, Tether ve Stellar satın alabilir, dilerseniz Bitcoin, Ethereum, Rip" />
+          <meta name="twitter:description" content="İstanbul Bilişim Topluluğu olarak İstanbul'da bulunan üniversite kulüplerince düzenlenen bilişimle ilgili etkinliklerin paylaşıyor ve çeşitli bilişim etkinlikleri organize ediyoruz." />
           <meta name="twitter:creator" content="@bilisimtopluluk" />
           <meta name="twitter:image" content="/assets/images/socialLogo.png" />
 

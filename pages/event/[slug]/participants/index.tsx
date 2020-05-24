@@ -75,6 +75,22 @@ font-weight: 400;
 `;
 
 
+const CustomCard = styled(Card)`
+box-shadow: 0 0px 20px rgba(169, 169, 169, 0.20);
+border:none;
+color:#253a4a;
+margin-top: 20px;
+.title{
+    font-size: 20pt;
+    font-weight: 400;
+
+}
+
+.subTitle{
+    
+    font-size: 15pt !important;
+}
+`;
 
 export default function Participants() {
     return (

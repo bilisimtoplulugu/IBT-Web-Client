@@ -27,7 +27,7 @@ export default function Sponsor() {
             <Head>
             <title>Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri - Sponsorlar</title>
             <link rel="canonical" href="https://bilisimtoplulugu.org/sponsorlar" />
-          
+                <meta name="description" content="Sponsorlarımız, İstanbul Bilişim Topluluğu’nun ve ona bağlı üniversite kulüplerinin düzenlediği bilişim etkinliklerinin iyileştirilmesi için bize destek sağlıyor." />
                 <meta property="og:locale" content="tr_TR" />
                 <meta property="og:type" content="article" />
                 <meta property="og:image:width" content="1024"/>
@@ -37,20 +37,20 @@ export default function Sponsor() {
                 <meta property="og:image" content="/assets/images/socialLogo.png" />
                 <meta property="og:image:secure_url" content="/assets/images/socialLogo.png" />
                 <meta property="og:title" content="Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri - Sponsorlar" />
-                <meta property="og:description" content="Kredi kartı ve nakit ile kolayca ve güvenli bir şekilde Bitcoin, Ethereum, Ripple, Litecoin, Tether ve Stellar satın alabilir, dilerseniz Bitcoin, Ethereum, Rip" />
+                <meta property="og:description" content="Sponsorlarımız, İstanbul Bilişim Topluluğu’nun ve ona bağlı üniversite kulüplerinin düzenlediği bilişim etkinliklerinin iyileştirilmesi için bize destek sağlıyor." />
                 <meta property="og:url" content="https://bilisimtoplulugu.org/" />
                 <meta property="og:site_name" content="Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri"  />
 
                 <meta name="twitter:card" content="summary_large_image" />
                 <meta name="twitter:title" content="Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri - Sponsorlar" />
-                <meta name="twitter:description" content="Kredi kartı ve nakit ile kolayca ve güvenli bir şekilde Bitcoin, Ethereum, Ripple, Litecoin, Tether ve Stellar satın alabilir, dilerseniz Bitcoin, Ethereum, Rip" />
+                <meta name="twitter:description" content="Sponsorlarımız, İstanbul Bilişim Topluluğu’nun ve ona bağlı üniversite kulüplerinin düzenlediği bilişim etkinliklerinin iyileştirilmesi için bize destek sağlıyor." />
                 <meta name="twitter:creator" content="@bilisimtopluluk" />
                 <meta name="twitter:image" content="/assets/images/socialLogo.png" />
                 
             </Head>
 
             
-            <PageTopSide responsiveTop="40" responsiveHeight="300" bgImage="./../assets/images/homeBg.jpg" defaultHeight="250" title="Sponsorlar" desc="İstanbul Bilişişim Topluluğu'nun gelişmesinde yardımcı olan sponsorlarımızı görebilirsiniz." />
+            <PageTopSide responsiveTop="40" responsiveHeight="300" bgImage="./../assets/images/homeBg.jpg" defaultHeight="250" title="Sponsorlar" desc="Sponsorlarımız, İstanbul Bilişim Topluluğu’nun ve ona bağlı üniversite kulüplerinin düzenlediği bilişim etkinliklerinin iyileştirilmesi için bize destek sağlıyor." />
 
             <Container>
                 <SponsorArea>
