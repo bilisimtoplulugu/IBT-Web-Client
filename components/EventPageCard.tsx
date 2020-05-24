@@ -1,15 +1,15 @@
-import React from 'react'
-import Link from 'next/link'
+import React, { useEffect } from 'react';
+import Link from 'next/link';
 import Card from 'react-bootstrap/Card';
 import styled from 'styled-components';
-import { Row, Col } from 'react-bootstrap';
+import {Row, Col} from 'react-bootstrap';
 
 const CustomCard = styled(Card)`
-margin-bottom:15px;
+  margin-bottom: 15px;
   box-shadow: 0 0px 20px rgba(169, 169, 169, 0.2);
   border: none;
   color: #253a4a;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
   img {
     width: 100%;
     border-radius: 5px;
@@ -29,7 +29,6 @@ margin-bottom:15px;
     font-size: 15pt;
     font-weight: 400;
     opacity: 0.5;
-
   }
   p {
     margin-top: 15px;
@@ -46,79 +45,75 @@ margin-bottom:15px;
     bottom: 0;
     opacity: 0.5;
   }
-  .eventProvider{
+  .eventProvider {
     border-top: 1px solid #f5f5f5;
     padding: 10px 0;
     margin-top: 5px;
   }
-  .eventProvider .providerName{
+  .eventProvider .providerName {
     font-weight: 500;
-    opacity: .5;
+    opacity: 0.5;
     color: #253b4b;
   }
 
-  .participant{
+  .participant {
     font-weight: 500;
-    opacity: .5;
+    opacity: 0.5;
     color: #253b4b;
   }
 
-  &:hover{
-    transition: all .3s ease;
+  &:hover {
+    transition: all 0.3s ease;
     transform: scale(1.02);
   }
 `;
 
-export default function EventPageCard() {
-    return (
-        <Link href="/about" as="/hakkimizda">
-              <a className="text-decoration-none">
-                <CustomCard>
-                  <CustomCard.Body>
-
-                    <Row>
-                      <Col xs={12} md={4}>
-                        <img src="/assets/images/image1.png" />
-                      </Col>
-                      <Col xs={12} md={8}>
-                        <Row>
-                          {/* TODO:768 PX PROBLEM */}
-                          <Col xs={12} sm={12}>
-                            <span className="clock">
-                            11 Mayıs Pazartesi, 13.30
-                            </span>
-                          </Col>
-                          <Col xs={12} sm={12}>
-                            <span className="title">Career Talks #5 | Girişimcilik</span>
-                            <span className="cardSubTitle">Online Etkinlik</span>
-                          </Col>
-                         
-                        </Row>
-                        </Col>
-                        <Col xs={12}>
-                        <p>"Girişimcilik ve Globalleşme", "Covid-19 Girişimciliğe Etkileri ve Geleceği" ve "Girişimcilik ve Yatırım Süreçleri"nden bahsedeceği online etkinliğimize hepinizi bekliyoruz!
-                        "Girişimcilik ve Globalleşme", "Covid-19 Girişimciliğe Etkileri ve Geleceği" ve "Girişimcilik ve Yatırım Süreçleri"nden bahsedeceği online etkinliğimize hepinizi bekliyoruz!
-
-                        </p>
-                        </Col>
-                        <Col xs={12} >
-                           <div className="eventProvider">
-                               <Row>
-                                   <Col xs={12} sm={6}>
-                                   <span className="participant">35 Katılımcı</span>
-                              
-                                   </Col>
-                                   <Col xs={12} sm={6}>
-                                   <span className="providerName text-left text-sm-right">İstanbul Bilişim Topluluğu</span>
-                                   </Col>
-                               </Row>
-                           </div>
-                        </Col>
-                    </Row>
-
-                  </CustomCard.Body>
-                </CustomCard>
-              </a>
-            </Link>
-    )
+export default function EventPageCard({event}) {
+  useEffect(() => {console.log(event.seoUrl)},[])
+  return (
+    <Link href={`/event/${event.seoUrl}`}>
+      <a className="text-decoration-none">
+        <CustomCard>
+          <CustomCard.Body>
+            <Row>
+              <Col xs={12} md={4}>
+                <img src={event.imagePath} />
+              </Col>
+              <Col xs={12} md={8}>
+                <Row>
+                  {/* TODO:768 PX PROBLEM */}
+                  <Col xs={12} sm={12}>
+                    <span className="clock">11 Mayıs Pazartesi, 13.30</span>
+                  </Col>
+                  <Col xs={12} sm={12}>
+                    <span className="title">{event.title}</span>
+                    {event.isOnline && (
+                      <span className="cardSubTitle">Online Etkinlik</span>
+                    )}
+                  </Col>
+                </Row>
+              </Col>
+              <Col xs={12}>
+                <p>{event.description}</p>
+              </Col>
+              <Col xs={12}>
+                <div className="eventProvider">
+                  <Row>
+                    <Col xs={12} sm={6}>
+                      <span className="participant">{event.participants.length} Katılımcı</span>
+                    </Col>
+                    <Col xs={12} sm={6}>
+                      <span className="providerName text-left text-sm-right">
+                        {event.organizer}
+                      </span>
+                    </Col>
+                  </Row>
+                </div>
+              </Col>
+            </Row>
+          </CustomCard.Body>
+        </CustomCard>
+      </a>
+    </Link>
+  );
 }

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Layout from '../../components/Layout';
-import {useRouter} from 'next/router';
+import Router, {useRouter} from 'next/router';
 import PageTopSide from '../../components/PageTopSide';
 import axios from 'axios';
 import styled from 'styled-components';
@@ -177,16 +177,23 @@ export default function EventDetail() {
   const getEventData = async () => {
     const eventURL = router.query.slug;
     if (!eventURL) return;
-    const {
-      data: {event, participants},
-    } = await axios.get(`http://localhost:2222/event/${eventURL}`);
-    setEventData(event);
-    setEventParticipants(participants);
+    try {
+      const {
+        data: {event, participants},
+      } = await axios.get(`http://localhost:2222/event/${eventURL}`);
+      setEventData(event);
+      setEventParticipants(participants);
+    } catch (error) {
+      // if there is no event defined with URL requested
+      return Router.push('/');
+    }
   };
 
   return (
     <Layout>
+
       <PageTopSide bgImage="./../assets/images/homeBg.jpg" defaultHeight="300" title={eventData.title} desc={eventData.subtitle} />
+
 
       <EventDetailArea>
         <Container>
