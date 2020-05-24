@@ -146,15 +146,32 @@ export default function Home() {
 
   return (
     <Layout>
+ 
       <Head>
-        <title>My page title</title>
-        <meta charSet="UTF-8" />
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no"
-        />
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri - Anasayfa</title>
+        <link rel="canonical" href="https://bilisimtoplulugu.org/" />
+          
+          <meta property="og:locale" content="tr_TR" />
+          <meta property="og:type" content="article" />
+          <meta property="og:image:width" content="1024"/>
+          <meta property="og:image:height" content="1024"/>
+          <meta property="og:image:alt" content="Anasayfa"/>
+          <meta property="og:image:type" content="image/png"/>
+          <meta property="og:image" content="/assets/images/socialLogo.png" />
+          <meta property="og:image:secure_url" content="/assets/images/socialLogo.png" />
+          <meta property="og:title" content="Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri - Anasayfa" />
+          <meta property="og:description" content="Kredi kartı ve nakit ile kolayca ve güvenli bir şekilde Bitcoin, Ethereum, Ripple, Litecoin, Tether ve Stellar satın alabilir, dilerseniz Bitcoin, Ethereum, Rip" />
+          <meta property="og:url" content="https://bilisimtoplulugu.org/" />
+          <meta property="og:site_name" content="Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri"  />
+
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content="Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri - Anasayfa" />
+          <meta name="twitter:description" content="Kredi kartı ve nakit ile kolayca ve güvenli bir şekilde Bitcoin, Ethereum, Ripple, Litecoin, Tether ve Stellar satın alabilir, dilerseniz Bitcoin, Ethereum, Rip" />
+          <meta name="twitter:creator" content="@bilisimtopluluk" />
+          <meta name="twitter:image" content="/assets/images/socialLogo.png" />
+
       </Head>
+
 
       <WelcomeInner />
       <InstagramProfile>
