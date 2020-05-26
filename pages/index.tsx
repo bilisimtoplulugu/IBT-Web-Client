@@ -69,9 +69,9 @@ const InstagramProfile = styled.div`
 `;
 
 const InstagramInner = styled.div`
-display: flex;
-justify-content: center;
-align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   @media only screen and (max-width: 1024px) {
     display: block;
     text-align: left;
@@ -146,32 +146,53 @@ export default function Home() {
 
   return (
     <Layout>
- 
       <Head>
-        <title>Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri - Anasayfa</title>
-         <link rel="canonical" href="https://bilisimtoplulugu.org/" />
-         <meta name="description" content="İstanbul Bilişim Topluluğu olarak İstanbul'da bulunan üniversite kulüplerince düzenlenen bilişimle ilgili etkinliklerin paylaşıyor ve çeşitli bilişim etkinlikleri organize ediyoruz." />
-          <meta property="og:locale" content="tr_TR" />
-          <meta property="og:type" content="article" />
-          <meta property="og:image:width" content="1024"/>
-          <meta property="og:image:height" content="1024"/>
-          <meta property="og:image:alt" content="Anasayfa"/>
-          <meta property="og:image:type" content="image/png"/>
-          <meta property="og:image" content="/assets/images/socialLogo.png" />
-          <meta property="og:image:secure_url" content="/assets/images/socialLogo.png" />
-          <meta property="og:title" content="Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri - Anasayfa" />
-          <meta property="og:description" content="İstanbul Bilişim Topluluğu olarak İstanbul'da bulunan üniversite kulüplerince düzenlenen bilişimle ilgili etkinliklerin paylaşıyor ve çeşitli bilişim etkinlikleri organize ediyoruz." />
-          <meta property="og:url" content="https://bilisimtoplulugu.org/" />
-          <meta property="og:site_name" content="Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri"  />
+        <title>
+          Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim
+          Etkinlikleri - Anasayfa
+        </title>
+        <link rel="canonical" href="https://bilisimtoplulugu.org/" />
+        <meta
+          name="description"
+          content="İstanbul Bilişim Topluluğu olarak İstanbul'da bulunan üniversite kulüplerince düzenlenen bilişimle ilgili etkinliklerin paylaşıyor ve çeşitli bilişim etkinlikleri organize ediyoruz."
+        />
+        <meta property="og:locale" content="tr_TR" />
+        <meta property="og:type" content="article" />
+        <meta property="og:image:width" content="1024" />
+        <meta property="og:image:height" content="1024" />
+        <meta property="og:image:alt" content="Anasayfa" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image" content="/assets/images/socialLogo.png" />
+        <meta
+          property="og:image:secure_url"
+          content="/assets/images/socialLogo.png"
+        />
+        <meta
+          property="og:title"
+          content="Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri - Anasayfa"
+        />
+        <meta
+          property="og:description"
+          content="İstanbul Bilişim Topluluğu olarak İstanbul'da bulunan üniversite kulüplerince düzenlenen bilişimle ilgili etkinliklerin paylaşıyor ve çeşitli bilişim etkinlikleri organize ediyoruz."
+        />
+        <meta property="og:url" content="https://bilisimtoplulugu.org/" />
+        <meta
+          property="og:site_name"
+          content="Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri"
+        />
 
-          <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:title" content="Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri - Anasayfa" />
-          <meta name="twitter:description" content="İstanbul Bilişim Topluluğu olarak İstanbul'da bulunan üniversite kulüplerince düzenlenen bilişimle ilgili etkinliklerin paylaşıyor ve çeşitli bilişim etkinlikleri organize ediyoruz." />
-          <meta name="twitter:creator" content="@bilisimtopluluk" />
-          <meta name="twitter:image" content="/assets/images/socialLogo.png" />
-
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri - Anasayfa"
+        />
+        <meta
+          name="twitter:description"
+          content="İstanbul Bilişim Topluluğu olarak İstanbul'da bulunan üniversite kulüplerince düzenlenen bilişimle ilgili etkinliklerin paylaşıyor ve çeşitli bilişim etkinlikleri organize ediyoruz."
+        />
+        <meta name="twitter:creator" content="@bilisimtopluluk" />
+        <meta name="twitter:image" content="/assets/images/socialLogo.png" />
       </Head>
-
 
       <WelcomeInner />
       <InstagramProfile>
@@ -225,7 +246,9 @@ export default function Home() {
                       data-aos="fade-right"
                       onClick={() => setWhichCard(1)}
                     >
-                      <h3 className={whichCard === 1 && 'active'}>Kariyer Sohbetleri</h3>
+                      <h3 className={whichCard === 1 && 'active'}>
+                        Kariyer Sohbetleri
+                      </h3>
                     </EventInfo>
                   </Col>
                   <Col xs={12} sm={6} md={4}>
@@ -233,7 +256,9 @@ export default function Home() {
                       data-aos="fade-right"
                       onClick={() => setWhichCard(2)}
                     >
-                      <h3 className={whichCard === 2 && 'active'}>Workshop Çalışmaları</h3>
+                      <h3 className={whichCard === 2 && 'active'}>
+                        Workshop Çalışmaları
+                      </h3>
                     </EventInfo>
                   </Col>
                   <Col xs={12} sm={6} md={4}>
@@ -241,7 +266,9 @@ export default function Home() {
                       data-aos="fade-right"
                       onClick={() => setWhichCard(3)}
                     >
-                      <h3 className={whichCard === 3 && 'active'}>Online Seminerler</h3>
+                      <h3 className={whichCard === 3 && 'active'}>
+                        Online Seminerler
+                      </h3>
                     </EventInfo>
                   </Col>
                 </Row>
