@@ -4,7 +4,7 @@ import PageTopSide from '../../components/PageTopSide';
 import styled from 'styled-components';
 import {Container, Row, Col, Tabs, Tab, Form, Button} from 'react-bootstrap';
 import {useDispatch, useSelector} from 'react-redux';
-import {register} from '../../redux/actions/user';
+import {register, login} from '../../redux/actions/user';
 import confirmCode from '../../api/user/confirmCode';
 import emailVerification from '../../api/user/emailVerification';
 
@@ -175,8 +175,15 @@ export default function Login() {
     }
   };
 
-  const registerOperation = () => {
-    console.log('REgister');
+  const loginOperation = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await dispatch(login(email, password));
+      localStorage.setItem('jwt', res);
+    } catch ({response: {data}}) {
+      console.log(data); // something went wrong, show the data (message) to user
+    }
   };
 
   return (
@@ -198,12 +205,22 @@ export default function Login() {
                 <Col xs={12} style={{display: isCodeSent && 'none'}}>
                   <Tabs defaultActiveKey="login" id="uncontrolled-tab-example">
                     <Tab eventKey="login" title="Giriş Yap">
-                      <Form className="mt-4">
+                      <Form className="mt-4" onSubmit={loginOperation}>
                         <Form.Group controlId="formBasicEmail">
-                          <Form.Control type="email" placeholder="E-Posta" />
+                          <Form.Control
+                            type="email"
+                            placeholder="E-Posta"
+                            value={email}
+                            onChange={({target: {value}}) => setEmail(value)}
+                          />
                         </Form.Group>
                         <Form.Group controlId="formBasicPassword">
-                          <Form.Control type="password" placeholder="Parola" />
+                          <Form.Control
+                            type="password"
+                            placeholder="Parola"
+                            value={password}
+                            onChange={({target: {value}}) => setPassword(value)}
+                          />
                         </Form.Group>
 
                         <label className="checkContainer">
