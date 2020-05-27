@@ -179,8 +179,7 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      const res = await dispatch(login(email, password));
-      localStorage.setItem('jwt', res);
+      dispatch(login(email, password));
     } catch ({response: {data}}) {
       console.log(data); // something went wrong, show the data (message) to user
     }

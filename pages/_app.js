@@ -7,7 +7,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import 'aos/dist/aos.css';
 import { auth } from '../redux/actions/user';
 export default function MyApp({Component, pageProps}) {
-  const dispatch = useDispatch();
+/*   const dispatch = useDispatch();
 
   useEffect(() => {
     console.log('qqq')
@@ -15,7 +15,7 @@ export default function MyApp({Component, pageProps}) {
     if (token) {
       dispatch(auth(token));
     }
-  }, [auth]);
+  }, [auth]); */
 
   return (
     <Provider store={store}>

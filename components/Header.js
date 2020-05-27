@@ -94,15 +94,11 @@ const CustomDropdown = styled(Dropdown)`
 
 export default function Header() {
   const [headerBgColor, setHeaderBgColor] = useState(false);
-  const activeUser = useSelector((state) => console.log(state));
+  const activeUser = useSelector((state) => state.userReducer);
 
   const handleScroll = () => {
     setHeaderBgColor(50 < window.pageYOffset);
   };
-
-  useEffect(() => {
-    console.log(activeUser)
-  },[activeUser])
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);

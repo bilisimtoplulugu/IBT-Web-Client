@@ -4,7 +4,6 @@ import {API_URL} from '../../config';
 export const register = (name, surname, email, password) => async (
   dispatch
 ) => {
-  console.log(name, surname, email, password);
   await axios.post(`${API_URL}/user/register`, {
     name,
     surname,
@@ -34,8 +33,8 @@ export const login = (email, password) => async (dispatch) =>
         email,
         password,
       });
-      dispatch({type: 'LOGIN', payload: doc});
-      resolve(token);
+      localStorage.setItem('jwt', token);
+      return dispatch({type: 'LOGIN', payload: doc});
     } catch (error) {
       reject(error);
     }
