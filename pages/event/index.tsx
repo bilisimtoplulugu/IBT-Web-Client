@@ -9,6 +9,9 @@ import AOS from 'aos';
 import PageTopSide from '../../components/PageTopSide';
 import EventPageCard from '../../components/EventPageCard';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+
 
 const FilterButton = styled.a`
   font-size: 11pt;
@@ -35,8 +38,8 @@ const FilterButton = styled.a`
   }
 `;
 
-const Filters = styled.div`
-  box-shadow: 0 3px 20px rgba(169, 169, 169, 0.5);
+const GroupButton = styled.div`
+  box-shadow: 0 3px 20px rgba(169, 169, 169, 0.2);
   border-radius: 5px;
   overflow: hidden;
   .active-button {
@@ -51,16 +54,61 @@ const Filters = styled.div`
 
     }
   }
+
+  
+`;
+const Filters = styled.div`
+transition: all 0.3s ease;
+@media(max-width:992px){
+  z-index:6;
+  display:none;
+  background-color: white; */
+    background: white;
+    /* left: 0; */
+    position: fixed;
+    left: 0;
+    right: 0;
+    /* top: 0; */
+    bottom: 0;
+    padding: 15px;
+    .closeButton{
+      text-align: right;
+      font-size: 20pt;
+       padding: 15px 0;
+    }
+}
 `;
 
 const MainArea = styled.div`
-  margin: 50px 0;
+  margin: 30px 0;
+  .customSelect{
+
+    border:none;
+    box-shadow: 0 3px 20px rgba(169, 169, 169, 0.2);
+  }
+
+  .showFilters{
+    display:block;
+    transition: all 0.3s ease;
+  }
+  .overlay{
+    transition: all 0.3s ease;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: #000;
+    opacity: .5;
+    z-index: 5;
+  }
 `;
 
 export default function Event() {
 
   const [nearEvents, setNearEvents] = useState([]);
 
+  const [mobileFilter, setmobileFilter] = useState(false)
   useEffect(() => {
     AOS.init();
     getNearEvents();
@@ -108,16 +156,57 @@ export default function Event() {
       />
 
       <MainArea>
+      <div className={mobileFilter ? "overlay": null} onClick={() => setmobileFilter(false)}></div>
         <Container>
           <Row>
-            <Col xs={12} lg={3}>
-              <Filters>
-                <FilterButton className="btn active-button">
-                  Yaklaşan Etkinlikler
+            <Col xs={12}>
+              <div className="text-right">
+              <div className="d-block d-lg-none">
+                <FilterButton className="btn" onClick={() => setmobileFilter(true)}>
+                  Filtreler
                 </FilterButton>
-                <FilterButton className="btn ">Geçmiş Etkinlikler</FilterButton>
-              </Filters>
+              </div>
+              <Form.Group  className="d-inline-block" controlId="exampleForm.ControlSelect1">
+
+                    <Form.Control className="customSelect" as="select">
+                      <option>Sırala</option>
+                      <option>İstanbul Bilişim Topluluğu</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </Form.Control>
+                  </Form.Group>
+              </div>
             </Col>
+            <Col xs={12} lg={3}>
+              <div>
+                <Filters className={mobileFilter ? "showFilters" : null}>
+                  <div className="d-block d-lg-none closeButton">
+                  <FontAwesomeIcon onClick={() => setmobileFilter(false)} icon={faTimes}></FontAwesomeIcon>
+                  </div>
+                  <GroupButton className="mb-4">
+                    <FilterButton className="btn active-button">
+                      Yaklaşan Etkinlikler
+                </FilterButton>
+                    <FilterButton className="btn ">Geçmiş Etkinlikler</FilterButton>
+                  </GroupButton>
+
+                  <Form.Group  controlId="exampleForm.ControlSelect1">
+                    <Form.Label>Topluluklar</Form.Label>
+                    <Form.Control className="customSelect" as="select">
+                      <option>Hepsi</option>
+                      <option>İstanbul Bilişim Topluluğu</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </Form.Control>
+                  </Form.Group>
+                </Filters>
+
+
+              </div>
+            </Col>  
+
 
             <Col xs={12} lg={9}>
               {nearEvents &&
