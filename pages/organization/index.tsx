@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import OrganizationCreate from '../../components/OrganizationCreate';
 import OrganizationResultPending from '../../components/OrganizationResultPending';
+import OrganizationProfile from '../../components/OrganizationProfile';
 
 const MainArea = styled.div`
 
@@ -33,9 +34,10 @@ export default function index() {
 
             <MainArea>
                    <OrganizationCreate />
-                        
+
                     <OrganizationResultPending />
                    
+                    <OrganizationProfile />
             </MainArea>
         </Layout>
     )
