@@ -8,6 +8,7 @@ const Wrapper = styled.div`
 background:#f8f8f8;
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap');
 `;
+
 function Layout({ children }) {
     return (
 

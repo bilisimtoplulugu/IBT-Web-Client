@@ -2,14 +2,13 @@ import React, { useEffect } from 'react';
 import Link from 'next/link';
 import Card from 'react-bootstrap/Card';
 import styled from 'styled-components';
-import {Row, Col} from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
+import CustomCard from './CustomCard';
 
-const CustomCard = styled(Card)`
-  margin-bottom: 15px;
-  box-shadow: 0 0px 20px rgba(169, 169, 169, 0.2);
-  border: none;
-  color: #253a4a;
-  transition: all 0.3s ease;
+
+
+const MainArea = styled.div`
+transition: all 0.3s ease;
   img {
     width: 100%;
     border-radius: 5px;
@@ -68,13 +67,14 @@ const CustomCard = styled(Card)`
   }
 `;
 
-export default function EventPageCard({event}) {
-  useEffect(() => {console.log(event.seoUrl)},[])
+export default function EventPageCard({ event }) {
+  useEffect(() => { console.log(event.seoUrl) }, [])
   return (
-    <Link href={`/event/${event.seoUrl}`}>
-      <a className="text-decoration-none">
-        <CustomCard>
-          <CustomCard.Body>
+    <MainArea>
+      <Link href={`/event/${event.seoUrl}`}>
+        <a className="text-decoration-none">
+          <CustomCard>
+
             <Row>
               <Col xs={12} md={4}>
                 <img src={event.imagePath} />
@@ -111,9 +111,10 @@ export default function EventPageCard({event}) {
                 </div>
               </Col>
             </Row>
-          </CustomCard.Body>
-        </CustomCard>
-      </a>
-    </Link>
+
+          </CustomCard>
+        </a>
+      </Link>
+     </MainArea>
   );
 }

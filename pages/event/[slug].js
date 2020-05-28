@@ -14,6 +14,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 
+import CustomCard from '../../components/CustomCard';
+
 const EventDetailArea = styled.div`
 margin-top:50px;
 .topSide{
@@ -43,6 +45,28 @@ img{
 }
 position:relative;
 
+
+
+.clock {
+  font-size: 12pt;
+  font-weight: 400;
+  padding-left: 15px;
+}
+
+.rightContent svg {
+  font-size: 15pt;
+  opacity: 0.5;
+}
+.participants {
+  display: inline-flex;
+
+  & ul {
+    padding-left: 15px;
+    margin: 0;
+    list-style: none;
+  }
+}
+
 `;
 
 const FilterButton = styled.a`
@@ -68,31 +92,6 @@ const FilterButton = styled.a`
   }
 `;
 
-const CustomCard = styled(Card)`
-  box-shadow: 0 0px 20px rgba(169, 169, 169, 0.2);
-  border: none;
-  color: rgb(37, 59, 75);
-
-  .clock {
-    font-size: 12pt;
-    font-weight: 400;
-    padding-left: 15px;
-  }
-
-  .rightContent svg {
-    font-size: 15pt;
-    opacity: 0.5;
-  }
-  .participants {
-    display: inline-flex;
-
-    & ul {
-      padding-left: 15px;
-      margin: 0;
-      list-style: none;
-    }
-  }
-`;
 
 const AttendArea = styled.div`
   margin-top: 50px;
@@ -191,7 +190,7 @@ export default function EventDetail() {
 
   return (
     <Layout>
-       <Head>
+       {/* <Head>
             <title>{eventData.title} - Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri </title>
             <link rel="canonical" href="https://bilisimtoplulugu.org/etkinlikler" />
           
@@ -214,7 +213,7 @@ export default function EventDetail() {
                 <meta name="twitter:creator" content="@bilisimtopluluk" />
                 <meta name="twitter:image" content="/assets/images/socialLogo.png" />
                 
-            </Head>
+            </Head> */}
 
 
       <PageTopSide responsiveTop="40" responsiveHeight="300" bgImage="./../assets/images/homeBg.jpg" defaultHeight="300" title={eventData.title} desc={eventData.subtitle} />
@@ -225,11 +224,11 @@ export default function EventDetail() {
           <Row>
             <Col xs={{order: 2, span: 12}} md={{order: 1, span: 8}}>
               <CustomCard>
-                <CustomCard.Body>
+       
                   <img className="mb-3" src={eventData.imagePath} />
                   <span className="subTitle ">Detaylar</span>
                   <p>{eventData.description}</p>
-                </CustomCard.Body>
+             
               </CustomCard>
             </Col>
             <Col
@@ -238,7 +237,7 @@ export default function EventDetail() {
               className="mb-3 "
             >
               <CustomCard>
-                <CustomCard.Body className="rightContent">
+                <div className="rightContent">
                   <div className="topSide">
                     <h3 className="subTitle">Düzenleyen</h3>
                     <span className="title">{eventData.organizer}</span>
@@ -270,7 +269,7 @@ export default function EventDetail() {
                       <span className="clock">Online Etkinlik</span>
                     </div>
                   )}
-                </CustomCard.Body>
+      </div>
               </CustomCard>
             </Col>
             <Col
@@ -296,11 +295,11 @@ export default function EventDetail() {
                         return (
                           <Col key={index} xs={6} sm={4} lg={3}>
                             <CustomCard>
-                              <CustomCard.Body>
+                        
                                 {/* GONNA DYNAMIC IMAGE URL */}
                                 <img src="/assets/images/berkaydogukan.jpg" />
                                 <span>{participant.name}</span>
-                              </CustomCard.Body>
+                   
                             </CustomCard>
                           </Col>
                         );

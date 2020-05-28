@@ -7,38 +7,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import Link from 'next/link'
 import { FormRow } from 'react-bootstrap/Form'
+import CustomCard from '../../components/CustomCard'
 
 
 const MainArea = styled.div`
 
 margin:50px 0;
-
-
-`;
-
-
-
-
-const CustomCard = styled(Card)`
-box-shadow: 0 0px 20px rgba(169, 169, 169, 0.2);
-border: none;
-color: #253a4a;
-transition: all .3s ease;
-
-span{
-    display:block;
-    font-weight:400;
-}
-.userMail{
-    font-size: 15pt;
-    opacity: .5;
-}
-.userName{
-    font-size:20pt;
-}
 img{
-    width: 100%;
-    
+    width:100%;
 }
 .userImage{
     margin:0 auto;
@@ -50,9 +26,10 @@ img{
 
 }
 
-
-
 `;
+
+
+
 
 const CustomButton = styled(Button)`
   font-size: 11pt;
@@ -91,7 +68,7 @@ export default function index() {
 
                         <Col xs={12} >
                             <CustomCard>
-                                <CustomCard.Body>
+                         
                                     <Tab.Container id="left-tabs-example" defaultActiveKey="first">
                                         <Row>
                                             <Col md={3}>
@@ -210,7 +187,7 @@ export default function index() {
                                             </Col>
                                         </Row>
                                     </Tab.Container>
-                                </CustomCard.Body>
+                     
                             </CustomCard>
                         </Col>
                     </Row>

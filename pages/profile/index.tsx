@@ -6,61 +6,11 @@ import styled from 'styled-components';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faEdit} from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
+import CustomCard from '../../components/CustomCard';
 
 const MainArea = styled.div`
   margin: 50px 0;
-`;
 
-const Pages = styled.div`
-  box-shadow: 0 3px 20px rgba(169, 169, 169, 0.5);
-  border-radius: 5px;
-  overflow: hidden;
-  .active-button {
-    opacity: 1;
-  }
-  @media (max-width: 991px) {
-    box-shadow: unset;
-    a {
-      width: unset;
-    }
-  }
-`;
-
-const PagesButton = styled.a`
-  font-size: 11pt;
-  color: #fff !important;
-  padding-left: 20px;
-  padding-right: 20px;
-  opacity: 0.5;
-  background: #0097e4;
-  width: 100%;
-  border-radius: 0;
-
-  transition: all 0.3s ease;
-  &:hover {
-    background: #019eef;
-    border-color: #019eef;
-
-    transition: all 0.3s ease;
-  }
-  &:hover {
-    opacity: 1;
-  }
-  @media (max-width: 991px) {
-    margin: 10px 0;
-  }
-`;
-
-const CustomCard = styled(Card)`
-  box-shadow: 0 0px 20px rgba(169, 169, 169, 0.2);
-  border: none;
-  color: #253a4a;
-  transition: all 0.3s ease;
-
-  span {
-    display: block;
-    font-weight: 400;
-  }
   .userMail {
     font-size: 15pt;
     opacity: 0.5;
@@ -68,9 +18,7 @@ const CustomCard = styled(Card)`
   .userName {
     font-size: 20pt;
   }
-  img {
-    width: 100%;
-  }
+ 
   .userImage {
     position: relative;
     overflow: hidden;
@@ -136,7 +84,49 @@ const CustomCard = styled(Card)`
     display: inline-block;
     float: none;
   }
+
 `;
+
+const Pages = styled.div`
+  box-shadow: 0 3px 20px rgba(169, 169, 169, 0.5);
+  border-radius: 5px;
+  overflow: hidden;
+  .active-button {
+    opacity: 1;
+  }
+  @media (max-width: 991px) {
+    box-shadow: unset;
+    a {
+      width: unset;
+    }
+  }
+`;
+
+const PagesButton = styled.a`
+  font-size: 11pt;
+  color: #fff !important;
+  padding-left: 20px;
+  padding-right: 20px;
+  opacity: 0.5;
+  background: #0097e4;
+  width: 100%;
+  border-radius: 0;
+
+  transition: all 0.3s ease;
+  &:hover {
+    background: #019eef;
+    border-color: #019eef;
+
+    transition: all 0.3s ease;
+  }
+  &:hover {
+    opacity: 1;
+  }
+  @media (max-width: 991px) {
+    margin: 10px 0;
+  }
+`;
+
 
 export default function index() {
   return (
@@ -154,7 +144,6 @@ export default function index() {
           <Row>
             <Col xs={12}>
               <CustomCard>
-                <CustomCard.Body>
                   <Row>
                     <Col xs={12} className="segment">
                       <Row>
@@ -213,7 +202,7 @@ export default function index() {
                       </Row>
                     </Col>
                   </Row>
-                </CustomCard.Body>
+         
               </CustomCard>
             </Col>
           </Row>

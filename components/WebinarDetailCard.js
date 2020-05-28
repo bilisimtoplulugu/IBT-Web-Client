@@ -3,26 +3,28 @@ import {Card, Row, Col} from 'react-bootstrap';
 import styled from 'styled-components';
 import Link from 'next/link';
 
-const CustomCard = styled(Card)`
-  box-shadow: 0 0px 20px rgba(169, 169, 169, 0.2);
-  border: none;
-  color: #253a4a;
-  margin-top: 20px;
-  .title {
-    font-size: 20pt;
-    font-weight: 400;
-  }
+import CustomCard from './CustomCard';
 
-  .subTitle {
-    font-size: 15pt !important;
-  }
+const MainArea = styled.div`
+margin-top: 20px;
+.title {
+  font-size: 20pt;
+  font-weight: 400;
+}
+
+.subTitle {
+  font-size: 15pt !important;
+}
+
 `;
 
 export default function WebinarDetailCard() {
   return (
+    
     <div data-aos="fade-right">
+      <MainArea>
       <CustomCard>
-        <CustomCard.Body>
+
           <div className="topSide">
             <h4 className="title">Online Seminerler</h4>
             <span className="subTitle">Neler Yapılır?</span>
@@ -39,8 +41,9 @@ export default function WebinarDetailCard() {
           Sitemizdeki etkinlikler kısmında düzenlenecek Online Seminerler’i inceleyebilir ve mevcut etkinliklere katılabilirsiniz. 
 
           </p>
-        </CustomCard.Body>
+
       </CustomCard>
+      </MainArea>
     </div>
   );
 }
