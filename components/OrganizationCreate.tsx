@@ -34,7 +34,7 @@ const CustomButton = styled(Button)`
 `;
 
 
-const Wrapper = styled.div`
+const Inner = styled.div`
 
 
 .orgImage{
@@ -75,10 +75,11 @@ textarea {
 
 export default function OrganizationCreate() {
     return (
-        <Wrapper>
+  
             <Container>
                 <Row className="d-flex justify-content-center">
                     <Col xs={4}>
+                        <Inner>
                         <CustomCard >
                            <Form>
                                 <Form.Group>
@@ -106,10 +107,11 @@ export default function OrganizationCreate() {
 
        
                         </CustomCard>
+                        </Inner>
                     </Col>
                 </Row>
             </Container>
-        </Wrapper>
+     
 
     )
 }
