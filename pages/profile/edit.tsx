@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import Link from 'next/link'
+import { FormRow } from 'react-bootstrap/Form'
 
 
 const MainArea = styled.div`
@@ -117,7 +118,7 @@ export default function index() {
                                                             </Col>
                                                             <Col xs={12} md={9} >
                                                                
-                                                             <Row>
+                                                             <Form.Row>
                                                                  <Col xs={12} md={6}>
                                                                  <Form.Group controlId="formBasicEmail">
                                                                    <Form.Label>Adınız</Form.Label>
@@ -148,7 +149,7 @@ export default function index() {
                                                                 />
                                                                 </Form.Group>
                                                                </Col>
-                                                             </Row>
+                                                             </Form.Row>
 
                                                        
                                                        </Col>

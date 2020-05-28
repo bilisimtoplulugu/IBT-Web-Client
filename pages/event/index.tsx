@@ -156,33 +156,33 @@ export default function Event() {
       />
 
       <MainArea>
-      <div className={mobileFilter ? "overlay": null} onClick={() => setmobileFilter(false)}></div>
+        <div className={mobileFilter ? "overlay" : null} onClick={() => setmobileFilter(false)}></div>
         <Container>
           <Row>
             <Col xs={12}>
               <div className="text-right">
-              <div className="d-block d-lg-none">
-                <FilterButton className="btn" onClick={() => setmobileFilter(true)}>
-                  Filtreler
+                <div className="d-block d-lg-none">
+                  <FilterButton className="btn" onClick={() => setmobileFilter(true)}>
+                    Filtreler
                 </FilterButton>
-              </div>
-              <Form.Group  className="d-inline-block" controlId="exampleForm.ControlSelect1">
+                </div>
+                <Form.Group className="d-inline-block" controlId="exampleForm.ControlSelect1">
 
-                    <Form.Control className="customSelect" as="select">
-                      <option>Sırala</option>
-                      <option>İstanbul Bilişim Topluluğu</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                    </Form.Control>
-                  </Form.Group>
+                  <Form.Control className="customSelect" as="select">
+                    <option>Sırala</option>
+                    <option>İstanbul Bilişim Topluluğu</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </Form.Control>
+                </Form.Group>
               </div>
             </Col>
             <Col xs={12} lg={3}>
               <div>
                 <Filters className={mobileFilter ? "showFilters" : null}>
                   <div className="d-block d-lg-none closeButton">
-                  <FontAwesomeIcon onClick={() => setmobileFilter(false)} icon={faTimes}></FontAwesomeIcon>
+                    <FontAwesomeIcon onClick={() => setmobileFilter(false)} icon={faTimes}></FontAwesomeIcon>
                   </div>
                   <GroupButton className="mb-4">
                     <FilterButton className="btn active-button">
@@ -191,7 +191,7 @@ export default function Event() {
                     <FilterButton className="btn ">Geçmiş Etkinlikler</FilterButton>
                   </GroupButton>
 
-                  <Form.Group  controlId="exampleForm.ControlSelect1">
+                  <Form.Group controlId="exampleForm.ControlSelect1">
                     <Form.Label>Topluluklar</Form.Label>
                     <Form.Control className="customSelect" as="select">
                       <option>Hepsi</option>
@@ -205,7 +205,7 @@ export default function Event() {
 
 
               </div>
-            </Col>  
+            </Col>
 
 
             <Col xs={12} lg={9}>

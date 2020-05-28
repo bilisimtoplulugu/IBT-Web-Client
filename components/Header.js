@@ -150,6 +150,9 @@ export default function Header() {
                     <Link href="/profile" as="/hesabım" passHref={true}>
                       <CustomDropdown.Item>Hesabım</CustomDropdown.Item>
                     </Link>
+                    <Link href="/profile" as="/hesabım" passHref={true}>
+                      <CustomDropdown.Item>Topluluk</CustomDropdown.Item>
+                    </Link>
                     <CustomDropdown.Item href="#/action-2">
                       Çıkış Yap
                     </CustomDropdown.Item>
