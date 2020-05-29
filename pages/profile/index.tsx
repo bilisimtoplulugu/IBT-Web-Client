@@ -1,10 +1,10 @@
 import React from 'react';
 import Layout from '../../components/Layout';
 import PageTopSide from '../../components/PageTopSide';
-import {Container, Row, Col, Card, Button} from 'react-bootstrap';
+import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import styled from 'styled-components';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faEdit} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import CustomCard from '../../components/CustomCard';
 
@@ -70,61 +70,33 @@ const MainArea = styled.div`
     border-radius: 5px;
     box-shadow: 0 0px 20px rgba(169, 169, 169, 0.4);
   }
+.eventCard{
+  transition: all 0.3s ease;
+}
+  .eventCard:hover{
+    transform:scale(1.03);
+    transition: all 0.3s ease;
+  }
+
+
+
   @media (max-width: 576px) {
     .userImage {
       width: 120px;
     }
   }
-  .latestEvents {
-    overflow-x: auto;
-
-    flex-wrap: nowrap;
+  @media (max-width:768px){
+    .latestEvents {
+      overflow-x: auto;
+  
+      flex-wrap: nowrap;
+    }
   }
   .latestEvents > .col-6 {
     display: inline-block;
     float: none;
   }
 
-`;
-
-const Pages = styled.div`
-  box-shadow: 0 3px 20px rgba(169, 169, 169, 0.5);
-  border-radius: 5px;
-  overflow: hidden;
-  .active-button {
-    opacity: 1;
-  }
-  @media (max-width: 991px) {
-    box-shadow: unset;
-    a {
-      width: unset;
-    }
-  }
-`;
-
-const PagesButton = styled.a`
-  font-size: 11pt;
-  color: #fff !important;
-  padding-left: 20px;
-  padding-right: 20px;
-  opacity: 0.5;
-  background: #0097e4;
-  width: 100%;
-  border-radius: 0;
-
-  transition: all 0.3s ease;
-  &:hover {
-    background: #019eef;
-    border-color: #019eef;
-
-    transition: all 0.3s ease;
-  }
-  &:hover {
-    opacity: 1;
-  }
-  @media (max-width: 991px) {
-    margin: 10px 0;
-  }
 `;
 
 
@@ -144,65 +116,65 @@ export default function index() {
           <Row>
             <Col xs={12}>
               <CustomCard>
-                  <Row>
-                    <Col xs={12} className="segment">
-                      <Row>
-                        <Col xs={12} sm={3} md={2}>
-                          <div className="userImage">
-                            <img src="/assets/images/berkaydogukan.jpg" />
-                          </div>
-                        </Col>
-                        <Col
-                          xs={12}
-                          sm={9}
-                          md={10}
-                          className="d-flex align-items-center"
-                        >
-                          <div>
-                            <span className="userName">
-                              Berkay Doğukan Urhan
+                <Row>
+                  <Col xs={12} className="segment">
+                    <Row>
+                      <Col xs={12} sm={3} md={2}>
+                        <div className="userImage">
+                          <img src="/assets/images/berkaydogukan.jpg" />
+                        </div>
+                      </Col>
+                      <Col
+                        xs={12}
+                        sm={9}
+                        md={10}
+                        className="d-flex align-items-center"
+                      >
+                        <div>
+                          <span className="userName">
+                            Berkay Doğukan Urhan
                             </span>
-                            <span className="userMail">
-                              mail@dogukanurhan.com
+                          <span className="userMail">
+                            mail@dogukanurhan.com
                             </span>
-                          </div>
-                        </Col>
-                      </Row>
-                      <div className="editProfile">
-                        <Link href="profile/edit">
-                          <a>
-                            <FontAwesomeIcon icon={faEdit}></FontAwesomeIcon>
-                          </a>
-                        </Link>
-                      </div>
-                    </Col>
-                    <Col xs={12} className="segment">
-                      <h3>Son Etkinlikler</h3>
-                      <Row className="latestEvents">
-                        <Col xs={6} md={3}>
-                          <div className="eventCard">
-                            <img src="/assets/images/image1.png" />
-                          </div>
-                        </Col>
-                        <Col xs={6} md={3}>
-                          <div className="eventCard">
-                            <img src="/assets/images/image1.png" />
-                          </div>
-                        </Col>
-                        <Col xs={6} md={3}>
-                          <div className="eventCard">
-                            <img src="/assets/images/image1.png" />
-                          </div>
-                        </Col>
-                        <Col xs={6} md={3}>
-                          <div className="eventCard">
-                            <img src="/assets/images/image1.png" />
-                          </div>
-                        </Col>
-                      </Row>
-                    </Col>
-                  </Row>
-         
+                        </div>
+                      </Col>
+                    </Row>
+                    <div className="editProfile">
+                      <Link href="profile/edit">
+                        <a>
+                          <FontAwesomeIcon icon={faEdit}></FontAwesomeIcon>
+                        </a>
+                      </Link>
+                    </div>
+                  </Col>
+                  <Col xs={12} className="segment">
+                    <h3>Son Etkinlikler</h3>
+                    <Row className="latestEvents">
+                      <Col xs={6} md={3}>
+                        <div className="eventCard">
+                          <img src="/assets/images/image1.png" />
+                        </div>
+                      </Col>
+                      <Col xs={6} md={3}>
+                        <div className="eventCard">
+                          <img src="/assets/images/image1.png" />
+                        </div>
+                      </Col>
+                      <Col xs={6} md={3}>
+                        <div className="eventCard">
+                          <img src="/assets/images/image1.png" />
+                        </div>
+                      </Col>
+                      <Col xs={6} md={3}>
+                        <div className="eventCard">
+                          <img src="/assets/images/image1.png" />
+                        </div>
+                      </Col>
+                    </Row>
+                  </Col>
+                </Row>
+
               </CustomCard>
             </Col>
           </Row>
