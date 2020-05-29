@@ -69,7 +69,6 @@ const CustomCard = styled(Card)`
 `;
 
 export default function EventPageCard({event}) {
-  useEffect(() => {console.log(event.seoUrl)},[])
   return (
     <Link href={`/event/${event.seoUrl}`}>
       <a className="text-decoration-none">

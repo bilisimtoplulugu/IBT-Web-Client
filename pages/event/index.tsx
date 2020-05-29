@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import Layout from '../../components/Layout';
 import Head from 'next/head';
 import styled from 'styled-components';
-import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
+import {Container, Row, Col, Form, Button, Card} from 'react-bootstrap';
 import EventDateSlider from '../../components/EventDateSlider';
 import HomeEventCard from '../../components/HomeEventCard';
 import AOS from 'aos';
@@ -47,8 +47,6 @@ const Filters = styled.div`
 
     a {
       margin: 0;
- 
-
     }
   }
 `;
@@ -58,25 +56,33 @@ const MainArea = styled.div`
 `;
 
 export default function Event() {
-
   const [nearEvents, setNearEvents] = useState([]);
 
   useEffect(() => {
     AOS.init();
-    getNearEvents();
   });
 
+  useEffect(() => {
+    getNearEvents();
+  }, []);
+
   const getNearEvents = async () => {
-    const { data } = await axios.get('http://localhost:2222/event/near');
+    const {data} = await axios.get('http://localhost:2222/event/near');
     setNearEvents(data);
   };
 
   return (
     <Layout>
       <Head>
-        <title>Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri - Etkinlikler</title>
+        <title>
+          Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim
+          Etkinlikleri - Etkinlikler
+        </title>
         <link rel="canonical" href="https://bilisimtoplulugu.org/etkinlikler" />
-        <meta name="description" content="İstanbul Bilişim Topluluğu olarak öğrencilerin sektörel gelişimleri için kariyer sohbetleri, workshop ve atölyeler, online seminerler gibi etkinlikler düzenliyoruz." />
+        <meta
+          name="description"
+          content="İstanbul Bilişim Topluluğu olarak öğrencilerin sektörel gelişimleri için kariyer sohbetleri, workshop ve atölyeler, online seminerler gibi etkinlikler düzenliyoruz."
+        />
 
         <meta property="og:locale" content="tr_TR" />
         <meta property="og:type" content="article" />
@@ -85,22 +91,40 @@ export default function Event() {
         <meta property="og:image:alt" content="Etkinlikler" />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image" content="/assets/images/socialLogo.png" />
-        <meta property="og:image:secure_url" content="/assets/images/socialLogo.png" />
-        <meta property="og:title" content="Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri - Etkinlikler" />
-        <meta property="og:description" content="İstanbul Bilişim Topluluğu olarak öğrencilerin sektörel gelişimleri için kariyer sohbetleri, workshop ve atölyeler, online seminerler gibi etkinlikler düzenliyoruz." />
+        <meta
+          property="og:image:secure_url"
+          content="/assets/images/socialLogo.png"
+        />
+        <meta
+          property="og:title"
+          content="Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri - Etkinlikler"
+        />
+        <meta
+          property="og:description"
+          content="İstanbul Bilişim Topluluğu olarak öğrencilerin sektörel gelişimleri için kariyer sohbetleri, workshop ve atölyeler, online seminerler gibi etkinlikler düzenliyoruz."
+        />
         <meta property="og:url" content="https://bilisimtoplulugu.org/" />
-        <meta property="og:site_name" content="Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri" />
+        <meta
+          property="og:site_name"
+          content="Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri"
+        />
 
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri - Etkinlikler" />
-        <meta name="twitter:description" content="İstanbul Bilişim Topluluğu olarak öğrencilerin sektörel gelişimleri için kariyer sohbetleri, workshop ve atölyeler, online seminerler gibi etkinlikler düzenliyoruz." />
+        <meta
+          name="twitter:title"
+          content="Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri - Etkinlikler"
+        />
+        <meta
+          name="twitter:description"
+          content="İstanbul Bilişim Topluluğu olarak öğrencilerin sektörel gelişimleri için kariyer sohbetleri, workshop ve atölyeler, online seminerler gibi etkinlikler düzenliyoruz."
+        />
         <meta name="twitter:creator" content="@bilisimtopluluk" />
         <meta name="twitter:image" content="/assets/images/socialLogo.png" />
-
       </Head>
 
       <PageTopSide
-        responsiveTop="40" responsiveHeight="300"
+        responsiveTop="40"
+        responsiveHeight="300"
         bgImage="./../assets/images/homeBg.jpg"
         defaultHeight="300"
         title="Etkinlikler"
@@ -130,5 +154,4 @@ export default function Event() {
       </MainArea>
     </Layout>
   );
-
 }

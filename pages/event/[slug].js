@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useLayoutEffect,useState} from 'react';
 import Layout from '../../components/Layout';
 import Router, {useRouter} from 'next/router';
 import PageTopSide from '../../components/PageTopSide';
@@ -13,6 +13,13 @@ import {
   faHeadphones,
 } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
+import Head from 'next/head';
+import {auth} from '../../redux/actions/user';
+import {useDispatch, useSelector} from 'react-redux';
+import isoToNormal from '../../utils/isoToNormal';
+import getEvent from '../../api/event/getEvent';
+import join from '../../api/event/join';
+import {isArray} from 'util';
 
 const EventDetailArea = styled.div`
 margin-top:50px;
@@ -168,57 +175,109 @@ const ParticipantsArea = styled.div`
 export default function EventDetail() {
   const [eventData, setEventData] = useState('');
   const [eventParticipants, setEventParticipants] = useState('');
+  const [isRegisteredToEvent, setIsRegisteredToEvent] = useState(false);
+  const activeUser = useSelector((state) => state.userReducer);
   const router = useRouter();
+  const dispatch = useDispatch();
 
   useEffect(() => {
+    if (isArray(activeUser)) return;
+    /* ABÇ: RUNS 2 TIMES!! */
     getEventData();
-  }, [router]);
+  }, [activeUser, isRegisteredToEvent]);
+
+  /* ABÇ: TEMP AUTH */
+  useEffect(() => {
+    const token = localStorage.getItem('jwt');
+    if (token) {
+      dispatch(auth(token));
+    }
+  }, [auth]);
+
+  const joinToEvent = () => {
+    join(activeUser._id, eventData._id);
+    //join();
+  };
 
   const getEventData = async () => {
     const eventURL = router.query.slug;
     if (!eventURL) return;
     try {
-      const {
-        data: {event, participants},
-      } = await axios.get(`http://localhost:2222/event/${eventURL}`);
+      const {event, participants} = await getEvent(eventURL);
       setEventData(event);
       setEventParticipants(participants);
+      activeUser.joinedEvents.map((joinedEvent) => {
+        if (joinedEvent == event._id) setIsRegisteredToEvent(true);
+      });
     } catch (error) {
-      // if there is no event defined with URL requested
-      return Router.push('/');
+      console.log(error);
     }
   };
 
   return (
     <Layout>
-       <Head>
-            <title>{eventData.title} - Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri </title>
-            <link rel="canonical" href="https://bilisimtoplulugu.org/etkinlikler" />
-          
-                <meta property="og:locale" content="tr_TR" />
-                <meta property="og:type" content="article" />
-                <meta property="og:image:width" content="1024"/>
-                <meta property="og:image:height" content="1024"/>
-                <meta property="og:image:alt" content="Etkinlikler"/>
-                <meta property="og:image:type" content="image/png"/>
-                <meta property="og:image" content="/assets/images/socialLogo.png" />
-                <meta property="og:image:secure_url" content="/assets/images/socialLogo.png" />
-                <meta property="og:title" content={eventData.title+ " - Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri"} />
-                <meta property="og:description" content="Kredi kartı ve nakit ile kolayca ve güvenli bir şekilde Bitcoin, Ethereum, Ripple, Litecoin, Tether ve Stellar satın alabilir, dilerseniz Bitcoin, Ethereum, Rip" />
-                <meta property="og:url" content="https://bilisimtoplulugu.org/" />
-                <meta property="og:site_name" content={eventData.title+ " - Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri"}  />
+      <Head>
+        <title>
+          {eventData.title} - Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu,
+          Bilişim Etkinlikleri{' '}
+        </title>
+        <link rel="canonical" href="https://bilisimtoplulugu.org/etkinlikler" />
 
-                <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content={eventData.title+ " - Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri"}  />
-                <meta name="twitter:description" content="Kredi kartı ve nakit ile kolayca ve güvenli bir şekilde Bitcoin, Ethereum, Ripple, Litecoin, Tether ve Stellar satın alabilir, dilerseniz Bitcoin, Ethereum, Rip" />
-                <meta name="twitter:creator" content="@bilisimtopluluk" />
-                <meta name="twitter:image" content="/assets/images/socialLogo.png" />
-                
-            </Head>
+        <meta property="og:locale" content="tr_TR" />
+        <meta property="og:type" content="article" />
+        <meta property="og:image:width" content="1024" />
+        <meta property="og:image:height" content="1024" />
+        <meta property="og:image:alt" content="Etkinlikler" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image" content="/assets/images/socialLogo.png" />
+        <meta
+          property="og:image:secure_url"
+          content="/assets/images/socialLogo.png"
+        />
+        <meta
+          property="og:title"
+          content={
+            eventData.title +
+            ' - Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri'
+          }
+        />
+        <meta
+          property="og:description"
+          content="Kredi kartı ve nakit ile kolayca ve güvenli bir şekilde Bitcoin, Ethereum, Ripple, Litecoin, Tether ve Stellar satın alabilir, dilerseniz Bitcoin, Ethereum, Rip"
+        />
+        <meta property="og:url" content="https://bilisimtoplulugu.org/" />
+        <meta
+          property="og:site_name"
+          content={
+            eventData.title +
+            ' - Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri'
+          }
+        />
 
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content={
+            eventData.title +
+            ' - Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri'
+          }
+        />
+        <meta
+          name="twitter:description"
+          content="Kredi kartı ve nakit ile kolayca ve güvenli bir şekilde Bitcoin, Ethereum, Ripple, Litecoin, Tether ve Stellar satın alabilir, dilerseniz Bitcoin, Ethereum, Rip"
+        />
+        <meta name="twitter:creator" content="@bilisimtopluluk" />
+        <meta name="twitter:image" content="/assets/images/socialLogo.png" />
+      </Head>
 
-      <PageTopSide responsiveTop="40" responsiveHeight="300" bgImage="./../assets/images/homeBg.jpg" defaultHeight="300" title={eventData.title} desc={eventData.subtitle} />
-
+      <PageTopSide
+        responsiveTop="40"
+        responsiveHeight="300"
+        bgImage="./../assets/images/homeBg.jpg"
+        defaultHeight="300"
+        title={eventData.title}
+        desc={eventData.subtitle}
+      />
 
       <EventDetailArea>
         <Container>
@@ -245,9 +304,7 @@ export default function EventDetail() {
                   </div>
                   <div className="mb-3">
                     <FontAwesomeIcon icon={faClock} />
-                    <span className="clock">
-                      {eventData.date} - {eventData.time}
-                    </span>
+                    <span className="clock">{isoToNormal(eventData.date)}</span>
                   </div>
                   <div className="mb-3">
                     <FontAwesomeIcon icon={faUsers} />
@@ -297,9 +354,12 @@ export default function EventDetail() {
                           <Col key={index} xs={6} sm={4} lg={3}>
                             <CustomCard>
                               <CustomCard.Body>
-                                {/* GONNA DYNAMIC IMAGE URL */}
+                                {/* ABÇ: GONNA DYNAMIC IMAGE URL */}
+                                {/* ABÇ: HERE SHOULD BE ALSO LINK TO PARTICIPANT PROFILE */}
                                 <img src="/assets/images/berkaydogukan.jpg" />
-                                <span>{participant.name}</span>
+                                <span>
+                                  {participant.name} {participant.surname}{' '}
+                                </span>
                               </CustomCard.Body>
                             </CustomCard>
                           </Col>
@@ -325,9 +385,15 @@ export default function EventDetail() {
                 sm={4}
                 className="d-block d-sm-flex align-items-sm-center justify-content-sm-end"
               >
-                <div>
-                  <FilterButton className="btn d-block">Katıl</FilterButton>
-                </div>
+                {isRegisteredToEvent ? (
+                  <div>Gidiyorsunuz</div>
+                ) : (
+                  <div>
+                    <FilterButton className="btn d-block" onClick={joinToEvent}>
+                      Katıl
+                    </FilterButton>
+                  </div>
+                )}
               </Col>
             </Row>
           </Container>
