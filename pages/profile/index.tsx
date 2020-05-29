@@ -66,6 +66,16 @@ const MainArea = styled.div`
   .segment h3 {
     padding-bottom: 10px;
   }
+  .seeAll {
+    opacity: 0.5;
+    text-decoration: none ;
+    color: #253a4a;
+    transition: all 0.3s ease;
+  }
+  .seeAll:hover {
+    opacity: 1;
+    transition: all 0.3s ease;
+  }
   .eventCard img {
     border-radius: 5px;
     box-shadow: 0 0px 20px rgba(169, 169, 169, 0.4);
@@ -86,6 +96,10 @@ const MainArea = styled.div`
     }
   }
   @media (max-width:768px){
+    .eventCard:hover{
+      transform:unset;
+
+    }
     .latestEvents {
       overflow-x: auto;
   
@@ -149,7 +163,16 @@ export default function index() {
                     </div>
                   </Col>
                   <Col xs={12} className="segment">
-                    <h3>Son Etkinlikler</h3>
+                    <Row>
+                      <Col xs={12} sm={6} className="text-center text-sm-left">
+                        <h3>Son Etkinlikler</h3>
+                      </Col>
+                      <Col xs={12} sm={6} className="text-center mb-4 mb-sm-0 text-sm-right">
+                        <Link href="">
+                          <a className="text-decoration-none"><span className="seeAll">Tümünü Gör</span></a>
+                        </Link>
+                      </Col>
+                    </Row>
                     <Row className="latestEvents">
                       <Col xs={6} md={3}>
                         <div className="eventCard">
