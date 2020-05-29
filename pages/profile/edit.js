@@ -17,6 +17,7 @@ import {faEdit} from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import changePassword from '../../api/user/changePassword';
 import {useSelector} from 'react-redux';
+import changePersonalInfo from '../../api/user/changePersonalInfo';
 
 const MainArea = styled.div`
   margin: 50px 0;
@@ -79,9 +80,26 @@ const CustomButton = styled(Button)`
 
 export default function index() {
   const activeUser = useSelector((state) => state.userReducer);
+
+  /* change personal info form states */
+  const [name, setName] = useState('');
+  const [surname, setSurname] = useState('');
+  const [email, setEmail] = useState('');
+
+  /* change pw form states */
   const [oldPass, setOldPass] = useState('');
   const [newPass, setNewPass] = useState('');
   const [newPassAgain, setNewPassAgain] = useState('');
+
+  const personalInfoChangeSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      await changePersonalInfo(activeUser._id, name, surname, email);
+    } catch (error) {
+      console.log(error); //something went wrong, should show to user
+    }
+  };
 
   const passChangeSubmit = async (e) => {
     e.preventDefault();
@@ -132,7 +150,7 @@ export default function index() {
                       <Col md={9}>
                         <Tab.Content>
                           <Tab.Pane eventKey="first">
-                            <Form>
+                            <Form onSubmit={personalInfoChangeSubmit}>
                               <Row>
                                 <Col
                                   xs={12}
@@ -152,6 +170,10 @@ export default function index() {
                                           type="text"
                                           className="shadow-none"
                                           placeholder="Adınız"
+                                          value={name}
+                                          onChange={({target: {value}}) =>
+                                            setName(value)
+                                          }
                                         />
                                       </Form.Group>
                                     </Col>
@@ -162,6 +184,10 @@ export default function index() {
                                           type="text"
                                           className="shadow-none"
                                           placeholder="Soyadınız"
+                                          value={surname}
+                                          onChange={({target: {value}}) =>
+                                            setSurname(value)
+                                          }
                                         />
                                       </Form.Group>
                                     </Col>
@@ -172,10 +198,14 @@ export default function index() {
                                           type="email"
                                           className="shadow-none"
                                           placeholder="E-Posta"
+                                          value={email}
+                                          onChange={({target: {value}}) =>
+                                            setEmail(value)
+                                          }
                                         />
                                       </Form.Group>
                                     </Col>
-                                    <Col xs={12} md={6}>
+{/*                                     <Col xs={12} md={6}>
                                       <Form.Group>
                                         <Form.File
                                           id="custom-file"
@@ -183,7 +213,7 @@ export default function index() {
                                           data-browse="Seç"
                                         />
                                       </Form.Group>
-                                    </Col>
+                                    </Col> */}
                                   </Row>
                                 </Col>
                                 <Col
