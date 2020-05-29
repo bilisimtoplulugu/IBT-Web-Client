@@ -10,7 +10,7 @@ export const register = (name, surname, email, password) => async (
     email,
     password,
   });
-  dispatch({type: 'REGISTER'});
+  return dispatch({type: 'REGISTER'});
 };
 
 export const auth = (token) => async (dispatch) => {
@@ -18,7 +18,7 @@ export const auth = (token) => async (dispatch) => {
     const {data} = await axios.post('http://localhost:2222/user/auth', {
       token,
     });
-    dispatch({type: 'AUTH', payload: data});
+    return dispatch({type: 'AUTH', payload: data});
   } catch ({response: {data, status}}) {
     console.log(data);
   }
@@ -28,13 +28,13 @@ export const login = (email, password) => async (dispatch) =>
   new Promise(async (resolve, reject) => {
     try {
       const {
-        data: {doc, token},
+        data: {user, token},
       } = await axios.post(`${API_URL}/user/login`, {
         email,
         password,
       });
       localStorage.setItem('jwt', token);
-      return dispatch({type: 'LOGIN', payload: doc});
+      return dispatch({type: 'LOGIN', payload: user});
     } catch (error) {
       reject(error);
     }

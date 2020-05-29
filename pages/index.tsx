@@ -4,6 +4,8 @@ import styled, {keyframes} from 'styled-components';
 import WelcomeSlider from '../components/WelcomeSlider';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faInstagram} from '@fortawesome/free-brands-svg-icons';
+import {useDispatch, useSelector} from 'react-redux';
+import {auth} from '../redux/actions/user';
 
 import Layout from '../components/Layout';
 import Head from 'next/head';
@@ -126,10 +128,19 @@ const EventInfo = styled.div`
 `;
 export default function Home() {
   const [whichCard, setWhichCard] = useState(1);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     AOS.init();
   });
+
+  /* ABÇ: TEMP AUTH */
+  useEffect(() => {
+    const token = localStorage.getItem('jwt');
+    if (token) {
+      dispatch(auth(token));
+    }
+  }, [auth]);
 
   const returnCard = () => {
     switch (whichCard) {
