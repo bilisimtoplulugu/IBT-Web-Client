@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import {useSelector} from 'react-redux';
 import Layout from '../../components/Layout';
 import PageTopSide from '../../components/PageTopSide';
 import {Container, Row, Col, Card, Button} from 'react-bootstrap';
@@ -139,6 +140,8 @@ const CustomCard = styled(Card)`
 `;
 
 export default function index() {
+  const activeUser = useSelector((state) => state.userReducer);
+
   return (
     <Layout>
       <PageTopSide
@@ -160,6 +163,7 @@ export default function index() {
                       <Row>
                         <Col xs={12} sm={3} md={2}>
                           <div className="userImage">
+                            {/* ABÇ: should be dynamic img url */}
                             <img src="/assets/images/berkaydogukan.jpg" />
                           </div>
                         </Col>
@@ -171,11 +175,9 @@ export default function index() {
                         >
                           <div>
                             <span className="userName">
-                              Berkay Doğukan Urhan
+                              {activeUser.name} {activeUser.surname}
                             </span>
-                            <span className="userMail">
-                              mail@dogukanurhan.com
-                            </span>
+                            <span className="userMail">{activeUser.email}</span>
                           </div>
                         </Col>
                       </Row>
