@@ -1,6 +1,6 @@
 import React, {useState, useRef, useEffect} from 'react';
 import {useSelector} from 'react-redux';
-
+import {useRouter} from 'next/router';
 import {
   Navbar,
   Nav,
@@ -94,10 +94,16 @@ const CustomDropdown = styled(Dropdown)`
 
 export default function Header() {
   const [headerBgColor, setHeaderBgColor] = useState(false);
+  const router = useRouter();
   const activeUser = useSelector((state) => state.userReducer);
 
   const handleScroll = () => {
     setHeaderBgColor(50 < window.pageYOffset);
+  };
+
+  const logout = () => {
+    localStorage.removeItem('jwt');
+    router.push('/');
   };
 
   useEffect(() => {
@@ -137,7 +143,7 @@ export default function Header() {
               <Link href="/iletisim" passHref={true}>
                 <NavLink>İletişim</NavLink>
               </Link>
-              {activeUser ? (
+              {!Array.isArray(activeUser) && activeUser ? (
                 <CustomDropdown onClick={() => console.log(activeUser)}>
                   <CustomDropdown.Toggle
                     className="shadow-none"
@@ -153,7 +159,8 @@ export default function Header() {
                     <Link href="/profile" as="/hesabım" passHref={true}>
                       <CustomDropdown.Item>Topluluk</CustomDropdown.Item>
                     </Link>
-                    <CustomDropdown.Item href="#/action-2">
+                    <CustomDropdown.Item href="#/action-2" onClick={logout}>
+
                       Çıkış Yap
                     </CustomDropdown.Item>
                   </CustomDropdown.Menu>

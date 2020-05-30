@@ -67,8 +67,7 @@ transition: all 0.3s ease;
   }
 `;
 
-export default function EventPageCard({ event }) {
-  useEffect(() => { console.log(event.seoUrl) }, [])
+export default function EventPageCard({event}) {
   return (
     <MainArea>
       <Link href={`/event/${event.seoUrl}`}>
