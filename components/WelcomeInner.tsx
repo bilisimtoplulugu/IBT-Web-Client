@@ -25,15 +25,17 @@ const Welcome = styled.div`
   }
 `;
 const Title = styled.div`
-  font-weight: 500;
+  font-weight: 600;
   color: #fff;
   font-size: 25pt;
   margin-bottom: 15px;
+  font-family: 'Playfair Display', serif;
 `;
 const SubTitle = styled.span`
-  font-weight: 500;
+  font-weight: 600;
   color: #17cff9;
   margin-bottom: 15px;
+  
 `;
 
 const WelcomeInnerArea = styled.div`

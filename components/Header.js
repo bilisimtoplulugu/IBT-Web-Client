@@ -11,7 +11,7 @@ import {
 } from 'react-bootstrap';
 
 import Link from 'next/link';
-
+import importScript from './../customHooks/importScript';
 import styled, {css} from 'styled-components';
 const Logo = styled.img`
   width: 150px;
@@ -106,7 +106,10 @@ export default function Header() {
     router.push('/');
   };
 
+  importScript("https://kit.fontawesome.com/7aecc2e880.js");
+  
   useEffect(() => {
+ 
     window.addEventListener('scroll', handleScroll);
 
     return () => {
@@ -156,7 +159,11 @@ export default function Header() {
                     <Link href="/profile" as="/hesabım" passHref={true}>
                       <CustomDropdown.Item>Hesabım</CustomDropdown.Item>
                     </Link>
+                    <Link href="/profile" as="/hesabım" passHref={true}>
+                      <CustomDropdown.Item>Topluluk</CustomDropdown.Item>
+                    </Link>
                     <CustomDropdown.Item href="#/action-2" onClick={logout}>
+
                       Çıkış Yap
                     </CustomDropdown.Item>
                   </CustomDropdown.Menu>

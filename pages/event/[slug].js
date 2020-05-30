@@ -1,11 +1,9 @@
-import React, {useEffect, useLayoutEffect,useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Layout from '../../components/Layout';
-import Router, {useRouter} from 'next/router';
+import {useRouter} from 'next/router';
 import PageTopSide from '../../components/PageTopSide';
-import axios from 'axios';
 import styled from 'styled-components';
 import {Container, Row, Col, Card} from 'react-bootstrap';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {
   faClock,
   faVideo,
@@ -20,6 +18,8 @@ import isoToNormal from '../../utils/isoToNormal';
 import getEvent from '../../api/event/getEvent';
 import join from '../../api/event/join';
 import {isArray} from 'util';
+
+import CustomCard from '../../components/CustomCard';
 
 const EventDetailArea = styled.div`
 margin-top:50px;
@@ -50,6 +50,28 @@ img{
 }
 position:relative;
 
+
+
+.clock {
+  font-size: 12pt;
+  font-weight: 400;
+  padding-left: 15px;
+}
+
+.rightContent svg {
+  font-size: 15pt;
+  opacity: 0.5;
+}
+.participants {
+  display: inline-flex;
+
+  & ul {
+    padding-left: 15px;
+    margin: 0;
+    list-style: none;
+  }
+}
+
 `;
 
 const FilterButton = styled.a`
@@ -72,32 +94,6 @@ const FilterButton = styled.a`
   }
   @media (max-width: 991px) {
     margin: 10px 0;
-  }
-`;
-
-const CustomCard = styled(Card)`
-  box-shadow: 0 0px 20px rgba(169, 169, 169, 0.2);
-  border: none;
-  color: rgb(37, 59, 75);
-
-  .clock {
-    font-size: 12pt;
-    font-weight: 400;
-    padding-left: 15px;
-  }
-
-  .rightContent svg {
-    font-size: 15pt;
-    opacity: 0.5;
-  }
-  .participants {
-    display: inline-flex;
-
-    & ul {
-      padding-left: 15px;
-      margin: 0;
-      list-style: none;
-    }
   }
 `;
 
@@ -196,7 +192,6 @@ export default function EventDetail() {
 
   const joinToEvent = () => {
     join(activeUser._id, eventData._id);
-    //join();
   };
 
   const getEventData = async () => {
@@ -216,59 +211,30 @@ export default function EventDetail() {
 
   return (
     <Layout>
-      <Head>
-        <title>
-          {eventData.title} - Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu,
-          Bilişim Etkinlikleri{' '}
-        </title>
-        <link rel="canonical" href="https://bilisimtoplulugu.org/etkinlikler" />
+      {/* <Head>
+            <title>{eventData.title} - Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri </title>
+            <link rel="canonical" href="https://bilisimtoplulugu.org/etkinlikler" />
+          
+                <meta property="og:locale" content="tr_TR" />
+                <meta property="og:type" content="article" />
+                <meta property="og:image:width" content="1024"/>
+                <meta property="og:image:height" content="1024"/>
+                <meta property="og:image:alt" content="Etkinlikler"/>
+                <meta property="og:image:type" content="image/png"/>
+                <meta property="og:image" content="/assets/images/socialLogo.png" />
+                <meta property="og:image:secure_url" content="/assets/images/socialLogo.png" />
+                <meta property="og:title" content={eventData.title+ " - Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri"} />
+                <meta property="og:description" content="Kredi kartı ve nakit ile kolayca ve güvenli bir şekilde Bitcoin, Ethereum, Ripple, Litecoin, Tether ve Stellar satın alabilir, dilerseniz Bitcoin, Ethereum, Rip" />
+                <meta property="og:url" content="https://bilisimtoplulugu.org/" />
+                <meta property="og:site_name" content={eventData.title+ " - Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri"}  />
 
-        <meta property="og:locale" content="tr_TR" />
-        <meta property="og:type" content="article" />
-        <meta property="og:image:width" content="1024" />
-        <meta property="og:image:height" content="1024" />
-        <meta property="og:image:alt" content="Etkinlikler" />
-        <meta property="og:image:type" content="image/png" />
-        <meta property="og:image" content="/assets/images/socialLogo.png" />
-        <meta
-          property="og:image:secure_url"
-          content="/assets/images/socialLogo.png"
-        />
-        <meta
-          property="og:title"
-          content={
-            eventData.title +
-            ' - Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri'
-          }
-        />
-        <meta
-          property="og:description"
-          content="Kredi kartı ve nakit ile kolayca ve güvenli bir şekilde Bitcoin, Ethereum, Ripple, Litecoin, Tether ve Stellar satın alabilir, dilerseniz Bitcoin, Ethereum, Rip"
-        />
-        <meta property="og:url" content="https://bilisimtoplulugu.org/" />
-        <meta
-          property="og:site_name"
-          content={
-            eventData.title +
-            ' - Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri'
-          }
-        />
-
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="twitter:title"
-          content={
-            eventData.title +
-            ' - Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri'
-          }
-        />
-        <meta
-          name="twitter:description"
-          content="Kredi kartı ve nakit ile kolayca ve güvenli bir şekilde Bitcoin, Ethereum, Ripple, Litecoin, Tether ve Stellar satın alabilir, dilerseniz Bitcoin, Ethereum, Rip"
-        />
-        <meta name="twitter:creator" content="@bilisimtopluluk" />
-        <meta name="twitter:image" content="/assets/images/socialLogo.png" />
-      </Head>
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content={eventData.title+ " - Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri"}  />
+                <meta name="twitter:description" content="Kredi kartı ve nakit ile kolayca ve güvenli bir şekilde Bitcoin, Ethereum, Ripple, Litecoin, Tether ve Stellar satın alabilir, dilerseniz Bitcoin, Ethereum, Rip" />
+                <meta name="twitter:creator" content="@bilisimtopluluk" />
+                <meta name="twitter:image" content="/assets/images/socialLogo.png" />
+                
+            </Head> */}
 
       <PageTopSide
         responsiveTop="40"
@@ -284,11 +250,9 @@ export default function EventDetail() {
           <Row>
             <Col xs={{order: 2, span: 12}} md={{order: 1, span: 8}}>
               <CustomCard>
-                <CustomCard.Body>
-                  <img className="mb-3" src={eventData.imagePath} />
-                  <span className="subTitle ">Detaylar</span>
-                  <p>{eventData.description}</p>
-                </CustomCard.Body>
+                <img className="mb-3" src={eventData.imagePath} />
+                <span className="subTitle ">Detaylar</span>
+                <p>{eventData.description}</p>
               </CustomCard>
             </Col>
             <Col
@@ -297,17 +261,17 @@ export default function EventDetail() {
               className="mb-3 "
             >
               <CustomCard>
-                <CustomCard.Body className="rightContent">
+                <div className="rightContent">
                   <div className="topSide">
                     <h3 className="subTitle">Düzenleyen</h3>
                     <span className="title">{eventData.organizer}</span>
                   </div>
                   <div className="mb-3">
-                    <FontAwesomeIcon icon={faClock} />
+                    <i className="fas fa-user-edit"></i>
                     <span className="clock">{isoToNormal(eventData.date)}</span>
                   </div>
                   <div className="mb-3">
-                    <FontAwesomeIcon icon={faUsers} />
+                    <i className="fas fa-users"></i>
                     <div className="participants">
                       <ul>
                         {eventData &&
@@ -318,16 +282,16 @@ export default function EventDetail() {
                     </div>
                   </div>
                   <div className="mb-3">
-                    <FontAwesomeIcon icon={faHeadphones} />
+                    <i className="fas fa-headphones"></i>
                     <span className="clock">{eventData.moderator} </span>
                   </div>
                   {eventData.isOnline && (
                     <div className="mb-3">
-                      <FontAwesomeIcon icon={faVideo} />
+                      <i className="fas fa-video"></i>
                       <span className="clock">Online Etkinlik</span>
                     </div>
                   )}
-                </CustomCard.Body>
+                </div>
               </CustomCard>
             </Col>
             <Col
@@ -349,22 +313,21 @@ export default function EventDetail() {
                 <div className="testimonial-group">
                   <Row className="mt-4">
                     {eventParticipants &&
-                      eventParticipants.map((participant, index) => {
-                        return (
-                          <Col key={index} xs={6} sm={4} lg={3}>
-                            <CustomCard>
-                              <CustomCard.Body>
-                                {/* ABÇ: GONNA DYNAMIC IMAGE URL */}
-                                {/* ABÇ: HERE SHOULD BE ALSO LINK TO PARTICIPANT PROFILE */}
-                                <img src="/assets/images/berkaydogukan.jpg" />
-                                <span>
-                                  {participant.name} {participant.surname}{' '}
-                                </span>
-                              </CustomCard.Body>
-                            </CustomCard>
-                          </Col>
-                        );
-                      })}
+                      eventParticipants.map((participant, index) => (
+                        <Col key={index} xs={6} sm={4} lg={3}>
+                          <CustomCard>
+                            <CustomCard.Body>
+                              <img
+                                src={`${API_URL}/images/${participant._id}.png`}
+                                alt="profilePhoto"
+                              />
+                              <span>
+                                {participant.name} {participant.surname}{' '}
+                              </span>
+                            </CustomCard.Body>
+                          </CustomCard>
+                        </Col>
+                      ))}
                   </Row>
                 </div>
               </ParticipantsArea>

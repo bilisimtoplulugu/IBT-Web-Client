@@ -257,7 +257,7 @@ export default function Home() {
                       data-aos="fade-right"
                       onClick={() => setWhichCard(1)}
                     >
-                      <h3 className={whichCard === 1 && 'active'}>
+                      <h3 className={whichCard === 1 ? 'active' : null}>
                         Kariyer Sohbetleri
                       </h3>
                     </EventInfo>
@@ -267,7 +267,7 @@ export default function Home() {
                       data-aos="fade-right"
                       onClick={() => setWhichCard(2)}
                     >
-                      <h3 className={whichCard === 2 && 'active'}>
+                      <h3 className={whichCard === 2 ? 'active' : null}>
                         Workshop Çalışmaları
                       </h3>
                     </EventInfo>
@@ -277,7 +277,7 @@ export default function Home() {
                       data-aos="fade-right"
                       onClick={() => setWhichCard(3)}
                     >
-                      <h3 className={whichCard === 3 && 'active'}>
+                      <h3 className={whichCard === 3 ? 'active' : null}>
                         Online Seminerler
                       </h3>
                     </EventInfo>
