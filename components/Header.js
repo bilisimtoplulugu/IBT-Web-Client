@@ -11,7 +11,7 @@ import {
 } from 'react-bootstrap';
 
 import Link from 'next/link';
-
+import importScript from './../customHooks/importScript';
 import styled, {css} from 'styled-components';
 const Logo = styled.img`
   width: 150px;
@@ -106,7 +106,10 @@ export default function Header() {
     router.push('/');
   };
 
+  importScript("https://kit.fontawesome.com/7aecc2e880.js");
+  
   useEffect(() => {
+ 
     window.addEventListener('scroll', handleScroll);
 
     return () => {

@@ -9,7 +9,7 @@ import AOS from 'aos';
 import PageTopSide from '../../components/PageTopSide';
 import EventPageCard from '../../components/EventPageCard';
 import axios from 'axios';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+;
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 
@@ -206,7 +206,8 @@ export default function Event() {
               <div>
                 <Filters className={mobileFilter ? "showFilters" : null}>
                   <div className="d-block d-lg-none closeButton">
-                    <FontAwesomeIcon onClick={() => setmobileFilter(false)} icon={faTimes}></FontAwesomeIcon>
+               
+                    <i className="fas fa-times" onClick={() => setmobileFilter(false)} ></i>
                   </div>
                   <GroupButton className="mb-4">
                     <FilterButton className="btn active-button">

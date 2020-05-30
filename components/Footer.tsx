@@ -2,7 +2,6 @@ import React from 'react';
 import {Container, Row, Col} from 'react-bootstrap';
 import styled from 'styled-components';
 import Link from 'next/link';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {
   faInstagram,
   faFacebook,
@@ -93,42 +92,28 @@ export default function Footer() {
                 <div className="social-links">
                   <Link href="/">
                     <a>
-                      <FontAwesomeIcon
-                        className="instagramIcon"
-                        icon={faFacebook}
-                      />
+                    <i className="fab fa-facebook instagramIcon"></i>
                     </a>
                   </Link>
                   <Link href="/">
                     <a>
-                      <FontAwesomeIcon
-                        className="instagramIcon"
-                        icon={faInstagram}
-                      />
+                    <i className="fab fa-twitter instagramIcon"></i>
+                      
                     </a>
                   </Link>
                   <Link href="/">
                     <a>
-                      <FontAwesomeIcon
-                        className="instagramIcon"
-                        icon={faTwitter}
-                      />
+                    <i className="fab fa-instagram instagramIcon"></i>
                     </a>
                   </Link>
                   <Link href="/">
                     <a>
-                      <FontAwesomeIcon
-                        className="instagramIcon"
-                        icon={faYoutube}
-                      />
+                    <i className="fab fa-linkedin instagramIcon"></i>
                     </a>
                   </Link>
                   <Link href="/">
                     <a>
-                      <FontAwesomeIcon
-                        className="instagramIcon"
-                        icon={faGithub}
-                      />
+                    <i className="fab fa-github instagramIcon"></i>
                     </a>
                   </Link>
                 </div>
@@ -185,7 +170,6 @@ export default function Footer() {
                       <a>S.S.S.</a>
                     </Link>
                   </li>
-                  <br />
                   <li>
                     <a href="mailto:info@bilisimtoplulugu.org">
                       info@bilisimtoplulugu.org

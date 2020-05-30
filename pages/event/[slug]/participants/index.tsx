@@ -4,7 +4,7 @@ import PageTopSide from '../../../../components/PageTopSide'
 import styled from 'styled-components'
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
 import { faFortAwesome } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+;
 import { faLongArrowAltLeft, faArrowDown, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import Head from 'next/head';
 
@@ -132,7 +132,7 @@ export default function Participants() {
                                     <Row>
                                         <Col xs={12} className="backArea">
                                             <CustomButton>
-                                                <FontAwesomeIcon icon={faArrowLeft} />
+                                                <i className="fas fa-chevron-left"></i>
                                                 <span className="backText">Etkinliğe Geri Dön</span>
                                             </CustomButton>
                                         </Col>

@@ -4,7 +4,7 @@ import Layout from '../../components/Layout';
 import PageTopSide from '../../components/PageTopSide';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+;
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import CustomCard from '../../components/CustomCard';
@@ -160,7 +160,7 @@ export default function index() {
                     <div className="editProfile">
                       <Link href="profile/edit">
                         <a>
-                          <FontAwesomeIcon icon={faEdit}></FontAwesomeIcon>
+                        <i className="fas fa-edit"></i>
                         </a>
                       </Link>
                     </div>

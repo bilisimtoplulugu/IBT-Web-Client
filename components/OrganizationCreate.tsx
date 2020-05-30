@@ -1,6 +1,6 @@
 import React from 'react'
 import { Form, Button, Card, Container, Row, Col } from 'react-bootstrap'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import styled from 'styled-components';
 import CustomCard from './CustomCard';
@@ -86,7 +86,7 @@ export default function OrganizationCreate() {
                                     <div className="orgImage">
                                         <img src="" />
                                         <div className="selectImage">
-                                            <FontAwesomeIcon icon={faEdit}></FontAwesomeIcon>
+                                        <i className="fas fa-user-edit"></i>
                                         </div>
                                     </div>
                                 </Form.Group>

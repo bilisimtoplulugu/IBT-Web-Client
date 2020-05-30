@@ -5,7 +5,7 @@ import PageTopSide from '../../components/PageTopSide';
 import axios from 'axios';
 import styled from 'styled-components';
 import { Container, Row, Col, Card } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+;
 import {
   faClock,
   faVideo,
@@ -276,11 +276,11 @@ export default function EventDetail() {
                   <span className="title">{eventData.organizer}</span>
                 </div>
                 <div className="mb-3">
-                  <FontAwesomeIcon icon={faClock} />
+                <i class="fas fa-user-edit"></i>
                   <span className="clock">{isoToNormal(eventData.date)}</span>
                 </div>
                 <div className="mb-3">
-                  <FontAwesomeIcon icon={faUsers} />
+                <i class="fas fa-users"></i>
                   <div className="participants">
                     <ul>
                       {eventData &&
@@ -291,12 +291,12 @@ export default function EventDetail() {
                   </div>
                 </div>
                 <div className="mb-3">
-                  <FontAwesomeIcon icon={faHeadphones} />
+                <i class="fas fa-headphones"></i>
                   <span className="clock">{eventData.moderator} </span>
                 </div>
                 {eventData.isOnline && (
                   <div className="mb-3">
-                    <FontAwesomeIcon icon={faVideo} />
+                    <i class="fas fa-video"></i>
                     <span className="clock">Online Etkinlik</span>
                   </div>
                 )}

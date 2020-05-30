@@ -3,7 +3,7 @@ import Layout from '../../components/Layout'
 import PageTopSide from '../../components/PageTopSide'
 import styled from 'styled-components';
 import { Button, Card, Row, Col, Form, Container } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+;
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import OrganizationCreate from '../../components/OrganizationCreate';
 import OrganizationResultPending from '../../components/OrganizationResultPending';
