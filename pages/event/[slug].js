@@ -1,11 +1,9 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import Layout from '../../components/Layout';
-import Router, { useRouter } from 'next/router';
+import {useRouter} from 'next/router';
 import PageTopSide from '../../components/PageTopSide';
-import axios from 'axios';
 import styled from 'styled-components';
-import { Container, Row, Col, Card } from 'react-bootstrap';
-;
+import {Container, Row, Col, Card} from 'react-bootstrap';
 import {
   faClock,
   faVideo,
@@ -14,12 +12,12 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import Head from 'next/head';
-import { auth } from '../../redux/actions/user';
-import { useDispatch, useSelector } from 'react-redux';
+import {auth} from '../../redux/actions/user';
+import {useDispatch, useSelector} from 'react-redux';
 import isoToNormal from '../../utils/isoToNormal';
 import getEvent from '../../api/event/getEvent';
 import join from '../../api/event/join';
-import { isArray } from 'util';
+import {isArray} from 'util';
 
 import CustomCard from '../../components/CustomCard';
 
@@ -98,7 +96,6 @@ const FilterButton = styled.a`
     margin: 10px 0;
   }
 `;
-
 
 const AttendArea = styled.div`
   margin-top: 50px;
@@ -195,14 +192,13 @@ export default function EventDetail() {
 
   const joinToEvent = () => {
     join(activeUser._id, eventData._id);
-    //join();
   };
 
   const getEventData = async () => {
     const eventURL = router.query.slug;
     if (!eventURL) return;
     try {
-      const { event, participants } = await getEvent(eventURL);
+      const {event, participants} = await getEvent(eventURL);
       setEventData(event);
       setEventParticipants(participants);
       activeUser.joinedEvents.map((joinedEvent) => {
@@ -240,138 +236,132 @@ export default function EventDetail() {
                 
             </Head> */}
 
-  
+      <PageTopSide
+        responsiveTop="40"
+        responsiveHeight="300"
+        bgImage="./../assets/images/homeBg.jpg"
+        defaultHeight="300"
+        title={eventData.title}
+        desc={eventData.subtitle}
+      />
 
-
-    <PageTopSide
-      responsiveTop="40"
-      responsiveHeight="300"
-      bgImage="./../assets/images/homeBg.jpg"
-      defaultHeight="300"
-      title={eventData.title}
-      desc={eventData.subtitle}
-    />
-
-    <EventDetailArea>
-      <Container>
-        <Row>
-          <Col xs={{ order: 2, span: 12 }} md={{ order: 1, span: 8 }}>
-            <CustomCard>
-
-              <img className="mb-3" src={eventData.imagePath} />
-              <span className="subTitle ">Detaylar</span>
-              <p>{eventData.description}</p>
-
-            </CustomCard>
-          </Col>
-          <Col
-            xs={{ order: 1, span: 12 }}
-            md={{ order: 2, span: 4 }}
-            className="mb-3 "
-          >
-            <CustomCard>
-              <div className="rightContent">
-                <div className="topSide">
-                  <h3 className="subTitle">Düzenleyen</h3>
-                  <span className="title">{eventData.organizer}</span>
-                </div>
-                <div className="mb-3">
-                <i class="fas fa-user-edit"></i>
-                  <span className="clock">{isoToNormal(eventData.date)}</span>
-                </div>
-                <div className="mb-3">
-                <i class="fas fa-users"></i>
-                  <div className="participants">
-                    <ul>
-                      {eventData &&
-                        eventData.guests.map((guest, index) => (
-                          <li key={index}>{guest}</li>
-                        ))}
-                    </ul>
+      <EventDetailArea>
+        <Container>
+          <Row>
+            <Col xs={{order: 2, span: 12}} md={{order: 1, span: 8}}>
+              <CustomCard>
+                <img className="mb-3" src={eventData.imagePath} />
+                <span className="subTitle ">Detaylar</span>
+                <p>{eventData.description}</p>
+              </CustomCard>
+            </Col>
+            <Col
+              xs={{order: 1, span: 12}}
+              md={{order: 2, span: 4}}
+              className="mb-3 "
+            >
+              <CustomCard>
+                <div className="rightContent">
+                  <div className="topSide">
+                    <h3 className="subTitle">Düzenleyen</h3>
+                    <span className="title">{eventData.organizer}</span>
                   </div>
-                </div>
-                <div className="mb-3">
-                <i class="fas fa-headphones"></i>
-                  <span className="clock">{eventData.moderator} </span>
-                </div>
-                {eventData.isOnline && (
                   <div className="mb-3">
-                    <i class="fas fa-video"></i>
-                    <span className="clock">Online Etkinlik</span>
+                    <i className="fas fa-user-edit"></i>
+                    <span className="clock">{isoToNormal(eventData.date)}</span>
                   </div>
-                )}
-              </div>
-            </CustomCard>
-          </Col>
-          <Col
-            xs={{ order: 3, span: 12 }}
-            md={{ order: 3, span: 8 }}
-            className="mt-5"
-          >
-            <ParticipantsArea>
-              <Row>
-                <Col>
-                  <h2>Katılımcılar</h2>
-                </Col>
-                <Col className="d-flex align-items-center justify-content-end">
-                  <Link href="">
-                    <a className="seeAll">Tümünü Gör</a>
-                  </Link>
-                </Col>
-              </Row>
-              <div className="testimonial-group">
-                <Row className="mt-4">
-                  {eventParticipants &&
-                    eventParticipants.map((participant, index) => {
-                      return (
+                  <div className="mb-3">
+                    <i className="fas fa-users"></i>
+                    <div className="participants">
+                      <ul>
+                        {eventData &&
+                          eventData.guests.map((guest, index) => (
+                            <li key={index}>{guest}</li>
+                          ))}
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="mb-3">
+                    <i className="fas fa-headphones"></i>
+                    <span className="clock">{eventData.moderator} </span>
+                  </div>
+                  {eventData.isOnline && (
+                    <div className="mb-3">
+                      <i className="fas fa-video"></i>
+                      <span className="clock">Online Etkinlik</span>
+                    </div>
+                  )}
+                </div>
+              </CustomCard>
+            </Col>
+            <Col
+              xs={{order: 3, span: 12}}
+              md={{order: 3, span: 8}}
+              className="mt-5"
+            >
+              <ParticipantsArea>
+                <Row>
+                  <Col>
+                    <h2>Katılımcılar</h2>
+                  </Col>
+                  <Col className="d-flex align-items-center justify-content-end">
+                    <Link href="">
+                      <a className="seeAll">Tümünü Gör</a>
+                    </Link>
+                  </Col>
+                </Row>
+                <div className="testimonial-group">
+                  <Row className="mt-4">
+                    {eventParticipants &&
+                      eventParticipants.map((participant, index) => (
                         <Col key={index} xs={6} sm={4} lg={3}>
                           <CustomCard>
                             <CustomCard.Body>
-                              {/* ABÇ: GONNA DYNAMIC IMAGE URL */}
-                              {/* ABÇ: HERE SHOULD BE ALSO LINK TO PARTICIPANT PROFILE */}
-                              <img src="/assets/images/berkaydogukan.jpg" />
+                              <img
+                                src={`${API_URL}/images/${participant._id}.png`}
+                                alt="profilePhoto"
+                              />
                               <span>
                                 {participant.name} {participant.surname}{' '}
                               </span>
                             </CustomCard.Body>
                           </CustomCard>
                         </Col>
-                      );
-                    })}
-                </Row>
-              </div>
-            </ParticipantsArea>
-          </Col>
-        </Row>
-      </Container>
-      <AttendArea>
-        <Container>
-          <Row>
-            <Col xs={8} sm={8} className="d-none d-sm-block">
-              <span className="clock attendClock">
-                {eventData.date} - {eventData.time}
-              </span>
-              <span className="clock">{eventData.subtitle}</span>
+                      ))}
+                  </Row>
+                </div>
+              </ParticipantsArea>
             </Col>
-            <Col
-              xs={12}
-              sm={4}
-              className="d-block d-sm-flex align-items-sm-center justify-content-sm-end"
-            >
-              {isRegisteredToEvent ? (
-                <div>Gidiyorsunuz</div>
-              ) : (
+          </Row>
+        </Container>
+        <AttendArea>
+          <Container>
+            <Row>
+              <Col xs={8} sm={8} className="d-none d-sm-block">
+                <span className="clock attendClock">
+                  {eventData.date} - {eventData.time}
+                </span>
+                <span className="clock">{eventData.subtitle}</span>
+              </Col>
+              <Col
+                xs={12}
+                sm={4}
+                className="d-block d-sm-flex align-items-sm-center justify-content-sm-end"
+              >
+                {isRegisteredToEvent ? (
+                  <div>Gidiyorsunuz</div>
+                ) : (
                   <div>
                     <FilterButton className="btn d-block" onClick={joinToEvent}>
                       Katıl
                     </FilterButton>
                   </div>
                 )}
-            </Col>
-          </Row>
-        </Container>
-      </AttendArea>
-    </EventDetailArea>
-    </Layout >
+              </Col>
+            </Row>
+          </Container>
+        </AttendArea>
+      </EventDetailArea>
+    </Layout>
   );
 }

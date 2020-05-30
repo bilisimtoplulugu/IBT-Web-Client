@@ -18,6 +18,8 @@ import Link from 'next/link';
 import changePassword from '../../api/user/changePassword';
 import {useSelector} from 'react-redux';
 import changePersonalInfo from '../../api/user/changePersonalInfo';
+import changeProfilePhoto from '../../api/user/changeProfilePhoto';
+import {API_URL} from '../../config';
 
 const MainArea = styled.div`
   margin: 50px 0;
@@ -85,6 +87,7 @@ export default function index() {
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
   const [email, setEmail] = useState('');
+  const [profilePhoto, setProfilePhoto] = useState('');
 
   /* change pw form states */
   const [oldPass, setOldPass] = useState('');
@@ -96,6 +99,19 @@ export default function index() {
 
     try {
       await changePersonalInfo(activeUser._id, name, surname, email);
+    } catch (error) {
+      console.log(error); //something went wrong, should show to user
+    }
+  };
+
+  const profilePhotoChangeSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append('file', profilePhoto);
+
+    try {
+      await changeProfilePhoto(activeUser._id, formData);
     } catch (error) {
       console.log(error); //something went wrong, should show to user
     }
@@ -158,7 +174,10 @@ export default function index() {
                                   className="mb-5 mt-5 mt-md-0 mb-md-0"
                                 >
                                   <div className="userImage">
-                                    <img src="/assets/images/berkaydogukan.jpg" />
+                                    <img
+                                      src={`${API_URL}/images/${activeUser._id}.png`}
+                                      alt="profilePhoto"
+                                    />
                                   </div>
                                 </Col>
                                 <Col xs={12} md={9}>
@@ -205,7 +224,7 @@ export default function index() {
                                         />
                                       </Form.Group>
                                     </Col>
-{/*                                     <Col xs={12} md={6}>
+                                    {/*                                     <Col xs={12} md={6}>
                                       <Form.Group>
                                         <Form.File
                                           id="custom-file"
@@ -225,6 +244,24 @@ export default function index() {
                                   </CustomButton>
                                 </Col>
                               </Row>
+                            </Form>
+                            <Form onSubmit={profilePhotoChangeSubmit}>
+                              <Col xs={12} md={6}>
+                                <Form.Group controlId="formBasicPassword">
+                                  <Form.Label>Profil Fotoğrafı</Form.Label>
+                                  <input
+                                    type="file"
+                                    name="file"
+                                    className="shadow-none"
+                                    onChange={({currentTarget: {files}}) =>
+                                      setProfilePhoto(files[0])
+                                    }
+                                  />
+                                </Form.Group>
+                                <CustomButton type="submit">
+                                  Fotoyu Güncelle
+                                </CustomButton>
+                              </Col>
                             </Form>
                           </Tab.Pane>
                           <Tab.Pane eventKey="second">

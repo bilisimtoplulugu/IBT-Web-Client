@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import React, {useState, useEffect} from 'react';
+import {useSelector} from 'react-redux';
 import Layout from '../../components/Layout';
 import PageTopSide from '../../components/PageTopSide';
-import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import {Container, Row, Col, Card, Button} from 'react-bootstrap';
 import styled from 'styled-components';
-;
-import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import {faEdit} from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import CustomCard from '../../components/CustomCard';
+import { API_URL } from '../../config';
 
 const MainArea = styled.div`
   margin: 50px 0;
@@ -19,7 +19,7 @@ const MainArea = styled.div`
   .userName {
     font-size: 20pt;
   }
- 
+
   .userImage {
     position: relative;
     overflow: hidden;
@@ -69,7 +69,7 @@ const MainArea = styled.div`
   }
   .seeAll {
     opacity: 0.5;
-    text-decoration: none ;
+    text-decoration: none;
     color: #253a4a;
     transition: all 0.3s ease;
   }
@@ -81,29 +81,26 @@ const MainArea = styled.div`
     border-radius: 5px;
     box-shadow: 0 0px 20px rgba(169, 169, 169, 0.4);
   }
-.eventCard{
-  transition: all 0.3s ease;
-}
-  .eventCard:hover{
-    transform:scale(1.03);
+  .eventCard {
     transition: all 0.3s ease;
   }
-
-
+  .eventCard:hover {
+    transform: scale(1.03);
+    transition: all 0.3s ease;
+  }
 
   @media (max-width: 576px) {
     .userImage {
       width: 120px;
     }
   }
-  @media (max-width:768px){
-    .eventCard:hover{
-      transform:unset;
-
+  @media (max-width: 768px) {
+    .eventCard:hover {
+      transform: unset;
     }
     .latestEvents {
       overflow-x: auto;
-  
+
       flex-wrap: nowrap;
     }
   }
@@ -111,9 +108,7 @@ const MainArea = styled.div`
     display: inline-block;
     float: none;
   }
-
 `;
-
 
 export default function index() {
   const activeUser = useSelector((state) => state.userReducer);
@@ -133,14 +128,15 @@ export default function index() {
           <Row>
             <Col xs={12}>
               <CustomCard>
-
                 <Row>
                   <Col xs={12} className="segment">
                     <Row>
                       <Col xs={12} sm={3} md={2}>
                         <div className="userImage">
-                          {/* ABÇ: should be dynamic img url */}
-                          <img src="/assets/images/berkaydogukan.jpg" />
+                          <img
+                            src={`${API_URL}/images/${activeUser._id}.png`}
+                            alt="profilePhoto"
+                          />
                         </div>
                       </Col>
                       <Col
@@ -160,7 +156,7 @@ export default function index() {
                     <div className="editProfile">
                       <Link href="profile/edit">
                         <a>
-                        <i className="fas fa-edit"></i>
+                          <i className="fas fa-edit"></i>
                         </a>
                       </Link>
                     </div>
@@ -170,9 +166,15 @@ export default function index() {
                       <Col xs={12} sm={6} className="text-center text-sm-left">
                         <h3>Son Etkinlikler</h3>
                       </Col>
-                      <Col xs={12} sm={6} className="text-center mb-4 mb-sm-0 text-sm-right">
+                      <Col
+                        xs={12}
+                        sm={6}
+                        className="text-center mb-4 mb-sm-0 text-sm-right"
+                      >
                         <Link href="">
-                          <a className="text-decoration-none"><span className="seeAll">Tümünü Gör</span></a>
+                          <a className="text-decoration-none">
+                            <span className="seeAll">Tümünü Gör</span>
+                          </a>
                         </Link>
                       </Col>
                     </Row>
@@ -200,7 +202,6 @@ export default function index() {
                     </Row>
                   </Col>
                 </Row>
-
               </CustomCard>
             </Col>
           </Row>
