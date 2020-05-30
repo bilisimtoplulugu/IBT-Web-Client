@@ -24,6 +24,8 @@ const MainArea = styled.div`
     position: relative;
     overflow: hidden;
     border-radius: 50%;
+    height: 150px;
+    width: 150px;
   }
   .userImageEdit {
     position: absolute;

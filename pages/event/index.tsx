@@ -9,8 +9,7 @@ import AOS from 'aos';
 import PageTopSide from '../../components/PageTopSide';
 import EventPageCard from '../../components/EventPageCard';
 import axios from 'axios';
-;
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+
 
 
 const FilterButton = styled.a`

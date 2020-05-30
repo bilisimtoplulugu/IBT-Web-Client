@@ -9,6 +9,7 @@ import CustomCard from './CustomCard';
 
 const MainArea = styled.div`
 transition: all 0.3s ease;
+margin-bottom:20px;
   img {
     width: 100%;
     border-radius: 5px;
@@ -21,9 +22,7 @@ transition: all 0.3s ease;
     font-weight: 400;
     opacity: 0.6;
   }
-  span {
-    display: block;
-  }
+ 
   .clock {
     font-size: 15pt;
     font-weight: 400;

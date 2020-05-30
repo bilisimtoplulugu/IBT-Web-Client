@@ -18,6 +18,7 @@ margin-bottom:50px;
 }
 img{
     width:72px;
+    height:72px;
     border-radius:50%;
 }
 color:rgb(37, 59, 75);

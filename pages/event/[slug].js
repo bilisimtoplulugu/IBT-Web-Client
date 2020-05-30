@@ -49,7 +49,7 @@ img{
     width:100%;
     border-radius:5px;
 }
-position:relative;
+  position:relative;
 
 
 
@@ -59,10 +59,7 @@ position:relative;
   padding-left: 15px;
 }
 
-.rightContent svg {
-  font-size: 15pt;
-  opacity: 0.5;
-}
+
 .participants {
   display: inline-flex;
 
@@ -136,6 +133,7 @@ const ParticipantsArea = styled.div`
   }
   img {
     width: 72px;
+    height: 72px;
     border-radius: 50%;
     margin-bottom: 15px;
   }
@@ -156,6 +154,7 @@ const ParticipantsArea = styled.div`
 
       flex-wrap: nowrap;
     }
+   
   }
   .seeAll {
     opacity: 0.5;
@@ -167,6 +166,13 @@ const ParticipantsArea = styled.div`
     opacity: 1;
     transition: all 0.3s ease;
   }
+`;
+
+const RightContent= styled.div`
+
+.clock{
+  display:unset;
+}
 `;
 
 export default function EventDetail() {
@@ -265,7 +271,7 @@ export default function EventDetail() {
               className="mb-3 "
             >
               <CustomCard>
-                <div className="rightContent">
+                <RightContent>
                   <div className="topSide">
                     <h3 className="subTitle">Düzenleyen</h3>
                     <span className="title">{eventData.organizer}</span>
@@ -295,7 +301,7 @@ export default function EventDetail() {
                       <span className="clock">Online Etkinlik</span>
                     </div>
                   )}
-                </div>
+                </RightContent>
               </CustomCard>
             </Col>
             <Col
@@ -321,10 +327,12 @@ export default function EventDetail() {
                         <Col key={index} xs={6} sm={4} lg={3}>
                           <CustomCard>
                  
-                              {/* <img
-                                src={`${API_URL}/images/${participant._id}.png`}
+                             <img
+                                // src={`${API_URL}/images/${participant._id}.png`}
+                                src={`/assets/images/test.png`}
+
                                 alt="profilePhoto"
-                              /> */}
+                              /> 
                               <span>
                                 {participant.name} {participant.surname}{' '}
                               </span>
@@ -342,10 +350,10 @@ export default function EventDetail() {
           <Container>
             <Row>
               <Col xs={8} sm={8} className="d-none d-sm-block">
-                <span className="clock attendClock">
+                <span className="attendClock">
                   {eventData.date} - {eventData.time}
                 </span>
-                <span className="clock">{eventData.subtitle}</span>
+                <span >{eventData.subtitle}</span>
               </Col>
               <Col
                 xs={12}

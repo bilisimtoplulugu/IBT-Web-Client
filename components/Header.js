@@ -66,7 +66,9 @@ const CustomHeader = styled.header`
 const CustomNavbar = styled(Navbar)`
   padding-left: 0;
   padding-right: 0;
-
+  .show>.btn-primary.dropdown-toggle{
+    background:none; 
+   }
   @media (max-width: 991px) {
     .navbar-collapse {
       background: rgb(37, 59, 75);
@@ -77,10 +79,17 @@ const CustomNavbar = styled(Navbar)`
 `;
 
 const CustomDropdown = styled(Dropdown)`
+
+
   button:focus,
   button:active,
   button:hover {
     background-color: unset !important;
+  }
+  
+  .dropdown-item.active, .dropdown-item:active{
+    background:none;
+    color:unset;
   }
   button {
     font-size: 11pt;
