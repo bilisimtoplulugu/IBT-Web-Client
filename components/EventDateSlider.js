@@ -2,8 +2,8 @@ import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import Slider from 'react-slick';
 import getNearEvents from '../api/event/getNearEvents';
-import isoToNormal from '../utils/isoToNormal'
-import { useSelector } from 'react-redux';
+import isoToNormal from '../utils/isoToNormal';
+import {useSelector} from 'react-redux';
 
 const CustomSlider = styled(Slider)`
   margin: 30px 0;
@@ -75,22 +75,34 @@ const EventDateCard = styled.div`
   padding: 15px 0;
   font-weight: 400;
 `;
-export default function EventDateSlider() {
-  const nearEvents = useSelector(state => state.eventReducer)
+export default function EventDateSlider({handleSelectedEventId}) {
+  const nearEvents = useSelector((state) => state.eventReducer);
+  const [selectedEventId, setSelectedEventId] = useState('');
+
+  function handleSelectedEvent(id) {
+    setSelectedEventId(id);
+    handleSelectedEventId(id);
+  }
 
   return (
     <div data-aos="fade-right">
       <CustomSlider {...settings}>
         {nearEvents &&
-          nearEvents.map((event, index) => (
-            <EventDateCard
-              key={index}
-            >
-              {isoToNormal(event.date)}
-              <br/>
-              {event.title}
-            </EventDateCard>
-          ))}
+          nearEvents.map((event, index) => {
+            if (selectedEventId == '' && index == 0)
+              handleSelectedEvent(event._id);
+            return (
+              <EventDateCard
+                onClick={() => handleSelectedEvent(event._id)}
+                className={event._id == selectedEventId && 'active'}
+                key={index}
+              >
+                {isoToNormal(event.date)}
+                <br />
+                {event.title}
+              </EventDateCard>
+            );
+          })}
       </CustomSlider>
     </div>
   );

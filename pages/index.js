@@ -19,7 +19,7 @@ import HomeEventCard from '../components/HomeEventCard';
 import CareerTalksDetailCard from '../components/CareerTalksDetailCard';
 import WebinarDetailCard from '../components/WebinarDetailCard';
 import WorkshopDetailCard from '../components/WorkshopDetailCard';
-import { getNearEvents } from '../redux/actions/event';
+import {getNearEvents} from '../redux/actions/event';
 
 const InstagramProfile = styled.div`
   background: #e1306c;
@@ -129,16 +129,21 @@ const EventInfo = styled.div`
 `;
 export default function Home() {
   const [whichCard, setWhichCard] = useState(1);
+  const [selectedEventId, setSelectedEventId] = useState(1);
   const dispatch = useDispatch();
   const activeUser = useSelector((state) => state.userReducer);
+
+  const handleSelectedEventId = (id) => {
+    setSelectedEventId(id);
+  };
 
   useEffect(() => {
     AOS.init();
   });
 
   useEffect(() => {
-    dispatch(getNearEvents())
-  },[])
+    dispatch(getNearEvents());
+  }, []);
 
   /* ABÇ: TEMP AUTH */
   useEffect(() => {
@@ -216,7 +221,7 @@ export default function Home() {
         <Container>
           <InstagramInner>
             <span className="message">
-            <i className="fab fa-instagram instagramIcon"></i>
+              <i className="fab fa-instagram instagramIcon"></i>
               Etkinliklerden ve duyurulardan haberdar olmak için bizi
               İnstagram'da takip Edin!
             </span>
@@ -235,11 +240,11 @@ export default function Home() {
           </div>
           <Row>
             <Col xs={12}>
-              <EventDateSlider />
+              <EventDateSlider handleSelectedEventId={handleSelectedEventId} />
             </Col>
 
             <Col xs={12}>
-              <HomeEventCard />
+              <HomeEventCard selectedEventId={selectedEventId} />
             </Col>
           </Row>
         </Container>
