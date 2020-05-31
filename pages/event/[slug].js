@@ -352,7 +352,7 @@ export default function EventDetail() {
           <Container>
             <Row>
               <Col xs={8} sm={8} className="d-none d-sm-block">
-                <span className="clock attendClock">
+                <span className="attendClock">
                   {isoToNormal(eventData.date)}
 
                 </span>
@@ -364,7 +364,7 @@ export default function EventDetail() {
                 className="d-block d-sm-flex align-items-sm-center justify-content-sm-end"
               >
                 {isRegisteredToEvent ? (
-                  <div>Gidiyorsunuz</div>
+                  <span>Gidiyorsunuz</span>
                 ) : (
                   <div>
                     <FilterButton className="btn d-block" onClick={joinToEvent}>
