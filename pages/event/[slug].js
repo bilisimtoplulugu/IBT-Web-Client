@@ -20,7 +20,9 @@ import join from '../../api/event/join';
 import {isArray} from 'util';
 
 import CustomCard from '../../components/CustomCard';
+
 import {API_URL} from '../../config';
+
 
 const EventDetailArea = styled.div`
 margin-top:50px;
@@ -49,7 +51,7 @@ img{
     width:100%;
     border-radius:5px;
 }
-position:relative;
+  position:relative;
 
 
 
@@ -59,10 +61,7 @@ position:relative;
   padding-left: 15px;
 }
 
-.rightContent svg {
-  font-size: 15pt;
-  opacity: 0.5;
-}
+
 .participants {
   display: inline-flex;
 
@@ -136,6 +135,7 @@ const ParticipantsArea = styled.div`
   }
   img {
     width: 72px;
+    height: 72px;
     border-radius: 50%;
     margin-bottom: 15px;
   }
@@ -156,6 +156,7 @@ const ParticipantsArea = styled.div`
 
       flex-wrap: nowrap;
     }
+   
   }
   .seeAll {
     opacity: 0.5;
@@ -169,6 +170,13 @@ const ParticipantsArea = styled.div`
   }
 `;
 
+const RightContent= styled.div`
+
+.clock{
+  display:unset;
+}
+`;
+
 export default function EventDetail() {
   const [eventData, setEventData] = useState('');
   const [eventParticipants, setEventParticipants] = useState('');
@@ -178,8 +186,10 @@ export default function EventDetail() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log(isArray(activeUser));
     if (isArray(activeUser)) return;
     /* ABÇ: RUNS 2 TIMES!! */
+
     getEventData();
   }, [activeUser, isRegisteredToEvent]);
 
@@ -197,6 +207,7 @@ export default function EventDetail() {
 
   const getEventData = async () => {
     const eventURL = router.query.slug;
+
     if (!eventURL) return;
     try {
       const {event, participants} = await getEvent(eventURL);
@@ -262,7 +273,7 @@ export default function EventDetail() {
               className="mb-3 "
             >
               <CustomCard>
-                <div className="rightContent">
+                <RightContent>
                   <div className="topSide">
                     <h3 className="subTitle">Organizatör</h3>
                     <span className="title">{eventData.organizer}</span>
@@ -292,7 +303,7 @@ export default function EventDetail() {
                       <span className="clock">Online Etkinlik</span>
                     </div>
                   )}
-                </div>
+                </RightContent>
               </CustomCard>
             </Col>
             <Col
@@ -317,7 +328,8 @@ export default function EventDetail() {
                       eventParticipants.map((participant, index) => (
                         <Col key={index} xs={6} sm={4} lg={3}>
                           <CustomCard>
-                            {/* <CustomCard.Body> */}
+
+            
                             <img
                               src={`${API_URL}/images/${participant._id}.png`}
                               alt="profilePhoto"
@@ -325,7 +337,8 @@ export default function EventDetail() {
                             <span>
                               {participant.name} {participant.surname}{' '}
                             </span>
-                            {/* </CustomCard.Body> */}
+                         
+
                           </CustomCard>
                         </Col>
                       ))}
@@ -341,8 +354,9 @@ export default function EventDetail() {
               <Col xs={8} sm={8} className="d-none d-sm-block">
                 <span className="clock attendClock">
                   {isoToNormal(eventData.date)}
+
                 </span>
-                <span className="clock">{eventData.subtitle}</span>
+                <span >{eventData.subtitle}</span>
               </Col>
               <Col
                 xs={12}

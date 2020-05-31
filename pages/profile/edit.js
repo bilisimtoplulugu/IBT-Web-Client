@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import Layout from '../../components/Layout';
 import PageTopSide from '../../components/PageTopSide';
 import {
@@ -10,44 +10,46 @@ import {
   Tab,
   Nav,
   Button,
+  Modal
 } from 'react-bootstrap';
 import styled from 'styled-components';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faEdit} from '@fortawesome/free-solid-svg-icons';
-import Link from 'next/link';
 import changePassword from '../../api/user/changePassword';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 import changePersonalInfo from '../../api/user/changePersonalInfo';
 import changeProfilePhoto from '../../api/user/changeProfilePhoto';
+
 import {API_URL} from '../../config';
 import {auth} from '../../redux/actions/user';
 import {useDispatch} from 'react-redux/lib/hooks/useDispatch';
 import {useRouter} from 'next/router';
+import CustomCard from './../../components/CustomCard'
 
 const MainArea = styled.div`
   margin: 50px 0;
-`;
 
-const CustomCard = styled(Card)`
-  box-shadow: 0 0px 20px rgba(169, 169, 169, 0.2);
-  border: none;
-  color: #253a4a;
-  transition: all 0.3s ease;
+  .selectImage{
+    cursor:pointer;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.4);
+    color:White;
+  }
 
-  span {
-    display: block;
-    font-weight: 400;
+  .modal-dialog{
+    font-size:123px;
   }
-  .userMail {
-    font-size: 15pt;
-    opacity: 0.5;
+  .selectImageModal .previewPhoto{
+    width:100px;
+    height:100px;
+    border-radius:50%;
   }
-  .userName {
-    font-size: 20pt;
-  }
-  img {
-    width: 100%;
-  }
+
   .userImage {
     margin: 0 auto;
     position: relative;
@@ -56,7 +58,16 @@ const CustomCard = styled(Card)`
     height: 120px;
     width: 120px;
   }
+
+  .nav-pills a{
+    color:#0097e4;
+  }
+  .nav-pills .nav-link.active{
+    background-color: #0097e4;
+  }
 `;
+
+
 
 const CustomButton = styled(Button)`
   font-size: 11pt;
@@ -64,12 +75,8 @@ const CustomButton = styled(Button)`
   border-radius: 5px;
   padding-left: 20px;
   padding-right: 20px;
-
   background: #0097e4;
   border: none;
-  margin-left: 5px;
-  display: flex;
-  align-items: center;
   transition: all 0.3s ease;
   &:hover {
     background: #019eef;
@@ -92,11 +99,13 @@ export default function index() {
   const [surname, setSurname] = useState(activeUser.surname);
   const [email, setEmail] = useState(activeUser.email);
   const [profilePhoto, setProfilePhoto] = useState('');
+  const [previewPhoto, setPreviewPhoto] = useState(null)
 
   /* change pw form states */
   const [oldPass, setOldPass] = useState('');
   const [newPass, setNewPass] = useState('');
   const [newPassAgain, setNewPassAgain] = useState('');
+
 
   useEffect(() => {
     // redirect to homepage if there is no logged in user
@@ -112,6 +121,11 @@ export default function index() {
       dispatch(auth(token));
     }
   }, [auth]); */
+   //Modal 
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
 
   const personalInfoChangeSubmit = async (e) => {
     e.preventDefault();
@@ -149,6 +163,21 @@ export default function index() {
     }
   };
 
+
+  const changePhoto = async (e) => {
+
+
+    setProfilePhoto(e);
+
+    var reader = new FileReader();
+    var url = reader.readAsDataURL(e);
+
+    reader.onloadend = function (e) {
+      setPreviewPhoto(reader.result)
+    }.bind(this);
+
+
+  }
   return (
     <Layout>
       <PageTopSide
@@ -161,92 +190,158 @@ export default function index() {
       />
 
       <MainArea>
+
+
+        <Modal show={show} onHide={handleClose} centered >
+          <Modal.Header closeButton >
+            <Modal.Title>Fotoğraf Seç</Modal.Title>
+          </Modal.Header>
+          <Modal.Body className="text-center">
+            <Form onSubmit={profilePhotoChangeSubmit}>
+              <Row>
+                <Col xs={12}>
+                  <Form.Group controlId="formBasicPassword" >
+
+                    <img className="previewPhoto" src={previewPhoto ? previewPhoto : 'https://via.placeholder.com/100'} style={{ width: "100px", height: "100px", borderRadius: "50%" }} />
+
+                  </Form.Group>
+                </Col>
+
+                <Col xs={12}>
+                  <Form.File
+                    id="custom-file"
+                    type="file"
+                    name="file"
+                    custom
+                    label="Custom file input"
+                    className="shadow-none mb-3 mt-3"
+                    onChange={({ currentTarget: { files } }) =>
+                      changePhoto(files[0])
+                    }
+                  />
+
+                </Col>
+                <Col xs={12} >
+                  <CustomButton className="btn-block" type="submit">
+                    Fotoğrafı Güncelle
+                  </CustomButton>
+                </Col>
+              </Row>
+            </Form>
+
+          </Modal.Body>
+
+        </Modal>
+
+
+
+
+
+
+
+
         <Container>
           <Row>
             <Col xs={12}>
               <CustomCard>
-                <CustomCard.Body>
-                  <Tab.Container
-                    id="left-tabs-example"
-                    defaultActiveKey="first"
-                  >
-                    <Row>
-                      <Col md={3}>
-                        <Nav variant="pills" className="flex-column">
-                          <Nav.Item>
-                            <Nav.Link eventKey="first">
-                              Kişisel bilgilerim
+
+                <Tab.Container
+                  id="left-tabs-example"
+                  defaultActiveKey="first"
+                >
+                  <Row>
+                    <Col md={3}>
+                      <Nav variant="pills" className="flex-column">
+                        <Nav.Item>
+                          <Nav.Link eventKey="first">
+                            Kişisel bilgilerim
                             </Nav.Link>
-                          </Nav.Item>
-                          <Nav.Item>
-                            <Nav.Link eventKey="second">
-                              Parola Ayarları
+                        </Nav.Item>
+                        <Nav.Item>
+                          <Nav.Link eventKey="second">
+                            Parola Ayarları
                             </Nav.Link>
-                          </Nav.Item>
-                        </Nav>
-                      </Col>
-                      <Col md={9}>
-                        <Tab.Content>
-                          <Tab.Pane eventKey="first">
-                            <Form onSubmit={personalInfoChangeSubmit}>
-                              <Row>
-                                <Col
-                                  xs={12}
-                                  md={3}
-                                  className="mb-5 mt-5 mt-md-0 mb-md-0"
-                                >
-                                  <div className="userImage">
-                                    <img
-                                      src={`${API_URL}/images/${activeUser._id}.png`}
-                                      alt="profilePhoto"
-                                    />
+                        </Nav.Item>
+                      </Nav>
+                    </Col>
+                    <Col md={9}>
+                      <Tab.Content>
+                        <Tab.Pane eventKey="first">
+                          <Form onSubmit={personalInfoChangeSubmit}>
+                            <Row>
+                              <Col
+                                xs={12}
+                                md={3}
+                                className="mb-5 mt-5 mt-md-0 mb-md-0"
+                              >
+                                <div className="userImage">
+
+                                  <img src="" />
+                                  <div className="selectImage" onClick={handleShow}>
+                                    <i className="fas fa-user-edit"></i>
                                   </div>
-                                </Col>
-                                <Col xs={12} md={9}>
-                                  <Row>
-                                    <Col xs={12} md={6}>
-                                      <Form.Group controlId="formBasicEmail">
-                                        <Form.Label>Adınız</Form.Label>
-                                        <Form.Control
-                                          type="text"
-                                          className="shadow-none"
-                                          placeholder="Adınız"
-                                          value={name}
-                                          onChange={({target: {value}}) =>
-                                            setName(value)
-                                          }
-                                        />
-                                      </Form.Group>
-                                    </Col>
-                                    <Col xs={12} md={6}>
-                                      <Form.Group controlId="formBasicPassword">
-                                        <Form.Label>Soyadınız</Form.Label>
-                                        <Form.Control
-                                          type="text"
-                                          className="shadow-none"
-                                          placeholder="Soyadınız"
-                                          value={surname}
-                                          onChange={({target: {value}}) =>
-                                            setSurname(value)
-                                          }
-                                        />
-                                      </Form.Group>
-                                    </Col>
-                                    <Col xs={12} md={6}>
-                                      <Form.Group controlId="formBasicPassword">
-                                        <Form.Label>E-Posta</Form.Label>
-                                        <Form.Control
-                                          type="email"
-                                          className="shadow-none"
-                                          placeholder="E-Posta"
-                                          value={email}
-                                          onChange={({target: {value}}) =>
-                                            setEmail(value)
-                                          }
-                                        />
-                                      </Form.Group>
-                                    </Col>
-                                    {/*                                     <Col xs={12} md={6}>
+
+                                </div>
+                              </Col>
+                              <Col xs={12} md={9}>
+                                <Row>
+                                <Col xs={12} md={6}>
+                                    <Form.Group controlId="formBasicEmail">
+                                      <Form.Label>Kullanıcı Adı</Form.Label>
+                                      <Form.Control
+                                        type="text"
+                                        className="shadow-none"
+                                        placeholder="Adınız"
+                                        value={name}
+                                        onChange={({ target: { value } }) =>
+                                          setName(value)
+                                        }
+                                      />
+                                    </Form.Group>
+                                  </Col>
+                                  <Col xs={12} md={6}>
+                                    <Form.Group controlId="formBasicEmail">
+                                      <Form.Label>Adınız</Form.Label>
+                                      <Form.Control
+                                        type="text"
+                                        className="shadow-none"
+                                        placeholder="Adınız"
+                                        value={name}
+                                        onChange={({ target: { value } }) =>
+                                          setName(value)
+                                        }
+                                      />
+                                    </Form.Group>
+                                  </Col>
+                                  <Col xs={12} md={6}>
+                                    <Form.Group controlId="formBasicPassword">
+                                      <Form.Label>Soyadınız</Form.Label>
+                                      <Form.Control
+                                        type="text"
+                                        className="shadow-none"
+                                        placeholder="Soyadınız"
+                                        value={surname}
+                                        onChange={({ target: { value } }) =>
+                                          setSurname(value)
+                                        }
+                                      />
+                                    </Form.Group>
+                                  </Col>
+                                  <Col xs={12} md={6}>
+                                    <Form.Group controlId="formBasicPassword">
+                                      <Form.Label>E-Posta</Form.Label>
+                                      <Form.Control
+                                        type="email"
+                                        className="shadow-none"
+                                        placeholder="E-Posta"
+                                        value={email}
+                                        onChange={({ target: { value } }) =>
+                                          setEmail(value)
+                                        }
+                                      />
+                                    </Form.Group>
+                                  </Col>
+                                  {/*                                     <Col xs={12} md={6}>
                                       <Form.Group>
                                         <Form.File
                                           id="custom-file"
@@ -255,113 +350,99 @@ export default function index() {
                                         />
                                       </Form.Group>
                                     </Col> */}
-                                  </Row>
-                                </Col>
-                                <Col
-                                  xs={12}
-                                  className="d-flex justify-content-end"
-                                >
-                                  <CustomButton type="submit">
-                                    Kaydet
-                                  </CustomButton>
-                                </Col>
-                              </Row>
-                            </Form>
-                            <Form onSubmit={profilePhotoChangeSubmit}>
-                              <Col xs={12} md={6}>
-                                <Form.Group controlId="formBasicPassword">
-                                  <Form.Label>Profil Fotoğrafı</Form.Label>
-                                  <input
-                                    type="file"
-                                    name="file"
-                                    className="shadow-none"
-                                    onChange={({currentTarget: {files}}) =>
-                                      setProfilePhoto(files[0])
-                                    }
-                                  />
-                                </Form.Group>
-                                <CustomButton type="submit">
-                                  Fotoyu Güncelle
-                                </CustomButton>
+                                </Row>
                               </Col>
-                            </Form>
-                          </Tab.Pane>
-                          <Tab.Pane eventKey="second">
-                            <Form onSubmit={passChangeSubmit}>
-                              <Row>
-                                <Col
-                                  xs={12}
-                                  md={3}
-                                  className="mb-5 mt-5 mt-md-0 mb-md-0"
-                                ></Col>
-                                <Col xs={12} md={6}>
-                                  <Row>
-                                    <Col xs={12}>
-                                      <Form.Group controlId="formBasicEmail">
-                                        <Form.Label>Eski Parolanız</Form.Label>
-                                        <Form.Control
-                                          type="password"
-                                          className="shadow-none"
-                                          placeholder="Eski Parolanız"
-                                          value={oldPass}
-                                          onChange={({target: {value}}) =>
-                                            setOldPass(value)
-                                          }
-                                        />
-                                      </Form.Group>
-                                    </Col>
-                                    <Col xs={12}>
-                                      <Form.Group controlId="formBasicPassword">
-                                        <Form.Label>Yeni Parolanız</Form.Label>
-                                        <Form.Control
-                                          type="password"
-                                          className="shadow-none"
-                                          placeholder="Yeni Parolanız"
-                                          value={newPass}
-                                          onChange={({target: {value}}) =>
-                                            setNewPass(value)
-                                          }
-                                        />
-                                      </Form.Group>
-                                    </Col>
-                                    <Col xs={12}>
-                                      <Form.Group controlId="formBasicPassword">
-                                        <Form.Label>
-                                          Yeni Parolanız(Tekrar)
-                                        </Form.Label>
-                                        <Form.Control
-                                          type="password"
-                                          className="shadow-none"
-                                          placeholder="Yeni Parolanız(Tekrar)"
-                                          value={newPassAgain}
-                                          onChange={({target: {value}}) =>
-                                            setNewPassAgain(value)
-                                          }
-                                        />
-                                      </Form.Group>
-                                    </Col>
-                                  </Row>
-                                </Col>
-                                <Col
-                                  xs={12}
-                                  md={9}
-                                  className="d-flex justify-content-end"
-                                >
-                                  <CustomButton type="submit">
-                                    Güncelle
+                              <Col
+                                xs={12}
+                                className="d-flex justify-content-end"
+                              >
+                                <CustomButton type="submit">
+                                  Kaydet
                                   </CustomButton>
-                                </Col>
-                              </Row>
-                            </Form>
-                          </Tab.Pane>
-                        </Tab.Content>
-                      </Col>
-                    </Row>
-                  </Tab.Container>
-                </CustomCard.Body>
+                              </Col>
+                            </Row>
+                          </Form>
+
+                        </Tab.Pane>
+                        <Tab.Pane eventKey="second">
+                          <Form onSubmit={passChangeSubmit}>
+                            <Row>
+                              <Col
+                                xs={12}
+                                md={3}
+                                className="mb-5 mt-5 mt-md-0 mb-md-0"
+                              ></Col>
+                              <Col xs={12} md={6}>
+                                <Row>
+                                  <Col xs={12}>
+                                    <Form.Group controlId="formBasicEmail">
+                                      <Form.Label>Eski Parolanız</Form.Label>
+                                      <Form.Control
+                                        type="password"
+                                        className="shadow-none"
+                                        placeholder="Eski Parolanız"
+                                        value={oldPass}
+                                        onChange={({ target: { value } }) =>
+                                          setOldPass(value)
+                                        }
+                                      />
+                                    </Form.Group>
+                                  </Col>
+                                  <Col xs={12}>
+                                    <Form.Group controlId="formBasicPassword">
+                                      <Form.Label>Yeni Parolanız</Form.Label>
+                                      <Form.Control
+                                        type="password"
+                                        className="shadow-none"
+                                        placeholder="Yeni Parolanız"
+                                        value={newPass}
+                                        onChange={({ target: { value } }) =>
+                                          setNewPass(value)
+                                        }
+                                      />
+                                    </Form.Group>
+                                  </Col>
+                                  <Col xs={12}>
+                                    <Form.Group controlId="formBasicPassword">
+                                      <Form.Label>
+                                        Yeni Parolanız(Tekrar)
+                                        </Form.Label>
+                                      <Form.Control
+                                        type="password"
+                                        className="shadow-none"
+                                        placeholder="Yeni Parolanız(Tekrar)"
+                                        value={newPassAgain}
+                                        onChange={({ target: { value } }) =>
+                                          setNewPassAgain(value)
+                                        }
+                                      />
+                                    </Form.Group>
+                                  </Col>
+                                </Row>
+                              </Col>
+                              <Col
+                                xs={12}
+                                md={9}
+                                className="d-flex justify-content-end"
+                              >
+                                <CustomButton type="submit">
+                                  Güncelle
+                                  </CustomButton>
+                              </Col>
+                            </Row>
+                          </Form>
+                        </Tab.Pane>
+                      </Tab.Content>
+                    </Col>
+                  </Row>
+                </Tab.Container>
+
               </CustomCard>
             </Col>
           </Row>
+
+
+
         </Container>
       </MainArea>
     </Layout>

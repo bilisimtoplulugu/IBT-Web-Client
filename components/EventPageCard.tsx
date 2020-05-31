@@ -7,7 +7,9 @@ import CustomCard from './CustomCard';
 import isoToNormal from '../utils/isoToNormal';
 
 const MainArea = styled.div`
-  transition: all 0.3s ease;
+
+transition: all 0.3s ease;
+margin-bottom:20px;
   img {
     width: 100%;
     border-radius: 5px;
@@ -20,9 +22,7 @@ const MainArea = styled.div`
     font-weight: 400;
     opacity: 0.6;
   }
-  span {
-    display: block;
-  }
+ 
   .clock {
     font-size: 15pt;
     font-weight: 400;
@@ -69,7 +69,7 @@ const MainArea = styled.div`
 export default function EventPageCard({event}) {
   return (
     <MainArea>
-      <Link href={`/event/${event.seoUrl}`}>
+      <Link href={`/event/[slug].js`} as={`/event/${event.seoUrl}`}>
         <a className="text-decoration-none">
           <CustomCard>
             <Row>
