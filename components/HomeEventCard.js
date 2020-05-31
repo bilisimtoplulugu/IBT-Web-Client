@@ -38,18 +38,17 @@ const MainArea = styled.div`
     opacity: 0.5;
   }
 `;
-export default function HomeEventCard() {
+export default function HomeEventCard({selectedEventId = "5ed3be79cd7335256970f858"}) {
   const [selectedEventDetail, setSelectedEventDetail] = useState('');
   const nearEvents = useSelector((state) => state.eventReducer);
 
   useEffect(() => {
-    if(Array.isArray(nearEvents)) console.log('o bir array:'+nearEvents)
-    const selectedEventId = '5ed3c535cdda272c34bfc5df';
+    //if (Array.isArray(nearEvents)) console.log('o bir array:' + nearEvents);
     const selectedEvent = nearEvents.find(
       (event) => event._id == selectedEventId
     );
-    console.log(selectedEvent);
-  }, [nearEvents]);
+    setSelectedEventDetail(selectedEvent);
+  }, [nearEvents,selectedEventId]);
 
   return (
     <div data-aos="fade-right">
