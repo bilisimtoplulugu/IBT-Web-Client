@@ -328,8 +328,8 @@ export default function EventDetail() {
                           <CustomCard>
                  
                              <img
-                                // src={`${API_URL}/images/${participant._id}.png`}
-                                src={`/assets/images/test.png`}
+                                 src={`${API_URL}/images/${participant._id}.png`}
+                               
 
                                 alt="profilePhoto"
                               /> 

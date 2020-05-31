@@ -210,7 +210,7 @@ export default function Home() {
         <Container>
           <InstagramInner>
             <span className="message">
-              <FontAwesomeIcon className="instagramIcon" icon={faInstagram} />
+            <i className="fab fa-instagram instagramIcon"></i>
               Etkinliklerden ve duyurulardan haberdar olmak için bizi
               İnstagram'da takip Edin!
             </span>

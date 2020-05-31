@@ -23,6 +23,7 @@ const MainArea = styled.div`
   margin: 50px 0;
 
   .selectImage{
+    cursor:pointer;
     position: absolute;
     left: 0;
     right: 0;
@@ -261,6 +262,20 @@ export default function index() {
                               </Col>
                               <Col xs={12} md={9}>
                                 <Row>
+                                <Col xs={12} md={6}>
+                                    <Form.Group controlId="formBasicEmail">
+                                      <Form.Label>Kullanıcı Adı</Form.Label>
+                                      <Form.Control
+                                        type="text"
+                                        className="shadow-none"
+                                        placeholder="Adınız"
+                                        value={name}
+                                        onChange={({ target: { value } }) =>
+                                          setName(value)
+                                        }
+                                      />
+                                    </Form.Group>
+                                  </Col>
                                   <Col xs={12} md={6}>
                                     <Form.Group controlId="formBasicEmail">
                                       <Form.Label>Adınız</Form.Label>
