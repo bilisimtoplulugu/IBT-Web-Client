@@ -20,6 +20,9 @@ import {useSelector} from 'react-redux';
 import changePersonalInfo from '../../api/user/changePersonalInfo';
 import changeProfilePhoto from '../../api/user/changeProfilePhoto';
 import {API_URL} from '../../config';
+import {auth} from '../../redux/actions/user';
+import {useDispatch} from 'react-redux/lib/hooks/useDispatch';
+import {useRouter} from 'next/router';
 
 const MainArea = styled.div`
   margin: 50px 0;
@@ -82,11 +85,12 @@ const CustomButton = styled(Button)`
 
 export default function index() {
   const activeUser = useSelector((state) => state.userReducer);
+  const router = useRouter();
 
   /* change personal info form states */
-  const [name, setName] = useState('');
-  const [surname, setSurname] = useState('');
-  const [email, setEmail] = useState('');
+  const [name, setName] = useState(activeUser.name);
+  const [surname, setSurname] = useState(activeUser.surname);
+  const [email, setEmail] = useState(activeUser.email);
   const [profilePhoto, setProfilePhoto] = useState('');
 
   /* change pw form states */
@@ -94,11 +98,27 @@ export default function index() {
   const [newPass, setNewPass] = useState('');
   const [newPassAgain, setNewPassAgain] = useState('');
 
+  useEffect(() => {
+    // redirect to homepage if there is no logged in user
+    if (Array.isArray(activeUser)) router.push('/');
+  }, [activeUser]);
+
+  /* CRASHED !!! */
+  //const dispatch = useDispatch();
+  /* ABÇ: TEMP AUTH */
+  /*   useEffect(() => {
+    const token = localStorage.getItem('jwt');
+    if (token && Array.isArray(activeUser)) {
+      dispatch(auth(token));
+    }
+  }, [auth]); */
+
   const personalInfoChangeSubmit = async (e) => {
     e.preventDefault();
 
     try {
       await changePersonalInfo(activeUser._id, name, surname, email);
+      console.log('personal data changed');
     } catch (error) {
       console.log(error); //something went wrong, should show to user
     }
@@ -112,6 +132,7 @@ export default function index() {
 
     try {
       await changeProfilePhoto(activeUser._id, formData);
+      console.log('profile photo updated'); // message to user
     } catch (error) {
       console.log(error); //something went wrong, should show to user
     }
@@ -122,6 +143,7 @@ export default function index() {
 
     try {
       await changePassword(activeUser._id, oldPass, newPass, newPassAgain);
+      console.log('pass changed'); // message to user
     } catch (error) {
       console.log(error); //something went wrong, should show to user
     }

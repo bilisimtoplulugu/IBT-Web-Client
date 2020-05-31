@@ -1,6 +1,5 @@
 import React, {useState, useRef, useEffect} from 'react';
 import {useSelector} from 'react-redux';
-import {useRouter} from 'next/router';
 import {
   Navbar,
   Nav,
@@ -94,7 +93,6 @@ const CustomDropdown = styled(Dropdown)`
 
 export default function Header() {
   const [headerBgColor, setHeaderBgColor] = useState(false);
-  const router = useRouter();
   const activeUser = useSelector((state) => state.userReducer);
 
   const handleScroll = () => {
@@ -103,13 +101,12 @@ export default function Header() {
 
   const logout = () => {
     localStorage.removeItem('jwt');
-    router.push('/');
+    window.location.replace('/');
   };
 
-  importScript("https://kit.fontawesome.com/7aecc2e880.js");
-  
+  importScript('https://kit.fontawesome.com/7aecc2e880.js');
+
   useEffect(() => {
- 
     window.addEventListener('scroll', handleScroll);
 
     return () => {
@@ -163,7 +160,6 @@ export default function Header() {
                       <CustomDropdown.Item>Topluluk</CustomDropdown.Item>
                     </Link>
                     <CustomDropdown.Item href="#/action-2" onClick={logout}>
-
                       Çıkış Yap
                     </CustomDropdown.Item>
                   </CustomDropdown.Menu>

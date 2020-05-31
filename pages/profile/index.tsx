@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import Layout from '../../components/Layout';
 import PageTopSide from '../../components/PageTopSide';
 import {Container, Row, Col, Card, Button} from 'react-bootstrap';
@@ -7,7 +7,8 @@ import styled from 'styled-components';
 import {faEdit} from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import CustomCard from '../../components/CustomCard';
-import { API_URL } from '../../config';
+import {API_URL} from '../../config';
+import { auth } from '../../redux/actions/user';
 
 const MainArea = styled.div`
   margin: 50px 0;
@@ -112,6 +113,15 @@ const MainArea = styled.div`
 
 export default function index() {
   const activeUser = useSelector((state) => state.userReducer);
+  const dispatch = useDispatch();
+
+  /* ABÇ: TEMP AUTH */
+  useEffect(() => {
+    const token = localStorage.getItem('jwt');
+    if (token && Array.isArray(activeUser)) {
+      dispatch(auth(token));
+    }
+  }, [auth]);
 
   return (
     <Layout>
