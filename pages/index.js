@@ -1,9 +1,7 @@
 import React, {useEffect, useState, useRef} from 'react';
 import {Container, Row, Col, Form, Button, Card} from 'react-bootstrap';
-import styled, {keyframes} from 'styled-components';
-import WelcomeSlider from '../components/WelcomeSlider';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faInstagram} from '@fortawesome/free-brands-svg-icons';
+import styled from 'styled-components';
+
 import {useDispatch, useSelector} from 'react-redux';
 import {auth} from '../redux/actions/user';
 
