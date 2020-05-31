@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import Layout from '../../components/Layout';
 import PageTopSide from '../../components/PageTopSide';
 import {
@@ -10,11 +10,11 @@ import {
   Tab,
   Nav,
   Button,
-  Modal
+  Modal,
 } from 'react-bootstrap';
 import styled from 'styled-components';
 import changePassword from '../../api/user/changePassword';
-import { useSelector } from 'react-redux';
+import {useSelector} from 'react-redux';
 import changePersonalInfo from '../../api/user/changePersonalInfo';
 import changeProfilePhoto from '../../api/user/changeProfilePhoto';
 
@@ -22,13 +22,13 @@ import {API_URL} from '../../config';
 import {auth} from '../../redux/actions/user';
 import {useDispatch} from 'react-redux/lib/hooks/useDispatch';
 import {useRouter} from 'next/router';
-import CustomCard from './../../components/CustomCard'
+import CustomCard from './../../components/CustomCard';
 
 const MainArea = styled.div`
   margin: 50px 0;
 
-  .selectImage{
-    cursor:pointer;
+  .selectImage {
+    cursor: pointer;
     position: absolute;
     left: 0;
     right: 0;
@@ -38,16 +38,16 @@ const MainArea = styled.div`
     align-items: center;
     justify-content: center;
     background: rgba(0, 0, 0, 0.4);
-    color:White;
+    color: White;
   }
 
-  .modal-dialog{
-    font-size:123px;
+  .modal-dialog {
+    font-size: 123px;
   }
-  .selectImageModal .previewPhoto{
-    width:100px;
-    height:100px;
-    border-radius:50%;
+  .selectImageModal .previewPhoto {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
   }
 
   .userImage {
@@ -59,15 +59,13 @@ const MainArea = styled.div`
     width: 120px;
   }
 
-  .nav-pills a{
-    color:#0097e4;
+  .nav-pills a {
+    color: #0097e4;
   }
-  .nav-pills .nav-link.active{
+  .nav-pills .nav-link.active {
     background-color: #0097e4;
   }
 `;
-
-
 
 const CustomButton = styled(Button)`
   font-size: 11pt;
@@ -95,17 +93,17 @@ export default function index() {
   const router = useRouter();
 
   /* change personal info form states */
+  const [username, setUsername] = useState(activeUser.username);
   const [name, setName] = useState(activeUser.name);
   const [surname, setSurname] = useState(activeUser.surname);
   const [email, setEmail] = useState(activeUser.email);
   const [profilePhoto, setProfilePhoto] = useState('');
-  const [previewPhoto, setPreviewPhoto] = useState(null)
+  const [previewPhoto, setPreviewPhoto] = useState(null);
 
   /* change pw form states */
   const [oldPass, setOldPass] = useState('');
   const [newPass, setNewPass] = useState('');
   const [newPassAgain, setNewPassAgain] = useState('');
-
 
   useEffect(() => {
     // redirect to homepage if there is no logged in user
@@ -121,11 +119,11 @@ export default function index() {
       dispatch(auth(token));
     }
   }, [auth]); */
-   //Modal 
+
+  //Modal
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
 
   const personalInfoChangeSubmit = async (e) => {
     e.preventDefault();
@@ -163,21 +161,16 @@ export default function index() {
     }
   };
 
-
   const changePhoto = async (e) => {
-
-
     setProfilePhoto(e);
 
     var reader = new FileReader();
     var url = reader.readAsDataURL(e);
 
     reader.onloadend = function (e) {
-      setPreviewPhoto(reader.result)
+      setPreviewPhoto(reader.result);
     }.bind(this);
-
-
-  }
+  };
   return (
     <Layout>
       <PageTopSide
@@ -190,20 +183,28 @@ export default function index() {
       />
 
       <MainArea>
-
-
-        <Modal show={show} onHide={handleClose} centered >
-          <Modal.Header closeButton >
+        <Modal show={show} onHide={handleClose} centered>
+          <Modal.Header closeButton>
             <Modal.Title>Fotoğraf Seç</Modal.Title>
           </Modal.Header>
           <Modal.Body className="text-center">
             <Form onSubmit={profilePhotoChangeSubmit}>
               <Row>
                 <Col xs={12}>
-                  <Form.Group controlId="formBasicPassword" >
-
-                    <img className="previewPhoto" src={previewPhoto ? previewPhoto : 'https://via.placeholder.com/100'} style={{ width: "100px", height: "100px", borderRadius: "50%" }} />
-
+                  <Form.Group controlId="formBasicPassword">
+                    <img
+                      className="previewPhoto"
+                      src={
+                        previewPhoto
+                          ? previewPhoto
+                          : 'https://via.placeholder.com/100'
+                      }
+                      style={{
+                        width: '100px',
+                        height: '100px',
+                        borderRadius: '50%',
+                      }}
+                    />
                   </Form.Group>
                 </Col>
 
@@ -215,52 +216,36 @@ export default function index() {
                     custom
                     label="Custom file input"
                     className="shadow-none mb-3 mt-3"
-                    onChange={({ currentTarget: { files } }) =>
+                    onChange={({currentTarget: {files}}) =>
                       changePhoto(files[0])
                     }
                   />
-
                 </Col>
-                <Col xs={12} >
+                <Col xs={12}>
                   <CustomButton className="btn-block" type="submit">
                     Fotoğrafı Güncelle
                   </CustomButton>
                 </Col>
               </Row>
             </Form>
-
           </Modal.Body>
-
         </Modal>
-
-
-
-
-
-
-
 
         <Container>
           <Row>
             <Col xs={12}>
               <CustomCard>
-
-                <Tab.Container
-                  id="left-tabs-example"
-                  defaultActiveKey="first"
-                >
+                <Tab.Container id="left-tabs-example" defaultActiveKey="first">
                   <Row>
                     <Col md={3}>
                       <Nav variant="pills" className="flex-column">
                         <Nav.Item>
                           <Nav.Link eventKey="first">
                             Kişisel bilgilerim
-                            </Nav.Link>
+                          </Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                          <Nav.Link eventKey="second">
-                            Parola Ayarları
-                            </Nav.Link>
+                          <Nav.Link eventKey="second">Parola Ayarları</Nav.Link>
                         </Nav.Item>
                       </Nav>
                     </Col>
@@ -275,26 +260,29 @@ export default function index() {
                                 className="mb-5 mt-5 mt-md-0 mb-md-0"
                               >
                                 <div className="userImage">
-
-                                  <img src="" />
-                                  <div className="selectImage" onClick={handleShow}>
+                                  <img
+                                    src={`${API_URL}/images/activeUser.username`}
+                                  />
+                                  <div
+                                    className="selectImage"
+                                    onClick={handleShow}
+                                  >
                                     <i className="fas fa-user-edit"></i>
                                   </div>
-
                                 </div>
                               </Col>
                               <Col xs={12} md={9}>
                                 <Row>
-                                <Col xs={12} md={6}>
+                                  <Col xs={12} md={6}>
                                     <Form.Group controlId="formBasicEmail">
                                       <Form.Label>Kullanıcı Adı</Form.Label>
                                       <Form.Control
                                         type="text"
                                         className="shadow-none"
                                         placeholder="Adınız"
-                                        value={name}
-                                        onChange={({ target: { value } }) =>
-                                          setName(value)
+                                        value={username}
+                                        onChange={({target: {value}}) =>
+                                          setUsername(value)
                                         }
                                       />
                                     </Form.Group>
@@ -307,7 +295,7 @@ export default function index() {
                                         className="shadow-none"
                                         placeholder="Adınız"
                                         value={name}
-                                        onChange={({ target: { value } }) =>
+                                        onChange={({target: {value}}) =>
                                           setName(value)
                                         }
                                       />
@@ -321,7 +309,7 @@ export default function index() {
                                         className="shadow-none"
                                         placeholder="Soyadınız"
                                         value={surname}
-                                        onChange={({ target: { value } }) =>
+                                        onChange={({target: {value}}) =>
                                           setSurname(value)
                                         }
                                       />
@@ -335,7 +323,7 @@ export default function index() {
                                         className="shadow-none"
                                         placeholder="E-Posta"
                                         value={email}
-                                        onChange={({ target: { value } }) =>
+                                        onChange={({target: {value}}) =>
                                           setEmail(value)
                                         }
                                       />
@@ -358,11 +346,10 @@ export default function index() {
                               >
                                 <CustomButton type="submit">
                                   Kaydet
-                                  </CustomButton>
+                                </CustomButton>
                               </Col>
                             </Row>
                           </Form>
-
                         </Tab.Pane>
                         <Tab.Pane eventKey="second">
                           <Form onSubmit={passChangeSubmit}>
@@ -382,7 +369,7 @@ export default function index() {
                                         className="shadow-none"
                                         placeholder="Eski Parolanız"
                                         value={oldPass}
-                                        onChange={({ target: { value } }) =>
+                                        onChange={({target: {value}}) =>
                                           setOldPass(value)
                                         }
                                       />
@@ -396,7 +383,7 @@ export default function index() {
                                         className="shadow-none"
                                         placeholder="Yeni Parolanız"
                                         value={newPass}
-                                        onChange={({ target: { value } }) =>
+                                        onChange={({target: {value}}) =>
                                           setNewPass(value)
                                         }
                                       />
@@ -406,13 +393,13 @@ export default function index() {
                                     <Form.Group controlId="formBasicPassword">
                                       <Form.Label>
                                         Yeni Parolanız(Tekrar)
-                                        </Form.Label>
+                                      </Form.Label>
                                       <Form.Control
                                         type="password"
                                         className="shadow-none"
                                         placeholder="Yeni Parolanız(Tekrar)"
                                         value={newPassAgain}
-                                        onChange={({ target: { value } }) =>
+                                        onChange={({target: {value}}) =>
                                           setNewPassAgain(value)
                                         }
                                       />
@@ -427,7 +414,7 @@ export default function index() {
                               >
                                 <CustomButton type="submit">
                                   Güncelle
-                                  </CustomButton>
+                                </CustomButton>
                               </Col>
                             </Row>
                           </Form>
@@ -436,13 +423,9 @@ export default function index() {
                     </Col>
                   </Row>
                 </Tab.Container>
-
               </CustomCard>
             </Col>
           </Row>
-
-
-
         </Container>
       </MainArea>
     </Layout>

@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import Slider from 'react-slick';
-import {useDispatch, useSelector} from 'react-redux';
-import {addEvent} from '../redux/actions';
-import axios from 'axios';
+import getNearEvents from '../api/event/getNearEvents';
+import isoToNormal from '../utils/isoToNormal'
+import { useSelector } from 'react-redux';
 
 const CustomSlider = styled(Slider)`
   margin: 30px 0;
@@ -48,7 +48,7 @@ const settings = {
   infinite: true,
   speed: 500,
   initialSlide: 0,
-  slidesToShow: 5,
+  slidesToShow: 3, // ABÇ default:5
   slidesToScroll: 1,
 
   responsive: [
@@ -76,18 +76,7 @@ const EventDateCard = styled.div`
   font-weight: 400;
 `;
 export default function EventDateSlider() {
-  const dispatch = useDispatch();
-  const selectedEvent = useSelector((state) => state.eventReducer);
-  const [nearEvents, setNearEvents] = useState('');
-
-  useEffect(() => {
-    getNearEvents();
-  }, []);
-
-  const getNearEvents = async () => {
-    const {data} = await axios.get('http://localhost:2222/event/near');
-    setNearEvents(data);
-  };
+  const nearEvents = useSelector(state => state.eventReducer)
 
   return (
     <div data-aos="fade-right">
@@ -96,10 +85,10 @@ export default function EventDateSlider() {
           nearEvents.map((event, index) => (
             <EventDateCard
               key={index}
-              className={selectedEvent == event._id && 'active'}
-              onClick={() => dispatch(addEvent(event._id))}
             >
-              {event.date}
+              {isoToNormal(event.date)}
+              <br/>
+              {event.title}
             </EventDateCard>
           ))}
       </CustomSlider>

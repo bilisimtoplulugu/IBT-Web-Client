@@ -146,8 +146,8 @@ export default function Header() {
               <Link href="/blog" passHref={true}>
                 <NavLink>Blog</NavLink>
               </Link>
-              <Link href="/calismalarimiz" passHref={true}>
-                <NavLink>Aramıza Katıl!</NavLink>
+              <Link href="/team" as={'/takim'} passHref={true}>
+                <NavLink>Takım</NavLink>
               </Link>
               <Link href="/iletisim" passHref={true}>
                 <NavLink>İletişim</NavLink>
