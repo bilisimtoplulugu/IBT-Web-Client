@@ -82,7 +82,7 @@ export default function index() {
         bgImage="./../assets/images/homeBg.jpg"
         defaultHeight="300"
         title="Takımımız"
-        desc=""
+        desc="Farklı üniversite ve bölümlerdeki öğrencilerden oluşan takımımız ile kulüp, etkinlik ve tanıtım süreçlerini yürütüyoruz. Bize LinkedIn adreslerimizden ulaşabilirsiniz."
       />
 
       <MainArea>

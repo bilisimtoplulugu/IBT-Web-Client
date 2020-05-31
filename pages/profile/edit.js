@@ -41,9 +41,6 @@ const MainArea = styled.div`
     color: White;
   }
 
-  .modal-dialog {
-    font-size: 123px;
-  }
   .selectImageModal .previewPhoto {
     width: 100px;
     height: 100px;

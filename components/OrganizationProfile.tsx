@@ -6,13 +6,19 @@ import styled from 'styled-components';
 import OrganizationEvents from './OrganizationEvents';
 
 const MainArea = styled.div`
-
+    .nav-pills a {
+    color: #0097e4;
+  }
+  .nav-pills .nav-link.active {
+    background-color: #0097e4;
+  }
 `;
 
 
 export default function OrganizationProfile() {
     return (
         <Container>
+            <MainArea>
             <CustomCard>
                 <Tab.Container id="left-tabs-example" defaultActiveKey="first">
                     <Row>
@@ -39,6 +45,7 @@ export default function OrganizationProfile() {
                     </Row>
                 </Tab.Container>
             </CustomCard>
+            </MainArea>
         </Container>
     )
 }

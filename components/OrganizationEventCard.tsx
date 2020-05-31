@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 
 const MainArea = styled.div`
+margin-top:15px;
 padding: 10px;
     border: 1px solid #f5f5f5;
     border-radius: 5px;
@@ -20,18 +21,16 @@ span{
 `;
 
 
-export default function OrganizationEventCard() {
+export default function OrganizationEventCard({title,img,content}) {
     return (
         <MainArea>
             <Row>
                 <Col xs={12} md={3}>
-                <img src="/assets/images/imagesadi.png" />
+                <img src={`/assets/images/${img}.png`} />
                 </Col>
                 <Col xs={12} md={9} className="mt-3 mt-md-0">
-                    <h3>Career Talks #5</h3>
-                    <span>Herkese merhaba!
-                    İstanbul Bilişim Topluluğu olarak “Career Talks” serimize hız kesmeden devam ediyoruz.Bu
-                     hafta bize optiWisdom ‘un kurucusu Doç.Dr. Şadi Evren Şeker eşlik ediyor.</span>
+    <h3>{title}</h3>
+                    <span>{content}</span>
                 </Col>
             </Row>
         </MainArea>
