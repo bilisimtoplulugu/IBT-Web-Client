@@ -35,12 +35,17 @@ const MainArea = styled.div`
     top: 0;
     bottom: 0;
     display: flex;
+    opacity:0;
     align-items: center;
     justify-content: center;
     background: rgba(0, 0, 0, 0.4);
     color: White;
+    transition:all .3s ease;
   }
-
+  .selectImage:hover{
+    opacity:1;
+    transition:all .3s ease;
+  }
   .selectImageModal .previewPhoto {
     width: 100px;
     height: 100px;
@@ -168,6 +173,10 @@ export default function index() {
       setPreviewPhoto(reader.result);
     }.bind(this);
   };
+
+  const addDefaultSrc = async (e) =>{
+    e.target.src = '/assets/images/default.png'
+  }
   return (
     <Layout>
       <PageTopSide
@@ -258,6 +267,7 @@ export default function index() {
                               >
                                 <div className="userImage">
                                   <img
+                                    onError={addDefaultSrc}
                                     src={`${API_URL}/images/activeUser.username`}
                                   />
                                   <div

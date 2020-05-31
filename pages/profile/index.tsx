@@ -125,6 +125,11 @@ export default function index() {
     }
   }, [auth]);
 
+
+  const addDefaultSrc = async (e) =>{
+    e.target.src = '/assets/images/default.png'
+  }
+
   return (
     <Layout>
       <PageTopSide
@@ -146,6 +151,7 @@ export default function index() {
                       <Col xs={12} sm={3} md={2}>
                         <div className="userImage">
                           <img
+                          onError={addDefaultSrc}
                             src={`${API_URL}/images/${activeUser._id}.png`}
                             alt="profilePhoto"
                           />

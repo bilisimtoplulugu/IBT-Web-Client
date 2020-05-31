@@ -11,6 +11,7 @@ margin:30px 0;
 
 width:100%;
 height:100%;
+transition:all .3s ease;
 }
 
 .member{
@@ -22,16 +23,15 @@ height:100%;
   box-shadow: 0 0px 20px rgba(167, 167, 167, 0.2);
 }
 
-.member:hover{
+.member:hover .avatar{
 
   transition:all .3s ease;
-  transform:scale(1.02);
+  transform:scale(1.05);
 }
 .social{
   font-size:17pt;
   margin-top:15px;
 }
-
 .social a{
   color:white;
   margin:0 10px;
@@ -43,17 +43,6 @@ height:100%;
   opacity:1;
 }
 
-
-
-// .overlay{
-//   position:absolute;
-//   top:0;
-//   right:0;
-//   left:0;
-//   bottom:0;
-//   background:black;
-//   opacity:.7;
-// }
 .member .content{
   position: absolute;
   bottom: -80px;
@@ -65,6 +54,7 @@ height:100%;
     padding-bottom: 10px;
     transition:all .3s ease;
 }
+
 .member:hover .content{
   transition:all .3s ease;
   bottom: 0px;
