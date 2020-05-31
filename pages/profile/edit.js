@@ -270,7 +270,7 @@ export default function index() {
                               </Col>
                               <Col xs={12} md={9}>
                                 <Row>
-                                  <Col xs={12} md={6}>
+                                  <Col xs={12} >
                                     <Form.Group controlId="formBasicEmail">
                                       <Form.Label>Kullanıcı Adı</Form.Label>
                                       <Form.Control
@@ -284,9 +284,9 @@ export default function index() {
                                       />
                                     </Form.Group>
                                   </Col>
-                                  <Col xs={12} md={6}>
+                                  <Col xs={12} >
                                     <Form.Group controlId="formBasicEmail">
-                                      <Form.Label>Adınız</Form.Label>
+                                      <Form.Label>Adı</Form.Label>
                                       <Form.Control
                                         type="text"
                                         className="shadow-none"
@@ -298,9 +298,9 @@ export default function index() {
                                       />
                                     </Form.Group>
                                   </Col>
-                                  <Col xs={12} md={6}>
+                                  <Col xs={12} >
                                     <Form.Group controlId="formBasicPassword">
-                                      <Form.Label>Soyadınız</Form.Label>
+                                      <Form.Label>Soyadı</Form.Label>
                                       <Form.Control
                                         type="text"
                                         className="shadow-none"
@@ -312,7 +312,7 @@ export default function index() {
                                       />
                                     </Form.Group>
                                   </Col>
-                                  <Col xs={12} md={6}>
+                                  <Col xs={12} >
                                     <Form.Group controlId="formBasicPassword">
                                       <Form.Label>E-Posta</Form.Label>
                                       <Form.Control

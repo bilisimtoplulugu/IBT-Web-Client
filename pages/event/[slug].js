@@ -221,6 +221,10 @@ export default function EventDetail() {
     }
   };
 
+  const addDefaultSrc = async (e) =>{
+    e.target.src = '/assets/images/default.png'
+  }
+
   return (
     <Layout>
       {/* <Head>
@@ -331,6 +335,7 @@ export default function EventDetail() {
 
             
                             <img
+                              onError={addDefaultSrc}
                               src={`${API_URL}/images/${participant._id}.png`}
                               alt="profilePhoto"
                             />
