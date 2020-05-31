@@ -69,7 +69,7 @@ margin-bottom:20px;
 export default function EventPageCard({event}) {
   return (
     <MainArea>
-      <Link href={`/event/${event.seoUrl}`}>
+      <Link href={`/event/[slug].js`} as={`/event/${event.seoUrl}`}>
         <a className="text-decoration-none">
           <CustomCard>
 
