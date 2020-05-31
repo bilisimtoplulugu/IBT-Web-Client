@@ -38,7 +38,7 @@ const MainArea = styled.div`
     opacity: 0.5;
   }
 `;
-export default function HomeEventCard({selectedEventId = "5ed3be79cd7335256970f858"}) {
+export default function HomeEventCard({selectedEventId}) {
   const [selectedEventDetail, setSelectedEventDetail] = useState('');
   const nearEvents = useSelector((state) => state.eventReducer);
 
@@ -48,13 +48,16 @@ export default function HomeEventCard({selectedEventId = "5ed3be79cd7335256970f8
       (event) => event._id == selectedEventId
     );
     setSelectedEventDetail(selectedEvent);
-  }, [nearEvents,selectedEventId]);
+  }, [nearEvents, selectedEventId]);
 
   return (
     <div data-aos="fade-right">
       <MainArea>
         {selectedEventDetail && (
-          <Link href="/about" as="/hakkimizda">
+          <Link
+            href={`/event/${selectedEventDetail.seoUrl}`}
+            /* as={`/etkinlikler/${selectedEventDetail.seoUrl}`} */ // this as not working even i add passhref true attribute
+          >
             <a className="text-decoration-none">
               <CustomCard>
                 <Row>
