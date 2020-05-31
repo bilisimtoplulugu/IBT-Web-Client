@@ -7,6 +7,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {register, login} from '../../redux/actions/user';
 import confirmCode from '../../api/user/confirmCode';
 import emailVerification from '../../api/user/emailVerification';
+import {useRouter} from 'next/router';
 
 const LoginArea = styled.div`
   padding: 50px 0;
@@ -143,8 +144,9 @@ export default function Login() {
   const [code, setCode] = useState('');
   const [isCodeSent, setIsCodeSent] = useState(false);
 
+  const router = useRouter();
   const dispatch = useDispatch();
-  
+
   const sendConfirmCode = async (e) => {
     e.preventDefault();
 
@@ -170,6 +172,8 @@ export default function Login() {
         localStorage.getItem('email-code')
       );
       dispatch(register(name, surname, email, password));
+      //dispatch(login(email, password));
+      router.push('/');
     } catch ({response: {data}}) {
       console.log(data); // something went wrong, show the data (message) to user
     }
@@ -180,6 +184,7 @@ export default function Login() {
 
     try {
       dispatch(login(email, password));
+      router.push('/');
     } catch ({response: {data}}) {
       console.log(data); // something went wrong, show the data (message) to user
     }

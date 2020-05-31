@@ -129,6 +129,7 @@ const EventInfo = styled.div`
 export default function Home() {
   const [whichCard, setWhichCard] = useState(1);
   const dispatch = useDispatch();
+  const activeUser = useSelector((state) => state.userReducer);
 
   useEffect(() => {
     AOS.init();
@@ -137,7 +138,7 @@ export default function Home() {
   /* ABÇ: TEMP AUTH */
   useEffect(() => {
     const token = localStorage.getItem('jwt');
-    if (token) {
+    if (token && Array.isArray(activeUser)) {
       dispatch(auth(token));
     }
   }, [auth]);

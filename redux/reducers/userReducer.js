@@ -6,6 +6,8 @@ export const userReducer = (state=initialState, action) => {
   switch (type) {
     case 'LOGIN':
       return payload;
+    case 'REGISTER':
+      return payload;
     case 'AUTH':
       return payload;
     default:

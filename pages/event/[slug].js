@@ -20,7 +20,9 @@ import join from '../../api/event/join';
 import {isArray} from 'util';
 
 import CustomCard from '../../components/CustomCard';
-import { API_URL } from '../../config';
+
+import {API_URL} from '../../config';
+
 
 const EventDetailArea = styled.div`
 margin-top:50px;
@@ -194,7 +196,7 @@ export default function EventDetail() {
   /* ABÇ: TEMP AUTH */
   useEffect(() => {
     const token = localStorage.getItem('jwt');
-    if (token) {
+    if (token && Array.isArray(activeUser)) {
       dispatch(auth(token));
     }
   }, [auth]);
@@ -273,7 +275,7 @@ export default function EventDetail() {
               <CustomCard>
                 <RightContent>
                   <div className="topSide">
-                    <h3 className="subTitle">Düzenleyen</h3>
+                    <h3 className="subTitle">Organizatör</h3>
                     <span className="title">{eventData.organizer}</span>
                   </div>
                   <div className="mb-3">
@@ -326,17 +328,17 @@ export default function EventDetail() {
                       eventParticipants.map((participant, index) => (
                         <Col key={index} xs={6} sm={4} lg={3}>
                           <CustomCard>
-                 
-                             <img
-                                 src={`${API_URL}/images/${participant._id}.png`}
-                               
 
-                                alt="profilePhoto"
-                              /> 
-                              <span>
-                                {participant.name} {participant.surname}{' '}
-                              </span>
-                  
+            
+                            <img
+                              src={`${API_URL}/images/${participant._id}.png`}
+                              alt="profilePhoto"
+                            />
+                            <span>
+                              {participant.name} {participant.surname}{' '}
+                            </span>
+                         
+
                           </CustomCard>
                         </Col>
                       ))}
@@ -350,8 +352,9 @@ export default function EventDetail() {
           <Container>
             <Row>
               <Col xs={8} sm={8} className="d-none d-sm-block">
-                <span className="attendClock">
-                  {eventData.date} - {eventData.time}
+                <span className="clock attendClock">
+                  {isoToNormal(eventData.date)}
+
                 </span>
                 <span >{eventData.subtitle}</span>
               </Col>

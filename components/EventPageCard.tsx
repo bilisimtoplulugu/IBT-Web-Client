@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import Link from 'next/link';
 import Card from 'react-bootstrap/Card';
 import styled from 'styled-components';
-import { Row, Col } from 'react-bootstrap';
+import {Row, Col} from 'react-bootstrap';
 import CustomCard from './CustomCard';
-
-
+import isoToNormal from '../utils/isoToNormal';
 
 const MainArea = styled.div`
+
 transition: all 0.3s ease;
 margin-bottom:20px;
   img {
@@ -72,7 +72,6 @@ export default function EventPageCard({event}) {
       <Link href={`/event/[slug].js`} as={`/event/${event.seoUrl}`}>
         <a className="text-decoration-none">
           <CustomCard>
-
             <Row>
               <Col xs={12} md={4}>
                 <img src={event.imagePath} />
@@ -81,7 +80,7 @@ export default function EventPageCard({event}) {
                 <Row>
                   {/* TODO:768 PX PROBLEM */}
                   <Col xs={12} sm={12}>
-                    <span className="clock">11 Mayıs Pazartesi, 13.30</span>
+                    <span className="clock">{isoToNormal(event.date)}</span>
                   </Col>
                   <Col xs={12} sm={12}>
                     <span className="title">{event.title}</span>
@@ -98,7 +97,9 @@ export default function EventPageCard({event}) {
                 <div className="eventProvider">
                   <Row>
                     <Col xs={12} sm={6}>
-                      <span className="participant">{event.participants.length} Katılımcı</span>
+                      <span className="participant">
+                        {event.participants.length} Katılımcı
+                      </span>
                     </Col>
                     <Col xs={12} sm={6}>
                       <span className="providerName text-left text-sm-right">
@@ -109,10 +110,9 @@ export default function EventPageCard({event}) {
                 </div>
               </Col>
             </Row>
-
           </CustomCard>
         </a>
       </Link>
-     </MainArea>
+    </MainArea>
   );
 }

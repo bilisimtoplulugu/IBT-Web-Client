@@ -4,13 +4,13 @@ import {API_URL} from '../../config';
 export const register = (name, surname, email, password) => async (
   dispatch
 ) => {
-  await axios.post(`${API_URL}/user/register`, {
+  const {data} = await axios.post(`${API_URL}/user/register`, {
     name,
     surname,
     email,
     password,
   });
-  return dispatch({type: 'REGISTER'});
+  return dispatch({type: 'REGISTER', payload: data});
 };
 
 export const auth = (token) => async (dispatch) => {
