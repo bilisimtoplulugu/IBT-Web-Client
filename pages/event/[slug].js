@@ -120,6 +120,7 @@ const ParticipantsArea = styled.div`
     transition: all 0.3s ease;
     cursor: pointer;
     margin-bottom: 15px;
+    min-height:175px;
   }
 
   .card:hover {

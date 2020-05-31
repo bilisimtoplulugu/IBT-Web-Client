@@ -149,9 +149,7 @@ export default function Header() {
               <Link href="/team" as={'/takim'} passHref={true}>
                 <NavLink>Takım</NavLink>
               </Link>
-              <Link href="/iletisim" passHref={true}>
-                <NavLink>İletişim</NavLink>
-              </Link>
+             
               {!Array.isArray(activeUser) && activeUser ? (
                 <CustomDropdown onClick={() => console.log(activeUser)}>
                   <CustomDropdown.Toggle
