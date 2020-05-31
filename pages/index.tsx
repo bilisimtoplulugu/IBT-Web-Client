@@ -19,6 +19,7 @@ import HomeEventCard from '../components/HomeEventCard';
 import CareerTalksDetailCard from '../components/CareerTalksDetailCard';
 import WebinarDetailCard from '../components/WebinarDetailCard';
 import WorkshopDetailCard from '../components/WorkshopDetailCard';
+import { getNearEvents } from '../redux/actions/event';
 
 const InstagramProfile = styled.div`
   background: #e1306c;
@@ -134,6 +135,10 @@ export default function Home() {
   useEffect(() => {
     AOS.init();
   });
+
+  useEffect(() => {
+    dispatch(getNearEvents())
+  },[])
 
   /* ABÇ: TEMP AUTH */
   useEffect(() => {

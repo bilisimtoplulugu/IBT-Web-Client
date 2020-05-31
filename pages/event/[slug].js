@@ -262,7 +262,7 @@ export default function EventDetail() {
           <Row>
             <Col xs={{order: 2, span: 12}} md={{order: 1, span: 8}}>
               <CustomCard>
-                <img className="mb-3" src={eventData.imagePath} />
+                <img className="mb-3" src={`${API_URL}/images/event/${eventData.seoUrl}.png`} />
                 <span className="subTitle ">Detaylar</span>
                 <p>{eventData.description}</p>
               </CustomCard>
