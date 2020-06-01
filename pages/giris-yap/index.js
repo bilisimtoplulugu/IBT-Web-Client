@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Layout from '../../components/Layout';
 import PageTopSide from '../../components/PageTopSide';
 import styled from 'styled-components';
-import {Container, Row, Col, Tabs, Tab, Form, Button} from 'react-bootstrap';
+import {Container, Row, Col, Tabs, Tab, Form, Button,Toast} from 'react-bootstrap';
 import {useDispatch, useSelector} from 'react-redux';
 import {register, login} from '../../redux/actions/user';
 import confirmCode from '../../api/user/confirmCode';
@@ -111,6 +111,11 @@ const LoginArea = styled.div`
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
   }
+
+  .resend{
+    color: #0097e4;
+    cursor:pointer; 
+  }
 `;
 
 const CustomButton = styled(Button)`
@@ -144,9 +149,16 @@ export default function Login() {
   const [code, setCode] = useState('');
   const [isCodeSent, setIsCodeSent] = useState(false);
 
+
+  const [show, setShow] = useState(false);
+
   const router = useRouter();
   const dispatch = useDispatch();
 
+  const resendCode  =  () =>{
+      console.log("asd");
+      setShow(true)
+  }
   const sendConfirmCode = async (e) => {
     e.preventDefault();
 
@@ -192,6 +204,20 @@ export default function Login() {
 
   return (
     <Layout>
+       <Toast  style={{
+      position: 'fixed',
+      zIndex:5,
+      top: 20,
+      right: 20,
+    }} onClose={() => setShow(false)} show={show}  delay={2000} autohide>
+          <Toast.Header style={{
+                background: "#0097e4",
+                color: "white"
+          }}>
+            <strong className="mr-auto">Hatırlatma!</strong>
+          </Toast.Header>
+          <Toast.Body>E-Postanızın diğer kutularını kontrol etmeyi unutmayınız!</Toast.Body>
+        </Toast>
       <PageTopSide
         responsiveTop="40"
         responsiveHeight="300"
@@ -200,8 +226,9 @@ export default function Login() {
         title="Giriş Yap"
         desc="Topluluğumuzun avantajlarından faydalanmak için sistemimize giriş yapabilirsiniz."
       />
-
+      
       <LoginArea>
+     
         <Container>
           <Row className="tabsArea">
             <Col xs={12} md={8} lg={4}>
@@ -306,12 +333,9 @@ export default function Login() {
                         value={code}
                         onChange={({target: {value}}) => setCode(value)}
                       />
-                      <Form.Text className="text-muted">
-                        E-postanızda diğer kutuları da kontrol etmeyi
-                        unutmayınız.
-                      </Form.Text>
+          
                     </Form.Group>
-                    <CustomButton>Kodu Tekrar Gönder</CustomButton>
+                    <CustomButton onClick={resendCode}>Kodu Tekrar Gönder</CustomButton>
                     <CustomButton type="submit" className="mt-2">
                       Onayla
                     </CustomButton>
