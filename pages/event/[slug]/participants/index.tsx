@@ -11,6 +11,7 @@ import {
   faArrowLeft,
 } from '@fortawesome/free-solid-svg-icons';
 import Head from 'next/head';
+import CustomCard from '../../../../components/CustomCard';
 
 const MainArea = styled.div`
   margin-bottom: 50px;
@@ -77,20 +78,6 @@ const CustomButton = styled(Button)`
   }
 `;
 
-const CustomCard = styled(Card)`
-  box-shadow: 0 0px 20px rgba(169, 169, 169, 0.2);
-  border: none;
-  color: #253a4a;
-  margin-top: 20px;
-  .title {
-    font-size: 20pt;
-    font-weight: 400;
-  }
-
-  .subTitle {
-    font-size: 15pt !important;
-  }
-`;
 
 export default function Participants() {
   const router = useRouter();
@@ -140,8 +127,8 @@ export default function Participants() {
         <Container>
           <Row className="tabsArea">
             <Col xs={12} lg={8}>
-              <Card>
-                <Card.Body>
+              <CustomCard>
+                
                   <Row>
                     <Col xs={12} className="backArea">
                       <CustomButton>
@@ -190,8 +177,8 @@ export default function Participants() {
                       </div>
                     </Col>
                   </Row>
-                </Card.Body>
-              </Card>
+         
+              </CustomCard>
             </Col>
           </Row>
         </Container>

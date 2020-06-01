@@ -218,6 +218,7 @@ export default function index() {
                   <Form.File
                     id="custom-file"
                     type="file"
+                    accept="image/*" 
                     name="file"
                     custom
                     label="Custom file input"

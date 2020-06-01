@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'aos/dist/aos.css';
+import 'react-day-picker/lib/style.css';
 import {auth} from '../redux/actions/user';
 
 export default function MyApp({Component, pageProps}) {
