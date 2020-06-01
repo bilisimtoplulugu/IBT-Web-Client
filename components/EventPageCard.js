@@ -5,11 +5,11 @@ import styled from 'styled-components';
 import {Row, Col} from 'react-bootstrap';
 import CustomCard from './CustomCard';
 import isoToNormal from '../utils/isoToNormal';
+import {API_URL} from '../config';
 
 const MainArea = styled.div`
-
-transition: all 0.3s ease;
-margin-bottom:20px;
+  transition: all 0.3s ease;
+  margin-bottom: 20px;
   img {
     width: 100%;
     border-radius: 5px;
@@ -22,7 +22,7 @@ margin-bottom:20px;
     font-weight: 400;
     opacity: 0.6;
   }
- 
+
   .clock {
     font-size: 15pt;
     font-weight: 400;
@@ -74,7 +74,7 @@ export default function EventPageCard({event}) {
           <CustomCard>
             <Row>
               <Col xs={12} md={4}>
-                <img src={event.imagePath} />
+                <img src={`${API_URL}/images/event/${event.seoUrl}.png`} />
               </Col>
               <Col xs={12} md={8}>
                 <Row>

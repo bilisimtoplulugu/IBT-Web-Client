@@ -182,13 +182,14 @@ export default function EventDetail() {
   const activeUser = useSelector((state) => state.userReducer);
   const router = useRouter();
   const dispatch = useDispatch();
+  const eventURL = router.query.slug;
 
   useEffect(() => {
-    if (isArray(activeUser)) return;
+    //if (isArray(activeUser)) return;
     /* ABÇ: RUNS 2 TIMES!! */
-
+    console.log('get event data usefect');
     getEventData();
-  }, [activeUser, isRegisteredToEvent]);
+  }, [eventURL /* activeUser, isRegisteredToEvent */]);
 
   /* ABÇ: TEMP AUTH */
   useEffect(() => {
@@ -205,18 +206,18 @@ export default function EventDetail() {
   };
 
   const getEventData = async () => {
-    const eventURL = router.query.slug;
-
     if (!eventURL) return;
     try {
       const {event, participants} = await getEvent(eventURL);
-      console.log(participants);
       setEventData(event);
       setEventParticipants(participants);
-      activeUser.joinedEvents.map((joinedEvent) => {
-        if (joinedEvent == event._id) setIsRegisteredToEvent(true);
-      });
+      if (!Array.isArray(activeUser)) {
+        activeUser.joinedEvents.map((joinedEvent) => {
+          if (joinedEvent == event._id) setIsRegisteredToEvent(true);
+        });
+      }
     } catch (error) {
+      return router.push('/404'); // event could not found so redirect to 404
       console.log(error);
     }
   };

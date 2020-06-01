@@ -5,6 +5,7 @@ import Link from 'next/link';
 import CustomCard from './CustomCard';
 import {useSelector} from 'react-redux';
 import {isArray} from 'util';
+import { API_URL } from '../config';
 
 const MainArea = styled.div`
   img {
@@ -62,7 +63,9 @@ export default function HomeEventCard({selectedEventId}) {
               <CustomCard>
                 <Row>
                   <Col xs={12} md={4}>
-                    <img src={selectedEventDetail.imagePath} />
+                    <img
+                      src={`${API_URL}/images/event/${selectedEventDetail.seoUrl}.png`}
+                    />
                   </Col>
                   <Col xs={12} md={8}>
                     <Row>

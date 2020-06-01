@@ -8,30 +8,41 @@ import AOS from 'aos';
 
 import EventDateSlider from '../components/EventDateSlider';
 import HomeEventCard from '../components/HomeEventCard';
+import { auth } from '../redux/actions/user';
 
 const MainArea = styled.div`
   margin: 30px 0;
 `;
 
 export default function Custom404() {
-  const [selectedEventId, setSelectedEventId] = useState(1);
-  const dispatch = useDispatch();
+  // const [selectedEventId, setSelectedEventId] = useState(1);
+  /* const dispatch = useDispatch(); */
 
-  const handleSelectedEventId = (id) => {
-    setSelectedEventId(id);
-  };
+  /* ABÇ: TEMP AUTH */
+  /* useEffect(() => {
+    const token = localStorage.getItem('jwt');
+    if (token && Array.isArray(activeUser)) {
+      dispatch(authh(token));
+    }
+  }, [auth]); */
 
-  useEffect(() => {
-    AOS.init();
-  });
+  // const handleSelectedEventId = (id) => {
+  //   setSelectedEventId(id);
+  // };
 
-  useEffect(() => {
-    dispatch(getNearEvents());
-  }, []);
+  // useEffect(() => {
+  //   AOS.init();
+
+  // });
+
+  // useEffect(() => {
+  //   dispatch(getNearEvents());
+  // }, []);
 
   return (
     <Layout>
-      <Head>
+      {/* 
+<Head>
         <title>
           Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim
           Etkinlikleri - 404
@@ -77,7 +88,7 @@ export default function Custom404() {
         />
         <meta name="twitter:creator" content="@bilisimtopluluk" />
         <meta name="twitter:image" content="/assets/images/socialLogo.png" />
-      </Head>
+      </Head> */}
 
       <PageTopSide
         responsiveTop="40"
@@ -89,23 +100,22 @@ export default function Custom404() {
           bir durumda değildir."
       />
       <div>
-        <Container>
-          <MainArea>
-            <h4>Belkide yakın zamandaki etkinliklere göz atmak istersiniz.</h4>
+        {/* <Container>
+                  <MainArea>
+                    <h4>Belkide yakın zamandaki etkinliklere göz atmak istersiniz.</h4>
 
-            <Row>
-              <Col xs={12}>
-                <EventDateSlider
-                  handleSelectedEventId={handleSelectedEventId}
-                />
-              </Col>
+                    <Row>
+                        <Col xs={12}>
+                          <EventDateSlider handleSelectedEventId={handleSelectedEventId} />
+                        </Col>
 
-              <Col xs={12}>
-                <HomeEventCard selectedEventId={selectedEventId} />
-              </Col>
-            </Row>
-          </MainArea>
-        </Container>
+                        <Col xs={12}>
+                          <HomeEventCard selectedEventId={selectedEventId} />
+                        </Col>
+                      </Row>
+
+                  </MainArea>
+                </Container> */}
       </div>
     </Layout>
   );

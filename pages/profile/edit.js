@@ -116,12 +116,12 @@ export default function index() {
   /* CRASHED !!! */
   
   /* ABÇ: TEMP AUTH */
-/*   useEffect(() => {
+  useEffect(() => {
     const token = localStorage.getItem('jwt');
     if (token && Array.isArray(activeUser)) {
       dispatch(auth(token));
     }
-  }, [auth]); */
+  }, [auth]);
 
   //Modal
   const [show, setShow] = useState(false);
