@@ -1,45 +1,37 @@
-import Layout from "../components/Layout";
-import PageTopSide from '../components/PageTopSide'
-import { Container } from "react-bootstrap";
-import styled from "styled-components";
+import Layout from '../components/Layout';
+import PageTopSide from '../components/PageTopSide';
+import {Container} from 'react-bootstrap';
+import styled from 'styled-components';
 import {Row, Col} from 'react-bootstrap';
-import React, {useState,useEffect,useDispatch} from 'react';
+import React, {useState, useEffect, useDispatch} from 'react';
 import AOS from 'aos';
 
 import EventDateSlider from '../components/EventDateSlider';
 import HomeEventCard from '../components/HomeEventCard';
 
 const MainArea = styled.div`
-
-margin:30px 0;
-
+  margin: 30px 0;
 `;
 
 export default function Custom404() {
-
   const [selectedEventId, setSelectedEventId] = useState(1);
   const dispatch = useDispatch();
-  
+
   const handleSelectedEventId = (id) => {
     setSelectedEventId(id);
   };
 
-  
   useEffect(() => {
     AOS.init();
-
   });
 
   useEffect(() => {
     dispatch(getNearEvents());
   }, []);
 
-
-    return(
-        <Layout>
-
-
-<Head>
+  return (
+    <Layout>
+      <Head>
         <title>
           Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim
           Etkinlikleri - 404
@@ -87,29 +79,34 @@ export default function Custom404() {
         <meta name="twitter:image" content="/assets/images/socialLogo.png" />
       </Head>
 
-          
-          <PageTopSide responsiveTop="40" responsiveHeight="300" bgImage="./../assets/images/homeBg.jpg" defaultHeight="250" title="404" desc="Aradığınız sayfa şu anda ulaşılabilir
-          bir durumda değildir." />
-            <div>
-                <Container>
-                  <MainArea>
-                    <h4>Belkide yakın zamandaki etkinliklere göz atmak istersiniz.</h4>
+      <PageTopSide
+        responsiveTop="40"
+        responsiveHeight="300"
+        bgImage="./../assets/images/homeBg.jpg"
+        defaultHeight="250"
+        title="404"
+        desc="Aradığınız sayfa şu anda ulaşılabilir
+          bir durumda değildir."
+      />
+      <div>
+        <Container>
+          <MainArea>
+            <h4>Belkide yakın zamandaki etkinliklere göz atmak istersiniz.</h4>
 
-                    <Row>
-                        <Col xs={12}>
-                          <EventDateSlider handleSelectedEventId={handleSelectedEventId} />
-                        </Col>
+            <Row>
+              <Col xs={12}>
+                <EventDateSlider
+                  handleSelectedEventId={handleSelectedEventId}
+                />
+              </Col>
 
-                        <Col xs={12}>
-                          <HomeEventCard selectedEventId={selectedEventId} />
-                        </Col>
-                      </Row>
-
-                  </MainArea>
-                </Container>
-            </div>
-
-        
-        </Layout>
-    )
-  }
+              <Col xs={12}>
+                <HomeEventCard selectedEventId={selectedEventId} />
+              </Col>
+            </Row>
+          </MainArea>
+        </Container>
+      </div>
+    </Layout>
+  );
+}

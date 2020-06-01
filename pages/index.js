@@ -125,9 +125,10 @@ const EventInfo = styled.div`
     box-shadow: 0 3px 20px rgba(169, 169, 169, 0.5);
   }
 `;
+
 export default function Home() {
   const [whichCard, setWhichCard] = useState(1);
-  const [selectedEventId, setSelectedEventId] = useState(1);
+  const [selectedEventId, setSelectedEventId] = useState('');
   const dispatch = useDispatch();
   const activeUser = useSelector((state) => state.userReducer);
 

@@ -20,7 +20,7 @@ import changeProfilePhoto from '../../api/user/changeProfilePhoto';
 
 import {API_URL} from '../../config';
 import {auth} from '../../redux/actions/user';
-import {useDispatch} from 'react-redux/lib/hooks/useDispatch';
+import {useDispatch} from 'react-redux';
 import {useRouter} from 'next/router';
 import CustomCard from './../../components/CustomCard';
 
@@ -35,16 +35,16 @@ const MainArea = styled.div`
     top: 0;
     bottom: 0;
     display: flex;
-    opacity:0;
+    opacity: 0;
     align-items: center;
     justify-content: center;
     background: rgba(0, 0, 0, 0.4);
     color: White;
-    transition:all .3s ease;
+    transition: all 0.3s ease;
   }
-  .selectImage:hover{
-    opacity:1;
-    transition:all .3s ease;
+  .selectImage:hover {
+    opacity: 1;
+    transition: all 0.3s ease;
   }
   .selectImageModal .previewPhoto {
     width: 100px;
@@ -92,6 +92,7 @@ const CustomButton = styled(Button)`
 
 export default function index() {
   const activeUser = useSelector((state) => state.userReducer);
+  const dispatch = useDispatch();
   const router = useRouter();
 
   /* change personal info form states */
@@ -107,15 +108,15 @@ export default function index() {
   const [newPass, setNewPass] = useState('');
   const [newPassAgain, setNewPassAgain] = useState('');
 
-  useEffect(() => {
+/*   useEffect(() => {
     // redirect to homepage if there is no logged in user
     if (Array.isArray(activeUser)) router.push('/');
-  }, [activeUser]);
+  }, [activeUser]); */
 
   /* CRASHED !!! */
-  //const dispatch = useDispatch();
+  
   /* ABÇ: TEMP AUTH */
-  /*   useEffect(() => {
+/*   useEffect(() => {
     const token = localStorage.getItem('jwt');
     if (token && Array.isArray(activeUser)) {
       dispatch(auth(token));
@@ -132,6 +133,7 @@ export default function index() {
 
     try {
       await changePersonalInfo(activeUser._id, name, surname, email);
+      dispatch(auth(localStorage.getItem('jwt')));
       console.log('personal data changed');
     } catch (error) {
       console.log(error); //something went wrong, should show to user
@@ -146,6 +148,7 @@ export default function index() {
 
     try {
       await changeProfilePhoto(activeUser._id, formData);
+      dispatch(auth(localStorage.getItem('jwt')));
       console.log('profile photo updated'); // message to user
     } catch (error) {
       console.log(error); //something went wrong, should show to user
@@ -157,6 +160,7 @@ export default function index() {
 
     try {
       await changePassword(activeUser._id, oldPass, newPass, newPassAgain);
+      dispatch(auth(localStorage.getItem('jwt')));
       console.log('pass changed'); // message to user
     } catch (error) {
       console.log(error); //something went wrong, should show to user
@@ -174,9 +178,9 @@ export default function index() {
     }.bind(this);
   };
 
-  const addDefaultSrc = async (e) =>{
-    e.target.src = '/assets/images/default.png'
-  }
+  const addDefaultSrc = async (e) => {
+    e.target.src = '/assets/images/default.png';
+  };
   return (
     <Layout>
       <PageTopSide
@@ -218,7 +222,7 @@ export default function index() {
                   <Form.File
                     id="custom-file"
                     type="file"
-                    accept="image/*" 
+                    accept="image/*"
                     name="file"
                     custom
                     label="Custom file input"
@@ -269,7 +273,7 @@ export default function index() {
                                 <div className="userImage">
                                   <img
                                     onError={addDefaultSrc}
-                                    src={`${API_URL}/images/activeUser.username`}
+                                    src={`${API_URL}/images/${activeUser._id}.png`}
                                   />
                                   <div
                                     className="selectImage"
@@ -281,7 +285,7 @@ export default function index() {
                               </Col>
                               <Col xs={12} md={9}>
                                 <Row>
-                                  <Col xs={12} >
+                                  <Col xs={12}>
                                     <Form.Group controlId="formBasicEmail">
                                       <Form.Label>Kullanıcı Adı</Form.Label>
                                       <Form.Control
@@ -295,7 +299,7 @@ export default function index() {
                                       />
                                     </Form.Group>
                                   </Col>
-                                  <Col xs={12} >
+                                  <Col xs={12}>
                                     <Form.Group controlId="formBasicEmail">
                                       <Form.Label>Adı</Form.Label>
                                       <Form.Control
@@ -309,7 +313,7 @@ export default function index() {
                                       />
                                     </Form.Group>
                                   </Col>
-                                  <Col xs={12} >
+                                  <Col xs={12}>
                                     <Form.Group controlId="formBasicPassword">
                                       <Form.Label>Soyadı</Form.Label>
                                       <Form.Control
@@ -323,7 +327,7 @@ export default function index() {
                                       />
                                     </Form.Group>
                                   </Col>
-                                  <Col xs={12} >
+                                  <Col xs={12}>
                                     <Form.Group controlId="formBasicPassword">
                                       <Form.Label>E-Posta</Form.Label>
                                       <Form.Control

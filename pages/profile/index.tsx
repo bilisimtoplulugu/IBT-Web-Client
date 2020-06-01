@@ -189,7 +189,7 @@ export default function index() {
                         sm={6}
                         className="text-center mb-4 mb-sm-0 text-sm-right"
                       >
-                        <Link href="">
+                        <Link href="/profile/allevents">
                           <a className="text-decoration-none">
                             <span className="seeAll">Tümünü Gör</span>
                           </a>

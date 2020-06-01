@@ -23,7 +23,6 @@ import CustomCard from '../../components/CustomCard';
 
 import {API_URL} from '../../config';
 
-
 const EventDetailArea = styled.div`
 margin-top:50px;
 .topSide{
@@ -120,7 +119,7 @@ const ParticipantsArea = styled.div`
     transition: all 0.3s ease;
     cursor: pointer;
     margin-bottom: 15px;
-    min-height:175px;
+    min-height: 175px;
   }
 
   .card:hover {
@@ -157,7 +156,6 @@ const ParticipantsArea = styled.div`
 
       flex-wrap: nowrap;
     }
-   
   }
   .seeAll {
     opacity: 0.5;
@@ -171,11 +169,10 @@ const ParticipantsArea = styled.div`
   }
 `;
 
-const RightContent= styled.div`
-
-.clock{
-  display:unset;
-}
+const RightContent = styled.div`
+  .clock {
+    display: unset;
+  }
 `;
 
 export default function EventDetail() {
@@ -187,7 +184,6 @@ export default function EventDetail() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(isArray(activeUser));
     if (isArray(activeUser)) return;
     /* ABÇ: RUNS 2 TIMES!! */
 
@@ -202,8 +198,10 @@ export default function EventDetail() {
     }
   }, [auth]);
 
-  const joinToEvent = () => {
-    join(activeUser._id, eventData._id);
+  const joinToEvent = async () => {
+    await join(activeUser._id, eventData._id);
+    dispatch(auth(localStorage.getItem('jwt')));
+    getEventData();
   };
 
   const getEventData = async () => {
@@ -212,6 +210,7 @@ export default function EventDetail() {
     if (!eventURL) return;
     try {
       const {event, participants} = await getEvent(eventURL);
+      console.log(participants);
       setEventData(event);
       setEventParticipants(participants);
       activeUser.joinedEvents.map((joinedEvent) => {
@@ -222,9 +221,9 @@ export default function EventDetail() {
     }
   };
 
-  const addDefaultSrc = async (e) =>{
-    e.target.src = '/assets/images/default.png'
-  }
+  const addDefaultSrc = async (e) => {
+    e.target.src = '/assets/images/default.png';
+  };
 
   return (
     <Layout>
@@ -267,7 +266,10 @@ export default function EventDetail() {
           <Row>
             <Col xs={{order: 2, span: 12}} md={{order: 1, span: 8}}>
               <CustomCard>
-                <img className="mb-3" src={`${API_URL}/images/event/${eventData.seoUrl}.png`} />
+                <img
+                  className="mb-3"
+                  src={`${API_URL}/images/event/${eventData.seoUrl}.png`}
+                />
                 <span className="subTitle ">Detaylar</span>
                 <p>{eventData.description}</p>
               </CustomCard>
@@ -298,10 +300,12 @@ export default function EventDetail() {
                       </ul>
                     </div>
                   </div>
-                  <div className="mb-3">
-                    <i className="fas fa-headphones"></i>
-                    <span className="clock">{eventData.moderator} </span>
-                  </div>
+                  {eventData.moderator && (
+                    <div className="mb-3">
+                      <i className="fas fa-headphones"></i>
+                      <span className="clock">{eventData.moderator} </span>
+                    </div>
+                  )}
                   {eventData.isOnline && (
                     <div className="mb-3">
                       <i className="fas fa-video"></i>
@@ -322,7 +326,7 @@ export default function EventDetail() {
                     <h2>Katılımcılar</h2>
                   </Col>
                   <Col className="d-flex align-items-center justify-content-end">
-                    <Link href="">
+                    <Link href="/event/career-talks/participants">
                       <a className="seeAll">Tümünü Gör</a>
                     </Link>
                   </Col>
@@ -333,8 +337,6 @@ export default function EventDetail() {
                       eventParticipants.map((participant, index) => (
                         <Col key={index} xs={6} sm={4} lg={3}>
                           <CustomCard>
-
-            
                             <img
                               onError={addDefaultSrc}
                               src={`${API_URL}/images/${participant._id}.png`}
@@ -343,8 +345,6 @@ export default function EventDetail() {
                             <span>
                               {participant.name} {participant.surname}{' '}
                             </span>
-                         
-
                           </CustomCard>
                         </Col>
                       ))}
@@ -360,9 +360,8 @@ export default function EventDetail() {
               <Col xs={8} sm={8} className="d-none d-sm-block">
                 <span className="attendClock">
                   {isoToNormal(eventData.date)}
-
                 </span>
-                <span >{eventData.subtitle}</span>
+                <span>{eventData.subtitle}</span>
               </Col>
               <Col
                 xs={12}
