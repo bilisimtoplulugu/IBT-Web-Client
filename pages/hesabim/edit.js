@@ -22,7 +22,7 @@ import {API_URL} from '../../config';
 import {auth} from '../../redux/actions/user';
 import {useDispatch} from 'react-redux';
 import {useRouter} from 'next/router';
-import CustomCard from './../../components/CustomCard';
+import CustomCard from '../../components/CustomCard';
 
 const MainArea = styled.div`
   margin: 50px 0;

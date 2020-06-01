@@ -126,12 +126,12 @@ export default function Footer() {
                 <h6 className="footerTitle mt-5 mt-md-0 ">Hakkımızda</h6>
                 <ul>
                   <li>
-                    <Link href="/event" as="/etkinlikler" passHref={true}>
+                    <Link href="/etkinlikler"passHref={true}>
                       <a>Etkinlikler</a>
                     </Link>
                   </li>
                   <li>
-                    <Link href="/sponsor">
+                    <Link href="/sponsorlar">
                       <a>Sponsorlar</a>
                     </Link>
                   </li>

@@ -15,7 +15,7 @@
 
 
 
-    const CustomButton = styled(Button)`
+    const CustomButton = styled.a`
     font-size: 11pt;
     color: #fff !important;
     border-radius: 5px;
@@ -45,7 +45,9 @@
             <MainArea>
                 <Row>
                     <Col xs={12} className="text-right">
-                        <CustomButton>Yeni Etkinlik</CustomButton>
+                        <Link href="/topluluk/etkinlik-olustur" >
+                        <CustomButton className="btn" >Yeni Etkinlik</CustomButton>
+                        </Link>
 
                     </Col>
                     <Col xs={12} >
