@@ -358,7 +358,7 @@ export default function EventDetail() {
         <AttendArea>
           <Container>
             <Row>
-              <Col xs={8} sm={8} className="d-none d-sm-block">
+              <Col xs={8} sm={6} className="d-none d-sm-block">
                 <span className="attendClock">
                   {isoToNormal(eventData.date)}
                 </span>
@@ -366,11 +366,15 @@ export default function EventDetail() {
               </Col>
               <Col
                 xs={12}
-                sm={4}
+                sm={6}
                 className="d-block d-sm-flex align-items-sm-center justify-content-sm-end"
               >
                 {isRegisteredToEvent ? (
-                  <span>Gidiyorsunuz</span>
+                 <div className="text-right"> <span className="d-inline mr-2">Gidiyorsunuz</span>
+                 <FilterButton className="btn" >
+                 İptal Et
+                 </FilterButton></div>
+
                 ) : (
                   <div>
                     <FilterButton className="btn d-block" onClick={joinToEvent}>
