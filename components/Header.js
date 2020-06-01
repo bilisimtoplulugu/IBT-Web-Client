@@ -140,7 +140,7 @@ export default function Header() {
               <Link href="/" passHref={true}>
                 <NavLink>Anasayfa</NavLink>
               </Link>
-              <Link href={'/event'} as={'/etkinlikler'} passHref={true}>
+              <Link href={'/etkinlikler'} passHref={true}>
                 <NavLink>Etkinlikler</NavLink>
               </Link>
               <Link href="/blog" passHref={true}>
@@ -149,9 +149,7 @@ export default function Header() {
               <Link href="/team" as={'/takim'} passHref={true}>
                 <NavLink>Takım</NavLink>
               </Link>
-              <Link href="/iletisim" passHref={true}>
-                <NavLink>İletişim</NavLink>
-              </Link>
+             
               {!Array.isArray(activeUser) && activeUser ? (
                 <CustomDropdown onClick={() => console.log(activeUser)}>
                   <CustomDropdown.Toggle
@@ -162,20 +160,20 @@ export default function Header() {
                   </CustomDropdown.Toggle>
 
                   <CustomDropdown.Menu>
-                    <Link href="/profile" as="/hesabım" passHref={true}>
+                    <Link href="/hesabim"  passHref={true}>
                       <CustomDropdown.Item>Hesabım</CustomDropdown.Item>
                     </Link>
-                    <Link href="/profile" as="/hesabım" passHref={true}>
+                    <Link href="/topluluk"  passHref={true}>
                       <CustomDropdown.Item>Topluluk</CustomDropdown.Item>
                     </Link>
-                    <CustomDropdown.Item href="#/action-2" onClick={logout}>
+                    <CustomDropdown.Item onClick={logout}>
                       Çıkış Yap
                     </CustomDropdown.Item>
                   </CustomDropdown.Menu>
                 </CustomDropdown>
               ) : (
                 <div className="d-flex" onClick={() => console.log(activeUser)}>
-                  <Link href="/login" as="/giris-yap" passHref={true}>
+                  <Link href="/giris-yap"  passHref={true}>
                     <CustomButton className="btn" id="supportButton">
                       Giriş Yap
                     </CustomButton>

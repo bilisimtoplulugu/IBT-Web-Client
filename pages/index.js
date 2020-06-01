@@ -1,9 +1,7 @@
 import React, {useEffect, useState, useRef} from 'react';
 import {Container, Row, Col, Form, Button, Card} from 'react-bootstrap';
-import styled, {keyframes} from 'styled-components';
-import WelcomeSlider from '../components/WelcomeSlider';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faInstagram} from '@fortawesome/free-brands-svg-icons';
+import styled from 'styled-components';
+
 import {useDispatch, useSelector} from 'react-redux';
 import {auth} from '../redux/actions/user';
 
@@ -127,9 +125,10 @@ const EventInfo = styled.div`
     box-shadow: 0 3px 20px rgba(169, 169, 169, 0.5);
   }
 `;
+
 export default function Home() {
   const [whichCard, setWhichCard] = useState(1);
-  const [selectedEventId, setSelectedEventId] = useState(1);
+  const [selectedEventId, setSelectedEventId] = useState('');
   const dispatch = useDispatch();
   const activeUser = useSelector((state) => state.userReducer);
 

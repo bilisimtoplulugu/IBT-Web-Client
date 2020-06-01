@@ -23,7 +23,6 @@ import CustomCard from '../../components/CustomCard';
 
 import {API_URL} from '../../config';
 
-
 const EventDetailArea = styled.div`
 margin-top:50px;
 .topSide{
@@ -120,6 +119,7 @@ const ParticipantsArea = styled.div`
     transition: all 0.3s ease;
     cursor: pointer;
     margin-bottom: 15px;
+    min-height: 175px;
   }
 
   .card:hover {
@@ -156,7 +156,6 @@ const ParticipantsArea = styled.div`
 
       flex-wrap: nowrap;
     }
-   
   }
   .seeAll {
     opacity: 0.5;
@@ -170,11 +169,10 @@ const ParticipantsArea = styled.div`
   }
 `;
 
-const RightContent= styled.div`
-
-.clock{
-  display:unset;
-}
+const RightContent = styled.div`
+  .clock {
+    display: unset;
+  }
 `;
 
 export default function EventDetail() {
@@ -184,14 +182,14 @@ export default function EventDetail() {
   const activeUser = useSelector((state) => state.userReducer);
   const router = useRouter();
   const dispatch = useDispatch();
+  const eventURL = router.query.slug;
 
   useEffect(() => {
-    console.log(isArray(activeUser));
-    if (isArray(activeUser)) return;
+    //if (isArray(activeUser)) return;
     /* ABÇ: RUNS 2 TIMES!! */
-
+    console.log('get event data usefect');
     getEventData();
-  }, [activeUser, isRegisteredToEvent]);
+  }, [eventURL /* activeUser, isRegisteredToEvent */]);
 
   /* ABÇ: TEMP AUTH */
   useEffect(() => {
@@ -201,24 +199,31 @@ export default function EventDetail() {
     }
   }, [auth]);
 
-  const joinToEvent = () => {
-    join(activeUser._id, eventData._id);
+  const joinToEvent = async () => {
+    await join(activeUser._id, eventData._id);
+    dispatch(auth(localStorage.getItem('jwt')));
+    getEventData();
   };
 
   const getEventData = async () => {
-    const eventURL = router.query.slug;
-
     if (!eventURL) return;
     try {
       const {event, participants} = await getEvent(eventURL);
       setEventData(event);
       setEventParticipants(participants);
-      activeUser.joinedEvents.map((joinedEvent) => {
-        if (joinedEvent == event._id) setIsRegisteredToEvent(true);
-      });
+      if (!Array.isArray(activeUser)) {
+        activeUser.joinedEvents.map((joinedEvent) => {
+          if (joinedEvent == event._id) setIsRegisteredToEvent(true);
+        });
+      }
     } catch (error) {
+      return router.push('/404'); // event could not found so redirect to 404
       console.log(error);
     }
+  };
+
+  const addDefaultSrc = async (e) => {
+    e.target.src = '/assets/images/default.png';
   };
 
   return (
@@ -262,7 +267,10 @@ export default function EventDetail() {
           <Row>
             <Col xs={{order: 2, span: 12}} md={{order: 1, span: 8}}>
               <CustomCard>
-                <img className="mb-3" src={`${API_URL}/images/event/${eventData.seoUrl}.png`} />
+                <img
+                  className="mb-3"
+                  src={`${API_URL}/images/event/${eventData.seoUrl}.png`}
+                />
                 <span className="subTitle ">Detaylar</span>
                 <p>{eventData.description}</p>
               </CustomCard>
@@ -293,10 +301,12 @@ export default function EventDetail() {
                       </ul>
                     </div>
                   </div>
-                  <div className="mb-3">
-                    <i className="fas fa-headphones"></i>
-                    <span className="clock">{eventData.moderator} </span>
-                  </div>
+                  {eventData.moderator && (
+                    <div className="mb-3">
+                      <i className="fas fa-headphones"></i>
+                      <span className="clock">{eventData.moderator} </span>
+                    </div>
+                  )}
                   {eventData.isOnline && (
                     <div className="mb-3">
                       <i className="fas fa-video"></i>
@@ -317,7 +327,7 @@ export default function EventDetail() {
                     <h2>Katılımcılar</h2>
                   </Col>
                   <Col className="d-flex align-items-center justify-content-end">
-                    <Link href="">
+                    <Link href="/event/career-talks/participants">
                       <a className="seeAll">Tümünü Gör</a>
                     </Link>
                   </Col>
@@ -328,17 +338,14 @@ export default function EventDetail() {
                       eventParticipants.map((participant, index) => (
                         <Col key={index} xs={6} sm={4} lg={3}>
                           <CustomCard>
-
-            
                             <img
+                              onError={addDefaultSrc}
                               src={`${API_URL}/images/${participant._id}.png`}
                               alt="profilePhoto"
                             />
                             <span>
                               {participant.name} {participant.surname}{' '}
                             </span>
-                         
-
                           </CustomCard>
                         </Col>
                       ))}
@@ -351,20 +358,23 @@ export default function EventDetail() {
         <AttendArea>
           <Container>
             <Row>
-              <Col xs={8} sm={8} className="d-none d-sm-block">
+              <Col xs={8} sm={6} className="d-none d-sm-block">
                 <span className="attendClock">
                   {isoToNormal(eventData.date)}
-
                 </span>
-                <span >{eventData.subtitle}</span>
+                <span>{eventData.subtitle}</span>
               </Col>
               <Col
                 xs={12}
-                sm={4}
+                sm={6}
                 className="d-block d-sm-flex align-items-sm-center justify-content-sm-end"
               >
                 {isRegisteredToEvent ? (
-                  <span>Gidiyorsunuz</span>
+                 <div className="text-right"> <span className="d-inline mr-2">Gidiyorsunuz</span>
+                 <FilterButton className="btn" >
+                 İptal Et
+                 </FilterButton></div>
+
                 ) : (
                   <div>
                     <FilterButton className="btn d-block" onClick={joinToEvent}>

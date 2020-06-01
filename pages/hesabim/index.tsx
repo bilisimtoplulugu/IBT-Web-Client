@@ -125,6 +125,11 @@ export default function index() {
     }
   }, [auth]);
 
+
+  const addDefaultSrc = async (e) =>{
+    e.target.src = '/assets/images/default.png'
+  }
+
   return (
     <Layout>
       <PageTopSide
@@ -146,6 +151,7 @@ export default function index() {
                       <Col xs={12} sm={3} md={2}>
                         <div className="userImage">
                           <img
+                          onError={addDefaultSrc}
                             src={`${API_URL}/images/${activeUser._id}.png`}
                             alt="profilePhoto"
                           />
@@ -166,7 +172,7 @@ export default function index() {
                       </Col>
                     </Row>
                     <div className="editProfile">
-                      <Link href="profile/edit">
+                      <Link href="hesabim/düzenle">
                         <a>
                           <i className="fas fa-edit"></i>
                         </a>
@@ -183,7 +189,7 @@ export default function index() {
                         sm={6}
                         className="text-center mb-4 mb-sm-0 text-sm-right"
                       >
-                        <Link href="">
+                        <Link href="/profile/allevents">
                           <a className="text-decoration-none">
                             <span className="seeAll">Tümünü Gör</span>
                           </a>

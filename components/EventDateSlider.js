@@ -45,12 +45,9 @@ const CustomSlider = styled(Slider)`
 `;
 
 const settings = {
-  infinite: true,
-  speed: 500,
   initialSlide: 0,
-  slidesToShow: 3, // ABÇ default:5
+  slidesToShow: 2, // ABÇ default:5
   slidesToScroll: 1,
-
   responsive: [
     {
       breakpoint: 1024,
