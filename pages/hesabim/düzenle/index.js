@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import Layout from '../../components/Layout';
-import PageTopSide from '../../components/PageTopSide';
+import Layout from '../../../components/Layout';
+import PageTopSide from '../../../components/PageTopSide';
 import {
   Container,
   Row,
@@ -13,16 +13,16 @@ import {
   Modal,
 } from 'react-bootstrap';
 import styled from 'styled-components';
-import changePassword from '../../api/user/changePassword';
+import changePassword from '../../../api/user/changePassword';
 import {useSelector} from 'react-redux';
-import changePersonalInfo from '../../api/user/changePersonalInfo';
-import changeProfilePhoto from '../../api/user/changeProfilePhoto';
+import changePersonalInfo from '../../../api/user/changePersonalInfo';
+import changeProfilePhoto from '../../../api/user/changeProfilePhoto';
 
-import {API_URL} from '../../config';
-import {auth} from '../../redux/actions/user';
+import {API_URL} from '../../../config';
+import {auth} from '../../../redux/actions/user';
 import {useDispatch} from 'react-redux';
 import {useRouter} from 'next/router';
-import CustomCard from '../../components/CustomCard';
+import CustomCard from '../../../components/CustomCard';
 
 const MainArea = styled.div`
   margin: 50px 0;
@@ -207,7 +207,7 @@ export default function index() {
                       src={
                         previewPhoto
                           ? previewPhoto
-                          : 'https://via.placeholder.com/100'
+                          : '/assets/images/default.png'
                       }
                       style={{
                         width: '100px',
