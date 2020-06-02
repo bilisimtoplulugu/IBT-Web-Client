@@ -12,6 +12,11 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import Head from 'next/head';
 import CustomCard from '../../../../components/CustomCard';
+import Link from 'next/link';
+import getAllParticipants from '../../../../api/event/getAllParticipants';
+import {API_URL} from '../../../../config';
+import {useDispatch, useSelector} from 'react-redux';
+import {auth} from '../../../../redux/actions/user';
 
 const MainArea = styled.div`
   margin-bottom: 50px;
@@ -78,14 +83,30 @@ const CustomButton = styled(Button)`
   }
 `;
 
-
 export default function Participants() {
+  const activeUser = useSelector((state) => state.userReducer);
+  const dispatch = useDispatch();
+  const [allParticipants, setAllParticipants] = useState('');
   const router = useRouter();
+  const eventURL = router.query.slug;
+
+  /* ABÇ: TEMP AUTH */
+  useEffect(() => {
+    const token = localStorage.getItem('jwt');
+    if (token && Array.isArray(activeUser)) {
+      dispatch(auth(token));
+    }
+  }, [auth]);
 
   useEffect(() => {
-    console.log('use effect of participants page');
-    console.log(router.query.slug)
-  }, []);
+    if (!eventURL) return;
+    getParticipants();
+  }, [eventURL]);
+
+  const getParticipants = async () => {
+    const res = await getAllParticipants(eventURL);
+    setAllParticipants(res);
+  };
 
   return (
     <Layout>
@@ -128,56 +149,55 @@ export default function Participants() {
           <Row className="tabsArea">
             <Col xs={12} lg={8}>
               <CustomCard>
-                
-                  <Row>
-                    <Col xs={12} className="backArea">
-                      <CustomButton>
-                        <i className="fas fa-chevron-left"></i>
-                        <span className="backText">Etkinliğe Geri Dön</span>
-                      </CustomButton>
-                    </Col>
-                    <Col xs={12}>
-                      <Form className="mt-4 ">
-                        <Form.Group controlId="formBasicEmail">
-                          <Form.Control
-                            type="email"
-                            placeholder="Katılımcı ara."
-                          />
-                        </Form.Group>
-                      </Form>
-                    </Col>
-                    <Col xs={12}>
-                      <div className="participantCard">
-                        <Row className="align-items-center text-center text-sm-left">
-                          <Col xs={12} sm={3} md={2}>
-                            <img src="/assets/images/berkaydogukan.jpg" />
-                          </Col>
-                          <Col xs={12} sm={9} md={10} className="mt-3 mt-sm-0">
-                            <span className="name">Berkay Doğukan Urhan</span>
-                            <span className="date">
-                              28 Mart 2020, Pazartesi
-                            </span>
-                          </Col>
-                        </Row>
-                      </div>
-                    </Col>
-                    <Col xs={12}>
-                      <div className="participantCard">
-                        <Row className="align-items-center text-center text-sm-left">
-                          <Col xs={12} sm={3} md={2}>
-                            <img src="/assets/images/berkaydogukan.jpg" />
-                          </Col>
-                          <Col xs={12} sm={9} md={10} className="mt-3 mt-sm-0">
-                            <span className="name">Berkay Doğukan Urhan</span>
-                            <span className="date">
-                              28 Mart 2020, Pazartesi
-                            </span>
-                          </Col>
-                        </Row>
-                      </div>
-                    </Col>
-                  </Row>
-         
+                <Row>
+                  <Col xs={12} className="backArea">
+                    <CustomButton>
+                      <i className="fas fa-chevron-left"></i>
+                      <Link href={`/etkinlikler/${eventURL}`}>
+                        <a>
+                          <span className="backText">Etkinliğe Geri Dön</span>
+                        </a>
+                      </Link>
+                    </CustomButton>
+                  </Col>
+                  <Col xs={12}>
+                    <Form className="mt-4 ">
+                      <Form.Group controlId="formBasicEmail">
+                        <Form.Control
+                          type="email"
+                          placeholder="Katılımcı ara."
+                        />
+                      </Form.Group>
+                    </Form>
+                  </Col>
+                  {allParticipants &&
+                    allParticipants.map((participant, index) => (
+                      <Col xs={12} key={index}>
+                        <div className="participantCard">
+                          <Row className="align-items-center text-center text-sm-left">
+                            <Col xs={12} sm={3} md={2}>
+                              <img
+                                src={`${API_URL}/images/${participant._id}.png`}
+                              />
+                            </Col>
+                            <Col
+                              xs={12}
+                              sm={9}
+                              md={10}
+                              className="mt-3 mt-sm-0"
+                            >
+                              <span className="name">
+                                {participant.name} {participant.surname}
+                              </span>
+                              <span className="date">
+                                28 Mart 2020, Pazartesi
+                              </span>
+                            </Col>
+                          </Row>
+                        </div>
+                      </Col>
+                    ))}
+                </Row>
               </CustomCard>
             </Col>
           </Row>

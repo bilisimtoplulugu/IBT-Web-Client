@@ -17,7 +17,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import isoToNormal from '../../utils/isoToNormal';
 import getEvent from '../../api/event/getEvent';
 import join from '../../api/event/join';
-import {isArray} from 'util';
+import unjoin from '../../api/event/unjoin';
 
 import CustomCard from '../../components/CustomCard';
 
@@ -185,11 +185,8 @@ export default function EventDetail() {
   const eventURL = router.query.slug;
 
   useEffect(() => {
-    //if (isArray(activeUser)) return;
-    /* ABÇ: RUNS 2 TIMES!! */
-    console.log('get event data usefect');
     getEventData();
-  }, [eventURL /* activeUser, isRegisteredToEvent */]);
+  }, [eventURL, activeUser]);
 
   /* ABÇ: TEMP AUTH */
   useEffect(() => {
@@ -202,7 +199,12 @@ export default function EventDetail() {
   const joinToEvent = async () => {
     await join(activeUser._id, eventData._id);
     dispatch(auth(localStorage.getItem('jwt')));
-    getEventData();
+  };
+
+  const unjoinFromEvent = async () => {
+    await unjoin(activeUser._id, eventData._id);
+    setIsRegisteredToEvent(false);
+    dispatch(auth(localStorage.getItem('jwt')));
   };
 
   const getEventData = async () => {
@@ -212,13 +214,14 @@ export default function EventDetail() {
       setEventData(event);
       setEventParticipants(participants);
       if (!Array.isArray(activeUser)) {
+        console.log('test');
         activeUser.joinedEvents.map((joinedEvent) => {
           if (joinedEvent == event._id) setIsRegisteredToEvent(true);
         });
       }
     } catch (error) {
-      return router.push('/404'); // event could not found so redirect to 404
       console.log(error);
+      return router.push('/404'); // event could not found so redirect to 404
     }
   };
 
@@ -327,7 +330,7 @@ export default function EventDetail() {
                     <h2>Katılımcılar</h2>
                   </Col>
                   <Col className="d-flex align-items-center justify-content-end">
-                    <Link href="/event/career-talks/participants">
+                    <Link href={`/etkinlikler/${eventURL}/katilimcilar`} passHref={true}>
                       <a className="seeAll">Tümünü Gör</a>
                     </Link>
                   </Col>
@@ -370,11 +373,13 @@ export default function EventDetail() {
                 className="d-block d-sm-flex align-items-sm-center justify-content-sm-end"
               >
                 {isRegisteredToEvent ? (
-                 <div className="text-right"> <span className="d-inline mr-2">Gidiyorsunuz</span>
-                 <FilterButton className="btn" >
-                 İptal Et
-                 </FilterButton></div>
-
+                  <div className="text-right">
+                    {' '}
+                    <span className="d-inline mr-2">Gidiyorsunuz</span>
+                    <FilterButton className="btn" onClick={unjoinFromEvent}>
+                      İptal Et
+                    </FilterButton>
+                  </div>
                 ) : (
                   <div>
                     <FilterButton className="btn d-block" onClick={joinToEvent}>

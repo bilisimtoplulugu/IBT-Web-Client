@@ -1,12 +1,11 @@
 import axios from 'axios';
 import {API_URL} from '../../config';
 
-export default (userId, eventId) =>
+export default (eventUrl) =>
   new Promise(async (resolve, reject) => {
     try {
-      const {data} = await axios.patch(`${API_URL}/event/join`, {
-        userId,
-        eventId,
+      const {data} = await axios.get(`${API_URL}/event/all-participants`, {
+        params: {eventUrl},
       });
       return resolve(data);
     } catch (error) {
