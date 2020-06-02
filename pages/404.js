@@ -9,14 +9,14 @@ import AOS from 'aos';
 import EventDateSlider from '../components/EventDateSlider';
 import HomeEventCard from '../components/HomeEventCard';
 import { auth } from '../redux/actions/user';
-
+import {getNearEvents} from '../redux/actions/event';
 const MainArea = styled.div`
   margin: 30px 0;
 `;
 
 export default function Custom404() {
   // const [selectedEventId, setSelectedEventId] = useState(1);
-  /* const dispatch = useDispatch(); */
+  //  const dispatch = useDispatch(); 
 
   /* ABÇ: TEMP AUTH */
   /* useEffect(() => {
@@ -26,9 +26,9 @@ export default function Custom404() {
     }
   }, [auth]); */
 
-  // const handleSelectedEventId = (id) => {
-  //   setSelectedEventId(id);
-  // };
+  const handleSelectedEventId = (id) => {
+    setSelectedEventId(id);
+  };
 
   // useEffect(() => {
   //   AOS.init();
@@ -100,22 +100,22 @@ export default function Custom404() {
           bir durumda değildir."
       />
       <div>
-        {/* <Container>
+        <Container>
                   <MainArea>
                     <h4>Belkide yakın zamandaki etkinliklere göz atmak istersiniz.</h4>
 
                     <Row>
                         <Col xs={12}>
-                          <EventDateSlider handleSelectedEventId={handleSelectedEventId} />
+                          {/* <EventDateSlider handleSelectedEventId={handleSelectedEventId} /> */}
                         </Col>
 
                         <Col xs={12}>
-                          <HomeEventCard selectedEventId={selectedEventId} />
+                          {/* <HomeEventCard selectedEventId={selectedEventId} /> */}
                         </Col>
                       </Row>
 
                   </MainArea>
-                </Container> */}
+                </Container>
       </div>
     </Layout>
   );
