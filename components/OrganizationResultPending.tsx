@@ -18,7 +18,7 @@ export default function OrganizationResultPending() {
     return (
         <Container>
             <Row className="d-flex justify-content-center">
-                <Col xs={6}>
+                <Col xs={12} sm={8}>
                 <MainArea>
                 <CustomCard>
                     <img className="mt-3" src="/assets/icon/pending.svg" />

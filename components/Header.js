@@ -130,9 +130,12 @@ export default function Header() {
     >
       <Container>
         <CustomNavbar expand="lg" variant="dark">
-          <Navbar.Brand href="/">
+          <Link href="/">
+         <a >
+         <Navbar.Brand >
             <Logo src="/assets/images/logo.png" alt="" />
           </Navbar.Brand>
+           </a></Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto">

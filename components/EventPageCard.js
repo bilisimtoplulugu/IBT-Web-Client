@@ -69,7 +69,7 @@ const MainArea = styled.div`
 export default function EventPageCard({event}) {
   return (
     <MainArea>
-      <Link href={`/etkinlikler/${event.seoUrl}`} passHref={true}>
+      <Link href={`/etkinlikler/[slug]`} as={`/etkinlikler/${event.seoUrl}`} passHref={true}>
         <a className="text-decoration-none">
           <CustomCard>
             <Row>

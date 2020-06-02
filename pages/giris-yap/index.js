@@ -112,9 +112,10 @@ const LoginArea = styled.div`
     transform: rotate(45deg);
   }
 
-  .resend{
+  .resend a{
     color: #0097e4;
     cursor:pointer; 
+    font-size:10pt;
   }
 `;
 
@@ -335,7 +336,9 @@ export default function Login() {
                       />
           
                     </Form.Group>
-                    <CustomButton onClick={resendCode}>Kodu Tekrar Gönder</CustomButton>
+                   <div className="text-right resend">
+                   <a onClick={resendCode}>Kodu Tekrar Gönder</a>
+                   </div>
                     <CustomButton type="submit" className="mt-2">
                       Onayla
                     </CustomButton>

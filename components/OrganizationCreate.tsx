@@ -78,7 +78,7 @@ export default function OrganizationCreate() {
   
             <Container>
                 <Row className="d-flex justify-content-center">
-                    <Col xs={4}>
+                    <Col xs={12} sm={8} md={6}>
                         <Inner>
                         <CustomCard >
                            <Form>
