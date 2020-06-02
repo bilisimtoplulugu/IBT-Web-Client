@@ -16,13 +16,13 @@ margin-bottom:30px ;
 .contentArea{
     margin-top: -20px;
     justify-content: center;
-    font-size: 20pt;
+    font-size: 12pt;
 }
 .form-group{
     margin-bottom: 25px;
 }
 .form-group input{
-    font-size: 15pt;
+    font-size: 12pt;
 }
 .DayPickerInput{
     display:block
@@ -33,7 +33,7 @@ margin-bottom:30px ;
     width: 100%;
     height: calc(1.5em + .75rem + 2px);
     padding: .375rem .75rem;
-    font-size: 15pt;
+    font-size: 12pt;
     font-weight: 400;
     line-height: 1.5;
     color: #495057;
@@ -85,6 +85,12 @@ margin-bottom:30px ;
 }
 .photoArea .editButton label{
     cursor: pointer;
+    font-size: 20pt;
+}
+.text-muted{
+    
+    font-size: 10pt;
+    margin-bottom:5px;
 }
 `;
 const CustomButton = styled.label`
@@ -138,6 +144,8 @@ const MONTHS = [
 
   const WEEKDAYS_SHORT = ['Pa', 'Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct'];
 export default function addevent() {
+
+    const [showLimit, setShowLimit] = useState(false)
 
     const [previewThumbnail, setPreviewThumbnail] = useState(null)
 
@@ -235,6 +243,53 @@ export default function addevent() {
                                                     <input hidden id="fileUpload" onChange={({currentTarget: {files}}) => changePhoto(files[0])} type="file" accept="image/*" />
                                             </div>
                                             </Form.Group>
+                                            </Col>
+                                            <Col xs={12}>
+                                            <Form.Group controlId="exampleForm.ControlTextarea1">
+                                            <Form.Label>Açıklama</Form.Label>
+                                            <span className="text-muted">Katılımcılarınızı gündem dahil neyle karşılaşacağı, ne getirmesi gerektiği ve grubun nasıl bulunacağı hakkında bilgilendirin.</span>
+                                                
+                                                <Form.Control as="textarea" rows={3} />
+                                            </Form.Group>
+                                                                            
+                                            </Col>
+                                            <Col xs={12}>
+                                            <Form.Group controlId="exampleForm.ControlTextarea1">
+                                            <Form.Label>Gerçekleşeceği Yer</Form.Label>
+                                            <Form.Check type="checkbox" label="Online Etkinlik" />
+                                            <Form.Control
+                                                type="text"
+                                                className="shadow-none mt-2"
+                                                placeholder="Mekan"
+                                            />
+                                            </Form.Group>
+                                                                            
+                                            </Col>
+
+                                            <Col xs={12}>
+                                            <Form.Group controlId="exampleForm.ControlTextarea1" className="spe">
+                                            <Form.Label>Özel Ayarlar</Form.Label>
+                                           
+                                             <Row>
+                                                <Col xs={9}>
+                                                <Form.Check 
+                                                type="switch"
+                                                id="custom-switch"
+                                                label="Katılımcı Sınırı"
+                                                onChange={() => setShowLimit(!showLimit)}
+                                            />
+                                                </Col>
+                                                <Col xs={3}>
+                                                {showLimit && <Form.Control 
+                                                type="number"
+                                                value="20"
+                                                className="shadow-none mt-2"
+                                                placeholder="Mekan"
+                                            />}
+                                                </Col>
+                                            </Row> 
+                                            </Form.Group>
+                                                                            
                                             </Col>
                                         </Form.Row>
 
