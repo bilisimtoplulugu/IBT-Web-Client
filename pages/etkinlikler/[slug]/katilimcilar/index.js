@@ -57,10 +57,11 @@ const MainArea = styled.div`
   }
   .backArea {
     font-size: 20pt;
+    color:white;
   }
 `;
 
-const CustomButton = styled(Button)`
+const CustomButton = styled.a`
   font-size: 14pt;
   font-weight: 400;
   color: #fff !important;
@@ -151,14 +152,12 @@ export default function Participants() {
               <CustomCard>
                 <Row>
                   <Col xs={12} className="backArea">
-                    <CustomButton>
+                  <Link href={`/etkinlikler/[slug]`} as={`/etkinlikler/${eventURL}`}>
+                    <CustomButton className="btn">
                       <i className="fas fa-chevron-left"></i>
-                      <Link href={`/etkinlikler/${eventURL}`}>
-                        <a>
-                          <span className="backText">Etkinliğe Geri Dön</span>
-                        </a>
-                      </Link>
+                      <span className="backText">Etkinliğe Geri Dön</span>     
                     </CustomButton>
+                    </Link>
                   </Col>
                   <Col xs={12}>
                     <Form className="mt-4 ">
