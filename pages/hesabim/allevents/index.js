@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import styled from 'styled-components';
 import {Container, Row, Col, Card, Form, Button} from 'react-bootstrap';
@@ -14,6 +14,8 @@ import Layout from '../../../components/Layout';
 import PageTopSide from '../../../components/PageTopSide';
 // import ProfileAllEventCard from '../../../components/ProfileAllEventCard'; / not found
 import OrganizationEventCard from '../../../components/OrganizationEventCard';
+import {useSelector, useDispatch} from 'react-redux';
+import { auth } from '../../../redux/actions/user';
 
 const MainArea = styled.div`
   margin-bottom: 50px;
@@ -74,6 +76,17 @@ const CustomButton = styled(Button)`
 `;
 
 export default function Participants() {
+  const dispatch = useDispatch();
+  const activeUser = useSelector((state) => state.userReducer);
+
+  /* ABÇ: TEMP AUTH */
+  useEffect(() => {
+    const token = localStorage.getItem('jwt');
+    if (token && Array.isArray(activeUser)) {
+      dispatch(auth(token));
+    }
+  }, [auth]);
+
   return (
     <Layout>
       {/* <Head>
