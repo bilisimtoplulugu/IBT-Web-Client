@@ -65,9 +65,9 @@ const CustomHeader = styled.header`
 const CustomNavbar = styled(Navbar)`
   padding-left: 0;
   padding-right: 0;
-  .show>.btn-primary.dropdown-toggle{
-    background:none; 
-   }
+  .show > .btn-primary.dropdown-toggle {
+    background: none;
+  }
   @media (max-width: 991px) {
     .navbar-collapse {
       background: rgb(37, 59, 75);
@@ -78,17 +78,16 @@ const CustomNavbar = styled(Navbar)`
 `;
 
 const CustomDropdown = styled(Dropdown)`
-
-
   button:focus,
   button:active,
   button:hover {
     background-color: unset !important;
   }
-  
-  .dropdown-item.active, .dropdown-item:active{
-    background:none;
-    color:unset;
+
+  .dropdown-item.active,
+  .dropdown-item:active {
+    background: none;
+    color: unset;
   }
   button {
     font-size: 11pt;
@@ -146,10 +145,10 @@ export default function Header() {
               <Link href="/blog" passHref={true}>
                 <NavLink>Blog</NavLink>
               </Link>
-              <Link href="/team" as={'/takim'} passHref={true}>
+              <Link href={'/takim'} passHref={true}>
                 <NavLink>Takım</NavLink>
               </Link>
-             
+
               {!Array.isArray(activeUser) && activeUser ? (
                 <CustomDropdown onClick={() => console.log(activeUser)}>
                   <CustomDropdown.Toggle
@@ -160,10 +159,10 @@ export default function Header() {
                   </CustomDropdown.Toggle>
 
                   <CustomDropdown.Menu>
-                    <Link href="/hesabim"  passHref={true}>
+                    <Link href="/hesabim" passHref={true}>
                       <CustomDropdown.Item>Hesabım</CustomDropdown.Item>
                     </Link>
-                    <Link href="/topluluk"  passHref={true}>
+                    <Link href="/topluluk" passHref={true}>
                       <CustomDropdown.Item>Topluluk</CustomDropdown.Item>
                     </Link>
                     <CustomDropdown.Item onClick={logout}>
@@ -173,7 +172,7 @@ export default function Header() {
                 </CustomDropdown>
               ) : (
                 <div className="d-flex" onClick={() => console.log(activeUser)}>
-                  <Link href="/giris-yap"  passHref={true}>
+                  <Link href="/giris-yap" passHref={true}>
                     <CustomButton className="btn" id="supportButton">
                       Giriş Yap
                     </CustomButton>

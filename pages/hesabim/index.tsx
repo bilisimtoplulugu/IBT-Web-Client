@@ -172,7 +172,7 @@ export default function index() {
                       </Col>
                     </Row>
                     <div className="editProfile">
-                      <Link href="hesabim/düzenle">
+                      <Link href="/hesabim/duzenle">
                         <a>
                           <i className="fas fa-edit"></i>
                         </a>
