@@ -164,7 +164,7 @@ export default function Login() {
   const router = useRouter();
   const dispatch = useDispatch();
 
-  /* ABÇ: TEMP AUTH */
+  // redirect to homepage if user logged in already
   useEffect(() => {
     const token = localStorage.getItem('jwt');
     if (token && activeUser) router.push('/');

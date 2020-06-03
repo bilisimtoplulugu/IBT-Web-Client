@@ -16,6 +16,7 @@ import PageTopSide from '../../../components/PageTopSide';
 import OrganizationEventCard from '../../../components/OrganizationEventCard';
 import {useSelector, useDispatch} from 'react-redux';
 import { auth } from '../../../redux/actions/user';
+import { useRouter } from 'next/router';
 
 const MainArea = styled.div`
   margin-bottom: 50px;
@@ -77,6 +78,7 @@ const CustomButton = styled(Button)`
 
 export default function Participants() {
   const dispatch = useDispatch();
+  const router = useRouter();
   const activeUser = useSelector((state) => state.userReducer);
 
   /* ABÇ: TEMP AUTH */
@@ -84,7 +86,9 @@ export default function Participants() {
     const token = localStorage.getItem('jwt');
     if (token && Array.isArray(activeUser)) {
       dispatch(auth(token));
+      return;
     }
+    router.push('/');
   }, [auth]);
 
   return (

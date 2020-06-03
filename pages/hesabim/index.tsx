@@ -8,7 +8,8 @@ import {faEdit} from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import CustomCard from '../../components/CustomCard';
 import {API_URL} from '../../config';
-import { auth } from '../../redux/actions/user';
+import {auth} from '../../redux/actions/user';
+import {useRouter} from 'next/router';
 
 const MainArea = styled.div`
   margin: 50px 0;
@@ -116,18 +117,21 @@ const MainArea = styled.div`
 export default function index() {
   const activeUser = useSelector((state) => state.userReducer);
   const dispatch = useDispatch();
+  const router = useRouter();
 
   /* ABÇ: TEMP AUTH */
   useEffect(() => {
     const token = localStorage.getItem('jwt');
     if (token && Array.isArray(activeUser)) {
       dispatch(auth(token));
+      return;
     }
+    router.push('/');
   }, [auth]);
 
-  const addDefaultSrc = async (e) =>{
-    e.target.src = '/assets/images/default.png'
-  }
+  const addDefaultSrc = async (e) => {
+    e.target.src = '/assets/images/default.png';
+  };
 
   return (
     <Layout>
@@ -150,7 +154,7 @@ export default function index() {
                       <Col xs={12} sm={3} md={2}>
                         <div className="userImage">
                           <img
-                          onError={addDefaultSrc}
+                            onError={addDefaultSrc}
                             src={`${API_URL}/images/${activeUser._id}.png`}
                             alt="profilePhoto"
                           />
