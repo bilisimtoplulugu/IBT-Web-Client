@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import styled from 'styled-components';
 import {Container, Row, Col, Card, Form, Button} from 'react-bootstrap';
@@ -15,8 +15,11 @@ import PageTopSide from '../../../components/PageTopSide';
 // import ProfileAllEventCard from '../../../components/ProfileAllEventCard'; / not found
 import OrganizationEventCard from '../../../components/OrganizationEventCard';
 import {useSelector, useDispatch} from 'react-redux';
-import { auth } from '../../../redux/actions/user';
-import { useRouter } from 'next/router';
+import {auth} from '../../../redux/actions/user';
+import {useRouter} from 'next/router';
+import getAllJoinedEvents from '../../../api/user/getAllJoinedEvents';
+import {API_URL} from '../../../config';
+import Link from 'next/link';
 
 const MainArea = styled.div`
   margin-bottom: 50px;
@@ -80,16 +83,26 @@ export default function Participants() {
   const dispatch = useDispatch();
   const router = useRouter();
   const activeUser = useSelector((state) => state.userReducer);
+  const [allJoinedEvents, setAllJoinedEvents] = useState('');
+  const visitedUsername = router.query.slug;
 
   /* ABÇ: TEMP AUTH */
   useEffect(() => {
     const token = localStorage.getItem('jwt');
     if (token && Array.isArray(activeUser)) {
       dispatch(auth(token));
-      return;
     }
-    router.push('/');
   }, [auth]);
+
+  useEffect(() => {
+    if (Array.isArray(activeUser)) return;
+    getEvents();
+  }, [activeUser]);
+
+  const getEvents = async () => {
+    const res = await getAllJoinedEvents(visitedUsername);
+    setAllJoinedEvents(res);
+  };
 
   return (
     <Layout>
@@ -137,7 +150,12 @@ export default function Participants() {
                     <Col xs={12} className="backArea">
                       <CustomButton>
                         <i className="fas fa-chevron-left"></i>
-                        <span className="backText">Profile geri dön</span>
+                        <span
+                          className="backText"
+                          onClick={() => router.push(`/${visitedUsername}`)}
+                        >
+                          Profile geri dön
+                        </span>
                       </CustomButton>
                     </Col>
                     <Col xs={12}>
@@ -150,24 +168,20 @@ export default function Participants() {
                         </Form.Group>
                       </Form>
                     </Col>
-                    <Col xs={12}>
-                      <OrganizationEventCard
-                        title="Career Talks #5"
-                        content="Herkese merhaba!
-                    İstanbul Bilişim Topluluğu olarak “Career Talks” serimize hız kesmeden devam ediyoruz.Bu
-                     hafta bize optiWisdom ‘un kurucusu Doç.Dr. Şadi Evren Şeker eşlik ediyor."
-                        img="imagesadi"
-                      />
-                    </Col>
-                    <Col xs={12}>
-                      <OrganizationEventCard
-                        title="Career Talks #5"
-                        content="Herkese merhaba!
-                    İstanbul Bilişim Topluluğu olarak “Career Talks” serimize hız kesmeden devam ediyoruz.Bu
-                     hafta bize optiWisdom ‘un kurucusu Doç.Dr. Şadi Evren Şeker eşlik ediyor."
-                        img="imagesadi"
-                      />
-                    </Col>
+                    {allJoinedEvents &&
+                      allJoinedEvents.map((event) => (
+                        <Link href={`/etkinlikler/${event.seoUrl}`}>
+                          <a>
+                            <Col xs={12}>
+                              <OrganizationEventCard
+                                title={event.title}
+                                content={event.description}
+                                img={`${API_URL}/images/event/${event.seoUrl}.png`}
+                              />
+                            </Col>
+                          </a>
+                        </Link>
+                      ))}
                   </Row>
                 </Card.Body>
               </Card>
