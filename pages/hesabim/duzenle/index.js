@@ -120,7 +120,10 @@ export default function index() {
     const token = localStorage.getItem('jwt');
     if (token && Array.isArray(activeUser)) {
       dispatch(auth(token));
+      return;
     }
+
+    router.push('/');
   }, [auth]);
 
   //Modal

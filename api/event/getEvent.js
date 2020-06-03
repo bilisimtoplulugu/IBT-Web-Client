@@ -7,8 +7,8 @@ export default (eventURL) =>
       const {
         data: {event, participants},
       } = await axios.get(`${API_URL}/event/${eventURL}`);
-      resolve({event, participants});
+      return resolve({event, participants});
     } catch (error) {
-      reject(error);
+      return reject(error);
     }
   });

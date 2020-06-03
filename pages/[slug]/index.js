@@ -10,6 +10,7 @@ import CustomCard from '../../components/CustomCard';
 import {API_URL} from '../../config';
 import {auth} from '../../redux/actions/user';
 import {useRouter} from 'next/router';
+import getUser from '../../api/user/getUser';
 
 const MainArea = styled.div`
   margin: 50px 0;
@@ -116,18 +117,34 @@ const MainArea = styled.div`
 
 export default function index() {
   const activeUser = useSelector((state) => state.userReducer);
+  const [visitedUserData, setVisitedUserData] = useState('');
   const dispatch = useDispatch();
   const router = useRouter();
+  const visitedUsername = router.query.slug;
 
   /* ABÇ: TEMP AUTH */
   useEffect(() => {
     const token = localStorage.getItem('jwt');
     if (token && Array.isArray(activeUser)) {
       dispatch(auth(token));
+    }
+  }, [auth]);
+
+  useEffect(() => {
+    if (!visitedUsername || !activeUser) return;
+
+    if (visitedUsername === activeUser.username) {
+      setVisitedUserData(activeUser);
       return;
     }
-    router.push('/');
-  }, [auth]);
+
+    getVisitedUserData();
+  }, [visitedUsername, activeUser]);
+
+  const getVisitedUserData = async () => {
+    const res = await getUser(visitedUsername);
+    setVisitedUserData(res);
+  };
 
   const addDefaultSrc = async (e) => {
     e.target.src = '/assets/images/default.png';
@@ -155,7 +172,7 @@ export default function index() {
                         <div className="userImage">
                           <img
                             onError={addDefaultSrc}
-                            src={`${API_URL}/images/${activeUser._id}.png`}
+                            src={`${API_URL}/images/${visitedUserData._id}.png`}
                             alt="profilePhoto"
                           />
                         </div>
@@ -168,19 +185,23 @@ export default function index() {
                       >
                         <div>
                           <span className="userName">
-                            {activeUser.name} {activeUser.surname}
+                            {visitedUserData.name} {visitedUserData.surname}
                           </span>
-                          <span className="userMail">{activeUser.email}</span>
+                          <span className="userMail">
+                            {visitedUserData.email}
+                          </span>
                         </div>
                       </Col>
                     </Row>
-                    <div className="editProfile">
-                      <Link href="/hesabim/duzenle">
-                        <a>
-                          <i className="fas fa-edit"></i>
-                        </a>
-                      </Link>
-                    </div>
+                    {activeUser._id === visitedUserData._id && (
+                      <div className="editProfile">
+                        <Link href="/hesabim/duzenle">
+                          <a>
+                            <i className="fas fa-edit"></i>
+                          </a>
+                        </Link>
+                      </div>
+                    )}
                   </Col>
                   <Col xs={12} className="segment">
                     <Row>

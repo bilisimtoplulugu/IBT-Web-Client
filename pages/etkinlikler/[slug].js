@@ -330,7 +330,8 @@ export default function EventDetail() {
                     <h2>Katılımcılar</h2>
                   </Col>
                   <Col className="d-flex align-items-center justify-content-end">
-                    <Link href={`/etkinlikler/${eventURL}/katilimcilar`} passHref={true}>
+                    {/* <Link href={`/etkinlikler/${eventURL}/katilimcilar`} passHref={true}> */}
+                    <Link href={`/etkinlikler/[slug]/katilimcilar`} as={`/etkinlikler/${eventURL}/katilimcilar`}>
                       <a className="seeAll">Tümünü Gör</a>
                     </Link>
                   </Col>

@@ -9,8 +9,8 @@ import AOS from 'aos';
 import PageTopSide from '../../components/PageTopSide';
 import EventPageCard from '../../components/EventPageCard';
 import axios from 'axios';
-
-
+import {auth} from '../../redux/actions/user';
+import {useDispatch, useSelector} from 'react-redux';
 
 const FilterButton = styled.a`
   font-size: 11pt;
@@ -51,8 +51,6 @@ const GroupButton = styled.div`
       margin: 0;
     }
   }
-
-  
 `;
 const Filters = styled.div`
 transition: all 0.3s ease;
@@ -78,17 +76,16 @@ transition: all 0.3s ease;
 
 const MainArea = styled.div`
   margin: 30px 0;
-  .customSelect{
-
-    border:none;
+  .customSelect {
+    border: none;
     box-shadow: 0 3px 20px rgba(169, 169, 169, 0.2);
   }
 
-  .showFilters{
-    display:block;
+  .showFilters {
+    display: block;
     transition: all 0.3s ease;
   }
-  .overlay{
+  .overlay {
     transition: all 0.3s ease;
     position: fixed;
     left: 0;
@@ -96,18 +93,28 @@ const MainArea = styled.div`
     top: 0;
     bottom: 0;
     background: #000;
-    opacity: .5;
+    opacity: 0.5;
     z-index: 5;
   }
 `;
 
 export default function Event() {
   const [nearEvents, setNearEvents] = useState([]);
+  const dispatch = useDispatch();
+  const activeUser = useSelector((state) => state.userReducer);
 
-  const [mobileFilter, setmobileFilter] = useState(false)
+  const [mobileFilter, setmobileFilter] = useState(false);
   useEffect(() => {
     AOS.init();
   });
+
+  /* ABÇ: TEMP AUTH */
+  useEffect(() => {
+    const token = localStorage.getItem('jwt');
+    if (token && Array.isArray(activeUser)) {
+      dispatch(auth(token));
+    }
+  }, [auth]);
 
   useEffect(() => {
     getNearEvents();
@@ -179,18 +186,26 @@ export default function Event() {
       />
 
       <MainArea>
-        <div className={mobileFilter ? "overlay" : null} onClick={() => setmobileFilter(false)}></div>
+        <div
+          className={mobileFilter ? 'overlay' : null}
+          onClick={() => setmobileFilter(false)}
+        ></div>
         <Container>
           <Row>
             <Col xs={12}>
               <div className="text-right">
                 <div className="d-block d-lg-none">
-                  <FilterButton className="btn" onClick={() => setmobileFilter(true)}>
+                  <FilterButton
+                    className="btn"
+                    onClick={() => setmobileFilter(true)}
+                  >
                     Filtreler
-                </FilterButton>
+                  </FilterButton>
                 </div>
-                <Form.Group className="d-inline-block" controlId="exampleForm.ControlSelect1">
-
+                <Form.Group
+                  className="d-inline-block"
+                  controlId="exampleForm.ControlSelect1"
+                >
                   <Form.Control className="customSelect" as="select">
                     <option>Sırala</option>
                     <option>İstanbul Bilişim Topluluğu</option>
@@ -203,16 +218,20 @@ export default function Event() {
             </Col>
             <Col xs={12} lg={3}>
               <div>
-                <Filters className={mobileFilter ? "showFilters" : null}>
+                <Filters className={mobileFilter ? 'showFilters' : null}>
                   <div className="d-block d-lg-none closeButton">
-               
-                    <i className="fas fa-times" onClick={() => setmobileFilter(false)} ></i>
+                    <i
+                      className="fas fa-times"
+                      onClick={() => setmobileFilter(false)}
+                    ></i>
                   </div>
                   <GroupButton className="mb-4">
                     <FilterButton className="btn active-button">
                       Yaklaşan Etkinlikler
-                </FilterButton>
-                    <FilterButton className="btn ">Geçmiş Etkinlikler</FilterButton>
+                    </FilterButton>
+                    <FilterButton className="btn ">
+                      Geçmiş Etkinlikler
+                    </FilterButton>
                   </GroupButton>
 
                   <Form.Group controlId="exampleForm.ControlSelect1">
@@ -226,11 +245,8 @@ export default function Event() {
                     </Form.Control>
                   </Form.Group>
                 </Filters>
-
-
               </div>
             </Col>
-
 
             <Col xs={12} lg={9}>
               {nearEvents &&

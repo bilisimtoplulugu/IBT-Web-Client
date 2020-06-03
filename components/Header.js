@@ -153,7 +153,7 @@ export default function Header() {
               </Link>
 
               {!Array.isArray(activeUser) && activeUser ? (
-                <CustomDropdown onClick={() => console.log(activeUser)}>
+                <CustomDropdown>
                   <CustomDropdown.Toggle
                     className="shadow-none"
                     id="dropdown-basic"
@@ -174,7 +174,7 @@ export default function Header() {
                   </CustomDropdown.Menu>
                 </CustomDropdown>
               ) : (
-                <div className="d-flex" onClick={() => console.log(activeUser)}>
+                <div className="d-flex">
                   <Link href="/giris-yap" passHref={true}>
                     <CustomButton className="btn" id="supportButton">
                       Giriş Yap
