@@ -109,6 +109,9 @@ export default function Participants() {
     setAllParticipants(res);
   };
 
+  const addDefaultSrc = async (e) => {
+    e.target.src = '/assets/images/default.png';
+  };
   return (
     <Layout>
       {/* <Head>
@@ -176,6 +179,7 @@ export default function Participants() {
                           <Row className="align-items-center text-center text-sm-left">
                             <Col xs={12} sm={3} md={2}>
                               <img
+                                onError={addDefaultSrc}
                                 src={`${API_URL}/images/${participant._id}.png`}
                               />
                             </Col>

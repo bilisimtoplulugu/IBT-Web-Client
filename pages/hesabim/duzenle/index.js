@@ -280,7 +280,7 @@ export default function index() {
                                   />
                                   <div
                                     className="selectImage"
-                                    onClick={handleShow}
+                                  onClick={handleShow}
                                   >
                                     <i className="fas fa-user-edit"></i>
                                   </div>
