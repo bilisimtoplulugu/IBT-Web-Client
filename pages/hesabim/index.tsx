@@ -125,7 +125,6 @@ export default function index() {
     }
   }, [auth]);
 
-
   const addDefaultSrc = async (e) =>{
     e.target.src = '/assets/images/default.png'
   }

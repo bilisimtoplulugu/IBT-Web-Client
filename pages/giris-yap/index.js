@@ -2,7 +2,16 @@ import React, {useState, useEffect} from 'react';
 import Layout from '../../components/Layout';
 import PageTopSide from '../../components/PageTopSide';
 import styled from 'styled-components';
-import {Container, Row, Col, Tabs, Tab, Form, Button,Toast} from 'react-bootstrap';
+import {
+  Container,
+  Row,
+  Col,
+  Tabs,
+  Tab,
+  Form,
+  Button,
+  Toast,
+} from 'react-bootstrap';
 import {useDispatch, useSelector} from 'react-redux';
 import {register, login} from '../../redux/actions/user';
 import confirmCode from '../../api/user/confirmCode';
@@ -112,10 +121,10 @@ const LoginArea = styled.div`
     transform: rotate(45deg);
   }
 
-  .resend a{
+  .resend a {
     color: #0097e4;
-    cursor:pointer; 
-    font-size:10pt;
+    cursor: pointer;
+    font-size: 10pt;
   }
 `;
 
@@ -149,19 +158,29 @@ export default function Login() {
   const [passwordAgain, setPasswordAgain] = useState('');
   const [code, setCode] = useState('');
   const [isCodeSent, setIsCodeSent] = useState(false);
-
-
   const [show, setShow] = useState(false);
 
+  const activeUser = useSelector((state) => state.userReducer);
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const resendCode  =  () =>{
-      console.log("asd");
-      setShow(true)
-  }
+  /* ABÇ: TEMP AUTH */
+  useEffect(() => {
+    const token = localStorage.getItem('jwt');
+    if (token && activeUser) router.push('/');
+  }, []);
+
+  const resendCode = () => {
+    sendConfirmCode();
+    setShow(true);
+  };
+
   const sendConfirmCode = async (e) => {
-    e.preventDefault();
+    try{
+      e.preventDefault();
+    }catch(error){
+      // do not do anything
+    }
 
     if (!name || !surname || !email || !password || !passwordAgain) return; // credentials can not be empty
 
@@ -205,20 +224,30 @@ export default function Login() {
 
   return (
     <Layout>
-       <Toast  style={{
-      position: 'fixed',
-      zIndex:5,
-      top: 20,
-      right: 20,
-    }} onClose={() => setShow(false)} show={show}  delay={2000} autohide>
-          <Toast.Header style={{
-                background: "#0097e4",
-                color: "white"
-          }}>
-            <strong className="mr-auto">Hatırlatma!</strong>
-          </Toast.Header>
-          <Toast.Body>E-Postanızın diğer kutularını kontrol etmeyi unutmayınız!</Toast.Body>
-        </Toast>
+      <Toast
+        style={{
+          position: 'fixed',
+          zIndex: 5,
+          top: 20,
+          right: 20,
+        }}
+        onClose={() => setShow(false)}
+        show={show}
+        delay={2000}
+        autohide
+      >
+        <Toast.Header
+          style={{
+            background: '#0097e4',
+            color: 'white',
+          }}
+        >
+          <strong className="mr-auto">Hatırlatma!</strong>
+        </Toast.Header>
+        <Toast.Body>
+          Onay kodu tekrar gönderildi. E-Postanızın diğer kutularını kontrol etmeyi unutmayınız!
+        </Toast.Body>
+      </Toast>
       <PageTopSide
         responsiveTop="40"
         responsiveHeight="300"
@@ -227,9 +256,8 @@ export default function Login() {
         title="Giriş Yap"
         desc="Topluluğumuzun avantajlarından faydalanmak için sistemimize giriş yapabilirsiniz."
       />
-      
+
       <LoginArea>
-     
         <Container>
           <Row className="tabsArea">
             <Col xs={12} md={8} lg={4}>
@@ -334,11 +362,10 @@ export default function Login() {
                         value={code}
                         onChange={({target: {value}}) => setCode(value)}
                       />
-          
                     </Form.Group>
-                   <div className="text-right resend">
-                   <a onClick={resendCode}>Kodu Tekrar Gönder</a>
-                   </div>
+                    <div className="text-right resend">
+                      <a onClick={resendCode}>Kodu Tekrar Gönder</a>
+                    </div>
                     <CustomButton type="submit" className="mt-2">
                       Onayla
                     </CustomButton>
