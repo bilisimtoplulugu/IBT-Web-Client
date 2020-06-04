@@ -214,13 +214,11 @@ export default function EventDetail() {
       setEventData(event);
       setEventParticipants(participants);
       if (!Array.isArray(activeUser)) {
-        console.log('test');
         activeUser.joinedEvents.map((joinedEvent) => {
-          if (joinedEvent == event._id) setIsRegisteredToEvent(true);
+          if (joinedEvent._id == event._id) setIsRegisteredToEvent(true);
         });
       }
     } catch (error) {
-      console.log(error);
       return router.push('/404'); // event could not found so redirect to 404
     }
   };

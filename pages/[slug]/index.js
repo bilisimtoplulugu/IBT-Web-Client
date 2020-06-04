@@ -213,7 +213,7 @@ export default function index() {
                         sm={6}
                         className="text-center mb-4 mb-sm-0 text-sm-right"
                       >
-                        <Link href="/hesabim/etkinlikler">
+                        <Link href={`/${visitedUsername}/etkinlikler`}>
                           <a className="text-decoration-none">
                             <span className="seeAll">Tümünü Gör</span>
                           </a>
@@ -221,26 +221,20 @@ export default function index() {
                       </Col>
                     </Row>
                     <Row className="latestEvents">
-                      <Col xs={6} md={3}>
-                        <div className="eventCard">
-                          <img src="/assets/images/image1.png" />
-                        </div>
-                      </Col>
-                      <Col xs={6} md={3}>
-                        <div className="eventCard">
-                          <img src="/assets/images/image1.png" />
-                        </div>
-                      </Col>
-                      <Col xs={6} md={3}>
-                        <div className="eventCard">
-                          <img src="/assets/images/image1.png" />
-                        </div>
-                      </Col>
-                      <Col xs={6} md={3}>
-                        <div className="eventCard">
-                          <img src="/assets/images/image1.png" />
-                        </div>
-                      </Col>
+                      {visitedUserData.joinedEvents &&
+                        visitedUserData.joinedEvents.map((event) => (
+                          <Link href={`/etkinlikler/${event.seoUrl}`}>
+                            <a>
+                              <Col xs={6} md={3}>
+                                <div className="eventCard">
+                                  <img
+                                    src={`${API_URL}/images/event/${event.seoUrl}.png`}
+                                  />
+                                </div>
+                              </Col>
+                            </a>
+                          </Link>
+                        ))}
                     </Row>
                   </Col>
                 </Row>

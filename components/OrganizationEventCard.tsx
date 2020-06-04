@@ -26,7 +26,7 @@ export default function OrganizationEventCard({title,img,content}) {
         <MainArea>
             <Row>
                 <Col xs={12} md={3}>
-                <img src={`/assets/images/${img}.png`} />
+                <img src={img} />
                 </Col>
                 <Col xs={12} md={9} className="mt-3 mt-md-0">
     <h3>{title}</h3>
