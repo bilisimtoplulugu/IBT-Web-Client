@@ -1,5 +1,5 @@
 import React, {useState, useRef, useEffect} from 'react';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {
   Form,
   Navbar,
@@ -18,6 +18,10 @@ import {
 import Link from 'next/link';
 
 import styled, {css} from 'styled-components';
+import {useRouter} from 'next/router';
+import {login, register} from '../redux/actions/user';
+import confirmCode from '../api/user/confirmCode';
+import emailVerification from '../api/user/emailVerification';
 const Logo = styled.img`
   width: 150px;
 `;
@@ -222,7 +226,21 @@ const CustomModal = styled(Modal)`
 `;
 export default function Header() {
   const [headerBgColor, setHeaderBgColor] = useState(false);
+  const [name, setName] = useState('');
+  const [surname, setSurname] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordAgain, setPasswordAgain] = useState('');
+  const [code, setCode] = useState('');
+  const [isCodeSent, setIsCodeSent] = useState(false);
+  const [show, setShow] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   const activeUser = useSelector((state) => state.userReducer);
+  const router = useRouter();
+  const dispatch = useDispatch();
 
   const handleScroll = () => {
     setHeaderBgColor(50 < window.pageYOffset);
@@ -241,13 +259,54 @@ export default function Header() {
     };
   });
 
-  const [show, setShow] = useState(false);
-  const [showToast, setShowToast] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const sendConfirmCode = async (e) => {
+    try {
+      e.preventDefault();
+    } catch (error) {
+      // do not do anything
+    }
+
+    if (!name || !surname || !email || !password || !passwordAgain) return; // credentials can not be empty
+
+    if (password !== passwordAgain) return; // password should be matched
+
+    try {
+      const res = await confirmCode(email);
+      localStorage.setItem('email-code', res);
+      setIsCodeSent(true);
+    } catch ({response: {data}}) {
+      console.log(data); // something went wrong, show the data (message) to user
+    }
+  };
+
+  const verifyEmail = async (e) => {
+    e.preventDefault();
+    if (!code) return; // code field can not be empty
+    try {
+      const res = await emailVerification(
+        code,
+        localStorage.getItem('email-code')
+      );
+      dispatch(register(name, surname, email, password));
+      setShow(false)
+    } catch ({response: {data}}) {
+      console.log(data); // something went wrong, show the data (message) to user
+    }
+  };
+
+  const loginOperation = async (e) => {
+    e.preventDefault();
+
+    try {
+      dispatch(login(email, password));
+      setShow(false)
+    } catch ({response: {data}}) {
+      console.log(data); // something went wrong, show the data (message) to user
+    }
+  };
 
   const resendCode = () => {
-    // sendConfirmCode();
+    sendConfirmCode();
     setShowToast(true);
   };
   return (
@@ -263,7 +322,7 @@ export default function Header() {
           setShowToast(false);
         }}
       >
-        <Toast
+        {/* <Toast
           style={{
             position: 'fixed',
             zIndex: 5,
@@ -288,7 +347,8 @@ export default function Header() {
             Onay kodu tekrar gönderildi. E-Postanızın diğer kutularını kontrol
             etmeyi unutmayınız!
           </Toast.Body>
-        </Toast>
+        </Toast> */}
+
         <CustomModal.Header
           closeButton
           style={{
@@ -300,59 +360,111 @@ export default function Header() {
         </CustomModal.Header>
 
         <CustomModal.Body>
-          <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
+          <Tabs defaultActiveKey="login" id="uncontrolled-tab-example">
             <Tab eventKey="login" title="Giriş Yap">
-              <Form className="mt-4">
+              <Form className="mt-4" onSubmit={loginOperation}>
                 <Form.Group controlId="formBasicEmail">
-                  <Form.Control type="email" placeholder="E-Posta" />
+                  <Form.Control
+                    type="email"
+                    placeholder="E-Posta"
+                    value={email}
+                    onChange={({target: {value}}) => setEmail(value)}
+                  />
                 </Form.Group>
-                <Form.Group controlId="formBasicEmail">
-                  <Form.Control type="password" placeholder="Parola" />
+                <Form.Group controlId="formBasicPassword">
+                  <Form.Control
+                    type="password"
+                    placeholder="Parola"
+                    value={password}
+                    onChange={({target: {value}}) => setPassword(value)}
+                  />
                 </Form.Group>
+
                 <label className="checkContainer">
                   Beni Hatırla
                   <input type="checkbox" />
                   <span className="checkmark"></span>
                 </label>
-                <UserButton type="submit">Giriş Yap</UserButton>
-              </Form>
-            </Tab>
-            <Tab eventKey="register" title="Kayıt Ol">
-              <Form className="mt-4">
-                <Form.Group controlId="formBasicEmail">
-                  <Form.Control type="text" placeholder="Ad" />
-                </Form.Group>
-                <Form.Group controlId="formBasicEmail">
-                  <Form.Control type="text" placeholder="Soyad" />
-                </Form.Group>
-                <Form.Group controlId="formBasicEmail">
-                  <Form.Control type="email" placeholder="E-Posta" />
-                </Form.Group>
-                <Form.Group controlId="formBasicEmail">
-                  <Form.Control type="password" placeholder="Parola" />
-                </Form.Group>
-                <Form.Group controlId="formBasicEmail">
-                  <Form.Control type="password" placeholder="Parola(Tekrar)" />
-                </Form.Group>
 
                 <UserButton type="submit">Giriş Yap</UserButton>
               </Form>
             </Tab>
-          </Tabs>
-          <div className="mt-4">
-            <p>E-Posta Adresinize gelen onay kodunu giriniz.</p>
-            <Form className="mt-4">
-              <Form.Group controlId="formBasicEmail">
-                <Form.Control type="text" placeholder="Onay Kodu" />
-              </Form.Group>
-              <div className="text-right resend">
-                <a onClick={resendCode}>Kodu Tekrar Gönder</a>
+            <Tab eventKey="register" title="Kayıt Ol">
+              <Form className="mt-4" onSubmit={sendConfirmCode}>
+                <Form.Group controlId="formBasicEmail">
+                  <Form.Control
+                    type="text"
+                    placeholder="Ad"
+                    value={name}
+                    onChange={({target: {value}}) => setName(value)}
+                  />
+                </Form.Group>
+                <Form.Group controlId="formBasicEmail">
+                  <Form.Control
+                    type="text"
+                    placeholder="Soyad"
+                    value={surname}
+                    onChange={({target: {value}}) => setSurname(value)}
+                  />
+                </Form.Group>
+                <Form.Group controlId="formBasicEmail">
+                  <Form.Control
+                    type="email"
+                    placeholder="E-Posta"
+                    value={email}
+                    onChange={({target: {value}}) => setEmail(value)}
+                  />
+                </Form.Group>
+                <Form.Group controlId="formBasicPassword">
+                  <Form.Control
+                    type="password"
+                    placeholder="Parola"
+                    value={password}
+                    onChange={({target: {value}}) => setPassword(value)}
+                  />
+                </Form.Group>
+                <Form.Group controlId="formBasicPassword">
+                  <Form.Control
+                    type="password"
+                    placeholder="Parola(Tekrar)"
+                    value={passwordAgain}
+                    onChange={({target: {value}}) => setPasswordAgain(value)}
+                  />
+                  <Form.Text className="text-muted">
+                    Kullanıcı sözleşmelerimiz hazırlanmaktadır. Hazırlık aşaması
+                    bittikten sonra belirttiğiniz E-Posta adresine onay maili ve
+                    sözleşmeler iletilecektir.
+                  </Form.Text>
+                </Form.Group>
+                {/* <Form.Group controlId="formBasicCheckbox">
+                  <Form.Check type="checkbox" label="Kullanım Koşulları'nı okudum ve kabul ediyorum." />
+                </Form.Group> */}
+
+                <UserButton type="submit" className="mt-3">
+                  Kayıt Ol
+                </UserButton>
+              </Form>
+              <div className="mt-4" style={{display: !isCodeSent && 'none'}}>
+                <p>E-Posta Adresinize gelen onay kodunu giriniz.</p>
+                <Form className="mt-4" onSubmit={verifyEmail}>
+                  <Form.Group controlId="formBasicEmail">
+                    <Form.Control
+                      type="text"
+                      placeholder="Onay Kodu"
+                      value={code}
+                      onChange={({target: {value}}) => setCode(value)}
+                    />
+                  </Form.Group>
+                  <div className="text-right resend">
+                    <a onClick={resendCode}>Kodu Tekrar Gönder</a>
+                  </div>
+                  <UserButton type="submit" className="mt-2">
+                    Onayla
+                  </UserButton>
+                </Form>
               </div>
-              <UserButton type="submit" className="mt-2">
-                Onayla
-              </UserButton>
-            </Form>
-          </div>
+            </Tab>
+          </Tabs>
         </CustomModal.Body>
       </CustomModal>
 
@@ -391,7 +503,11 @@ export default function Header() {
                   </CustomDropdown.Toggle>
 
                   <CustomDropdown.Menu>
-                    <Link href={`/[slug]`} as={`/${activeUser.username}`} passHref={true}>
+                    <Link
+                      href={`/[slug]`}
+                      as={`/${activeUser.username}`}
+                      passHref={true}
+                    >
                       <CustomDropdown.Item>Hesabım</CustomDropdown.Item>
                     </Link>
                     <Link href="/topluluk" passHref={true}>
@@ -404,15 +520,15 @@ export default function Header() {
                 </CustomDropdown>
               ) : (
                 <div className="d-flex">
-                  <Link href="/giris-yap" passHref={true}>
-                    <CustomButton
-                      className="btn"
-                      id="supportButton"
-                      /* onClick={handleShow} */
-                    >
-                      Giriş Yap
-                    </CustomButton>
-                  </Link>
+                  {/* <Link href="/giris-yap" passHref={true}> */}
+                  <CustomButton
+                    className="btn"
+                    id="supportButton"
+                    onClick={handleShow}
+                  >
+                    Giriş Yap
+                  </CustomButton>
+                  {/* </Link> */}
                 </div>
               )}
             </Nav>
