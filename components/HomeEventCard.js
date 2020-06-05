@@ -31,6 +31,10 @@ const MainArea = styled.div`
   }
   p {
     margin-top: 15px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
   }
   .detailText {
     position: absolute;
