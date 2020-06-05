@@ -12,6 +12,8 @@ import { auth } from '../redux/actions/user';
 import { getNearEvents } from '../redux/actions/event';
 const MainArea = styled.div`
   margin: 30px 0;
+
+  min-height:calc(100vh - 555px );
 `;
 
 export default function Custom404() {
@@ -102,7 +104,7 @@ export default function Custom404() {
 
       <Container>
         <MainArea>
-          <h4>Belkide yakın zamandaki etkinliklere göz atmak istersiniz.</h4>
+          {/* <h4>Belkide yakın zamandaki etkinliklere göz atmak istersiniz.</h4> */}
 
           <Row>
             <Col xs={12}>
