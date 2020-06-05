@@ -195,7 +195,11 @@ export default function index() {
                     </Row>
                     {activeUser._id === visitedUserData._id && (
                       <div className="editProfile">
-                        <Link href="/hesabim/duzenle">
+                        <Link
+                          href={`/[slug]/duzenle`}
+                          as={`/${activeUser.username}/duzenle`}
+                          passHref={true}
+                        >
                           <a>
                             <i className="fas fa-edit"></i>
                           </a>
@@ -206,7 +210,7 @@ export default function index() {
                   <Col xs={12} className="segment">
                     <Row>
                       <Col xs={12} sm={6} className="text-center text-sm-left">
-                        <h3>Son Etkinlikler</h3>
+                        <h3>Katıldığı Son Etkinlikler</h3>
                       </Col>
                       <Col
                         xs={12}
@@ -223,17 +227,17 @@ export default function index() {
                     <Row className="latestEvents">
                       {visitedUserData.joinedEvents &&
                         visitedUserData.joinedEvents.map((event) => (
-                          <Link href={`/etkinlikler/${event.seoUrl}`}>
-                            <a>
-                              <Col xs={6} md={3}>
+                          <Col xs={6} md={3} key={event._id}>
+                            <Link href={`/etkinlikler/[slug]`} as={`/etkinlikler/${event.seoUrl}`}>
+                              <a>
                                 <div className="eventCard">
                                   <img
                                     src={`${API_URL}/images/event/${event.seoUrl}.png`}
                                   />
                                 </div>
-                              </Col>
-                            </a>
-                          </Link>
+                              </a>
+                            </Link>
+                          </Col>
                         ))}
                     </Row>
                   </Col>

@@ -10,13 +10,13 @@ import {
   Tab,
   Form,
   Button,
-  Toast,
 } from 'react-bootstrap';
 import {useDispatch, useSelector} from 'react-redux';
 import {register, login} from '../../redux/actions/user';
 import confirmCode from '../../api/user/confirmCode';
 import emailVerification from '../../api/user/emailVerification';
 import {useRouter} from 'next/router';
+import Toast from '../../components/Toast';
 
 const LoginArea = styled.div`
   padding: 50px 0;
@@ -173,6 +173,9 @@ export default function Login() {
   const resendCode = () => {
     sendConfirmCode();
     setShow(true);
+    setTimeout(() => {
+      setShow(false)
+    },2000)
   };
 
   const sendConfirmCode = async (e) => {
@@ -224,7 +227,9 @@ export default function Login() {
 
   return (
     <Layout>
-      <Toast
+      <Toast title="ttlemdir" body="lorem ipsum dolor sit amet" showState={show}/>
+
+      {/* <Toast
         style={{
           position: 'fixed',
           zIndex: 5,
@@ -247,7 +252,8 @@ export default function Login() {
         <Toast.Body>
           Onay kodu tekrar gönderildi. E-Postanızın diğer kutularını kontrol etmeyi unutmayınız!
         </Toast.Body>
-      </Toast>
+      </Toast> */}
+
       <PageTopSide
         responsiveTop="40"
         responsiveHeight="300"

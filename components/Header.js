@@ -1,7 +1,7 @@
 import React, {useState, useRef, useEffect} from 'react';
 import {useSelector} from 'react-redux';
 import {
- Form,
+  Form,
   Navbar,
   Nav,
   NavDropdown,
@@ -57,13 +57,12 @@ const CustomButton = styled.a`
   }
 `;
 
-
 const UserButton = styled(Button)`
   font-size: 11pt;
   color: #fff !important;
   border-radius: 5px;
-  padding:10px 20px;
-  width:100%;
+  padding: 10px 20px;
+  width: 100%;
   background: #0097e4;
   border: none;
   transition: all 0.3s ease;
@@ -78,7 +77,6 @@ const UserButton = styled(Button)`
     margin: 10px 0;
   }
 `;
-
 
 const CustomHeader = styled.header`
   position: fixed;
@@ -126,30 +124,30 @@ const CustomDropdown = styled(Dropdown)`
 `;
 
 const CustomModal = styled(Modal)`
-.resend a {
-  color: #0097e4;
-  cursor: pointer;
-  font-size: 10pt;
-}
-.nav-tabs{
-  border:none;
-}
-  .nav-tabs .nav-link{
-    width:50%;
-    text-align:center;
-    color:rgb(37, 59, 75);
+  .resend a {
+    color: #0097e4;
+    cursor: pointer;
+    font-size: 10pt;
+  }
+  .nav-tabs {
+    border: none;
+  }
+  .nav-tabs .nav-link {
+    width: 50%;
+    text-align: center;
+    color: rgb(37, 59, 75);
     border-radius: 5px;
   }
   .nav-tabs .nav-link.active:hover {
     background: #019eef;
     border-color: #019eef;
-    color:white;
+    color: white;
     transition: all 0.3s ease;
   }
-  .nav-tabs .nav-link.active{
+  .nav-tabs .nav-link.active {
     background: #0097e4;
     transition: all 0.3s ease;
-    color:white;
+    color: white;
   }
 
   .form-group input {
@@ -221,7 +219,7 @@ const CustomModal = styled(Modal)`
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
   }
-`
+`;
 export default function Header() {
   const [headerBgColor, setHeaderBgColor] = useState(false);
   const activeUser = useSelector((state) => state.userReducer);
@@ -234,8 +232,6 @@ export default function Header() {
     localStorage.removeItem('jwt');
     window.location.replace('/');
   };
-
-  
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
@@ -250,162 +246,125 @@ export default function Header() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-
   const resendCode = () => {
     // sendConfirmCode();
     setShowToast(true);
   };
   return (
-
-
-   
-
     <CustomHeader
       style={
         headerBgColor ? {background: '#253b4b', transition: 'all .5s ease'} : {}
       }
     >
-
-
-<CustomModal show={show} onHide={() => {
-  handleClose();
-  setShowToast(false)
-}}>
-  
-<Toast
-        style={{
-          position: 'fixed',
-          zIndex: 5,
-          top: 20,
-          right: 20,
-          zIndex:500
+      <CustomModal
+        show={show}
+        onHide={() => {
+          handleClose();
+          setShowToast(false);
         }}
-        onClose={() => setShowToast(false)}
-        show={showToast}
-        delay={2000}
-        autohide
       >
-        <Toast.Header
+        <Toast
+          style={{
+            position: 'fixed',
+            zIndex: 5,
+            top: 20,
+            right: 20,
+            zIndex: 500,
+          }}
+          onClose={() => setShowToast(false)}
+          show={showToast}
+          delay={2000}
+          autohide
+        >
+          <Toast.Header
+            style={{
+              background: '#0097e4',
+              color: 'white',
+            }}
+          >
+            <strong className="mr-auto">Hatırlatma!</strong>
+          </Toast.Header>
+          <Toast.Body>
+            Onay kodu tekrar gönderildi. E-Postanızın diğer kutularını kontrol
+            etmeyi unutmayınız!
+          </Toast.Body>
+        </Toast>
+        <CustomModal.Header
+          closeButton
           style={{
             background: '#0097e4',
             color: 'white',
           }}
         >
-          <strong className="mr-auto">Hatırlatma!</strong>
-        </Toast.Header>
-        <Toast.Body>
-          Onay kodu tekrar gönderildi. E-Postanızın diğer kutularını kontrol etmeyi unutmayınız!
-        </Toast.Body>
-      </Toast>
-      <CustomModal.Header closeButton style={{
-            background: '#0097e4',
-            color: 'white',
-          }}>
-        <CustomModal.Title>Giriş Yap</CustomModal.Title>
-      </CustomModal.Header>
+          <CustomModal.Title>Giriş Yap</CustomModal.Title>
+        </CustomModal.Header>
 
-      <CustomModal.Body>
- 
-
-
+        <CustomModal.Body>
           <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
             <Tab eventKey="login" title="Giriş Yap">
               <Form className="mt-4">
-              <Form.Group controlId="formBasicEmail">
-                          <Form.Control
-                            type="email"
-                            placeholder="E-Posta"
-                          
-                          />
-                        </Form.Group>
-                        <Form.Group controlId="formBasicEmail">
-                          <Form.Control
-                              type="password"
-                              placeholder="Parola"
-                          
-                          />
-                        </Form.Group>
-                        <label className="checkContainer">
-                          Beni Hatırla
-                          <input type="checkbox" />
-                          <span className="checkmark"></span>
-                        </label>
-                        <UserButton type="submit">Giriş Yap</UserButton>
-                  </Form>
+                <Form.Group controlId="formBasicEmail">
+                  <Form.Control type="email" placeholder="E-Posta" />
+                </Form.Group>
+                <Form.Group controlId="formBasicEmail">
+                  <Form.Control type="password" placeholder="Parola" />
+                </Form.Group>
+                <label className="checkContainer">
+                  Beni Hatırla
+                  <input type="checkbox" />
+                  <span className="checkmark"></span>
+                </label>
+                <UserButton type="submit">Giriş Yap</UserButton>
+              </Form>
             </Tab>
             <Tab eventKey="register" title="Kayıt Ol">
-            <Form className="mt-4">
-              <Form.Group controlId="formBasicEmail">
-                          <Form.Control
-                            type="text"
-                            placeholder="Ad"
-                          
-                          />
-                        </Form.Group>
-                        <Form.Group controlId="formBasicEmail">
-                          <Form.Control
-                              type="text"
-                              placeholder="Soyad"
-                          
-                          />
-                        </Form.Group>
-                        <Form.Group controlId="formBasicEmail">
-                          <Form.Control
-                              type="email"
-                              placeholder="E-Posta"
-                          
-                          />
-                        </Form.Group>
-                        <Form.Group controlId="formBasicEmail">
-                          <Form.Control
-                              type="password"
-                              placeholder="Parola"
-                          
-                          />
-                        </Form.Group>
-                        <Form.Group controlId="formBasicEmail">
-                          <Form.Control
-                              type="password"
-                              placeholder="Parola(Tekrar)"
-                          
-                          />
-                        </Form.Group>
-                    
-                        <UserButton type="submit">Giriş Yap</UserButton>
-                  </Form>
-            </Tab>
+              <Form className="mt-4">
+                <Form.Group controlId="formBasicEmail">
+                  <Form.Control type="text" placeholder="Ad" />
+                </Form.Group>
+                <Form.Group controlId="formBasicEmail">
+                  <Form.Control type="text" placeholder="Soyad" />
+                </Form.Group>
+                <Form.Group controlId="formBasicEmail">
+                  <Form.Control type="email" placeholder="E-Posta" />
+                </Form.Group>
+                <Form.Group controlId="formBasicEmail">
+                  <Form.Control type="password" placeholder="Parola" />
+                </Form.Group>
+                <Form.Group controlId="formBasicEmail">
+                  <Form.Control type="password" placeholder="Parola(Tekrar)" />
+                </Form.Group>
 
+                <UserButton type="submit">Giriş Yap</UserButton>
+              </Form>
+            </Tab>
           </Tabs>
           <div className="mt-4">
-          <p>E-Posta Adresinize gelen onay kodunu giriniz.</p>
-                  <Form className="mt-4" >
-                    <Form.Group controlId="formBasicEmail">
-                      <Form.Control
-                        type="text"
-                        placeholder="Onay Kodu"
-
-                      />
-                    </Form.Group>
-                    <div className="text-right resend">
-                      <a onClick={resendCode}>Kodu Tekrar Gönder</a>
-                    </div>
-                    <UserButton type="submit" className="mt-2">
-                      Onayla
-                    </UserButton>
-                  </Form>
+            <p>E-Posta Adresinize gelen onay kodunu giriniz.</p>
+            <Form className="mt-4">
+              <Form.Group controlId="formBasicEmail">
+                <Form.Control type="text" placeholder="Onay Kodu" />
+              </Form.Group>
+              <div className="text-right resend">
+                <a onClick={resendCode}>Kodu Tekrar Gönder</a>
+              </div>
+              <UserButton type="submit" className="mt-2">
+                Onayla
+              </UserButton>
+            </Form>
           </div>
-      </CustomModal.Body>
+        </CustomModal.Body>
+      </CustomModal>
 
-    
-    </CustomModal>
       <Container>
         <CustomNavbar expand="lg" variant="dark">
           <Link href="/">
-         <a >
-         <Navbar.Brand >
-            <Logo src="/assets/images/logo.png" alt="" />
-          </Navbar.Brand>
-           </a></Link>
+            <a>
+              <Navbar.Brand>
+                <Logo src="/assets/images/logo.png" alt="" />
+              </Navbar.Brand>
+            </a>
+          </Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto">
@@ -432,7 +391,7 @@ export default function Header() {
                   </CustomDropdown.Toggle>
 
                   <CustomDropdown.Menu>
-                    <Link href="/hesabim" passHref={true}>
+                    <Link href={`/[slug]`} as={`/${activeUser.username}`} passHref={true}>
                       <CustomDropdown.Item>Hesabım</CustomDropdown.Item>
                     </Link>
                     <Link href="/topluluk" passHref={true}>
@@ -445,11 +404,15 @@ export default function Header() {
                 </CustomDropdown>
               ) : (
                 <div className="d-flex">
-                  {/* <Link href="/giris-yap" passHref={true}> */}
-                    <CustomButton className="btn" id="supportButton" onClick={handleShow}>
+                  <Link href="/giris-yap" passHref={true}>
+                    <CustomButton
+                      className="btn"
+                      id="supportButton"
+                      /* onClick={handleShow} */
+                    >
                       Giriş Yap
                     </CustomButton>
-                  {/* </Link> */}
+                  </Link>
                 </div>
               )}
             </Nav>

@@ -108,22 +108,20 @@ export default function index() {
   const [newPass, setNewPass] = useState('');
   const [newPassAgain, setNewPassAgain] = useState('');
 
-/*   useEffect(() => {
+  /*   useEffect(() => {
     // redirect to homepage if there is no logged in user
     if (Array.isArray(activeUser)) router.push('/');
   }, [activeUser]); */
 
   /* CRASHED !!! */
-  
+
   /* ABÇ: TEMP AUTH */
   useEffect(() => {
     const token = localStorage.getItem('jwt');
-    if (token && Array.isArray(activeUser)) {
-      dispatch(auth(token));
-      return;
-    }
+    if (token && Array.isArray(activeUser)) dispatch(auth(token));
 
-    router.push('/');
+    console.log('push');
+    //router.push('/');
   }, [auth]);
 
   //Modal
@@ -139,6 +137,7 @@ export default function index() {
       dispatch(auth(localStorage.getItem('jwt')));
       console.log('personal data changed');
     } catch (error) {
+      console.log('cange personel info erro')
       console.log(error); //something went wrong, should show to user
     }
   };
@@ -280,7 +279,7 @@ export default function index() {
                                   />
                                   <div
                                     className="selectImage"
-                                  onClick={handleShow}
+                                    onClick={handleShow}
                                   >
                                     <i className="fas fa-user-edit"></i>
                                   </div>

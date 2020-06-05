@@ -57,7 +57,7 @@ const MainArea = styled.div`
   }
   .backArea {
     font-size: 20pt;
-    color:white;
+    color: white;
   }
 `;
 
@@ -155,11 +155,14 @@ export default function Participants() {
               <CustomCard>
                 <Row>
                   <Col xs={12} className="backArea">
-                  <Link href={`/etkinlikler/[slug]`} as={`/etkinlikler/${eventURL}`}>
-                    <CustomButton className="btn">
-                      <i className="fas fa-chevron-left"></i>
-                      <span className="backText">Etkinliğe Geri Dön</span>     
-                    </CustomButton>
+                    <Link
+                      href={`/etkinlikler/[slug]`}
+                      as={`/etkinlikler/${eventURL}`}
+                    >
+                      <CustomButton className="btn">
+                        <i className="fas fa-chevron-left"></i>
+                        <span className="backText">Etkinliğe Geri Dön</span>
+                      </CustomButton>
                     </Link>
                   </Col>
                   <Col xs={12}>
@@ -176,27 +179,33 @@ export default function Participants() {
                     allParticipants.map((participant, index) => (
                       <Col xs={12} key={index}>
                         <div className="participantCard">
-                          <Row className="align-items-center text-center text-sm-left">
-                            <Col xs={12} sm={3} md={2}>
-                              <img
-                                onError={addDefaultSrc}
-                                src={`${API_URL}/images/${participant._id}.png`}
-                              />
-                            </Col>
-                            <Col
-                              xs={12}
-                              sm={9}
-                              md={10}
-                              className="mt-3 mt-sm-0"
-                            >
-                              <span className="name">
-                                {participant.name} {participant.surname}
-                              </span>
-                              <span className="date">
-                                28 Mart 2020, Pazartesi
-                              </span>
-                            </Col>
-                          </Row>
+                          <Link
+                            href={`/[slug]`}
+                            as={`/${participant.username}`}
+                            passHref={true}
+                          >
+                            <Row className="align-items-center text-center text-sm-left">
+                              <Col xs={12} sm={3} md={2}>
+                                <img
+                                  onError={addDefaultSrc}
+                                  src={`${API_URL}/images/${participant._id}.png`}
+                                />
+                              </Col>
+                              <Col
+                                xs={12}
+                                sm={9}
+                                md={10}
+                                className="mt-3 mt-sm-0"
+                              >
+                                <span className="name">
+                                  {participant.name} {participant.surname}
+                                </span>
+                                <span className="date">
+                                  28 Mart 2020, Pazartesi
+                                </span>
+                              </Col>
+                            </Row>
+                          </Link>
                         </div>
                       </Col>
                     ))}

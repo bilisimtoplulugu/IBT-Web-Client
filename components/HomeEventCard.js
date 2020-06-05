@@ -57,7 +57,6 @@ export default function HomeEventCard({selectedEventId}) {
         {selectedEventDetail && (
           <Link
             href={`/etkinlikler/[slug]`} as={`/etkinlikler/${selectedEventDetail.seoUrl}`}
-            /* as={`/etkinlikler/${selectedEventDetail.seoUrl}`} */ // this as not working even i add passhref true attribute
           >
             <a className="text-decoration-none">
               <CustomCard>
