@@ -1,15 +1,15 @@
 import Layout from '../components/Layout';
 import PageTopSide from '../components/PageTopSide';
-import {Container} from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import styled from 'styled-components';
-import {Row, Col} from 'react-bootstrap';
-import React, {useState, useEffect, useDispatch} from 'react';
+import { Row, Col } from 'react-bootstrap';
+import React, { useState, useEffect, useDispatch } from 'react';
 import AOS from 'aos';
 
 import EventDateSlider from '../components/EventDateSlider';
 import HomeEventCard from '../components/HomeEventCard';
 import { auth } from '../redux/actions/user';
-import {getNearEvents} from '../redux/actions/event';
+import { getNearEvents } from '../redux/actions/event';
 const MainArea = styled.div`
   margin: 30px 0;
 `;
@@ -40,7 +40,7 @@ export default function Custom404() {
   // }, []);
 
   return (
-    <Layout>
+    <div>
       {/* 
 <Head>
         <title>
@@ -99,24 +99,24 @@ export default function Custom404() {
         desc="Aradığınız sayfa şu anda ulaşılabilir
           bir durumda değildir."
       />
-      <div>
-        <Container>
-                  <MainArea>
-                    <h4>Belkide yakın zamandaki etkinliklere göz atmak istersiniz.</h4>
 
-                    <Row>
-                        <Col xs={12}>
-                          {/* <EventDateSlider handleSelectedEventId={handleSelectedEventId} /> */}
-                        </Col>
+      <Container>
+        <MainArea>
+          <h4>Belkide yakın zamandaki etkinliklere göz atmak istersiniz.</h4>
 
-                        <Col xs={12}>
-                          {/* <HomeEventCard selectedEventId={selectedEventId} /> */}
-                        </Col>
-                      </Row>
+          <Row>
+            <Col xs={12}>
+              {/* <EventDateSlider handleSelectedEventId={handleSelectedEventId} /> */}
+            </Col>
 
-                  </MainArea>
-                </Container>
-      </div>
-    </Layout>
+            <Col xs={12}>
+              {/* <HomeEventCard selectedEventId={selectedEventId} /> */}
+            </Col>
+          </Row>
+
+        </MainArea>
+      </Container>
+    </div>
+
   );
 }

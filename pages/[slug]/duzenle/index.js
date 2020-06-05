@@ -183,7 +183,7 @@ export default function index() {
     e.target.src = '/assets/images/default.png';
   };
   return (
-    <Layout>
+    <div>
       <PageTopSide
         responsiveTop="50"
         responsiveHeight="200"
@@ -441,6 +441,6 @@ export default function index() {
           </Row>
         </Container>
       </MainArea>
-    </Layout>
+    </div>
   );
 }

@@ -178,7 +178,7 @@ export default function addevent() {
 
   const FORMAT = 'dd.MM.yyyy';
   return (
-    <Layout>
+    <div>
       <PageTopSide
         responsiveTop="50"
         responsiveHeight="200"
@@ -318,6 +318,6 @@ export default function addevent() {
           </Row>
         </Container>
       </MainArea>
-    </Layout>
+    </div>
   );
 }

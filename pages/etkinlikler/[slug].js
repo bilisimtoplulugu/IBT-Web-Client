@@ -228,7 +228,7 @@ export default function EventDetail() {
   };
 
   return (
-    <Layout>
+    <div>
       {/* <Head>
             <title>{eventData.title} - Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri </title>
             <link rel="canonical" href="https://bilisimtoplulugu.org/etkinlikler" />
@@ -401,6 +401,6 @@ export default function EventDetail() {
           </Container>
         </AttendArea>
       </EventDetailArea>
-    </Layout>
+    </div>
   );
 }

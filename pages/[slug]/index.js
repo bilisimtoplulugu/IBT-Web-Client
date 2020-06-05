@@ -151,7 +151,7 @@ export default function index() {
   };
 
   return (
-    <Layout>
+    <div>
       <PageTopSide
         responsiveTop="50"
         responsiveHeight="200"
@@ -247,6 +247,6 @@ export default function index() {
           </Row>
         </Container>
       </MainArea>
-    </Layout>
+    </div>
   );
 }

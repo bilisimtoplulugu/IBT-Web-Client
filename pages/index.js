@@ -166,7 +166,7 @@ export default function Home() {
   };
 
   return (
-    <Layout>
+    <div>
       <Head>
         <title>
           Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim
@@ -299,6 +299,6 @@ export default function Home() {
           </Row>
         </Container>
       </EventArea>
-    </Layout>
+    </div>
   );
 }

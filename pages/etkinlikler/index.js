@@ -126,7 +126,7 @@ export default function Event() {
   };
 
   return (
-    <Layout>
+    <div>
       <Head>
         <title>
           Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim
@@ -257,6 +257,6 @@ export default function Event() {
           </Row>
         </Container>
       </MainArea>
-    </Layout>
+    </div>
   );
 }

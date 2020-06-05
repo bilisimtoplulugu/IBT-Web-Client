@@ -73,7 +73,7 @@ export default function index() {
   }, [auth]);
 
   return (
-    <Layout>
+    <div>
       <PageTopSide
         responsiveTop="40"
         responsiveHeight="300"
@@ -110,6 +110,6 @@ export default function index() {
           </Row>
         </Container>
       </MainArea>
-    </Layout>
+    </div>
   );
 }

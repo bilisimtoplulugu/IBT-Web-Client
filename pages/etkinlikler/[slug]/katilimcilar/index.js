@@ -123,7 +123,7 @@ export default function Participants() {
     e.target.src = '/assets/images/default.png';
   };
   return (
-    <Layout>
+    <div>
       {/* <Head>
             <title>{eventData.title} - Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri </title>
             <link rel="canonical" href="https://bilisimtoplulugu.org/etkinlikler" />
@@ -229,6 +229,6 @@ export default function Participants() {
           </Row>
         </Container>
       </MainArea>
-    </Layout>
+    </div>
   );
 }
