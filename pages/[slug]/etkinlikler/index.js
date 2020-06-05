@@ -40,7 +40,13 @@ const MainArea = styled.div`
     font-size: 13pt;
     display: block;
   }
-
+  a{
+    color:rgb(37, 59, 75);
+    
+  }
+   a:hover{
+    text-decoration:none;
+  }
   .form-group input {
     border: 1px solid #f1f1f1;
     font-size: 15pt;
@@ -175,7 +181,7 @@ export default function Participants() {
                             href={`/etkinlikler/[slug]`}
                             as={`/etkinlikler/${event.seoUrl}`}
                           >
-                            {/* TODO soft redirect */}
+             
                             <a>
                               <OrganizationEventCard
                                 title={event.title}

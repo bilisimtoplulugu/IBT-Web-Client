@@ -36,13 +36,23 @@ const MainArea = styled.div`
     font-size: 13pt;
     display: block;
   }
+   a{
+    color:rgb(37, 59, 75);
+    
+  }
+   a:hover{
+    text-decoration:none;
+  }
   .date {
     opacity: 0.5;
     font-weight: 400 !important;
   }
   .participantCard {
-    border-bottom: 1px solid #f1f1f1;
-    padding: 20px 0;
+    border: 1px solid #e8e8e8;
+    border-radius:5px;
+    margin-bottom:10px;
+    padding: 20px 10px;
+
   }
 
   .form-group input {
@@ -178,13 +188,15 @@ export default function Participants() {
                   {allParticipants &&
                     allParticipants.map((participant, index) => (
                       <Col xs={12} key={index}>
-                        <div className="participantCard">
-                          <Link
+                                                  <Link
                             href={`/[slug]`}
                             as={`/${participant.username}`}
                             passHref={true}
                           >
-                            <Row className="align-items-center text-center text-sm-left">
+                           <a>
+                        <div className="participantCard">
+
+                           <Row className="align-items-center text-center text-sm-left">
                               <Col xs={12} sm={3} md={2}>
                                 <img
                                   onError={addDefaultSrc}
@@ -205,8 +217,10 @@ export default function Participants() {
                                 </span>
                               </Col>
                             </Row>
-                          </Link>
+                           
                         </div>
+                        </a>
+                          </Link>
                       </Col>
                     ))}
                 </Row>
