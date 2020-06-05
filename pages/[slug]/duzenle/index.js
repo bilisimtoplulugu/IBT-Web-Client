@@ -137,7 +137,6 @@ export default function index() {
       dispatch(auth(localStorage.getItem('jwt')));
       console.log('personal data changed');
     } catch (error) {
-      console.log('cange personel info erro')
       console.log(error); //something went wrong, should show to user
     }
   };

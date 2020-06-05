@@ -5,8 +5,8 @@ import styled from 'styled-components';
 
 const MainArea = styled.div`
 margin-top:15px;
-padding: 10px;
-    border: 1px solid #f5f5f5;
+padding: 20px 10px;
+border: 1px solid #e8e8e8;
     border-radius: 5px;
 span{
     overflow: hidden;
