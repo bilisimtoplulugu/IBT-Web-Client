@@ -192,7 +192,7 @@ export default function Event() {
         ></div>
         <Container>
           <Row>
-            <Col xs={12}>
+            <Col xs={12} >
               <div className="text-right">
                 <div className="d-block d-lg-none">
                   <FilterButton
@@ -203,10 +203,10 @@ export default function Event() {
                   </FilterButton>
                 </div>
                 <Form.Group
-                  className="d-inline-block"
+                  className=" d-inline-block"
                   controlId="exampleForm.ControlSelect1"
                 >
-                  <Form.Control className="customSelect" as="select">
+                  <Form.Control className="customSelect d-none" as="select">
                     <option>Sırala</option>
                     <option>İstanbul Bilişim Topluluğu</option>
                     <option>3</option>
@@ -234,7 +234,7 @@ export default function Event() {
                     </FilterButton>
                   </GroupButton>
 
-                  <Form.Group controlId="exampleForm.ControlSelect1">
+                  <Form.Group controlId="exampleForm.ControlSelect1" className="d-none">
                     <Form.Label>Topluluklar</Form.Label>
                     <Form.Control className="customSelect" as="select">
                       <option>Hepsi</option>

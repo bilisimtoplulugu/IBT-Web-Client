@@ -11,9 +11,11 @@ background:#f8f8f8;
 
 function Layout({ children }) {
     return (
-
+        
         <Wrapper>
-
+            <Head>
+            <script src="https://kit.fontawesome.com/7aecc2e880.js"></script>    
+            </Head>    
             <Header />
             <main>
                 {children}

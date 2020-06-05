@@ -329,7 +329,10 @@ export default function EventDetail() {
                   </Col>
                   <Col className="d-flex align-items-center justify-content-end">
                     {/* <Link href={`/etkinlikler/${eventURL}/katilimcilar`} passHref={true}> */}
-                    <Link href={`/etkinlikler/[slug]/katilimcilar`} as={`/etkinlikler/${eventURL}/katilimcilar`}>
+                    <Link
+                      href={`/etkinlikler/[slug]/katilimcilar`}
+                      as={`/etkinlikler/${eventURL}/katilimcilar`}
+                    >
                       <a className="seeAll">Tümünü Gör</a>
                     </Link>
                   </Col>
@@ -337,19 +340,26 @@ export default function EventDetail() {
                 <div className="testimonial-group">
                   <Row className="mt-4">
                     {eventParticipants &&
-                      eventParticipants.map((participant, index) => (
-                        <Col key={index} xs={6} sm={4} lg={3}>
-                          <CustomCard>
-                            <img
-                              onError={addDefaultSrc}
-                              src={`${API_URL}/images/${participant._id}.png`}
-                              alt="profilePhoto"
-                            />
-                            <span>
-                              {participant.name} {participant.surname}{' '}
-                            </span>
-                          </CustomCard>
-                        </Col>
+                      eventParticipants.map((participant) => (
+                        <Link
+                          href={`/[slug]`}
+                          as={`/${participant.username}`}
+                          passHref={true}
+                          key={participant._id}
+                        >
+                          <Col xs={6} sm={4} lg={3}>
+                            <CustomCard>
+                              <img
+                                onError={addDefaultSrc}
+                                src={`${API_URL}/images/${participant._id}.png`}
+                                alt="profilePhoto"
+                              />
+                              <span>
+                                {participant.name} {participant.surname}{' '}
+                              </span>
+                            </CustomCard>
+                          </Col>
+                        </Link>
                       ))}
                   </Row>
                 </div>
@@ -371,15 +381,15 @@ export default function EventDetail() {
                 sm={6}
                 className="d-block d-sm-flex align-items-sm-center justify-content-sm-end"
               >
-                {isRegisteredToEvent ? (
+                {isRegisteredToEvent && (
                   <div className="text-right">
-                    {' '}
                     <span className="d-inline mr-2">Gidiyorsunuz</span>
                     <FilterButton className="btn" onClick={unjoinFromEvent}>
                       İptal Et
                     </FilterButton>
                   </div>
-                ) : (
+                )}
+                {!isRegisteredToEvent && !Array.isArray(activeUser) && (
                   <div>
                     <FilterButton className="btn d-block" onClick={joinToEvent}>
                       Katıl

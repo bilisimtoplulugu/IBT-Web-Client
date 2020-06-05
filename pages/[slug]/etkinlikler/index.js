@@ -95,9 +95,9 @@ export default function Participants() {
   }, [auth]);
 
   useEffect(() => {
-    if (Array.isArray(activeUser)) return;
+    if (!visitedUsername) return;
     getEvents();
-  }, [activeUser]);
+  }, [activeUser, visitedUsername]);
 
   const getEvents = async () => {
     const res = await getAllJoinedEvents(visitedUsername);
@@ -148,15 +148,15 @@ export default function Participants() {
                 <Card.Body>
                   <Row>
                     <Col xs={12} className="backArea">
-                      <CustomButton>
-                        <i className="fas fa-chevron-left"></i>
-                        <span
-                          className="backText"
-                          onClick={() => router.push(`/${visitedUsername}`)}
-                        >
-                          Profile geri dön
-                        </span>
-                      </CustomButton>
+                      <Link
+                        href={`/[slug]`}
+                        as={`/${visitedUsername}`}
+                      >
+                        <CustomButton>
+                          <i className="fas fa-chevron-left"></i>
+                          <span className="backText">Profile geri dön</span>
+                        </CustomButton>
+                      </Link>
                     </Col>
                     <Col xs={12}>
                       <Form className="mt-4 ">
@@ -170,17 +170,21 @@ export default function Participants() {
                     </Col>
                     {allJoinedEvents &&
                       allJoinedEvents.map((event) => (
-                        <Link href={`/etkinlikler/${event.seoUrl}`}>
-                          <a>
-                            <Col xs={12}>
+                        <Col xs={12} key={event._id}>
+                          <Link
+                            href={`/etkinlikler/[slug]`}
+                            as={`/etkinlikler/${event.seoUrl}`}
+                          >
+                            {/* TODO soft redirect */}
+                            <a>
                               <OrganizationEventCard
                                 title={event.title}
                                 content={event.description}
                                 img={`${API_URL}/images/event/${event.seoUrl}.png`}
                               />
-                            </Col>
-                          </a>
-                        </Link>
+                            </a>
+                          </Link>
+                        </Col>
                       ))}
                   </Row>
                 </Card.Body>
