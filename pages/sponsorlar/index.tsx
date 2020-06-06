@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import Head from 'next/head';
 import {auth} from '../../redux/actions/user';
 import {useSelector, useDispatch} from 'react-redux';
+import Link from 'next/link';
 
 const SponsorArea = styled.div`
   min-height: calc(100vh - 517px);
@@ -95,17 +96,29 @@ export default function Sponsor() {
       <Container>
         <SponsorArea>
           <Row>
-            <Col xs={12} sm={6} md={3} className="text-center">
-              <img src="/assets/images/webtekno-logo.png" />
+            <Col xs={12} sm={6} md={3} className="d-flex align-items-center justify-content-center">
+  
+              <a href="https://www.webtekno.com/" rel="nofollow">
+                <img src="/assets/images/webtekno-logo.png" />
+                </a>
             </Col>
-            <Col xs={12} sm={6} md={3} className="text-center">
-              <img src="/assets/images/webtekno-logo.png" />
+            <Col xs={12} sm={6} md={3} className="d-flex align-items-center justify-content-center">
+            
+              <a href="https://www.bilgeadam.com/" rel="nofollow">
+              <img src="/assets/images/bilgeadam.png" />
+              </a>
             </Col>
-            <Col xs={12} sm={6} md={3} className="text-center">
-              <img src="/assets/images/webtekno-logo.png" />
+            <Col xs={12} sm={6} md={3} className="d-flex align-items-center justify-content-center">
+            
+              <a href="https://www.sertifier.com/tr/" rel="nofollow">
+              <img src="/assets/images/sertifier.png" />
+              </a>
             </Col>
-            <Col xs={12} sm={6} md={3} className="text-center">
-              <img src="/assets/images/webtekno-logo.png" />
+            <Col xs={12} sm={6} md={3} className="d-flex align-items-center justify-content-center">
+            
+              <a href="https://streamyard.com/" rel="nofollow">
+              <img src="/assets/images/streamyard.svg" />
+              </a>
             </Col>
           </Row>
         </SponsorArea>
