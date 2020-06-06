@@ -1,17 +1,19 @@
 import Layout from '../components/Layout';
 import PageTopSide from '../components/PageTopSide';
-import {Container} from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import styled from 'styled-components';
-import {Row, Col} from 'react-bootstrap';
-import React, {useState, useEffect, useDispatch} from 'react';
+import { Row, Col } from 'react-bootstrap';
+import React, { useState, useEffect, useDispatch } from 'react';
 import AOS from 'aos';
-
+import Head from 'next/head';
 import EventDateSlider from '../components/EventDateSlider';
 import HomeEventCard from '../components/HomeEventCard';
 import { auth } from '../redux/actions/user';
-import {getNearEvents} from '../redux/actions/event';
+import { getNearEvents } from '../redux/actions/event';
 const MainArea = styled.div`
   margin: 30px 0;
+
+  min-height:calc(100vh - 555px );
 `;
 
 export default function Custom404() {
@@ -40,14 +42,14 @@ export default function Custom404() {
   // }, []);
 
   return (
-    <Layout>
-      {/* 
+    <div>
+      
 <Head>
         <title>
           Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim
           Etkinlikleri - 404
         </title>
-        <link rel="canonical" href="https://bilisimtoplulugu.org/" />
+        <link rel="canonical" href="https://bilisimtoplulugu.org/404" />
         <meta
           name="description"
           content="İstanbul Bilişim Topluluğu olarak İstanbul'da bulunan üniversite kulüplerince düzenlenen bilişimle ilgili etkinliklerin paylaşıyor ve çeşitli bilişim etkinlikleri organize ediyoruz."
@@ -88,7 +90,7 @@ export default function Custom404() {
         />
         <meta name="twitter:creator" content="@bilisimtopluluk" />
         <meta name="twitter:image" content="/assets/images/socialLogo.png" />
-      </Head> */}
+      </Head> 
 
       <PageTopSide
         responsiveTop="40"
@@ -99,24 +101,24 @@ export default function Custom404() {
         desc="Aradığınız sayfa şu anda ulaşılabilir
           bir durumda değildir."
       />
-      <div>
-        <Container>
-                  <MainArea>
-                    <h4>Belkide yakın zamandaki etkinliklere göz atmak istersiniz.</h4>
 
-                    <Row>
-                        <Col xs={12}>
-                          {/* <EventDateSlider handleSelectedEventId={handleSelectedEventId} /> */}
-                        </Col>
+      <Container>
+        <MainArea>
+          {/* <h4>Belkide yakın zamandaki etkinliklere göz atmak istersiniz.</h4> */}
 
-                        <Col xs={12}>
-                          {/* <HomeEventCard selectedEventId={selectedEventId} /> */}
-                        </Col>
-                      </Row>
+          <Row>
+            <Col xs={12}>
+              {/* <EventDateSlider handleSelectedEventId={handleSelectedEventId} /> */}
+            </Col>
 
-                  </MainArea>
-                </Container>
-      </div>
-    </Layout>
+            <Col xs={12}>
+              {/* <HomeEventCard selectedEventId={selectedEventId} /> */}
+            </Col>
+          </Row>
+
+        </MainArea>
+      </Container>
+    </div>
+
   );
 }

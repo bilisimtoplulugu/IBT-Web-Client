@@ -226,7 +226,7 @@ export default function Login() {
   };
 
   return (
-    <Layout>
+    <div>
       <Toast title="ttlemdir" body="lorem ipsum dolor sit amet" showState={show}/>
 
       {/* <Toast
@@ -382,6 +382,6 @@ export default function Login() {
           </Row>
         </Container>
       </LoginArea>
-    </Layout>
+    </div>
   );
 }
