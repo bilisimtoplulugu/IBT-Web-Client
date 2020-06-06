@@ -35,7 +35,6 @@ const SubTitle = styled.span`
   font-weight: 600;
   color: #17cff9;
   margin-bottom: 15px;
-  
 `;
 
 const WelcomeInnerArea = styled.div`

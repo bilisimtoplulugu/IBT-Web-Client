@@ -197,14 +197,23 @@ export default function EventDetail() {
   }, [auth]);
 
   const joinToEvent = async () => {
-    await join(activeUser._id, eventData._id);
-    dispatch(auth(localStorage.getItem('jwt')));
+    try {
+      await join(activeUser._id, eventData._id);
+      dispatch(auth(localStorage.getItem('jwt')));
+    } catch (error) {
+      router.push('/giris-yap');
+      console.log(error); //something went wrong
+    }
   };
 
   const unjoinFromEvent = async () => {
-    await unjoin(activeUser._id, eventData._id);
-    setIsRegisteredToEvent(false);
-    dispatch(auth(localStorage.getItem('jwt')));
+    try {
+      await unjoin(activeUser._id, eventData._id);
+      setIsRegisteredToEvent(false);
+      dispatch(auth(localStorage.getItem('jwt')));
+    } catch (error) {
+      console.log(error); //something went wrong
+    }
   };
 
   const getEventData = async () => {
@@ -328,7 +337,6 @@ export default function EventDetail() {
                     <h2>Katılımcılar</h2>
                   </Col>
                   <Col className="d-flex align-items-center justify-content-end">
-                    {/* <Link href={`/etkinlikler/${eventURL}/katilimcilar`} passHref={true}> */}
                     <Link
                       href={`/etkinlikler/[slug]/katilimcilar`}
                       as={`/etkinlikler/${eventURL}/katilimcilar`}
@@ -389,7 +397,7 @@ export default function EventDetail() {
                     </FilterButton>
                   </div>
                 )}
-                {!isRegisteredToEvent && !Array.isArray(activeUser) && (
+                {!isRegisteredToEvent && (
                   <div>
                     <FilterButton className="btn d-block" onClick={joinToEvent}>
                       Katıl

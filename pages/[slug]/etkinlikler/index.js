@@ -40,12 +40,11 @@ const MainArea = styled.div`
     font-size: 13pt;
     display: block;
   }
-  a{
-    color:rgb(37, 59, 75);
-    
+  a {
+    color: rgb(37, 59, 75);
   }
-   a:hover{
-    text-decoration:none;
+  a:hover {
+    text-decoration: none;
   }
   .form-group input {
     border: 1px solid #f1f1f1;
@@ -106,8 +105,13 @@ export default function Participants() {
   }, [activeUser, visitedUsername]);
 
   const getEvents = async () => {
-    const res = await getAllJoinedEvents(visitedUsername);
-    setAllJoinedEvents(res);
+    try {
+      const res = await getAllJoinedEvents(visitedUsername);
+      setAllJoinedEvents(res);
+    } catch (error) {
+      // user || page not found with this name
+      router.push('/404');
+    }
   };
 
   return (
@@ -154,10 +158,7 @@ export default function Participants() {
                 <Card.Body>
                   <Row>
                     <Col xs={12} className="backArea">
-                      <Link
-                        href={`/[slug]`}
-                        as={`/${visitedUsername}`}
-                      >
+                      <Link href={`/[slug]`} as={`/${visitedUsername}`}>
                         <CustomButton>
                           <i className="fas fa-chevron-left"></i>
                           <span className="backText">Profile geri dön</span>
@@ -181,7 +182,6 @@ export default function Participants() {
                             href={`/etkinlikler/[slug]`}
                             as={`/etkinlikler/${event.seoUrl}`}
                           >
-             
                             <a>
                               <OrganizationEventCard
                                 title={event.title}

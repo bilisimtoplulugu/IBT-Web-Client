@@ -142,8 +142,13 @@ export default function index() {
   }, [visitedUsername, activeUser]);
 
   const getVisitedUserData = async () => {
-    const res = await getUser(visitedUsername);
-    setVisitedUserData(res);
+    try {
+      const res = await getUser(visitedUsername);
+      setVisitedUserData(res);
+    } catch (error) {
+      // user || page not found with this name
+      router.push('/404');
+    }
   };
 
   const addDefaultSrc = async (e) => {
@@ -228,7 +233,10 @@ export default function index() {
                       {visitedUserData.joinedEvents &&
                         visitedUserData.joinedEvents.map((event) => (
                           <Col xs={6} md={3} key={event._id}>
-                            <Link href={`/etkinlikler/[slug]`} as={`/etkinlikler/${event.seoUrl}`}>
+                            <Link
+                              href={`/etkinlikler/[slug]`}
+                              as={`/etkinlikler/${event.seoUrl}`}
+                            >
                               <a>
                                 <div className="eventCard">
                                   <img
