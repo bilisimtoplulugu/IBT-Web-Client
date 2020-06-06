@@ -27,7 +27,7 @@ export default function index() {
   }, [auth]);
 
   return (
-    <Layout>
+    <div>
       <PageTopSide
         responsiveTop="50"
         responsiveHeight="200"
@@ -44,6 +44,6 @@ export default function index() {
 
         <OrganizationProfile />
       </MainArea>
-    </Layout>
+    </div>
   );
 }

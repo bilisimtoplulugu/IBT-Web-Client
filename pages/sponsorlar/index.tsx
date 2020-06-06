@@ -34,7 +34,7 @@ export default function Sponsor() {
   }, [auth]);
 
   return (
-    <Layout>
+    <div>
       <Head>
         <title>
           Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim
@@ -110,6 +110,6 @@ export default function Sponsor() {
           </Row>
         </SponsorArea>
       </Container>
-    </Layout>
+    </div>
   );
 }

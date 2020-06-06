@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Slider from 'react-slick';
 import {Container} from 'react-bootstrap';
@@ -38,6 +38,7 @@ const CustomSlider = styled(Slider)`
   }
   .slick-prev {
     left: -10px;
+    z-index: 2;
   }
   .slick-prev:before {
     text-shadow: 0px 0px 10px rgba(146, 146, 146, 0.4);
@@ -74,90 +75,111 @@ const settings = {
 };
 
 export default function WelcomeSlider() {
+
+  const [clubs, setClubs] = useState([
+    { img:"/assets/clubs/okanbil.jpg",
+    text:"Bilisim Klübü",
+    title:"Okan Üniversitesi"},
+    { img:"/assets/clubs/arelsitclub.jpg",
+    text:"Society of ınformation Technology",
+    title:"İstanbul Arel Üniversitesi"},
+    { img:"/assets/clubs/ankayazlm.jpg",
+    text:"Anka Yazılım Klübü",
+    title:"Maltepe Üniversitesi"},
+    { img:"/assets/clubs/aydinlogo.png",
+    text:"Bilisim Klübü",
+    title:"Okan Üniversitesi"},
+    { img:"/assets/clubs/bauyazilim.jpeg",
+    text:"Yazılım ve Bilişim Kulübü",
+    title:"Bahçeşehir Üniversitesi"},
+    { img:"/assets/clubs/beykentlogo.png",
+    text:"Bilisim Klübü",
+    title:"Beykent Üniversitesi"},
+    { img:"/assets/clubs/beykentmis.jpg",
+    text:"Yönetim Bilişim Sistemleri Kulübü",
+    title:"Beykent Üniversitesi"},
+    { img:"/assets/clubs/beykentyazmuh.jpg",
+    text:"Yazılım Mühendisliği Kulübü",
+    title:"Beykent Üniversitesi"},
+    { img:"/assets/clubs/beykozsiber.jpg",
+    text:"Siber Güvenlik Kulübü",
+    title:"Beykoz Üniversitesi"},
+    { img:"/assets/clubs/btkiuc.jpg",
+    text:"Bilişim Teknolojileri Kulübü",
+    title:"İstanbul Üniversitesi - Cerrahpaşa"},
+    { img:"/assets/clubs/compru.png",
+    text:"Bilisim Klübü",
+    title:"Piri Reis Üniversitesi"},
+    { img:"/assets/clubs/dogusbilisim.jpg",
+    text:"Bilisim Klübü",
+    title:"Doğuş Üniversitesi"},
+    { img:"/assets/clubs/eemk.jpeg",
+    text:"Elektrik & Elektronik Mühendisliği Kulübü",
+    title:"Marmara Üniversitesi"},
+    { img:"/assets/clubs/fmvisikbilgisayar.jpg",
+    text:"Bilisim Klübü",
+    title:"Işık Üniversitesi"},
+    { img:"/assets/clubs/iauyazilim.jpg",
+    text:"Yazılım Klübü",
+    title:"İstanbul Aydın Üniversitesi"},
+    { img:"/assets/clubs/iesu.jpg",
+    text:"Bilisim Klübü",
+    title:"İstanbul Esenyurt Üniversitesi"},
+    { img:"/assets/clubs/igubilisim.jpg",
+    text:"Bilisim Klübü",
+    title:"İstanbul Gelişim Üniversitesi"},
+    { img:"/assets/clubs/imusiber.jpg",
+    text:"Siber Güvenlik ve Teknoloji Topluluğu",
+    title:"İstanbul Medeniyet Üniversitesi"},
+    { img:"/assets/clubs/istinyeyazmuh.jpeg",
+    text:"Yazılım Mühendisliği Kulübü",
+    title:"İstinye Üniversitesi"},
+    { img:"/assets/clubs/itumb.jpg",
+    text:"Matematik & Bilgisayar Kulübü",
+    title:"İstanbul Teknik Üniversitesi"},
+    { img:"/assets/clubs/iucbilg.png",
+    text:"Bilgisayar Kulübü",
+    title:"İstanbul Üniversitesi - Cerrahpaşa"},
+    { img:"/assets/clubs/izubilisim.jpg",
+    text:"Bilisim Klübü",
+    title:"İstanbul Sabahattin Zaim Üniversitesi"},
+    { img:"/assets/clubs/kulturmb.png",
+    text:"Matematik & Bilgisayar Kulübü",
+    title:"İstanbul Kültür Üniversitesi"},
+    { img:"/assets/clubs/marmaradaft.jpg",
+    text:"Tasarım & Gelecek Teknoloji Kulübü",
+    title:"Marmara Üniversitesi"},
+    { img:"/assets/clubs/marmarauni.png",
+    text:"Bilgisayar Mühendisliği Kulübü",
+    title:"Marmara Üniversitesi"},
+    { img:"/assets/clubs/okanyazilm.jpg",
+    text:"Yazılım Topluluğu Kulübü",
+    title:"Okan Üniversitesi"},
+    { img:"/assets/clubs/uskudardot.jpg",
+    text:"Dijital Oyun Tasarım Kulübü",
+    title:"Üsküdar Üniversitesi"},
+    { img:"/assets/clubs/yeditepebilgisayar.png",
+    text:"Bilgisayar Topluluğu Kulübü",
+    title:"Yeditepe Üniversitesi"},
+    { img:"/assets/clubs/yubilisim.jpeg",
+    text:"Bilişim Kulübü",
+    title:"Yeditepe Üniversitesi"},
+   
+  ])
+
   return (
     <SliderArea>
       <Container>
         <CustomSlider {...settings}>
-          <SliderCard
-            img="/assets/images/okanbil.jpg"
-            text="Bilisim Klübü"
-            title="Okan Üniversitesi"
-          />
-          <SliderCard
-            img="/assets/images/iucbilg.png"
-            text="Bilgisayar Klübü"
-            title="İstanbul Üniversitesi - Cerrahpaşa"
-          />
-          <SliderCard
-            img="/assets/images/kulturmb.png"
-            text="Matematik Bilgisayar Kulübü"
-            title="İstanbul Kültür Üniversitesi"
-          />
-          <SliderCard
-            img="/assets/images/kulturmb.png"
-            text="Bilisim Klübü"
-            title="Okan Üniversitesi"
-          />
-          <SliderCard
-            img="/assets/images/okanbil.jpg"
-            text="Bilisim Klübü"
-            title="Okan Üniversitesi"
-          />
-          <SliderCard
-            img="/assets/images/iucbilg.png"
-            text="Bilgisayar Klübü"
-            title="İstanbul Üniversitesi - Cerrahpaşa"
-          />
-          <SliderCard
-            img="/assets/images/kulturmb.png"
-            text="Matematik Bilgisayar Kulübü"
-            title="İstanbul Kültür Üniversitesi"
-          />
-          <SliderCard
-            img="/assets/images/kulturmb.png"
-            text="Bilisim Klübü"
-            title="Okan Üniversitesi"
-          />
-          <SliderCard
-            img="/assets/images/okanbil.jpg"
-            text="Bilisim Klübü"
-            title="Okan Üniversitesi"
-          />
-          <SliderCard
-            img="/assets/images/iucbilg.png"
-            text="Bilgisayar Klübü"
-            title="İstanbul Üniversitesi - Cerrahpaşa"
-          />
-          <SliderCard
-            img="/assets/images/kulturmb.png"
-            text="Matematik Bilgisayar Kulübü"
-            title="İstanbul Kültür Üniversitesi"
-          />
-          <SliderCard
-            img="/assets/images/kulturmb.png"
-            text="Bilisim Klübü"
-            title="Okan Üniversitesi"
-          />
-          <SliderCard
-            img="/assets/images/okanbil.jpg"
-            text="Bilisim Klübü"
-            title="Okan Üniversitesi"
-          />
-          <SliderCard
-            img="/assets/images/iucbilg.png"
-            text="Bilgisayar Klübü"
-            title="İstanbul Üniversitesi - Cerrahpaşa"
-          />
-          <SliderCard
-            img="/assets/images/kulturmb.png"
-            text="Matematik Bilgisayar Kulübü"
-            title="İstanbul Kültür Üniversitesi"
-          />
-          <SliderCard
-            img="/assets/images/kulturmb.png"
-            text="Bilisim Klübü"
-            title="Okan Üniversitesi"
-          />
+          {clubs.map((x,y) => (
+                <SliderCard
+                img={x.img}
+                text={x.text}
+                title={x.title}
+              />
+    
+
+          ))}
         </CustomSlider>
       </Container>
     </SliderArea>
