@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import Layout from '../../components/Layout';
 import styled from 'styled-components';
 import PageTopSide from '../../components/PageTopSide';
@@ -52,7 +52,12 @@ const MainArea = styled.div`
     padding-bottom: 10px;
     transition: all 0.3s ease;
   }
-
+span{
+  overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
   .member:hover .content {
     transition: all 0.3s ease;
     bottom: 0px;
@@ -63,6 +68,93 @@ const MainArea = styled.div`
 export default function index() {
   const dispatch = useDispatch();
   const activeUser = useSelector((state) => state.userReducer);
+
+  const [team,setTeam] = useState([
+    {
+      name:"Ahmet Buğra Çakıcı",
+      title:"Kurucu Ortak & Yönetici",
+      instagram:"",
+      linkedin:"https://www.linkedin.com/in/ahmetbcakici/",
+      img:"/assets/team/ahmetavatar.jpg"
+    },
+    {
+      name:"Seyit Furkan Bozkurt",
+      title:"Kurucu Ortak & Yazılım Geliştirici",
+      instagram:"",
+      linkedin:"https://www.linkedin.com/in/seyit-furkan-bozkurt-390302152/",
+      img:"/assets/team/furkanavatar.jpeg"
+    },
+    {
+      name:"Veysel Demirel",
+      title:"Kurucu Ortak & Tasarımcı",
+      instagram:"",
+      linkedin:"https://www.linkedin.com/in/veysel-demirel/",
+      img:"/assets/team/veyselavatar.jpeg"
+    },
+    {
+      name:"Yaren Durak",
+      title:"İdari İşler Sorumlusu",
+      instagram:"",
+      linkedin:"https://www.linkedin.com/in/yaren-durak-9a1a3b199/",
+      img:"/assets/team/yarenvatar.jpeg"
+    },
+    {
+      name:"Eda Nur Demiray",
+      title:"İçerik Ekip Lideri",
+      instagram:"",
+      linkedin:"https://www.linkedin.com/in/edademiray/",
+      img:"/assets/team/edavatar.jpeg"
+    },
+    {
+      name:"Merve Can",
+      title:"Kurumsal İletişim Ekip Lideri",
+      instagram:"",
+      linkedin:"https://www.linkedin.com/in/merve-can-b97ab91a5/",
+      img:"/assets/team/mrv.png"
+    },
+    {
+      name:"Umut Korkmaz",
+      title:"Yazılım Ekip Lideri",
+      instagram:"",
+      linkedin:"https://www.linkedin.com/in/umut-korkmaz/",
+      img:"/assets/team/umutavatar.jpeg"
+    },
+    {
+      name:"Berkay Doğukan Urhan",
+      title:"Yazılım Geliştirici",
+      instagram:"",
+      linkedin:"https://www.linkedin.com/in/berkay-dogukan-urhan/",
+      img:"/assets/team/berkaydogukan.jpg"
+    },
+    {
+      name:"Doğukan Çiçek",
+      title:"Kurumsal İletişim",
+      instagram:"",
+      linkedin:"https://www.linkedin.com/in/do%C4%9Fukan-%C3%A7i%C3%A7ek-890a891a6/",
+      img:"/assets/team/dogukan.jpeg"
+    },
+    {
+      name:"Fatih Ejder",
+      title:"Yayın Moderatörü",
+      instagram:"",
+      linkedin:"https://www.linkedin.com/in/fatih-ejder-6ba19b1aa/",
+      img:"/assets/team/fatihh.jpeg"
+    },
+    {
+      name:"Merve Satmaz",
+      title:"Tasarımcı",
+      instagram:"",
+      linkedin:"https://www.linkedin.com/in/merve-satmaz-760a0b135/",
+      img:"/assets/team/mervesatmaz.jpeg"
+    },
+    {
+      name:"Seray Öztürk",
+      title:"İçerik Geliştirici",
+      instagram:"",
+      linkedin:"https://www.linkedin.com/in/serayozturk/",
+      img:"/assets/team/seray.jpeg"
+    }
+  ]);
 
   /* ABÇ: TEMP AUTH */
   useEffect(() => {
@@ -86,27 +178,31 @@ export default function index() {
       <MainArea>
         <Container>
           <Row>
-            <Col xs={12} sm={6} md={4} lg={3} className="mb-4">
+            {team.map((x,y)=> (
+              <Col key={y} xs={12} sm={6} md={4} lg={3} className="mb-4">
               <div className="member">
                 <div className="overlay"></div>
                 <img
-                  src="/assets/images/berkaydogukan.jpg"
+                  src={x.img}
                   className="avatar"
+                  alt={x.name}
                 />
                 <div className="content">
-                  <h5 className="mt-2">Berkay Doğukan Urhan</h5>
-                  <span>Yazılım Geliştirici</span>
+                  <h5 className="mt-2">{x.name}</h5>
+                  <span>{x.title}</span>
                   <div className="social">
                     <a href="">
                       <i className="fab fa-instagram"></i>
                     </a>
-                    <a href="">
+                    <a href={x.linkedin}>
                       <i className="fab fa-linkedin"></i>
                     </a>
                   </div>
                 </div>
               </div>
             </Col>
+            ))}
+            
           </Row>
         </Container>
       </MainArea>

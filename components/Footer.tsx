@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container, Row, Col} from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
 import Link from 'next/link';
 import {
@@ -90,32 +90,39 @@ export default function Footer() {
               </Col>
               <Col xs={12}>
                 <div className="social-links">
-                  <Link href="/">
-                    <a>
+
+                  <a href="https://www.facebook.com/bilisimtopluluguist">
                     <i className="fab fa-facebook instagramIcon"></i>
-                    </a>
-                  </Link>
-                  <Link href="/">
-                    <a>
+                  </a>
+
+                  <a href="https://twitter.com/bilisimtopluluk">
                     <i className="fab fa-twitter instagramIcon"></i>
-                      
-                    </a>
-                  </Link>
-                  <Link href="/">
-                    <a>
+
+                  </a>
+
+                  <a href="https://www.instagram.com/bilisimtoplulukist/">
                     <i className="fab fa-instagram instagramIcon"></i>
-                    </a>
-                  </Link>
-                  <Link href="/">
-                    <a>
+                  </a>
+                  <a href="https://www.youtube.com/channel/UCV65xnHpBkf7cfo9R7oYYWA?app=desktop">
+                    <i className="fab fa-youtube instagramIcon"></i>
+                  </a>
+
+
+                  <a href="https://www.linkedin.com/company/bilisimtopluluguist/">
                     <i className="fab fa-linkedin instagramIcon"></i>
-                    </a>
-                  </Link>
-                  <Link href="/">
-                    <a>
+                  </a>
+
+                  <a href="https://github.com/bilisimtoplulugu">
                     <i className="fab fa-github instagramIcon"></i>
-                    </a>
-                  </Link>
+                  </a>
+
+                  <a href="https://www.meetup.com/bilisimtoplulugu">
+                    <i className="fab fa-meetup instagramIcon"></i>
+                  </a>
+                  <a href="https://kommunity.com/bilisimtoplulugu">
+                    <i className="fab fa-korvue instagramIcon"></i>
+                  </a>
+
                 </div>
               </Col>
             </Row>
@@ -126,7 +133,7 @@ export default function Footer() {
                 <h6 className="footerTitle mt-5 mt-md-0 ">Hakkımızda</h6>
                 <ul>
                   <li>
-                    <Link href="/etkinlikler"passHref={true}>
+                    <Link href="/etkinlikler" passHref={true}>
                       <a>Etkinlikler</a>
                     </Link>
                   </li>
