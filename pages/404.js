@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Row, Col } from 'react-bootstrap';
 import React, { useState, useEffect, useDispatch } from 'react';
 import AOS from 'aos';
-
+import Head from 'next/head';
 import EventDateSlider from '../components/EventDateSlider';
 import HomeEventCard from '../components/HomeEventCard';
 import { auth } from '../redux/actions/user';
@@ -43,13 +43,13 @@ export default function Custom404() {
 
   return (
     <div>
-      {/* 
+      
 <Head>
         <title>
           Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim
           Etkinlikleri - 404
         </title>
-        <link rel="canonical" href="https://bilisimtoplulugu.org/" />
+        <link rel="canonical" href="https://bilisimtoplulugu.org/404" />
         <meta
           name="description"
           content="İstanbul Bilişim Topluluğu olarak İstanbul'da bulunan üniversite kulüplerince düzenlenen bilişimle ilgili etkinliklerin paylaşıyor ve çeşitli bilişim etkinlikleri organize ediyoruz."
@@ -90,7 +90,7 @@ export default function Custom404() {
         />
         <meta name="twitter:creator" content="@bilisimtopluluk" />
         <meta name="twitter:image" content="/assets/images/socialLogo.png" />
-      </Head> */}
+      </Head> 
 
       <PageTopSide
         responsiveTop="40"

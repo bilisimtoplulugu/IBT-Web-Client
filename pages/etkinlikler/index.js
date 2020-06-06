@@ -100,6 +100,9 @@ const MainArea = styled.div`
 
 export default function Event() {
   const [nearEvents, setNearEvents] = useState([]);
+  const [showNewEvents, setShowNewEvents] = useState(true);
+  const [showOldEvents, setShowOldEvents] = useState(false);
+
   const dispatch = useDispatch();
   const activeUser = useSelector((state) => state.userReducer);
 
@@ -230,10 +233,16 @@ export default function Event() {
                     ></i>
                   </div>
                   <GroupButton className="mb-4">
-                    <FilterButton className="btn active-button">
+                    <FilterButton className={showNewEvents ? "btn active-button"  : "btn"} onClick={()=>{
+                          setShowOldEvents(false)
+                          setShowNewEvents(true)
+                    }}>
                       Yaklaşan Etkinlikler
                     </FilterButton>
-                    <FilterButton className="btn ">
+                    <FilterButton className={showOldEvents ? "btn active-button"  : "btn"} onClick={()=>{
+                      setShowOldEvents(true)
+                      setShowNewEvents(false)
+                    }}>
                       Geçmiş Etkinlikler
                     </FilterButton>
                   </GroupButton>
@@ -255,12 +264,21 @@ export default function Event() {
               </div>
             </Col>
 
-            <Col xs={12} lg={9}>
+            {showNewEvents && <Col xs={12} lg={9}>
               {nearEvents &&
                 nearEvents.map((event, index) => (
                   <EventPageCard event={event} key={index} />
                 ))}
-            </Col>
+            </Col>}
+
+
+            {showOldEvents && <Col xs={12} lg={9}>
+              {nearEvents &&
+                nearEvents.map((event, index) => (
+                  <EventPageCard event={event} key={index} />
+                ))}
+            </Col>}
+            
           </Row>
         </Container>
       </MainArea>
