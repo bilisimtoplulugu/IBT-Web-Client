@@ -521,7 +521,7 @@ export default function Header() {
                 </CustomDropdown>
               ) : (
                 <div className="d-flex">
-                  {/* <Link href="/giris-yap" passHref={true}> */}
+                  <Link href="/giris-yap" passHref={true}>
                   <CustomButton
                     className="btn"
                     id="supportButton"
@@ -529,7 +529,7 @@ export default function Header() {
                   >
                     Giriş Yap
                   </CustomButton>
-                  {/* </Link> */}
+                  </Link>
                 </div>
               )}
             </Nav>

@@ -173,9 +173,9 @@ export default function Login() {
   const resendCode = () => {
     sendConfirmCode();
     setShow(true);
-    setTimeout(() => {
+    /* setTimeout(() => {
       setShow(false)
-    },2000)
+    },2000) */
   };
 
   const sendConfirmCode = async (e) => {
