@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import Layout from '../../components/Layout';
 import PageTopSide from '../../components/PageTopSide';
 import {Container, Row, Col} from 'react-bootstrap';
 import styled from 'styled-components';
 import Head from 'next/head';
-import { auth } from '../../redux/actions/user';
-import {useSelector,useDispatch} from 'react-redux'
+import {auth} from '../../redux/actions/user';
+import {useSelector, useDispatch} from 'react-redux';
 
 const SponsorArea = styled.div`
   min-height: calc(100vh - 517px);
@@ -25,13 +25,13 @@ export default function Sponsor() {
   const dispatch = useDispatch();
   const activeUser = useSelector((state) => state.userReducer);
 
-    /* ABÇ: TEMP AUTH */
-    useEffect(() => {
-      const token = localStorage.getItem('jwt');
-      if (token && Array.isArray(activeUser)) {
-        dispatch(auth(token));
-      }
-    }, [auth]);
+  /* ABÇ: TEMP AUTH */
+  useEffect(() => {
+    const token = localStorage.getItem('jwt');
+    if (token && Array.isArray(activeUser)) {
+      dispatch(auth(token));
+    }
+  }, [auth]);
 
   return (
     <div>
@@ -95,6 +95,15 @@ export default function Sponsor() {
       <Container>
         <SponsorArea>
           <Row>
+            <Col xs={12} sm={6} md={3} className="text-center">
+              <img src="/assets/images/webtekno-logo.png" />
+            </Col>
+            <Col xs={12} sm={6} md={3} className="text-center">
+              <img src="/assets/images/webtekno-logo.png" />
+            </Col>
+            <Col xs={12} sm={6} md={3} className="text-center">
+              <img src="/assets/images/webtekno-logo.png" />
+            </Col>
             <Col xs={12} sm={6} md={3} className="text-center">
               <img src="/assets/images/webtekno-logo.png" />
             </Col>

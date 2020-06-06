@@ -20,35 +20,33 @@ const SliderArea = styled.div`
 `;
 
 const CustomSlider = styled(Slider)`
-.slick-dots li button::before {
-  color: #253a4a;
-}
-.slick-dots li.slick-active button:before {
-  color: #253a4a;
-  opacity: 1;
-}
-.slick-arrow::before {
-  color: white;
-}
-.slick-list {
-  border-radius: 5px;
-
-}
-.slick-next {
-  right: -10px;
-}
-.slick-prev {
-  left: -10px;
-
-}
-.slick-prev:before {
-  text-shadow: 0px 0px 10px rgba(146, 146, 146, 0.4);
-    opacity: .3;
-}
-.slick-next:before {
-  text-shadow: 0px 0px 10px rgba(146, 146, 146, 0.4);
-    opacity: .3;
-}
+  .slick-dots li button::before {
+    color: #253a4a;
+  }
+  .slick-dots li.slick-active button:before {
+    color: #253a4a;
+    opacity: 1;
+  }
+  .slick-arrow::before {
+    color: white;
+  }
+  .slick-list {
+    border-radius: 5px;
+  }
+  .slick-next {
+    right: -10px;
+  }
+  .slick-prev {
+    left: -10px;
+  }
+  .slick-prev:before {
+    text-shadow: 0px 0px 10px rgba(146, 146, 146, 0.4);
+    opacity: 0.3;
+  }
+  .slick-next:before {
+    text-shadow: 0px 0px 10px rgba(146, 146, 146, 0.4);
+    opacity: 0.3;
+  }
 `;
 
 const settings = {

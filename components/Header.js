@@ -19,7 +19,7 @@ import Link from 'next/link';
 
 import styled, {css} from 'styled-components';
 import {useRouter} from 'next/router';
-import {login, register} from '../redux/actions/user';
+import {login, register, logout} from '../redux/actions/user';
 import confirmCode from '../api/user/confirmCode';
 import emailVerification from '../api/user/emailVerification';
 const Logo = styled.img`
@@ -246,9 +246,10 @@ export default function Header() {
     setHeaderBgColor(50 < window.pageYOffset);
   };
 
-  const logout = () => {
+  const logoutOperation = () => {
     localStorage.removeItem('jwt');
-    window.location.replace('/');
+    dispatch(logout());
+    router.push('/');
   };
 
   useEffect(() => {
@@ -266,31 +267,31 @@ export default function Header() {
       // do not do anything
     }
 
-    if (!name || !surname || !email || !password || !passwordAgain) return; // credentials can not be empty
+    if (!name || !surname || !email || !password || !passwordAgain) return; // credentials can not be empty TOASTRHERE
 
-    if (password !== passwordAgain) return; // password should be matched
+    if (password !== passwordAgain) return; // password should be matched TOASTRHERE
 
     try {
       const res = await confirmCode(email);
       localStorage.setItem('email-code', res);
       setIsCodeSent(true);
     } catch ({response: {data}}) {
-      console.log(data); // something went wrong, show the data (message) to user
+      console.log(data); // TOASTRHERE
     }
   };
 
   const verifyEmail = async (e) => {
     e.preventDefault();
-    if (!code) return; // code field can not be empty
+    if (!code) return; // code field can not be empty TOASTRHERE
     try {
       const res = await emailVerification(
         code,
         localStorage.getItem('email-code')
       );
       dispatch(register(name, surname, email, password));
-      setShow(false)
+      setShow(false);
     } catch ({response: {data}}) {
-      console.log(data); // something went wrong, show the data (message) to user
+      console.log(data); // TOASTRHERE
     }
   };
 
@@ -299,9 +300,9 @@ export default function Header() {
 
     try {
       dispatch(login(email, password));
-      setShow(false)
+      setShow(false);
     } catch ({response: {data}}) {
-      console.log(data); // something went wrong, show the data (message) to user
+      console.log(data); // TOASTRHERE
     }
   };
 
@@ -513,7 +514,7 @@ export default function Header() {
                     <Link href="/topluluk" passHref={true}>
                       <CustomDropdown.Item>Topluluk</CustomDropdown.Item>
                     </Link>
-                    <CustomDropdown.Item onClick={logout}>
+                    <CustomDropdown.Item onClick={logoutOperation}>
                       Çıkış Yap
                     </CustomDropdown.Item>
                   </CustomDropdown.Menu>

@@ -10,6 +10,8 @@ export default (state = initialState, action) => {
       return payload;
     case 'AUTH':
       return payload;
+    case 'LOGOUT':
+      return [];
     default:
       return state;
   }

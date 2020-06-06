@@ -1,11 +1,9 @@
-import React from 'react'
-import { Form, Button, Card, Container, Row, Col } from 'react-bootstrap'
+import React from 'react';
+import {Form, Button, Card, Container, Row, Col} from 'react-bootstrap';
 
-import { faEdit } from '@fortawesome/free-solid-svg-icons'
+import {faEdit} from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 import CustomCard from './CustomCard';
-
-
 
 const CustomButton = styled(Button)`
   font-size: 11pt;
@@ -13,8 +11,8 @@ const CustomButton = styled(Button)`
   border-radius: 5px;
   padding-left: 20px;
   padding-right: 20px;
- width:100%;
- justify-content:center;
+  width: 100%;
+  justify-content: center;
   background: #0097e4;
   border: none;
 
@@ -33,26 +31,23 @@ const CustomButton = styled(Button)`
   }
 `;
 
-
 const Inner = styled.div`
-
-
-.orgImage{
-    position:relative;
-    margin:0 auto;
+  .orgImage {
+    position: relative;
+    margin: 0 auto;
     height: 120px;
-    width:120px;
-}
+    width: 120px;
+  }
 
-.orgImage:hover .selectImage{
-    opacity:1;
-    transition:all .3s ease;
-    cursor:pointer;
-}
+  .orgImage:hover .selectImage {
+    opacity: 1;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
 
-.selectImage{
-    transition:all .3s ease;
- 
+  .selectImage {
+    transition: all 0.3s ease;
+
     position: absolute;
     top: 0;
     right: 0;
@@ -65,53 +60,51 @@ const Inner = styled.div`
     color: white;
     opacity: 1;
     border-radius: 50%;
-}
-textarea {
+  }
+  textarea {
     resize: none;
-    height:100px;
- }
+    height: 100px;
+  }
 `;
 
-
 export default function OrganizationCreate() {
-    return (
-  
-            <Container>
-                <Row className="d-flex justify-content-center">
-                    <Col xs={12} sm={8} md={6}>
-                        <Inner>
-                        <CustomCard >
-                           <Form>
-                                <Form.Group>
-                                    <div className="orgImage">
-                                        <img src="" />
-                                        <div className="selectImage">
-                                        <i className="fas fa-user-edit"></i>
-                                        </div>
-                                    </div>
-                                </Form.Group>
-                                <Form.Group>
-                                    <Form.Label>Topluluk Adı</Form.Label>
-                                    <Form.Control type="email" className="shadow-none" placeholder="E-Posta" />
-                                </Form.Group>
-                                <Form.Group>
-                                    <Form.Label>Topluluk Hakkında</Form.Label>
-                                    <Form.Control as="textarea" className="shadow-none" />
-                                </Form.Group>
-                                <Form.Group>
-                                    <CustomButton classname="btn" type="submit">
-                                        Oluştur
-                            </CustomButton>
-                                </Form.Group>
-                            </Form>
-
-       
-                        </CustomCard>
-                        </Inner>
-                    </Col>
-                </Row>
-            </Container>
-     
-
-    )
+  return (
+    <Container>
+      <Row className="d-flex justify-content-center">
+        <Col xs={12} sm={8} md={6}>
+          <Inner>
+            <CustomCard>
+              <Form>
+                <Form.Group>
+                  <div className="orgImage">
+                    <img src="" />
+                    <div className="selectImage">
+                      <i className="fas fa-user-edit"></i>
+                    </div>
+                  </div>
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label>Topluluk Adı</Form.Label>
+                  <Form.Control
+                    type="email"
+                    className="shadow-none"
+                    placeholder="E-Posta"
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label>Topluluk Hakkında</Form.Label>
+                  <Form.Control as="textarea" className="shadow-none" />
+                </Form.Group>
+                <Form.Group>
+                  <CustomButton classname="btn" type="submit">
+                    Oluştur
+                  </CustomButton>
+                </Form.Group>
+              </Form>
+            </CustomCard>
+          </Inner>
+        </Col>
+      </Row>
+    </Container>
+  );
 }

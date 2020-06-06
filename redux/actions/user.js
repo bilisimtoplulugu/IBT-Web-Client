@@ -4,16 +4,20 @@ import {API_URL} from '../../config';
 export const register = (name, surname, email, password) => async (
   dispatch
 ) => {
-  const {
-    data: {user, token},
-  } = await axios.post(`${API_URL}/user/register`, {
-    name,
-    surname,
-    email,
-    password,
-  });
-  localStorage.setItem('jwt', token);
-  return dispatch({type: 'REGISTER', payload: user});
+  try {
+    const {
+      data: {user, token},
+    } = await axios.post(`${API_URL}/user/register`, {
+      name,
+      surname,
+      email,
+      password,
+    });
+    localStorage.setItem('jwt', token);
+    return dispatch({type: 'REGISTER', payload: user});
+  } catch ({response: {data}}) {
+    console.log(data);
+  }
 };
 
 export const auth = (token) => async (dispatch) => {
@@ -42,3 +46,7 @@ export const login = (email, password) => async (dispatch) =>
       reject(error);
     }
   });
+
+export const logout = () => (dispatch) => {
+  return dispatch({type: 'LOGOUT'});
+};

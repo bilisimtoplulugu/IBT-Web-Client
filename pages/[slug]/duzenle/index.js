@@ -108,32 +108,30 @@ export default function index() {
   const [newPass, setNewPass] = useState('');
   const [newPassAgain, setNewPassAgain] = useState('');
 
-  /*   useEffect(() => {
-    // redirect to homepage if there is no logged in user
-    if (Array.isArray(activeUser)) router.push('/');
-  }, [activeUser]); */
-
-  /* CRASHED !!! */
-
-  /* ABÇ: TEMP AUTH */
-  useEffect(() => {
-    const token = localStorage.getItem('jwt');
-    if (token && Array.isArray(activeUser)) dispatch(auth(token));
-
-    console.log('push');
-    //router.push('/');
-  }, [auth]);
-
   //Modal
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  useEffect(() => {
+    if (activeUser.username !== router.query.slug){
+      router.push('/');
+    }
+  }, [activeUser]);
+
+  /* ABÇ: TEMP AUTH */
+  useEffect(() => {
+    const token = localStorage.getItem('jwt');
+    if (token && Array.isArray(activeUser)) {
+      dispatch(auth(token));
+    }
+  }, [auth]);
+
   const personalInfoChangeSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      await changePersonalInfo(activeUser._id, name, surname, email);
+      await changePersonalInfo(activeUser._id, name, surname, username, email);
       dispatch(auth(localStorage.getItem('jwt')));
       console.log('personal data changed');
     } catch (error) {

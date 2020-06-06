@@ -121,8 +121,12 @@ export default function Event() {
   }, []);
 
   const getNearEvents = async () => {
-    const {data} = await axios.get('http://localhost:2222/event/near');
-    setNearEvents(data);
+    try {
+      const {data} = await axios.get('http://localhost:2222/event/near');
+      setNearEvents(data);
+    } catch (error) {
+      console.log(error); //something went wrong
+    }
   };
 
   return (
@@ -192,7 +196,7 @@ export default function Event() {
         ></div>
         <Container>
           <Row>
-            <Col xs={12} >
+            <Col xs={12}>
               <div className="text-right">
                 <div className="d-block d-lg-none">
                   <FilterButton
@@ -234,7 +238,10 @@ export default function Event() {
                     </FilterButton>
                   </GroupButton>
 
-                  <Form.Group controlId="exampleForm.ControlSelect1" className="d-none">
+                  <Form.Group
+                    controlId="exampleForm.ControlSelect1"
+                    className="d-none"
+                  >
                     <Form.Label>Topluluklar</Form.Label>
                     <Form.Control className="customSelect" as="select">
                       <option>Hepsi</option>
