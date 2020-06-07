@@ -7,8 +7,8 @@ export default (emailTo) =>
       const {data} = await axios.post(`${API_URL}/user/send-code-to-email`, {
         emailTo,
       });
-      resolve(data);
+      return resolve(data);
     } catch (error) {
-      reject(error);
+      return reject(error);
     }
   });

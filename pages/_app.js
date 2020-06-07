@@ -8,6 +8,7 @@ import 'aos/dist/aos.css';
 import 'react-day-picker/lib/style.css';
 import {auth} from '../redux/actions/user';
 import Layout from '../components/Layout'
+
 export default function MyApp({Component, pageProps}) {
 /*   
 const dispatch = useDispatch();

@@ -99,12 +99,13 @@ const MainArea = styled.div`
 `;
 
 export default function Event() {
-  const [nearEvents, setNearEvents] = useState([]);
+  const [pastEvents, setPastEvents] = useState([]);
   const [showNewEvents, setShowNewEvents] = useState(true);
   const [showOldEvents, setShowOldEvents] = useState(false);
 
   const dispatch = useDispatch();
   const activeUser = useSelector((state) => state.userReducer);
+  const nearEvents = useSelector((state) => state.eventReducer);
 
   const [mobileFilter, setmobileFilter] = useState(false);
   useEffect(() => {
@@ -120,13 +121,14 @@ export default function Event() {
   }, [auth]);
 
   useEffect(() => {
-    getNearEvents();
+    getPastEvents();
   }, []);
 
-  const getNearEvents = async () => {
+  /* TODO: send request from api folder instead of sending from component */
+  const getPastEvents = async () => {
     try {
-      const {data} = await axios.get('http://localhost:2222/event/near');
-      setNearEvents(data);
+      const {data} = await axios.get('http://localhost:2222/event/past');
+      setPastEvents(data);
     } catch (error) {
       console.log(error); //something went wrong
     }
@@ -233,16 +235,22 @@ export default function Event() {
                     ></i>
                   </div>
                   <GroupButton className="mb-4">
-                    <FilterButton className={showNewEvents ? "btn active-button"  : "btn"} onClick={()=>{
-                          setShowOldEvents(false)
-                          setShowNewEvents(true)
-                    }}>
+                    <FilterButton
+                      className={showNewEvents ? 'btn active-button' : 'btn'}
+                      onClick={() => {
+                        setShowOldEvents(false);
+                        setShowNewEvents(true);
+                      }}
+                    >
                       Yaklaşan Etkinlikler
                     </FilterButton>
-                    <FilterButton className={showOldEvents ? "btn active-button"  : "btn"} onClick={()=>{
-                      setShowOldEvents(true)
-                      setShowNewEvents(false)
-                    }}>
+                    <FilterButton
+                      className={showOldEvents ? 'btn active-button' : 'btn'}
+                      onClick={() => {
+                        setShowOldEvents(true);
+                        setShowNewEvents(false);
+                      }}
+                    >
                       Geçmiş Etkinlikler
                     </FilterButton>
                   </GroupButton>
@@ -264,21 +272,23 @@ export default function Event() {
               </div>
             </Col>
 
-            {showNewEvents && <Col xs={12} lg={9}>
-              {nearEvents &&
-                nearEvents.map((event, index) => (
-                  <EventPageCard event={event} key={index} />
-                ))}
-            </Col>}
+            {showNewEvents && (
+              <Col xs={12} lg={9}>
+                {nearEvents &&
+                  nearEvents.map((event, index) => (
+                    <EventPageCard event={event} key={index} />
+                  ))}
+              </Col>
+            )}
 
-
-            {showOldEvents && <Col xs={12} lg={9}>
-              {nearEvents &&
-                nearEvents.map((event, index) => (
-                  <EventPageCard event={event} key={index} />
-                ))}
-            </Col>}
-            
+            {showOldEvents && (
+              <Col xs={12} lg={9}>
+                {pastEvents &&
+                  pastEvents.map((event, index) => (
+                    <EventPageCard event={event} key={index} />
+                  ))}
+              </Col>
+            )}
           </Row>
         </Container>
       </MainArea>

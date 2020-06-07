@@ -173,6 +173,7 @@ export default function WelcomeSlider() {
         <CustomSlider {...settings}>
           {clubs.map((x,y) => (
                 <SliderCard
+                key={y}
                 img={x.img}
                 text={x.text}
                 title={x.title}

@@ -2,13 +2,10 @@ import React, {useState, useEffect} from 'react';
 import {Toast} from 'react-bootstrap';
 
 function ToastComponent({title, body, showState}) {
-  const [show, setShow] = useState(showState);
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     setShow(showState);
-    /* setTimeout(() => {
-      setShow(false);
-    }, 2000); */
   }, [showState]);
 
   return (
