@@ -17,6 +17,7 @@ import changePassword from '../../../api/user/changePassword';
 import {useSelector} from 'react-redux';
 import changePersonalInfo from '../../../api/user/changePersonalInfo';
 import changeProfilePhoto from '../../../api/user/changeProfilePhoto';
+import Toast from '../../../components/Toast';
 
 import {API_URL} from '../../../config';
 import {auth} from '../../../redux/actions/user';
@@ -91,6 +92,7 @@ const CustomButton = styled(Button)`
 `;
 
 export default function index() {
+  const [toastMessage, setToastMessage] = useState('')
   const activeUser = useSelector((state) => state.userReducer);
   const dispatch = useDispatch();
   const router = useRouter();
@@ -133,9 +135,9 @@ export default function index() {
     try {
       await changePersonalInfo(activeUser._id, name, surname, username, email);
       dispatch(auth(localStorage.getItem('jwt')));
-      console.log('personal data changed');
     } catch (error) {
       console.log(error); //something went wrong, should show to user
+      setToastMessage(error);
     }
   };
 
@@ -148,9 +150,9 @@ export default function index() {
     try {
       await changeProfilePhoto(activeUser._id, formData);
       dispatch(auth(localStorage.getItem('jwt')));
-      console.log('profile photo updated'); // message to user
     } catch (error) {
       console.log(error); //something went wrong, should show to user
+      setToastMessage(error);
     }
   };
 
@@ -160,9 +162,9 @@ export default function index() {
     try {
       await changePassword(activeUser._id, oldPass, newPass, newPassAgain);
       dispatch(auth(localStorage.getItem('jwt')));
-      console.log('pass changed'); // message to user
     } catch (error) {
       console.log(error); //something went wrong, should show to user
+      setToastMessage(error);
     }
   };
 

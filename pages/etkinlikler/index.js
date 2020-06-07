@@ -99,13 +99,13 @@ const MainArea = styled.div`
 `;
 
 export default function Event() {
-  const [nearEvents, setNearEvents] = useState([]);
   const [pastEvents, setPastEvents] = useState([]);
   const [showNewEvents, setShowNewEvents] = useState(true);
   const [showOldEvents, setShowOldEvents] = useState(false);
 
   const dispatch = useDispatch();
   const activeUser = useSelector((state) => state.userReducer);
+  const nearEvents = useSelector((state) => state.eventReducer);
 
   const [mobileFilter, setmobileFilter] = useState(false);
   useEffect(() => {
@@ -121,19 +121,10 @@ export default function Event() {
   }, [auth]);
 
   useEffect(() => {
-    getNearEvents();
     getPastEvents();
   }, []);
 
-  const getNearEvents = async () => {
-    try {
-      const {data} = await axios.get('http://localhost:2222/event/near');
-      setNearEvents(data);
-    } catch (error) {
-      console.log(error); //something went wrong
-    }
-  };
-
+  /* TODO: send request from api folder instead of sending from component */
   const getPastEvents = async () => {
     try {
       const {data} = await axios.get('http://localhost:2222/event/past');

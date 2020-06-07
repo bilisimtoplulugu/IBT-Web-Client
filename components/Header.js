@@ -14,8 +14,8 @@ import {
   Dropdown,
 } from 'react-bootstrap';
 import Link from 'next/link';
-
 import Toast from './Toast';
+
 import styled, {css} from 'styled-components';
 import {useRouter} from 'next/router';
 import {login, register, logout} from '../redux/actions/user';
@@ -225,6 +225,7 @@ const CustomModal = styled(Modal)`
 `;
 export default function Header() {
   const [headerBgColor, setHeaderBgColor] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
   const [email, setEmail] = useState('');
@@ -233,7 +234,6 @@ export default function Header() {
   const [code, setCode] = useState('');
   const [isCodeSent, setIsCodeSent] = useState(false);
   const [show, setShow] = useState(false);
-  const [showToast, setShowToast] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -266,16 +266,26 @@ export default function Header() {
       // do not do anything
     }
 
-    if (!name || !surname || !email || !password || !passwordAgain) return; // credentials can not be empty TOASTRHERE
+    if (!name || !surname || !email || !password || !passwordAgain) {
+      console.log('Tüm alanlar doldurulmalıdır.');
+      setToastMessage('Tüm alanlar doldurulmalıdır.');
+      return;
+    }
 
-    if (password !== passwordAgain) return; // password should be matched TOASTRHERE
+    if (password !== passwordAgain) {
+      console.log('Şifreler eşleşmemektedir.');
+      setToastMessage('Şifreler eşleşmemektedir.');
+      return;
+    }
 
     try {
+      console.log('sendconfirmcode try');
       const res = await confirmCode(email);
       localStorage.setItem('email-code', res);
       setIsCodeSent(true);
     } catch ({response: {data}}) {
-      console.log(data); // TOASTRHERE
+      console.log('sendconfirmcode catch');
+      setToastMessage(data);
     }
   };
 
@@ -291,23 +301,29 @@ export default function Header() {
       setShow(false);
     } catch ({response: {data}}) {
       console.log(data); // TOASTRHERE
+      setToastMessage(data);
     }
   };
 
   const loginOperation = async (e) => {
     e.preventDefault();
 
+    if (!email || !password) {
+      console.log('Tüm alanlar doldurulmalıdır.');
+      setToastMessage('Tüm alanlar doldurulmalıdır.');
+      return;
+    }
+
     try {
-      dispatch(login(email, password));
+      await dispatch(login(email, password));
       setShow(false);
     } catch ({response: {data}}) {
-      console.log(data); // TOASTRHERE
+      setToastMessage(data);
     }
   };
 
   const resendCode = () => {
     sendConfirmCode();
-    setShowToast(true);
   };
   return (
     <CustomHeader
@@ -315,13 +331,7 @@ export default function Header() {
         headerBgColor ? {background: '#253b4b', transition: 'all .5s ease'} : {}
       }
     >
-      <CustomModal
-        show={show}
-        onHide={() => {
-          handleClose();
-          setShowToast(false);
-        }}
-      >
+      <CustomModal show={show} onHide={handleClose}>
         <CustomModal.Header
           closeButton
           style={{
@@ -359,11 +369,17 @@ export default function Header() {
                   <span className="checkmark"></span>
                 </label>
 
-                <UserButton type="submit">Giriş Yap</UserButton>
+                <Toast message={toastMessage} color="error">
+                  {({onShow, onHide, state}) => (
+                    <UserButton type="submit" onClick={onShow}>
+                      Giriş Yap
+                    </UserButton>
+                  )}
+                </Toast>
               </Form>
             </Tab>
             <Tab eventKey="register" title="Kayıt Ol">
-              <Form className="mt-4" onSubmit={sendConfirmCode}>
+              <Form className="mt-4">
                 <Form.Group controlId="formBasicEmail">
                   <Form.Control
                     type="text"
@@ -413,9 +429,18 @@ export default function Header() {
                   <Form.Check type="checkbox" label="Kullanım Koşulları'nı okudum ve kabul ediyorum." />
                 </Form.Group> */}
 
-                <UserButton type="submit" className="mt-3">
-                  Kayıt Ol
-                </UserButton>
+                <Toast message={toastMessage} color="error">
+                  {({onShow, onHide, state}) => (
+                    <UserButton
+                      onClick={() => {
+                        sendConfirmCode();
+                        onShow();
+                      }}
+                    >
+                      Kayıt Ol
+                    </UserButton>
+                  )}
+                </Toast>
               </Form>
               <div className="mt-4" style={{display: !isCodeSent && 'none'}}>
                 <p>E-Posta Adresinize gelen onay kodunu giriniz.</p>
@@ -428,41 +453,37 @@ export default function Header() {
                       onChange={({target: {value}}) => setCode(value)}
                     />
                   </Form.Group>
-                    <Toast
-                      title="Sticky!"
-                      message="I do not think that word means what you think it means."
-                      color="error"
-                      position="bottom-center"
-                    >
-                      {({onShow, onHide, state}) =>
-                        state ? (
-                          <div className="text-right resend">
-                            <a
-                              onClick={() => {
-                                onShow();
-                                resendCode();
-                              }}
-                            >
-                              Kodu Tekrar Gönder
-                            </a>
-                          </div>
-                        ) : (
-                          <div className="text-right resend">
-                            <a
-                              onClick={() => {
-                                onHide();
-                                resendCode();
-                              }}
-                            >
-                              Kodu Tekrar Gönder
-                            </a>
-                          </div>
-                        )
-                      }
-                    </Toast>
-                  <UserButton type="submit" className="mt-2">
-                    Onayla
-                  </UserButton>
+
+                  <Toast
+                    title="Bilgilendirme!"
+                    message="Kodunuz tekrar gönderildi. E-mailinizin diğer kutularını kontrol etmeyi unutmayınız."
+                    color="info"
+                  >
+                    {({onShow, onHide, state}) => (
+                      <div className="text-right resend">
+                        <a
+                          onClick={() => {
+                            resendCode();
+                            onShow();
+                          }}
+                        >
+                          Kodu Tekrar Gönder
+                        </a>
+                      </div>
+                    )}
+                  </Toast>
+
+                  <Toast message={toastMessage} color="error">
+                    {({onShow, onHide, state}) => (
+                      <UserButton
+                        type="submit"
+                        onClick={onShow}
+                        className="mt-2"
+                      >
+                        Onayla
+                      </UserButton>
+                    )}
+                  </Toast>
                 </Form>
               </div>
             </Tab>
@@ -523,13 +544,13 @@ export default function Header() {
               ) : (
                 <div className="d-flex">
                   {/* <Link href="/giris-yap" passHref={true}> */}
-                    <CustomButton
-                      className="btn"
-                      id="supportButton"
-                      onClick={handleShow}
-                    >
-                      Giriş Yap
-                    </CustomButton>
+                  <CustomButton
+                    className="btn"
+                    id="supportButton"
+                    onClick={handleShow}
+                  >
+                    Giriş Yap
+                  </CustomButton>
                   {/* </Link> */}
                 </div>
               )}

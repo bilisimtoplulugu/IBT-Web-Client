@@ -15,8 +15,8 @@ export const register = (name, surname, email, password) => async (
     });
     localStorage.setItem('jwt', token);
     return dispatch({type: 'REGISTER', payload: user});
-  } catch ({response: {data}}) {
-    console.log(data);
+  } catch (error) {
+    return error;
   }
 };
 
@@ -26,8 +26,8 @@ export const auth = (token) => async (dispatch) => {
       token,
     });
     return dispatch({type: 'AUTH', payload: data});
-  } catch ({response: {data, status}}) {
-    console.log(data);
+  } catch (error) {
+    return error;
   }
 };
 
@@ -41,9 +41,10 @@ export const login = (email, password) => async (dispatch) =>
         password,
       });
       localStorage.setItem('jwt', token);
-      return dispatch({type: 'LOGIN', payload: user});
+      dispatch({type: 'LOGIN', payload: user});
+      return resolve();
     } catch (error) {
-      reject(error);
+      return reject(error);
     }
   });
 
