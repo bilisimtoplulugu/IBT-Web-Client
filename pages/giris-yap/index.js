@@ -172,7 +172,7 @@ export default function Login() {
 
   const resendCode = () => {
     sendConfirmCode();
-    setShow(true);
+    //setShow(true);
     /* setTimeout(() => {
       setShow(false)
     },2000) */

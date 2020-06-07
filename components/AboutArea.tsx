@@ -74,7 +74,7 @@ export default function AboutArea() {
               </div>
               <div className="organizationCount">
                 <span className="count">
-                  27 <h2>Kulüp ile </h2>
+                  29 <h2>Kulüp ile </h2>
                 </span>
               </div>
 

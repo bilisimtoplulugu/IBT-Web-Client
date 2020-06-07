@@ -7,16 +7,15 @@ import {
   NavDropdown,
   Container,
   Button,
-  Toast,
   Modal,
   Tabs,
   Tab,
   Col,
   Dropdown,
 } from 'react-bootstrap';
-
 import Link from 'next/link';
 
+import Toast from './Toast';
 import styled, {css} from 'styled-components';
 import {useRouter} from 'next/router';
 import {login, register, logout} from '../redux/actions/user';
@@ -323,33 +322,6 @@ export default function Header() {
           setShowToast(false);
         }}
       >
-        {/* <Toast
-          style={{
-            position: 'fixed',
-            zIndex: 5,
-            top: 20,
-            right: 20,
-            zIndex: 500,
-          }}
-          onClose={() => setShowToast(false)}
-          show={showToast}
-          delay={2000}
-          autohide
-        >
-          <Toast.Header
-            style={{
-              background: '#0097e4',
-              color: 'white',
-            }}
-          >
-            <strong className="mr-auto">Hatırlatma!</strong>
-          </Toast.Header>
-          <Toast.Body>
-            Onay kodu tekrar gönderildi. E-Postanızın diğer kutularını kontrol
-            etmeyi unutmayınız!
-          </Toast.Body>
-        </Toast> */}
-
         <CustomModal.Header
           closeButton
           style={{
@@ -456,9 +428,38 @@ export default function Header() {
                       onChange={({target: {value}}) => setCode(value)}
                     />
                   </Form.Group>
-                  <div className="text-right resend">
-                    <a onClick={resendCode}>Kodu Tekrar Gönder</a>
-                  </div>
+                    <Toast
+                      title="Sticky!"
+                      message="I do not think that word means what you think it means."
+                      color="error"
+                      position="bottom-center"
+                    >
+                      {({onShow, onHide, state}) =>
+                        state ? (
+                          <div className="text-right resend">
+                            <a
+                              onClick={() => {
+                                onShow();
+                                resendCode();
+                              }}
+                            >
+                              Kodu Tekrar Gönder
+                            </a>
+                          </div>
+                        ) : (
+                          <div className="text-right resend">
+                            <a
+                              onClick={() => {
+                                onHide();
+                                resendCode();
+                              }}
+                            >
+                              Kodu Tekrar Gönder
+                            </a>
+                          </div>
+                        )
+                      }
+                    </Toast>
                   <UserButton type="submit" className="mt-2">
                     Onayla
                   </UserButton>
@@ -521,15 +522,15 @@ export default function Header() {
                 </CustomDropdown>
               ) : (
                 <div className="d-flex">
-                  <Link href="/giris-yap" passHref={true}>
-                  <CustomButton
-                    className="btn"
-                    id="supportButton"
-                    onClick={handleShow}
-                  >
-                    Giriş Yap
-                  </CustomButton>
-                  </Link>
+                  {/* <Link href="/giris-yap" passHref={true}> */}
+                    <CustomButton
+                      className="btn"
+                      id="supportButton"
+                      onClick={handleShow}
+                    >
+                      Giriş Yap
+                    </CustomButton>
+                  {/* </Link> */}
                 </div>
               )}
             </Nav>
