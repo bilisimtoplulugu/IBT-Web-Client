@@ -6,6 +6,7 @@
         "dev": "next dev",
         "devP": "next -p 8081",
         "build": "next build",
+        "buildexport": "next build && next export",
         "start": "next start"
     },
     "dependencies": {

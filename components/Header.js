@@ -316,6 +316,7 @@ export default function Header() {
 
     try {
       await dispatch(login(email, password));
+      router.push('/')
       setShow(false);
     } catch ({response: {data}}) {
       setToastMessage(data);

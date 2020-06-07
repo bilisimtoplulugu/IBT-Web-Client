@@ -222,12 +222,13 @@ export default function EventDetail() {
       const {event, participants} = await getEvent(eventURL);
       setEventData(event);
       setEventParticipants(participants);
-      if (!Array.isArray(activeUser)) {
+      if (!Array.isArray(activeUser) && activeUser.joinedEvents) {
         activeUser.joinedEvents.map((joinedEvent) => {
           if (joinedEvent._id == event._id) setIsRegisteredToEvent(true);
         });
       }
     } catch (error) {
+      console.log(error)
       return router.push('/404'); // event could not found so redirect to 404
     }
   };

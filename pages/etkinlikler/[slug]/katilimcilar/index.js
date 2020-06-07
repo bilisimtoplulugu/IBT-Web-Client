@@ -126,8 +126,8 @@ export default function Participants() {
   };
   return (
     <div>
-      * <Head>
-            <title>{eventData.title} - Bilisimtoplulugu.org, Katılımcılar  </title>
+       <Head>
+            <title>{/* {eventData.title} */} - Bilisimtoplulugu.org, Katılımcılar  </title>
             <link rel="canonical" href="https://bilisimtoplulugu.org/etkinlikler" />
               
                 <meta property="og:locale" content="tr_TR" />

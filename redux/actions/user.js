@@ -22,7 +22,7 @@ export const register = (name, surname, email, password) => async (
 
 export const auth = (token) => async (dispatch) => {
   try {
-    const {data} = await axios.post('http://localhost:2222/user/auth', {
+    const {data} = await axios.post(`${API_URL}/user/auth`, {
       token,
     });
     return dispatch({type: 'AUTH', payload: data});
