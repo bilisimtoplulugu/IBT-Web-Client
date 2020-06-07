@@ -11,6 +11,7 @@ import {API_URL} from '../../config';
 import {auth} from '../../redux/actions/user';
 import {useRouter} from 'next/router';
 import getUser from '../../api/user/getUser';
+import Head from 'next/head';
 
 const MainArea = styled.div`
   margin: 50px 0;
@@ -157,35 +158,36 @@ export default function index() {
 
   return (
     <div>
+      <Head>
+        {/* <title>{eventData.title} - Bilisimtoplulugu.org - Kullanıcı Hesabı </title> */}
+        <link rel="canonical" href="https://bilisimtoplulugu.org/etkinlikler" />
 
-<Head>
-            {/* <title>{eventData.title} - Bilisimtoplulugu.org - Kullanıcı Hesabı </title> */}
-            <link rel="canonical" href="https://bilisimtoplulugu.org/etkinlikler" />
-          
-            {/* <meta
+        {/* <meta
           name="description"
           content="{event.desc}"
         /> */}
-                <meta property="og:locale" content="tr_TR" />
-                <meta property="og:type" content="article" />
-                <meta property="og:image:width" content="1024"/>
-                <meta property="og:image:height" content="1024"/>
-                <meta property="og:image:alt" content="Etkinlikler"/>
-                <meta property="og:image:type" content="image/png"/>
-                <meta property="og:image" content="/assets/images/socialLogo.png" />
-                <meta property="og:image:secure_url" content="/assets/images/socialLogo.png" />
-                {/* <meta property="og:title" content={eventData.title+ " - Bilisimtoplulugu.org - Kullanıcı Hesabı"} /> */}
-                {/* <meta property="og:description" content="{event.desc}" /> */}
-                <meta property="og:url" content="https://bilisimtoplulugu.org/" />
-                {/* <meta property="og:site_name" content={eventData.title+ " - Bilisimtoplulugu.org - Kullanıcı Hesabı"}  /> */}
+        <meta property="og:locale" content="tr_TR" />
+        <meta property="og:type" content="article" />
+        <meta property="og:image:width" content="1024" />
+        <meta property="og:image:height" content="1024" />
+        <meta property="og:image:alt" content="Etkinlikler" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image" content="/assets/images/socialLogo.png" />
+        <meta
+          property="og:image:secure_url"
+          content="/assets/images/socialLogo.png"
+        />
+        {/* <meta property="og:title" content={eventData.title+ " - Bilisimtoplulugu.org - Kullanıcı Hesabı"} /> */}
+        {/* <meta property="og:description" content="{event.desc}" /> */}
+        <meta property="og:url" content="https://bilisimtoplulugu.org/" />
+        {/* <meta property="og:site_name" content={eventData.title+ " - Bilisimtoplulugu.org - Kullanıcı Hesabı"}  /> */}
 
-                <meta name="twitter:card" content="summary_large_image" />
-                {/* <meta name="twitter:title" content={eventData.title+ " - Bilisimtoplulugu.org - Kullanıcı Hesabı"}  /> */}
-                {/* <meta name="twitter:description" content="{event.desc}" /> */}
-                <meta name="twitter:creator" content="@bilisimtopluluk" />
-                <meta name="twitter:image" content="/assets/images/socialLogo.png" />
-                
-            </Head>
+        <meta name="twitter:card" content="summary_large_image" />
+        {/* <meta name="twitter:title" content={eventData.title+ " - Bilisimtoplulugu.org - Kullanıcı Hesabı"}  /> */}
+        {/* <meta name="twitter:description" content="{event.desc}" /> */}
+        <meta name="twitter:creator" content="@bilisimtopluluk" />
+        <meta name="twitter:image" content="/assets/images/socialLogo.png" />
+      </Head>
 
       <PageTopSide
         responsiveTop="50"
