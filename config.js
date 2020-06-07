@@ -1,1 +1,1 @@
-export const API_URL = 'http://ibtapi.ahmetbugracakici.com';
+export const API_URL = 'https://ibtapi.ahmetbugracakici.com';
