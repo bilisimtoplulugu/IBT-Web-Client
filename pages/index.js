@@ -238,7 +238,7 @@ export default function Home() {
         <Container>
           <InstagramInner>
             <span className="message">
-              <i className="fab fa-instagram instagramIcon"></i>
+              <i aria-hidden className="fab fa-instagram instagramIcon"></i>
               Etkinliklerden ve duyurulardan haberdar olmak için bizi
               İnstagram'da takip Edin!
             </span>

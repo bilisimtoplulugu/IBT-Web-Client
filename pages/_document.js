@@ -6,9 +6,7 @@ class MyDocument extends Document {
       <Html lang="tr">
         <Head>
         <link rel="icon" type="image/png" href="/favicon.png" />
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
+       <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
 
         </Head>
 

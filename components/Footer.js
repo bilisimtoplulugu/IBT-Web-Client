@@ -2,13 +2,6 @@ import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
 import Link from 'next/link';
-import {
-  faInstagram,
-  faFacebook,
-  faTwitter,
-  faGithub,
-  faYoutube,
-} from '@fortawesome/free-brands-svg-icons';
 
 const CustomFooter = styled.div`
   background: #f5f5f5;
@@ -92,35 +85,35 @@ export default function Footer() {
                 <div className="social-links">
 
                   <a href="https://www.facebook.com/bilisimtopluluguist">
-                    <i className="fab fa-facebook instagramIcon"></i>
+                    <i aria-hidden className="fab fa-facebook instagramIcon"></i>
                   </a>
 
                   <a href="https://twitter.com/bilisimtopluluk">
-                    <i className="fab fa-twitter instagramIcon"></i>
+                    <i aria-hidden className="fab fa-twitter instagramIcon"></i>
 
                   </a>
 
                   <a href="https://www.instagram.com/bilisimtoplulukist/">
-                    <i className="fab fa-instagram instagramIcon"></i>
+                    <i aria-hidden className="fab fa-instagram instagramIcon"></i>
                   </a>
                   <a href="https://www.youtube.com/channel/UCV65xnHpBkf7cfo9R7oYYWA?app=desktop">
-                    <i className="fab fa-youtube instagramIcon"></i>
+                    <i aria-hidden className="fab fa-youtube instagramIcon"></i>
                   </a>
 
 
                   <a href="https://www.linkedin.com/company/bilisimtopluluguist/">
-                    <i className="fab fa-linkedin instagramIcon"></i>
+                    <i aria-hidden className="fab fa-linkedin instagramIcon"></i>
                   </a>
 
                   <a href="https://github.com/bilisimtoplulugu">
-                    <i className="fab fa-github instagramIcon"></i>
+                    <i aria-hidden className="fab fa-github instagramIcon"></i>
                   </a>
 
                   <a href="https://www.meetup.com/bilisimtoplulugu">
-                    <i className="fab fa-meetup instagramIcon"></i>
+                    <i aria-hidden className="fab fa-meetup instagramIcon"></i>
                   </a>
                   <a href="https://kommunity.com/bilisimtoplulugu">
-                    <i className="fab fa-korvue instagramIcon"></i>
+                    <i aria-hidden className="fab fa-korvue instagramIcon"></i>
                   </a>
 
                 </div>

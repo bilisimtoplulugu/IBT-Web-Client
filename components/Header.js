@@ -16,11 +16,12 @@ import {
 import Link from 'next/link';
 import Toast from './Toast';
 
-import styled, {css} from 'styled-components';
+import styled from 'styled-components';
 import {useRouter} from 'next/router';
 import {login, register, logout} from '../redux/actions/user';
 import confirmCode from '../api/user/confirmCode';
 import emailVerification from '../api/user/emailVerification';
+
 const Logo = styled.img`
   width: 150px;
 `;
