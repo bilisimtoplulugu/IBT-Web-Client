@@ -92,7 +92,7 @@ const CustomButton = styled(Button)`
 `;
 
 export default function index() {
-  const [toastMessage, setToastMessage] = useState('')
+  const [toastMessage, setToastMessage] = useState('');
   const activeUser = useSelector((state) => state.userReducer);
   const dispatch = useDispatch();
   const router = useRouter();
@@ -116,7 +116,7 @@ export default function index() {
   const handleShow = () => setShow(true);
 
   useEffect(() => {
-    if (activeUser.username !== router.query.slug){
+    if (activeUser.username !== router.query.slug) {
       router.push('/');
     }
   }, [activeUser]);
@@ -132,11 +132,16 @@ export default function index() {
   const personalInfoChangeSubmit = async (e) => {
     e.preventDefault();
 
+    if (!name || !surname || !username || !email) {
+      setToastMessage('Tüm alanlar doldurulmalıdır.');
+      return;
+    }
+
     try {
       await changePersonalInfo(activeUser._id, name, surname, username, email);
       dispatch(auth(localStorage.getItem('jwt')));
+      setToastMessage('');
     } catch (error) {
-      console.log(error); //something went wrong, should show to user
       setToastMessage(error);
     }
   };
@@ -151,20 +156,29 @@ export default function index() {
       await changeProfilePhoto(activeUser._id, formData);
       dispatch(auth(localStorage.getItem('jwt')));
     } catch (error) {
-      console.log(error); //something went wrong, should show to user
-      setToastMessage(error);
+      setToastMessage(error.response.data);
     }
   };
 
   const passChangeSubmit = async (e) => {
     e.preventDefault();
 
+    if (!oldPass || !newPass || !newPassAgain) {
+      setToastMessage('Tüm alanlar doldurulmalıdır.');
+      return;
+    }
+
+    if (newPass !== newPassAgain) {
+      setToastMessage('Yeni şifreler eşleşmiyor.');
+      return;
+    }
+
     try {
       await changePassword(activeUser._id, oldPass, newPass, newPassAgain);
       dispatch(auth(localStorage.getItem('jwt')));
+      setToastMessage('');
     } catch (error) {
-      console.log(error); //something went wrong, should show to user
-      setToastMessage(error);
+      setToastMessage(error.response.data);
     }
   };
 
@@ -357,9 +371,16 @@ export default function index() {
                                 xs={12}
                                 className="d-flex justify-content-end"
                               >
-                                <CustomButton type="submit">
-                                  Kaydet
-                                </CustomButton>
+                                <Toast message={toastMessage} color="error">
+                                  {({onShow, onHide, state}) => (
+                                    <CustomButton
+                                      type="submit"
+                                      onClick={onShow}
+                                    >
+                                      Kaydet
+                                    </CustomButton>
+                                  )}
+                                </Toast>
                               </Col>
                             </Row>
                           </Form>
@@ -425,9 +446,16 @@ export default function index() {
                                 md={9}
                                 className="d-flex justify-content-end"
                               >
-                                <CustomButton type="submit">
-                                  Güncelle
-                                </CustomButton>
+                                <Toast message={toastMessage} color="error">
+                                  {({onShow, onHide, state}) => (
+                                    <CustomButton
+                                      type="submit"
+                                      onClick={onShow}
+                                    >
+                                      Güncelle
+                                    </CustomButton>
+                                  )}
+                                </Toast>
                               </Col>
                             </Row>
                           </Form>

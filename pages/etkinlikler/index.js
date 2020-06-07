@@ -11,6 +11,7 @@ import EventPageCard from '../../components/EventPageCard';
 import axios from 'axios';
 import {auth} from '../../redux/actions/user';
 import {useDispatch, useSelector} from 'react-redux';
+import {getNearEvents} from '../../redux/actions/event';
 
 const FilterButton = styled.a`
   font-size: 11pt;
@@ -99,7 +100,7 @@ const MainArea = styled.div`
 `;
 
 export default function Event() {
-  const [pastEvents, setPastEvents] = useState([]);
+  const [pastEvents, setPastEvents] = useState('');
   const [showNewEvents, setShowNewEvents] = useState(true);
   const [showOldEvents, setShowOldEvents] = useState(false);
 
@@ -119,6 +120,12 @@ export default function Event() {
       dispatch(auth(token));
     }
   }, [auth]);
+
+  useEffect(() => {
+    if (!nearEvents.length) {
+      dispatch(getNearEvents());
+    }
+  }, [nearEvents]);
 
   useEffect(() => {
     getPastEvents();
