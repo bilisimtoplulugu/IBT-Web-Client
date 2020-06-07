@@ -164,6 +164,12 @@ export default function WelcomeSlider() {
     { img:"/assets/clubs/yubilisim.jpeg",
     text:"Bilişim Kulübü",
     title:"Yeditepe Üniversitesi"},
+    { img:"/assets/clubs/isikmis.png",
+    text:"Management Information Society",
+    title:"Işık Üniversitesi"},
+    { img:"/assets/clubs/medimis.jpg",
+    text:"Management Information Society",
+    title:"İstanbul Medipol Üniversitesi"}
    
   ])
 

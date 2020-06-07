@@ -73,84 +73,84 @@ export default function index() {
     {
       name:"Ahmet Buğra Çakıcı",
       title:"Kurucu Ortak & Yönetici",
-      instagram:"",
+      mail:"ahmetcakici@gmail.com",
       linkedin:"https://www.linkedin.com/in/ahmetbcakici/",
       img:"/assets/team/ahmetavatar.jpg"
     },
     {
       name:"Seyit Furkan Bozkurt",
       title:"Kurucu Ortak & Yazılım Geliştirici",
-      instagram:"",
+      mail:"seyitfurkanbozkurt@gmail.com",
       linkedin:"https://www.linkedin.com/in/seyit-furkan-bozkurt-390302152/",
       img:"/assets/team/furkanavatar.jpeg"
     },
     {
       name:"Veysel Demirel",
       title:"Kurucu Ortak & Tasarımcı",
-      instagram:"",
+      mail:"ieveysel@gmail.com",
       linkedin:"https://www.linkedin.com/in/veysel-demirel/",
       img:"/assets/team/veyselavatar.jpeg"
     },
     {
       name:"Yaren Durak",
       title:"İdari İşler Sorumlusu",
-      instagram:"",
+      mail:"yrndurak@gmail.com",
       linkedin:"https://www.linkedin.com/in/yaren-durak-9a1a3b199/",
       img:"/assets/team/yarenvatar.jpeg"
     },
     {
       name:"Eda Nur Demiray",
       title:"İçerik Ekip Lideri",
-      instagram:"",
+      mail:"edademiray2@gmail.com",
       linkedin:"https://www.linkedin.com/in/edademiray/",
       img:"/assets/team/edavatar.jpeg"
     },
     {
       name:"Merve Can",
       title:"Kurumsal İletişim Ekip Lideri",
-      instagram:"",
+      mail:"mrv.can907@gmail.com",
       linkedin:"https://www.linkedin.com/in/merve-can-b97ab91a5/",
       img:"/assets/team/mrv.png"
     },
     {
       name:"Umut Korkmaz",
-      title:"Yazılım Ekip Lideri",
-      instagram:"",
+      title:"Yazılım Geliştirici",
+      mail:"umutkorkmaz@outlook.com.tr",
       linkedin:"https://www.linkedin.com/in/umut-korkmaz/",
       img:"/assets/team/umutavatar.jpeg"
     },
     {
       name:"Berkay Doğukan Urhan",
-      title:"Yazılım Geliştirici",
-      instagram:"",
+      title:"Yazılım Ekip Lideri",
+      mail:"dogu.1769@gmail.com",
       linkedin:"https://www.linkedin.com/in/berkay-dogukan-urhan/",
       img:"/assets/team/berkaydogukan.jpg"
     },
     {
       name:"Doğukan Çiçek",
       title:"Kurumsal İletişim",
-      instagram:"",
+      mail:"dogukancicek@tutanota.com",
       linkedin:"https://www.linkedin.com/in/do%C4%9Fukan-%C3%A7i%C3%A7ek-890a891a6/",
       img:"/assets/team/dogukan.jpeg"
     },
     {
       name:"Fatih Ejder",
       title:"Yayın Moderatörü",
-      instagram:"",
+      mail:"ejder6496@gmail.com",
       linkedin:"https://www.linkedin.com/in/fatih-ejder-6ba19b1aa/",
       img:"/assets/team/fatihh.jpeg"
     },
     {
       name:"Merve Satmaz",
       title:"Tasarımcı",
-      instagram:"",
+      mail:"mervesatmaz@gmail.com",
       linkedin:"https://www.linkedin.com/in/merve-satmaz-760a0b135/",
       img:"/assets/team/mervesatmaz.jpeg"
     },
     {
       name:"Seray Öztürk",
       title:"İçerik Geliştirici",
-      instagram:"",
+      mail:"serayozturk99@gmail.com",
       linkedin:"https://www.linkedin.com/in/serayozturk/",
       img:"/assets/team/seray.jpeg"
     }
@@ -191,8 +191,8 @@ export default function index() {
                   <h5 className="mt-2">{x.name}</h5>
                   <span>{x.title}</span>
                   <div className="social">
-                    <a href="">
-                      <i className="fab fa-instagram"></i>
+                    <a href={"mailto:"+x.mail}>
+                    <i className="fas fa-envelope"></i>
                     </a>
                     <a href={x.linkedin}>
                       <i className="fab fa-linkedin"></i>
