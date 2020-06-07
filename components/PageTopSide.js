@@ -52,14 +52,7 @@ EventTopInner.defaultProps = {
   },
 };
 
-export default function PageTopSide(props: {
-  title: any;
-  desc: any;
-  defaultHeight: any;
-  bgImage: any;
-  responsiveHeight: any;
-  responsiveTop: any;
-}) {
+export default function PageTopSide(props) {
   EventTop.defaultProps.theme.defaultHeight = props.defaultHeight;
   EventTopInner.defaultProps.theme.responsiveTop = props.responsiveTop;
 
