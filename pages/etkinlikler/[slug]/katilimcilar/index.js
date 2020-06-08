@@ -126,30 +126,57 @@ export default function Participants() {
   };
   return (
     <div>
-      * <Head>
-            <title>{eventData.title} - Bilisimtoplulugu.org, Katılımcılar  </title>
-            <link rel="canonical" href="https://bilisimtoplulugu.org/etkinlikler" />
-              
-                <meta property="og:locale" content="tr_TR" />
-                <meta property="og:type" content="article" />
-                <meta property="og:image:width" content="1024"/>
-                <meta property="og:image:height" content="1024"/>
-                <meta property="og:image:alt" content="Etkinlikler"/>
-                <meta property="og:image:type" content="image/png"/>
-                <meta property="og:image" content="/assets/images/socialLogo.png" />
-                <meta property="og:image:secure_url" content="/assets/images/socialLogo.png" />
-                {/* <meta property="og:title" content={eventData.title+ " - Bilisimtoplulugu.org, Katılımcılar "} /> */}
-                {/* <meta property="og:description" content="{event-desc}" /> */}
-                <meta property="og:url" content="https://bilisimtoplulugu.org/" />
-                {/* <meta property="og:site_name" content={eventData.title+ " - Bilisimtoplulugu.org, Katılımcılar "}  /> */}
+      <Head>
+        <title>
+          {' '}
+          {router.query.title && `${router.query.title} -`}{' '}
+          Bilisimtoplulugu.org, Katılımcılar{' '}
+        </title>
+        <link rel="canonical" href="https://bilisimtoplulugu.org/etkinlikler" />
 
-                <meta name="twitter:card" content="summary_large_image" />
-                {/* <meta name="twitter:title" content={eventData.title+ " - Bilisimtoplulugu.org, Katılımcılar "}  /> */}
-                {/* <meta name="twitter:description" content="{event-desc}" /> */}
-                <meta name="twitter:creator" content="@bilisimtopluluk" />
-                <meta name="twitter:image" content="/assets/images/socialLogo.png" />
-                
-            </Head> 
+        <meta property="og:locale" content="tr_TR" />
+        <meta property="og:type" content="article" />
+        <meta property="og:image:width" content="1024" />
+        <meta property="og:image:height" content="1024" />
+        <meta property="og:image:alt" content="Etkinlikler" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image" content="/assets/images/socialLogo.png" />
+        <meta
+          property="og:image:secure_url"
+          content="/assets/images/socialLogo.png"
+        />
+        <meta
+          property="og:title"
+          content={`${
+            router.query.title && router.query.title
+          } Bilisimtoplulugu.org, Katılımcılar`}
+        />
+        <meta
+          property="og:description"
+          content={`${router.query.description && router.query.description}`}
+        />
+        <meta property="og:url" content="https://bilisimtoplulugu.org/" />
+        <meta
+          property="og:site_name"
+          content={`${
+            router.query.title && router.query.title
+          } - Bilisimtoplulugu.org, Katılımcılar`}
+        />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content={`${
+            router.query.title && router.query.title
+          } - Bilisimtoplulugu.org, Katılımcılar`}
+        />
+        <meta
+          name="twitter:description"
+          content={`${router.query.description && router.query.description}`}
+        />
+        <meta name="twitter:creator" content="@bilisimtopluluk" />
+        <meta name="twitter:image" content="/assets/images/socialLogo.png" />
+      </Head>
 
       <PageTopSide
         responsiveTop="40"

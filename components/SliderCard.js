@@ -26,7 +26,7 @@ const CustomSliderCard = styled.div`
   }
 `;
 
-export default function SliderCard(props: {img: any; title: any; text: any,link:any}) {
+export default function SliderCard(props) {
   return (
     <CustomSliderCard>
       <img src={props.img} alt={props.title} />

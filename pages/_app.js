@@ -8,7 +8,7 @@ import 'aos/dist/aos.css';
 import 'react-day-picker/lib/style.css';
 import {auth} from '../redux/actions/user';
 import Layout from '../components/Layout'
-
+import Head from 'next/head'
 export default function MyApp({Component, pageProps}) {
 /*   
 const dispatch = useDispatch();
@@ -23,6 +23,12 @@ const dispatch = useDispatch();
 
   return (
     <Provider store={store}>
+      <Head>
+      <title>
+            Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim
+            Etkinlikleri
+        </title>
+      </Head>
       <Layout>
       <Component {...pageProps} />
       </Layout>
