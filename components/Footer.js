@@ -3,7 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
 import Link from 'next/link';
 
-const CustomFooter = styled.div`
+const CustomFooter = styled.footer`
   background: #f5f5f5;
   .container {
     border-top: 1px solid #f1f1f1;
