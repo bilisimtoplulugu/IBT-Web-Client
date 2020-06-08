@@ -159,7 +159,7 @@ export default function index() {
   return (
     <div>
       <Head>
-        {/* <title>{eventData.title} - Bilisimtoplulugu.org - Kullanıcı Hesabı </title> */}
+        <title>{visitedUserData.name} {visitedUserData.surname} - Bilisimtoplulugu.org - Kullanıcı Hesabı </title>
         <link rel="canonical" href="https://bilisimtoplulugu.org/etkinlikler" />
 
         {/* <meta

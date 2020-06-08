@@ -228,7 +228,7 @@ export default function EventDetail() {
         });
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
       return router.push('/404'); // event could not found so redirect to 404
     }
   };
@@ -240,33 +240,53 @@ export default function EventDetail() {
   return (
     <div>
       <Head>
-            {/* <title>{eventData.title} - Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri </title> */}
-            <link rel="canonical" href="https://bilisimtoplulugu.org/etkinlikler" />
-          
-            {/* <meta
-          name="description"
-          content="{event.desc}"
-        /> */}
-                <meta property="og:locale" content="tr_TR" />
-                <meta property="og:type" content="article" />
-                <meta property="og:image:width" content="1024"/>
-                <meta property="og:image:height" content="1024"/>
-                <meta property="og:image:alt" content="Etkinlikler"/>
-                <meta property="og:image:type" content="image/png"/>
-                <meta property="og:image" content="/assets/images/socialLogo.png" />
-                <meta property="og:image:secure_url" content="/assets/images/socialLogo.png" />
-                {/* <meta property="og:title" content={eventData.title+ " - Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri"} /> */}
-                {/* <meta property="og:description" content="{event.desc}" /> */}
-                <meta property="og:url" content="https://bilisimtoplulugu.org/" />
-                {/* <meta property="og:site_name" content={eventData.title+ " - Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri"}  /> */}
+        <title>
+          {eventData.title} - Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu,
+          Bilişim Etkinlikleri{' '}
+        </title>
+        <link rel="canonical" href="https://bilisimtoplulugu.org/etkinlikler" />
 
-                <meta name="twitter:card" content="summary_large_image" />
-                {/* <meta name="twitter:title" content={eventData.title+ " - Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri"}  /> */}
-                {/* <meta name="twitter:description" content="{event.desc}" /> */}
-                <meta name="twitter:creator" content="@bilisimtopluluk" />
-                <meta name="twitter:image" content="/assets/images/socialLogo.png" />
-                
-            </Head>
+        <meta name="description" content={eventData.description} />
+        <meta property="og:locale" content="tr_TR" />
+        <meta property="og:type" content="article" />
+        <meta property="og:image:width" content="1024" />
+        <meta property="og:image:height" content="1024" />
+        <meta property="og:image:alt" content="Etkinlikler" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image" content="/assets/images/socialLogo.png" />
+        <meta
+          property="og:image:secure_url"
+          content="/assets/images/socialLogo.png"
+        />
+        <meta
+          property="og:title"
+          content={
+            eventData.title +
+            ' - Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri'
+          }
+        />
+        <meta property="og:description" content={eventData.desc} />
+        <meta property="og:url" content="https://bilisimtoplulugu.org/" />
+        <meta
+          property="og:site_name"
+          content={
+            eventData.title +
+            ' - Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri'
+          }
+        />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content={
+            eventData.title +
+            ' - Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri'
+          }
+        />
+        <meta name="twitter:description" content={eventData.description} />
+        <meta name="twitter:creator" content="@bilisimtopluluk" />
+        <meta name="twitter:image" content="/assets/images/socialLogo.png" />
+      </Head>
 
       <PageTopSide
         responsiveTop="40"
@@ -343,7 +363,10 @@ export default function EventDetail() {
                   </Col>
                   <Col className="d-flex align-items-center justify-content-end">
                     <Link
-                      href={`/etkinlikler/[slug]/katilimcilar`}
+                      href={{
+                        pathname: `/etkinlikler/[slug]/katilimcilar`,
+                        query: eventData,
+                      }}
                       as={`/etkinlikler/${eventURL}/katilimcilar`}
                     >
                       <a className="seeAll">Tümünü Gör</a>
