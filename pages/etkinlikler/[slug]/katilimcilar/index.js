@@ -51,8 +51,14 @@ const MainArea = styled.div`
     border-radius: 5px;
     margin-bottom: 10px;
     padding: 20px 10px;
+    transition:all .3s ease;
   }
 
+  .participantCard:hover{
+    transform:scale(1.03);
+    transition:all .3s ease;
+    box-shadow: 0 0px 10px rgba(169, 169, 169, 0.2);
+  }
   .form-group input {
     border: 1px solid #f1f1f1;
     font-size: 15pt;
