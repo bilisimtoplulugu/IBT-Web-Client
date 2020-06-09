@@ -11,6 +11,15 @@ import Layout from '../components/Layout'
 import Head from 'next/head'
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+
+import { createGlobalStyle } from 'styled-components'
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    background:#f8f8f8;
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap');
+  }
+`
 export default function MyApp({Component, pageProps}) {
 /*   
 const dispatch = useDispatch();
@@ -25,6 +34,7 @@ const dispatch = useDispatch();
 
   return (
     <Provider store={store}>
+      <GlobalStyle />
       <Head>
       <script src="https://kit.fontawesome.com/7aecc2e880.js"></script>
       <title>
