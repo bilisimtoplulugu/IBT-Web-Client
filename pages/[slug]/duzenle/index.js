@@ -248,9 +248,17 @@ export default function index() {
                   />
                 </Col>
                 <Col xs={12}>
-                  <CustomButton className="btn-block" type="submit">
-                    Fotoğrafı Güncelle
-                  </CustomButton>
+                  <Toast message={toastMessage} color="error">
+                    {({onShow, onHide, state}) => (
+                      <CustomButton
+                        className="btn-block"
+                        type="submit"
+                        onClick={onShow}
+                      >
+                        Fotoğrafı Güncelle
+                      </CustomButton>
+                    )}
+                  </Toast>
                 </Col>
               </Row>
             </Form>

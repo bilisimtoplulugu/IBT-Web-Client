@@ -209,7 +209,7 @@ export default function index() {
                         <div className="userImage">
                           <img
                             onError={addDefaultSrc}
-                            src={`${API_URL}/images/${visitedUserData._id}.png`}
+                            src={`${API_URL}/images/${visitedUserData._id}`}
                             alt="profilePhoto"
                           />
                         </div>
