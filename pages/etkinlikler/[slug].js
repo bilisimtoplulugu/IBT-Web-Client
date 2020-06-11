@@ -243,49 +243,37 @@ export default function EventDetail() {
 
   const joinButton = () => {
     if (isPastEvent) {
-      if (isRegisteredToEvent) {
+      if (isRegisteredToEvent)
         return (
           <div className="text-right">
-            <FilterButton className="btn">Katıldınız</FilterButton>
+            <span className="d-inline mr-2">Katıldınız</span>
           </div>
         );
-      }
+
       return (
         <div className="text-right">
           <span className="d-inline mr-2">Geçmiş Etkinlik</span>
         </div>
       );
-    } else {
-      if (!isRegisteredToEvent) {
-        return (
-          <div>
-            <FilterButton className="btn d-block" onClick={joinToEvent}>
-              Katıl
-            </FilterButton>
-          </div>
-        );
-      }
+    }
+
+    if (isRegisteredToEvent)
       return (
-        <div>
+        <div className="text-right">
           <span className="d-inline mr-2">Gidiyorsunuz</span>
-          <FilterButton className="btn d-block" onClick={unjoinFromEvent}>
-            Vazgeç
+          <FilterButton className="btn" onClick={unjoinFromEvent}>
+            İptal Et
           </FilterButton>
         </div>
       );
-    }
 
-    /*     if (isPastEvent) {
-      if (isRegisteredToEvent)
-        return console.log('geçmiş ve kayıtlı = katıldınız');
-      return console.log('geçmiş ve kaytısız = geçmiş etkinlik');
-    }
-
-    // gelecek etkinlik
-    if (isRegisteredToEvent)
-      return console.log('gelecek ve kayıtlı= gidiyosunuz');
-
-    return console.log('gelecek ve kayıtsız= kaydol'); */
+    return (
+      <div className="text-right">
+        <FilterButton className="btn" onClick={joinToEvent}>
+          Katıl
+        </FilterButton>
+      </div>
+    );
   };
 
   const addDefaultSrc = async (e) => {
@@ -473,27 +461,6 @@ export default function EventDetail() {
                 className="d-block d-sm-flex align-items-sm-center justify-content-sm-end"
               >
                 {joinButton()}
-                {/* {isPastEvent && (
-                  <div className="text-right">
-                    <span className="d-inline mr-2">Geçmiş Etkinlik</span>
-                  </div>
-                )}
-
-                {isRegisteredToEvent && (
-                  <div className="text-right">
-                    <span className="d-inline mr-2">Gidiyorsunuz</span>
-                    <FilterButton className="btn" onClick={unjoinFromEvent}>
-                      İptal Et
-                    </FilterButton>
-                  </div>
-                )}
-                {!isRegisteredToEvent && (
-                  <div>
-                    <FilterButton className="btn d-block" onClick={joinToEvent}>
-                      Katıl
-                    </FilterButton>
-                  </div>
-                )} */}
               </Col>
             </Row>
           </Container>
