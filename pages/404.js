@@ -1,50 +1,50 @@
 import Layout from '../components/Layout';
 import PageTopSide from '../components/PageTopSide';
-import { Container } from 'react-bootstrap';
+import {Container} from 'react-bootstrap';
 import styled from 'styled-components';
-import { Row, Col } from 'react-bootstrap';
-import React, { useState, useEffect, useDispatch } from 'react';
+import {Row, Col} from 'react-bootstrap';
+import React, {useState, useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import AOS from 'aos';
 import Head from 'next/head';
 import EventDateSlider from '../components/EventDateSlider';
 import HomeEventCard from '../components/HomeEventCard';
-import { auth } from '../redux/actions/user';
-import { getNearEvents } from '../redux/actions/event';
+import {auth} from '../redux/actions/user';
+import {getNearEvents} from '../redux/actions/event';
 const MainArea = styled.div`
   margin: 30px 0;
 
-  min-height:calc(100vh - 555px );
+  min-height: calc(100vh - 555px);
 `;
 
 export default function Custom404() {
-  // const [selectedEventId, setSelectedEventId] = useState(1);
-  //  const dispatch = useDispatch(); 
+   const [selectedEventId, setSelectedEventId] = useState(1);
+  const activeUser = useSelector((state) => state.userReducer);
+  const dispatch = useDispatch();
 
   /* ABÇ: TEMP AUTH */
-  /* useEffect(() => {
+  useEffect(() => {
     const token = localStorage.getItem('jwt');
     if (token && Array.isArray(activeUser)) {
-      dispatch(authh(token));
+      dispatch(auth(token));
     }
-  }, [auth]); */
+  }, [auth]);
 
   const handleSelectedEventId = (id) => {
     setSelectedEventId(id);
   };
 
-  // useEffect(() => {
-  //   AOS.init();
+  useEffect(() => {
+    AOS.init();
+ });
 
-  // });
-
-  // useEffect(() => {
-  //   dispatch(getNearEvents());
-  // }, []);
+   useEffect(() => {
+     dispatch(getNearEvents());
+   }, []);
 
   return (
     <div>
-      
-<Head>
+      <Head>
         <title>
           Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim
           Etkinlikleri - 404
@@ -90,7 +90,7 @@ export default function Custom404() {
         />
         <meta name="twitter:creator" content="@bilisimtopluluk" />
         <meta name="twitter:image" content="/assets/images/socialLogo.png" />
-      </Head> 
+      </Head>
 
       <PageTopSide
         responsiveTop="40"
@@ -104,21 +104,19 @@ export default function Custom404() {
 
       <Container>
         <MainArea>
-          {/* <h4>Belkide yakın zamandaki etkinliklere göz atmak istersiniz.</h4> */}
+          <h4>Belki de yakın zamandaki etkinliklere göz atmak istersiniz.</h4>
 
           <Row>
             <Col xs={12}>
-              {/* <EventDateSlider handleSelectedEventId={handleSelectedEventId} /> */}
+              <EventDateSlider handleSelectedEventId={handleSelectedEventId} />
             </Col>
 
             <Col xs={12}>
-              {/* <HomeEventCard selectedEventId={selectedEventId} /> */}
+              <HomeEventCard selectedEventId={selectedEventId} />
             </Col>
           </Row>
-
         </MainArea>
       </Container>
     </div>
-
   );
 }
