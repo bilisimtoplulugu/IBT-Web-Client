@@ -12,7 +12,8 @@ import axios from 'axios';
 import {auth} from '../../redux/actions/user';
 import {useDispatch, useSelector} from 'react-redux';
 import {getNearEvents} from '../../redux/actions/event';
-import { API_URL } from '../../config';
+import getPastEvents from '../../api/event/getPastEvents';
+import {API_URL} from '../../config';
 
 const FilterButton = styled.a`
   font-size: 11pt;
@@ -129,18 +130,12 @@ export default function Event() {
   }, [nearEvents]);
 
   useEffect(() => {
-    getPastEvents();
-  }, []);
-
-  /* TODO: send request from api folder instead of sending from component */
-  const getPastEvents = async () => {
-    try {
-      const {data} = await axios.get(`${API_URL}/event/past`);
-      setPastEvents(data);
-    } catch (error) {
-      console.log(error); //something went wrong
-    }
-  };
+    /* call past events only once and if requested */
+    if (Array.isArray(pastEvents) || !showOldEvents) return;
+    getPastEvents()
+      .then((data) => setPastEvents(data))
+      .catch((error) => console.log(error));
+  }, [showOldEvents]);
 
   return (
     <div>
