@@ -5,9 +5,9 @@ export default (eventURL) =>
   new Promise(async (resolve, reject) => {
     try {
       const {
-        data: {event, participants},
+        data
       } = await axios.get(`${API_URL}/event/${eventURL}`);
-      return resolve({event, participants});
+      return resolve(data);
     } catch (error) {
       return reject(error);
     }

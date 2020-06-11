@@ -228,7 +228,7 @@ export default function Participants() {
                                 <Col xs={12} sm={3} md={2}>
                                   <img
                                     onError={addDefaultSrc}
-                                    src={`${API_URL}/images/${participant._id}.png`}
+                                    src={`${API_URL}/images/${participant._id}`}
                                   />
                                 </Col>
                                 <Col

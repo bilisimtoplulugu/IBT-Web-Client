@@ -254,7 +254,7 @@ export default function index() {
                         sm={6}
                         className="text-center mb-4 mb-sm-0 text-sm-right"
                       >
-                        <Link href={`/${visitedUsername}/etkinlikler`}>
+                        <Link href={`/[slug]/etkinlikler`} as={`/${visitedUsername}/etkinlikler`}>
                           <a className="text-decoration-none">
                             <span className="seeAll">Tümünü Gör</span>
                           </a>
