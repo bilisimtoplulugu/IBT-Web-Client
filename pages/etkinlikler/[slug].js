@@ -176,6 +176,7 @@ const RightContent = styled.div`
 `;
 
 export default function EventDetail() {
+  const [isPastEvent, setIsPastEvent] = useState(false);
   const [eventData, setEventData] = useState('');
   const [eventParticipants, setEventParticipants] = useState('');
   const [isRegisteredToEvent, setIsRegisteredToEvent] = useState(false);
@@ -216,20 +217,75 @@ export default function EventDetail() {
     }
   };
 
+  const checkIsPastEvent = (eventDate) => {
+    var d1 = new Date(eventDate);
+    var d2 = new Date(new Date().toISOString());
+    if (d1 - d2 < 0) setIsPastEvent(true);
+  };
+
   const getEventData = async () => {
     if (!eventURL) return;
     try {
-      const {event, participants} = await getEvent(eventURL);
-      setEventData(event);
-      setEventParticipants(participants);
-      if (!Array.isArray(activeUser)) {
+      const data = await getEvent(eventURL);
+      setEventData(data);
+      setEventParticipants(data.participants);
+      checkIsPastEvent(data.date);
+      if (!Array.isArray(activeUser) && activeUser.joinedEvents) {
         activeUser.joinedEvents.map((joinedEvent) => {
-          if (joinedEvent._id == event._id) setIsRegisteredToEvent(true);
+          if (joinedEvent._id == data._id) setIsRegisteredToEvent(true);
         });
       }
     } catch (error) {
+      console.log(error);
       return router.push('/404'); // event could not found so redirect to 404
     }
+  };
+
+  const joinButton = () => {
+    if (isPastEvent) {
+      if (isRegisteredToEvent) {
+        return (
+          <div className="text-right">
+            <FilterButton className="btn">Katıldınız</FilterButton>
+          </div>
+        );
+      }
+      return (
+        <div className="text-right">
+          <span className="d-inline mr-2">Geçmiş Etkinlik</span>
+        </div>
+      );
+    } else {
+      if (!isRegisteredToEvent) {
+        return (
+          <div>
+            <FilterButton className="btn d-block" onClick={joinToEvent}>
+              Katıl
+            </FilterButton>
+          </div>
+        );
+      }
+      return (
+        <div>
+          <span className="d-inline mr-2">Gidiyorsunuz</span>
+          <FilterButton className="btn d-block" onClick={unjoinFromEvent}>
+            Vazgeç
+          </FilterButton>
+        </div>
+      );
+    }
+
+    /*     if (isPastEvent) {
+      if (isRegisteredToEvent)
+        return console.log('geçmiş ve kayıtlı = katıldınız');
+      return console.log('geçmiş ve kaytısız = geçmiş etkinlik');
+    }
+
+    // gelecek etkinlik
+    if (isRegisteredToEvent)
+      return console.log('gelecek ve kayıtlı= gidiyosunuz');
+
+    return console.log('gelecek ve kayıtsız= kaydol'); */
   };
 
   const addDefaultSrc = async (e) => {
@@ -239,33 +295,53 @@ export default function EventDetail() {
   return (
     <div>
       <Head>
-            {/* <title>{eventData.title} - Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri </title> */}
-            <link rel="canonical" href="https://bilisimtoplulugu.org/etkinlikler" />
-          
-            {/* <meta
-          name="description"
-          content="{event.desc}"
-        /> */}
-                <meta property="og:locale" content="tr_TR" />
-                <meta property="og:type" content="article" />
-                <meta property="og:image:width" content="1024"/>
-                <meta property="og:image:height" content="1024"/>
-                <meta property="og:image:alt" content="Etkinlikler"/>
-                <meta property="og:image:type" content="image/png"/>
-                <meta property="og:image" content="/assets/images/socialLogo.png" />
-                <meta property="og:image:secure_url" content="/assets/images/socialLogo.png" />
-                {/* <meta property="og:title" content={eventData.title+ " - Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri"} /> */}
-                {/* <meta property="og:description" content="{event.desc}" /> */}
-                <meta property="og:url" content="https://bilisimtoplulugu.org/" />
-                {/* <meta property="og:site_name" content={eventData.title+ " - Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri"}  /> */}
+        <title>
+          {eventData.title} - Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu,
+          Bilişim Etkinlikleri{' '}
+        </title>
+        <link rel="canonical" href="https://bilisimtoplulugu.org/etkinlikler" />
 
-                <meta name="twitter:card" content="summary_large_image" />
-                {/* <meta name="twitter:title" content={eventData.title+ " - Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri"}  /> */}
-                {/* <meta name="twitter:description" content="{event.desc}" /> */}
-                <meta name="twitter:creator" content="@bilisimtopluluk" />
-                <meta name="twitter:image" content="/assets/images/socialLogo.png" />
-                
-            </Head>
+        <meta name="description" content={eventData.description} />
+        <meta property="og:locale" content="tr_TR" />
+        <meta property="og:type" content="article" />
+        <meta property="og:image:width" content="1024" />
+        <meta property="og:image:height" content="1024" />
+        <meta property="og:image:alt" content="Etkinlikler" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image" content="/assets/images/socialLogo.png" />
+        <meta
+          property="og:image:secure_url"
+          content="/assets/images/socialLogo.png"
+        />
+        <meta
+          property="og:title"
+          content={
+            eventData.title +
+            ' - Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri'
+          }
+        />
+        <meta property="og:description" content={eventData.desc} />
+        <meta property="og:url" content="https://bilisimtoplulugu.org/" />
+        <meta
+          property="og:site_name"
+          content={
+            eventData.title +
+            ' - Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri'
+          }
+        />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content={
+            eventData.title +
+            ' - Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim Etkinlikleri'
+          }
+        />
+        <meta name="twitter:description" content={eventData.description} />
+        <meta name="twitter:creator" content="@bilisimtopluluk" />
+        <meta name="twitter:image" content="/assets/images/socialLogo.png" />
+      </Head>
 
       <PageTopSide
         responsiveTop="40"
@@ -342,7 +418,10 @@ export default function EventDetail() {
                   </Col>
                   <Col className="d-flex align-items-center justify-content-end">
                     <Link
-                      href={`/etkinlikler/[slug]/katilimcilar`}
+                      href={{
+                        pathname: `/etkinlikler/[slug]/katilimcilar`,
+                        query: eventData,
+                      }}
                       as={`/etkinlikler/${eventURL}/katilimcilar`}
                     >
                       <a className="seeAll">Tümünü Gör</a>
@@ -363,7 +442,7 @@ export default function EventDetail() {
                             <CustomCard>
                               <img
                                 onError={addDefaultSrc}
-                                src={`${API_URL}/images/${participant._id}.png`}
+                                src={`${API_URL}/images/${participant._id}`}
                                 alt="profilePhoto"
                               />
                               <span>
@@ -393,6 +472,13 @@ export default function EventDetail() {
                 sm={6}
                 className="d-block d-sm-flex align-items-sm-center justify-content-sm-end"
               >
+                {joinButton()}
+                {/* {isPastEvent && (
+                  <div className="text-right">
+                    <span className="d-inline mr-2">Geçmiş Etkinlik</span>
+                  </div>
+                )}
+
                 {isRegisteredToEvent && (
                   <div className="text-right">
                     <span className="d-inline mr-2">Gidiyorsunuz</span>
@@ -407,7 +493,7 @@ export default function EventDetail() {
                       Katıl
                     </FilterButton>
                   </div>
-                )}
+                )} */}
               </Col>
             </Row>
           </Container>

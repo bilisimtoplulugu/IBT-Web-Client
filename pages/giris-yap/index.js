@@ -172,10 +172,10 @@ export default function Login() {
 
   const resendCode = () => {
     sendConfirmCode();
-    setShow(true);
-    setTimeout(() => {
+    //setShow(true);
+    /* setTimeout(() => {
       setShow(false)
-    },2000)
+    },2000) */
   };
 
   const sendConfirmCode = async (e) => {
@@ -227,33 +227,6 @@ export default function Login() {
 
   return (
     <div>
-      <Toast title="ttlemdir" body="lorem ipsum dolor sit amet" showState={show}/>
-
-      {/* <Toast
-        style={{
-          position: 'fixed',
-          zIndex: 5,
-          top: 20,
-          right: 20,
-        }}
-        onClose={() => setShow(false)}
-        show={show}
-        delay={2000}
-        autohide
-      >
-        <Toast.Header
-          style={{
-            background: '#0097e4',
-            color: 'white',
-          }}
-        >
-          <strong className="mr-auto">Hatırlatma!</strong>
-        </Toast.Header>
-        <Toast.Body>
-          Onay kodu tekrar gönderildi. E-Postanızın diğer kutularını kontrol etmeyi unutmayınız!
-        </Toast.Body>
-      </Toast> */}
-
       <PageTopSide
         responsiveTop="40"
         responsiveHeight="300"

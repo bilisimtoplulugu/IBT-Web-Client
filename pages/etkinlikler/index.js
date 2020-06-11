@@ -11,6 +11,9 @@ import EventPageCard from '../../components/EventPageCard';
 import axios from 'axios';
 import {auth} from '../../redux/actions/user';
 import {useDispatch, useSelector} from 'react-redux';
+import {getNearEvents} from '../../redux/actions/event';
+import getPastEvents from '../../api/event/getPastEvents';
+import {API_URL} from '../../config';
 
 const FilterButton = styled.a`
   font-size: 11pt;
@@ -99,12 +102,13 @@ const MainArea = styled.div`
 `;
 
 export default function Event() {
-  const [nearEvents, setNearEvents] = useState([]);
+  const [pastEvents, setPastEvents] = useState('');
   const [showNewEvents, setShowNewEvents] = useState(true);
   const [showOldEvents, setShowOldEvents] = useState(false);
 
   const dispatch = useDispatch();
   const activeUser = useSelector((state) => state.userReducer);
+  const nearEvents = useSelector((state) => state.eventReducer);
 
   const [mobileFilter, setmobileFilter] = useState(false);
   useEffect(() => {
@@ -120,17 +124,18 @@ export default function Event() {
   }, [auth]);
 
   useEffect(() => {
-    getNearEvents();
-  }, []);
-
-  const getNearEvents = async () => {
-    try {
-      const {data} = await axios.get('http://localhost:2222/event/near');
-      setNearEvents(data);
-    } catch (error) {
-      console.log(error); //something went wrong
+    if (!nearEvents.length) {
+      dispatch(getNearEvents());
     }
-  };
+  }, [nearEvents]);
+
+  useEffect(() => {
+    /* call past events only once and if requested */
+    if (Array.isArray(pastEvents) || !showOldEvents) return;
+    getPastEvents()
+      .then((data) => setPastEvents(data))
+      .catch((error) => console.log(error));
+  }, [showOldEvents]);
 
   return (
     <div>
@@ -233,16 +238,22 @@ export default function Event() {
                     ></i>
                   </div>
                   <GroupButton className="mb-4">
-                    <FilterButton className={showNewEvents ? "btn active-button"  : "btn"} onClick={()=>{
-                          setShowOldEvents(false)
-                          setShowNewEvents(true)
-                    }}>
+                    <FilterButton
+                      className={showNewEvents ? 'btn active-button' : 'btn'}
+                      onClick={() => {
+                        setShowOldEvents(false);
+                        setShowNewEvents(true);
+                      }}
+                    >
                       Yaklaşan Etkinlikler
                     </FilterButton>
-                    <FilterButton className={showOldEvents ? "btn active-button"  : "btn"} onClick={()=>{
-                      setShowOldEvents(true)
-                      setShowNewEvents(false)
-                    }}>
+                    <FilterButton
+                      className={showOldEvents ? 'btn active-button' : 'btn'}
+                      onClick={() => {
+                        setShowOldEvents(true);
+                        setShowNewEvents(false);
+                      }}
+                    >
                       Geçmiş Etkinlikler
                     </FilterButton>
                   </GroupButton>
@@ -264,21 +275,23 @@ export default function Event() {
               </div>
             </Col>
 
-            {showNewEvents && <Col xs={12} lg={9}>
-              {nearEvents &&
-                nearEvents.map((event, index) => (
-                  <EventPageCard event={event} key={index} />
-                ))}
-            </Col>}
+            {showNewEvents && (
+              <Col xs={12} lg={9}>
+                {nearEvents &&
+                  nearEvents.map((event, index) => (
+                    <EventPageCard event={event} key={index} />
+                  ))}
+              </Col>
+            )}
 
-
-            {showOldEvents && <Col xs={12} lg={9}>
-              {nearEvents &&
-                nearEvents.map((event, index) => (
-                  <EventPageCard event={event} key={index} />
-                ))}
-            </Col>}
-            
+            {showOldEvents && (
+              <Col xs={12} lg={9}>
+                {pastEvents &&
+                  pastEvents.map((event, index) => (
+                    <EventPageCard event={event} key={index} />
+                  ))}
+              </Col>
+            )}
           </Row>
         </Container>
       </MainArea>

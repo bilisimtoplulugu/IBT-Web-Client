@@ -16,15 +16,22 @@ const CustomSliderCard = styled.div`
   }
   .cardContent {
     opacity: 0.5;
+    color:white;
+    transition:all .3s ease;
+  }
+  .cardContent:hover{
+    transition:all .3s ease;
+    text-decoration:none;
+    opacity:1;
   }
 `;
 
-export default function SliderCard(props: {img: any; title: any; text: any}) {
+export default function SliderCard(props) {
   return (
     <CustomSliderCard>
       <img src={props.img} alt={props.title} />
       <span className="cardTitle">{props.title}</span>
-      <span className="cardContent">{props.text}</span>
+      <a href={props.link} className="cardContent">{props.text}</a>
     </CustomSliderCard>
   );
 }

@@ -17,6 +17,7 @@ import changePassword from '../../../api/user/changePassword';
 import {useSelector} from 'react-redux';
 import changePersonalInfo from '../../../api/user/changePersonalInfo';
 import changeProfilePhoto from '../../../api/user/changeProfilePhoto';
+import Toast from '../../../components/Toast';
 
 import {API_URL} from '../../../config';
 import {auth} from '../../../redux/actions/user';
@@ -91,6 +92,7 @@ const CustomButton = styled(Button)`
 `;
 
 export default function index() {
+  const [toastMessage, setToastMessage] = useState('');
   const activeUser = useSelector((state) => state.userReducer);
   const dispatch = useDispatch();
   const router = useRouter();
@@ -114,7 +116,7 @@ export default function index() {
   const handleShow = () => setShow(true);
 
   useEffect(() => {
-    if (activeUser.username !== router.query.slug){
+    if (activeUser.username !== router.query.slug) {
       router.push('/');
     }
   }, [activeUser]);
@@ -130,12 +132,17 @@ export default function index() {
   const personalInfoChangeSubmit = async (e) => {
     e.preventDefault();
 
+    if (!name || !surname || !username || !email) {
+      setToastMessage('Tüm alanlar doldurulmalıdır.');
+      return;
+    }
+
     try {
       await changePersonalInfo(activeUser._id, name, surname, username, email);
       dispatch(auth(localStorage.getItem('jwt')));
-      console.log('personal data changed');
+      setToastMessage('');
     } catch (error) {
-      console.log(error); //something went wrong, should show to user
+      setToastMessage(error);
     }
   };
 
@@ -148,21 +155,30 @@ export default function index() {
     try {
       await changeProfilePhoto(activeUser._id, formData);
       dispatch(auth(localStorage.getItem('jwt')));
-      console.log('profile photo updated'); // message to user
     } catch (error) {
-      console.log(error); //something went wrong, should show to user
+      setToastMessage(error.response.data);
     }
   };
 
   const passChangeSubmit = async (e) => {
     e.preventDefault();
 
+    if (!oldPass || !newPass || !newPassAgain) {
+      setToastMessage('Tüm alanlar doldurulmalıdır.');
+      return;
+    }
+
+    if (newPass !== newPassAgain) {
+      setToastMessage('Yeni şifreler eşleşmiyor.');
+      return;
+    }
+
     try {
       await changePassword(activeUser._id, oldPass, newPass, newPassAgain);
       dispatch(auth(localStorage.getItem('jwt')));
-      console.log('pass changed'); // message to user
+      setToastMessage('');
     } catch (error) {
-      console.log(error); //something went wrong, should show to user
+      setToastMessage(error.response.data);
     }
   };
 
@@ -232,9 +248,17 @@ export default function index() {
                   />
                 </Col>
                 <Col xs={12}>
-                  <CustomButton className="btn-block" type="submit">
-                    Fotoğrafı Güncelle
-                  </CustomButton>
+                  <Toast message={toastMessage} color="error">
+                    {({onShow, onHide, state}) => (
+                      <CustomButton
+                        className="btn-block"
+                        type="submit"
+                        onClick={onShow}
+                      >
+                        Fotoğrafı Güncelle
+                      </CustomButton>
+                    )}
+                  </Toast>
                 </Col>
               </Row>
             </Form>
@@ -272,7 +296,7 @@ export default function index() {
                                 <div className="userImage">
                                   <img
                                     onError={addDefaultSrc}
-                                    src={`${API_URL}/images/${activeUser._id}.png`}
+                                    src={`${API_URL}/images/${activeUser._id}`}
                                   />
                                   <div
                                     className="selectImage"
@@ -355,9 +379,16 @@ export default function index() {
                                 xs={12}
                                 className="d-flex justify-content-end"
                               >
-                                <CustomButton type="submit">
-                                  Kaydet
-                                </CustomButton>
+                                <Toast message={toastMessage} color="error">
+                                  {({onShow, onHide, state}) => (
+                                    <CustomButton
+                                      type="submit"
+                                      onClick={onShow}
+                                    >
+                                      Kaydet
+                                    </CustomButton>
+                                  )}
+                                </Toast>
                               </Col>
                             </Row>
                           </Form>
@@ -423,9 +454,16 @@ export default function index() {
                                 md={9}
                                 className="d-flex justify-content-end"
                               >
-                                <CustomButton type="submit">
-                                  Güncelle
-                                </CustomButton>
+                                <Toast message={toastMessage} color="error">
+                                  {({onShow, onHide, state}) => (
+                                    <CustomButton
+                                      type="submit"
+                                      onClick={onShow}
+                                    >
+                                      Güncelle
+                                    </CustomButton>
+                                  )}
+                                </Toast>
                               </Col>
                             </Row>
                           </Form>

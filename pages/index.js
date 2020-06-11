@@ -126,6 +126,24 @@ const EventInfo = styled.div`
   }
 `;
 
+const Partnership = styled.div`
+padding: 60px 0;
+img {
+  opacity: 0.5;
+  width: 180px;
+  transition: all 0.3s ease;
+}
+.subTitle {
+  font-size: 15pt;
+  font-weight: 500;
+  opacity: 0.5;
+}
+img:hover {
+  opacity: 1;
+  transform: scale(1.03);
+  transition: all 0.3s ease;
+}
+`
 export default function Home() {
   const [whichCard, setWhichCard] = useState(1);
   const [selectedEventId, setSelectedEventId] = useState('');
@@ -220,7 +238,7 @@ export default function Home() {
         <Container>
           <InstagramInner>
             <span className="message">
-              <i className="fab fa-instagram instagramIcon"></i>
+              <i aria-hidden className="fab fa-instagram instagramIcon"></i>
               Etkinliklerden ve duyurulardan haberdar olmak için bizi
               İnstagram'da takip Edin!
             </span>
@@ -299,6 +317,42 @@ export default function Home() {
           </Row>
         </Container>
       </EventArea>
+
+      <Partnership>
+        
+        <Container>
+        <div className="topSide" data-aos="fade-right">
+            <h2>Destekçilerimiz</h2>
+            <span className="subTitle">Etkinliklerimizde bizleri destekleyen herkese teşekkürler</span>
+          </div>
+          <Row className="mt-4">
+          <Col xs={12} sm={6} md={3} className="d-flex align-items-center ">
+  
+  <a href="https://www.webtekno.com/" rel="nofollow">
+    <img src="/assets/images/webtekno-logo.png" />
+    </a>
+</Col>
+<Col xs={12} sm={6} md={3} className="d-flex align-items-center ">
+
+  <a href="https://www.bilgeadam.com/" rel="nofollow">
+  <img src="/assets/images/bilgeadam.png" />
+  </a>
+</Col>
+<Col xs={12} sm={6} md={3} className="d-flex align-items-center ">
+
+  <a href="https://www.sertifier.com/tr/" rel="nofollow">
+  <img src="/assets/images/sertifier.png" />
+  </a>
+</Col>
+<Col xs={12} sm={6} md={3} className="d-flex align-items-center ">
+
+  <a href="https://streamyard.com/" rel="nofollow">
+  <img src="/assets/images/streamyard.svg" />
+  </a>
+</Col>
+          </Row>
+        </Container>
+      </Partnership>
     </div>
   );
 }

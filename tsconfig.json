@@ -20,7 +20,9 @@
     "jsx": "preserve"
   },
   "include": [
-    "src"
+    "pages",
+    "components",
+    "redux"
   ],
   "exclude": [
     "node_modules"

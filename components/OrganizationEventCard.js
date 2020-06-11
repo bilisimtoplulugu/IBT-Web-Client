@@ -14,6 +14,8 @@ const MainArea = styled.div`
     -webkit-box-orient: vertical;
     background: #fff;
   }
+
+ 
 `;
 
 export default function OrganizationEventCard({title, img, content}) {

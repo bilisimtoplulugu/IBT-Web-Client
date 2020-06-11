@@ -67,18 +67,18 @@ export default function AboutArea() {
           </Col>
           <Col className="counts mt-5 mt-md-0" xs={12} md={6}>
             <div data-aos="fade-right">
-              <div className="organizationCount">
+              {/* <div className="organizationCount">
                 <span className="count">
                   1.493 <h2>Üye</h2>
                 </span>
-              </div>
+              </div> */}
               <div className="organizationCount">
                 <span className="count">
-                  27 <h2>Kulüp ile </h2>
+                  29 <h2>Kulüp ile </h2>
                 </span>
               </div>
 
-              <h2>hizmetinizdeyiz</h2>
+              <h2>büyümekteyiz</h2>
             </div>
           </Col>
         </Row>
