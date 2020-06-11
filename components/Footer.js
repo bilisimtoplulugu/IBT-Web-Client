@@ -166,7 +166,7 @@ export default function Footer() {
                 <h6 className="footerTitle mt-5 mt-md-0 ">İletişim</h6>
                 <ul>
                   <li>
-                    <Link href="/">
+                    <Link href="/sss">
                       <a>S.S.S.</a>
                     </Link>
                   </li>

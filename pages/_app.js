@@ -17,7 +17,7 @@ import { createGlobalStyle } from 'styled-components'
 const GlobalStyle = createGlobalStyle`
   body {
     background:#f8f8f8;
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap');
+
   }
 `
 export default function MyApp({Component, pageProps}) {
@@ -36,11 +36,13 @@ const dispatch = useDispatch();
     <Provider store={store}>
       <GlobalStyle />
       <Head>
+
       <script src="https://kit.fontawesome.com/7aecc2e880.js"></script>
       <title>
             Bilisimtoplulugu.org - İstanbul Bilişim Topluluğu, Bilişim
             Etkinlikleri
         </title>
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet"></link>
       </Head>
       <Header />
       <Layout>
