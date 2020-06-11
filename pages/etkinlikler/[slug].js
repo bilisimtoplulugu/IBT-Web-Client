@@ -399,50 +399,54 @@ export default function EventDetail() {
               md={{order: 3, span: 8}}
               className="mt-5"
             >
-              <ParticipantsArea>
-                <Row>
-                  <Col>
-                    <h2>Katılımcılar</h2>
-                  </Col>
-                  <Col className="d-flex align-items-center justify-content-end">
-                    <Link
-                      href={{
-                        pathname: `/etkinlikler/[slug]/katilimcilar`,
-                        query: eventData,
-                      }}
-                      as={`/etkinlikler/${eventURL}/katilimcilar`}
-                    >
-                      <a className="seeAll">Tümünü Gör</a>
-                    </Link>
-                  </Col>
-                </Row>
-                <div className="testimonial-group">
-                  <Row className="mt-4">
-                    {eventParticipants &&
-                      eventParticipants.map((participant) => (
-                        <Link
-                          href={`/[slug]`}
-                          as={`/${participant.username}`}
-                          passHref={true}
-                          key={participant._id}
-                        >
-                          <Col xs={6} sm={4} lg={3}>
-                            <CustomCard>
-                              <img
-                                onError={addDefaultSrc}
-                                src={`${API_URL}/images/${participant._id}`}
-                                alt="profilePhoto"
-                              />
-                              <span>
-                                {participant.name} {participant.surname}{' '}
-                              </span>
-                            </CustomCard>
-                          </Col>
-                        </Link>
-                      ))}
+              {!eventParticipants.length ? (
+                <p>{!isPastEvent && 'İlk katılan siz olun.'}</p>
+              ) : (
+                <ParticipantsArea>
+                  <Row>
+                    <Col>
+                      <h2>Katılımcılar</h2>
+                    </Col>
+                    <Col className="d-flex align-items-center justify-content-end">
+                      <Link
+                        href={{
+                          pathname: `/etkinlikler/[slug]/katilimcilar`,
+                          query: eventData,
+                        }}
+                        as={`/etkinlikler/${eventURL}/katilimcilar`}
+                      >
+                        <a className="seeAll">Tümünü Gör</a>
+                      </Link>
+                    </Col>
                   </Row>
-                </div>
-              </ParticipantsArea>
+                  <div className="testimonial-group">
+                    <Row className="mt-4">
+                      {eventParticipants &&
+                        eventParticipants.map((participant) => (
+                          <Link
+                            href={`/[slug]`}
+                            as={`/${participant.username}`}
+                            passHref={true}
+                            key={participant._id}
+                          >
+                            <Col xs={6} sm={4} lg={3}>
+                              <CustomCard>
+                                <img
+                                  onError={addDefaultSrc}
+                                  src={`${API_URL}/images/${participant._id}`}
+                                  alt="profilePhoto"
+                                />
+                                <span>
+                                  {participant.name} {participant.surname}{' '}
+                                </span>
+                              </CustomCard>
+                            </Col>
+                          </Link>
+                        ))}
+                    </Row>
+                  </div>
+                </ParticipantsArea>
+              )}
             </Col>
           </Row>
         </Container>
