@@ -199,7 +199,7 @@ export default function EventDetail() {
 
   const joinToEvent = async () => {
     try {
-      await join(activeUser._id, eventData._id);
+      await join(activeUser._id, eventData._id, eventData.seoUrl);
       dispatch(auth(localStorage.getItem('jwt')));
     } catch (error) {
       router.push('/giris-yap');
@@ -209,7 +209,7 @@ export default function EventDetail() {
 
   const unjoinFromEvent = async () => {
     try {
-      await unjoin(activeUser._id, eventData._id);
+      await unjoin(activeUser._id, eventData._id, eventData.seoUrl);
       setIsRegisteredToEvent(false);
       dispatch(auth(localStorage.getItem('jwt')));
     } catch (error) {
