@@ -112,7 +112,7 @@ export default function Footer() {
                   <a href="https://www.meetup.com/bilisimtoplulugu">
                     <i aria-hidden className="fab fa-meetup instagramIcon"></i>
                   </a>
-                  <a href="https://kommunity.com/bilisimtoplulugu">
+                  <a href="https://kommunity.com/istanbul-bilisim-toplulugu">
                     <i aria-hidden className="fab fa-korvue instagramIcon"></i>
                   </a>
 
