@@ -108,6 +108,7 @@ export default function Participants() {
     try {
       const res = await getAllJoinedEvents(visitedUsername);
       setAllJoinedEvents(res.joinedEvents);
+      /* todo probably here gonna be crashed one day.. */
     } catch (error) {
       // user || page not found with this name
       router.push('/404');
@@ -148,7 +149,7 @@ export default function Participants() {
         responsiveHeight="250"
         bgImage="./../../assets/images/homeBg.jpg"
         defaultHeight="250"
-        title="Tüm Etkinlikler"
+        title="Katıldığı Tüm Etkinlikler"
         desc=""
       />
 

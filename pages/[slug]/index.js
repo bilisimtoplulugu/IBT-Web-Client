@@ -244,7 +244,7 @@ export default function index() {
                       </div>
                     )}
                   </Col>
-                  <Col xs={12} className="segment">
+                  {(visitedUserData && visitedUserData.joinedEvents.length > 0) && (<Col xs={12} className="segment">
                     <Row>
                       <Col xs={12} sm={6} className="text-center text-sm-left">
                         <h3>Katıldığı Son Etkinlikler</h3>
@@ -280,7 +280,7 @@ export default function index() {
                           </Col>
                         ))}
                     </Row>
-                  </Col>
+                  </Col>)}
                 </Row>
               </CustomCard>
             </Col>
