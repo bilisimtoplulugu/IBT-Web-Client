@@ -5,7 +5,7 @@ import cx from 'classnames';
 
 const Toast = ({
   title,
-  message,
+  message="",
   children,
   color = 'info',
   position = 'top-right',
