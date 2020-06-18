@@ -279,6 +279,30 @@ export default function Header() {
       return;
     }
 
+    if(!(new RegExp("^(?=.{6,})")).test(password)){
+      console.log('Şifreniz 6 veya daha fazla karakterden oluşmalıdır.');
+      setToastMessage('Şifreniz 6 veya daha fazla karakterden oluşmalıdır.');
+      return;
+    }
+
+    if(!(new RegExp("^(?=.*[A-Z])")).test(password)){
+      console.log('Şifreniz büyük harf içermelidir.');
+      setToastMessage('Şifreniz büyük harf içermelidir.');
+      return;
+    }
+
+    if(!(new RegExp("^(?=.*[a-z])")).test(password)){
+      console.log('Şifreniz küçük harf içermelidir.');
+      setToastMessage('Şifreniz küçük harf içermelidir.');
+      return;
+    }
+
+    if(!(new RegExp("^(?=.*[0-9])")).test(password)){
+      console.log('Şifreniz sayı içermelidir.');
+      setToastMessage('Şifreniz sayı içermelidir.');
+      return;
+    }
+
     if (password !== passwordAgain) {
       console.log('Şifreler eşleşmemektedir.');
       setToastMessage('Şifreler eşleşmemektedir.');
