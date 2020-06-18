@@ -381,7 +381,7 @@ export default function Header() {
               </Form>
             </Tab>
             <Tab eventKey="register" title="Kayıt Ol">
-              <Form className="mt-4">
+              <Form className="mt-4" onSubmit={sendConfirmCode}>
                 <Form.Group controlId="formBasicEmail">
                   <Form.Control
                     type="text"
@@ -433,12 +433,7 @@ export default function Header() {
 
                 <Toast message={toastMessage} color="error">
                   {({onShow, onHide, state}) => (
-                    <UserButton
-                      onClick={() => {
-                        sendConfirmCode();
-                        onShow();
-                      }}
-                    >
+                    <UserButton type="submit" onClick={onShow}>
                       Kayıt Ol
                     </UserButton>
                   )}
