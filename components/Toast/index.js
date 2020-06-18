@@ -9,7 +9,7 @@ const Toast = ({
   children,
   color = 'info',
   position = 'top-right',
-  duration = 2000,
+  duration = 3000,
 }) => {
   
   const [visible, setVisible] = useState(false);
