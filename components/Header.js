@@ -273,6 +273,12 @@ export default function Header() {
       return;
     }
 
+    if (!(/^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(email))) { 
+      console.log('Email adresiniz hatalı.');
+      setToastMessage('Email adresiniz hatalı.');
+      return;
+    }
+
     if (password !== passwordAgain) {
       console.log('Şifreler eşleşmemektedir.');
       setToastMessage('Şifreler eşleşmemektedir.');
@@ -315,6 +321,12 @@ export default function Header() {
       return;
     }
 
+    if (!(/^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(email))) { 
+      console.log('Email adresiniz hatalı.');
+      setToastMessage('Email adresiniz hatalı.');
+      return;
+    }
+
     try {
       await dispatch(login(email, password));
       router.push('/')
@@ -350,7 +362,7 @@ export default function Header() {
               <Form className="mt-4" onSubmit={loginOperation}>
                 <Form.Group controlId="formBasicEmail">
                   <Form.Control
-                    type="email"
+                    type="text"
                     placeholder="E-Posta"
                     value={email}
                     onChange={({target: {value}}) => setEmail(value)}
@@ -400,7 +412,7 @@ export default function Header() {
                 </Form.Group>
                 <Form.Group controlId="formBasicEmail">
                   <Form.Control
-                    type="email"
+                    type="text"
                     placeholder="E-Posta"
                     value={email}
                     onChange={({target: {value}}) => setEmail(value)}
